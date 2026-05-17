@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard | Tech Monster</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/theme.css">
+</head>
+
+<body>
+
+<nav class="navbar navbar-dark shadow-sm">
+    <div class="container">
+        <span class="app-logo">Tech Monster</span>
+        <div class="d-flex gap-2">
+            <a class="secondary-btn nav-action" href="settings.html">Settings</a>
+            <button class="secondary-btn nav-action" onclick="logout()">Logout</button>
+        </div>
+    </div>
+</nav>
+
+<div class="container mt-4">
+    <div class="hero-panel p-4 mb-4">
+        <div class="d-flex flex-wrap align-items-center justify-content-between gap-3">
+            <div class="d-flex align-items-center gap-3">
+                <div id="currentAvatar" class="avatar-bubble">TM</div>
+                <div>
+                    <h3 class="fw-bold mb-0">Welcome, <span id="userName"></span></h3>
+                    <small id="rankTitle" class="badge rounded-pill text-bg-warning">New Challenger</small>
+                </div>
+            </div>
+            <div class="d-flex flex-wrap gap-2 align-items-center">
+                <select id="subjectSelect" class="form-select subject-select"></select>
+                <a id="startQuizLink" href="quiz.html" class="glass-btn">Start Quiz</a>
+            </div>
+        </div>
+
+        <p class="mb-1 mt-3">Class: <span id="userClass"></span></p>
+        <p class="fw-bold text-primary" id="motivationText"></p>
+
+        <label>Progress to Next Level</label>
+        <div class="progress mt-2" style="height:20px;">
+            <div id="xpBar" class="progress-bar">0 XP</div>
+        </div>
+    </div>
+
+    <div class="row g-4">
+        <div class="col-lg-4">
+            <div class="glass-card p-4 h-100">
+                <h5>My Stats</h5>
+                <p>Total Quizzes: <strong id="totalQuizzes"></strong></p>
+                <p>Best Score: <strong id="bestScore"></strong>%</p>
+                <p>Level: <strong id="userLevel"></strong></p>
+                <p>Daily Streak: <strong id="userStreak"></strong> day(s)</p>
+            </div>
+        </div>
+
+        <div class="col-lg-4">
+            <div class="glass-card p-4 h-100">
+                <h5>Today's Mission</h5>
+                <p id="dailyMissionText" class="mb-2"></p>
+                <div class="progress mission-progress">
+                    <div id="dailyMissionBar" class="progress-bar"></div>
+                </div>
+                <small id="dailyMissionHint"></small>
+            </div>
+        </div>
+
+        <div class="col-lg-4">
+            <div class="glass-card p-4 h-100">
+                <h5>My Battle Style</h5>
+                <p>Quiz Length: <strong id="prefQuizLength"></strong></p>
+                <p>Timer: <strong id="prefTimer"></strong></p>
+                <p>Feedback: <strong id="prefFeedback"></strong></p>
+                <a href="settings.html" class="tm-link">Customize account</a>
+            </div>
+        </div>
+
+        <div class="col-lg-4">
+            <div class="glass-card p-4 h-100">
+                <h5>Unlocks</h5>
+                <div id="badgeShelf" class="badge-shelf"></div>
+            </div>
+        </div>
+
+        <div class="col-lg-4">
+            <div class="glass-card p-4 h-100">
+                <h5>Learning Radar</h5>
+                <p>Strongest: <strong id="strongestTopic"></strong></p>
+                <p>Next Focus: <strong id="focusTopic"></strong></p>
+                <div id="topicBars"></div>
+            </div>
+        </div>
+
+        <div class="col-lg-4">
+            <div class="glass-card p-4 h-100">
+                <h5>Hall of Fame</h5>
+                <ol id="dashboardHall" class="list-group list-group-numbered"></ol>
+            </div>
+        </div>
+    </div>
+
+    <div class="row g-4 mt-1"><div class="col-lg-6"><div class="glass-card p-4 h-100"><h5>Live Events</h5><div id="liveEvents" class="event-stack"></div></div></div><div class="col-lg-6"><div class="glass-card p-4 h-100"><h5>Assignments</h5><div id="assignmentStack" class="event-stack"></div></div></div></div>
+
+    <div class="mt-4 mb-5 d-flex flex-wrap gap-2">
+        <a href="notes.html" class="secondary-btn">Study Notes</a>
+        <a href="review.html" class="secondary-btn">Last Review</a>
+    </div>
+</div>
+
+<footer class="brand-footer signature-footer"><span class="signature-mark">S&amp;P Group</span><span class="signature-line">Created by S&amp;P Groups • Tech Monster Signature</span></footer>
+
+<script src="js/bootstrap.bundle.min.js"></script>
+<script src="js/api.js"></script>
+<script src="js/storage.js"></script>
+<script src="js/leaderboard.js"></script>
+<script src="js/motivational.js"></script>
+<script src="js/dashboard.js"></script>
+
+</body>
+</html>

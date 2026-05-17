@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Account Settings | Tech Monster</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/theme.css">
+</head>
+
+<body>
+
+<nav class="navbar navbar-dark shadow-sm">
+    <div class="container">
+        <span class="app-logo">Tech Monster</span>
+        <a href="dashboard.html" class="secondary-btn nav-action">Back</a>
+    </div>
+</nav>
+
+<div class="container mt-4 mb-5">
+    <form id="settingsForm" class="row g-4">
+        <div class="col-lg-5">
+            <div class="glass-card p-4 h-100">
+                <h4>Profile Identity</h4>
+                <p class="small text-muted">Unlocked avatars and themes stay with this account.</p>
+
+                <label class="form-label">Nickname</label>
+                <input id="nickname" class="form-control mb-3" maxlength="24" placeholder="Optional nickname">
+
+                <label class="form-label">Avatar</label>
+                <div class="avatar-picker mb-3" id="avatarPicker"></div>
+
+                <label class="form-label">Theme Accent</label>
+                <div class="accent-picker mb-3" id="themePicker"></div>
+
+                <div id="ultimatePanel" class="unlock-panel mb-3">
+                    <strong>Ultimate unlock:</strong>
+                    Gold theme and profile picture unlock at 95% best score or Level 10.
+                </div>
+
+                <label class="form-label">Profile Picture</label>
+                <input id="profilePhoto" type="file" accept="image/*" class="form-control mb-2">
+                <button id="removePhoto" class="secondary-btn nav-action mb-2" type="button">Delete Photo</button>
+                <div id="photoHint" class="small text-muted mb-3"></div>
+
+                <label class="form-label">Motivation Style</label>
+                <select id="motivationStyle" class="form-select">
+                    <option value="balanced">Balanced</option>
+                    <option value="calm">Calm</option>
+                    <option value="competitive">Competitive</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="col-lg-7">
+            <div class="glass-card p-4 h-100">
+                <h4>Quiz Behavior</h4>
+                <p class="small text-muted">Control how the app teaches and challenges you.</p>
+
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <label class="form-label">Questions Per Quiz</label>
+                        <select id="quizLength" class="form-select">
+                            <option value="5">5</option>
+                            <option value="10">10</option>
+                            <option value="15">15</option>
+                            <option value="20">20</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="form-label">Timer Mode</label>
+                        <select id="timerMode" class="form-select">
+                            <option value="off">Relaxed - no timer</option>
+                            <option value="relaxed">Relaxed - 15 minutes</option>
+                            <option value="standard">Standard - 5 minutes</option>
+                            <option value="speed">Speed - 3 minutes</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="form-label">Feedback</label>
+                        <select id="feedbackMode" class="form-select">
+                            <option value="end">After quiz</option>
+                            <option value="instant">Instant feedback</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="form-label">Daily Goal</label>
+                        <select id="dailyGoal" class="form-select">
+                            <option value="1">1 quiz</option>
+                            <option value="2">2 quizzes</option>
+                            <option value="3">3 quizzes</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-check form-switch mt-4">
+                    <input class="form-check-input" type="checkbox" id="soundEnabled">
+                    <label class="form-check-label" for="soundEnabled">Sound effects</label>
+                </div>
+
+                <div id="settingsMessage" class="small mt-3"></div>
+
+                <button type="submit" class="glass-btn mt-3">Save My Account</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<footer class="brand-footer signature-footer"><span class="signature-mark">S&amp;P Group</span><span class="signature-line">Created by S&amp;P Groups • Tech Monster Signature</span></footer>
+
+<script src="js/bootstrap.bundle.min.js"></script>
+<script src="js/api.js"></script>
+<script src="js/storage.js"></script>
+<script src="js/settings.js"></script>
+
+</body>
+</html>

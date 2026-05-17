@@ -1,0 +1,5 @@
+import { json, requireStaff, parseJson } from "../_utils.js";
+const DEFAULT_CONFIG = { appName: "Tech Monster", certificateTitle: "Certificate of Achievement", passingScore: 70, announcement: "Build your account, unlock rewards, and master technical drawing." };
+export async function onRequestOptions() { return json({ ok: true }); }
+export async function onRequestGet({ request, env }) { const auth = await requireStaff(env, request); if (auth.error) return auth.error; const row = await env.DB.prepare("SELECT value FROM app_config WHERE key='main'").first(); return json({ config: { ...DEFAULT_CONFIG, ...parseJson(row?.value, {}) } }); }
+export async function onRequestPost({ request, env }) { const auth = await requireStaff(env, request, true); if (auth.error) return auth.error; const { config } = await request.json(); await env.DB.prepare("INSERT INTO app_config (key, value, updated_at) VALUES ('main', ?, datetime('now')) ON CONFLICT(key) DO UPDATE SET value=excluded.value, updated_at=datetime('now')").bind(JSON.stringify({ ...DEFAULT_CONFIG, ...(config || {}) })).run(); return json({ ok: true }); }

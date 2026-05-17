@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Results | Tech Monster</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/theme.css">
+</head>
+
+<body>
+
+<nav class="navbar navbar-dark shadow-sm">
+    <div class="container">
+        <span class="app-logo">Tech Monster</span>
+    </div>
+</nav>
+
+<div class="container mt-5">
+    <div class="glass-card p-5 text-center">
+        <h2 class="fw-bold mb-3">Your Score</h2>
+        <h1 id="finalScore" class="display-3 fw-bold text-warning"></h1>
+
+        <div id="avatarReaction" class="avatar-result mb-3">TM</div>
+        <h4 id="reactionText" class="fw-bold mb-3"></h4>
+
+        <p class="lead">XP Earned: <strong id="xpEarned"></strong></p>
+        <p>Current Level: <strong id="currentLevel"></strong></p>
+        <p id="resultFocus" class="fw-bold text-primary"></p>
+
+        <div id="avatarUnlockMessage" class="memory-tip mb-3" style="display:none;"></div><div id="resultBadges" class="badge-shelf justify-content-center mb-4"></div>
+
+        <div class="mt-4">
+            <a href="review.html" class="glass-btn me-2">Review Answers</a>
+            <a href="dashboard.html" class="tm-btn-primary mt-4 d-inline-block">Back to Dashboard</a>
+        </div>
+    </div>
+
+    <canvas id="confettiCanvas"></canvas>
+</div>
+
+<footer class="brand-footer signature-footer"><span class="signature-mark">S&amp;P Group</span><span class="signature-line">Created by S&amp;P Groups • Tech Monster Signature</span></footer>
+
+<script src="js/bootstrap.bundle.min.js"></script>
+<script src="js/api.js"></script>
+<script src="js/storage.js"></script>
+<script src="js/result.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const score = parseInt(document.getElementById("finalScore").innerText, 10);
+    if (score >= 80) startConfetti();
+});
+
+function startConfetti() {
+    const canvas = document.getElementById("confettiCanvas");
+    const ctx = canvas.getContext("2d");
+
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    canvas.style.position = "fixed";
+    canvas.style.top = "0";
+    canvas.style.left = "0";
+    canvas.style.pointerEvents = "none";
+    canvas.style.zIndex = "9999";
+
+    const pieces = [];
+    const colors = ["#2563eb", "#10b981", "#f59e0b", "#e11d48", "#7c3aed"];
+
+    for (let i = 0; i < 150; i++) {
+        pieces.push({
+            x: Math.random() * canvas.width,
+            y: Math.random() * canvas.height - canvas.height,
+            size: Math.random() * 8 + 4,
+            speed: Math.random() * 3 + 2,
+            color: colors[Math.floor(Math.random() * colors.length)]
+        });
+    }
+
+    function draw() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        pieces.forEach(p => {
+            ctx.fillStyle = p.color;
+            ctx.fillRect(p.x, p.y, p.size, p.size);
+            p.y += p.speed;
+            p.x += Math.sin(p.y * 0.01);
+            if (p.y > canvas.height) {
+                p.y = -10;
+                p.x = Math.random() * canvas.width;
+            }
+        });
+        requestAnimationFrame(draw);
+    }
+
+    draw();
+    setTimeout(() => canvas.remove(), 5000);
+}
+</script>
+
+</body>
+</html>

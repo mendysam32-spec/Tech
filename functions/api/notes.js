@@ -1,0 +1,2 @@
+import { json } from "./_utils.js";
+export async function onRequestGet({ request, env }) { try { const url = new URL(request.url); const subject = url.searchParams.get("subject") || ""; const result = subject ? await env.DB.prepare("SELECT id, subject, title, content FROM notes WHERE subject = ? ORDER BY updated_at DESC").bind(subject).all() : await env.DB.prepare("SELECT id, subject, title, content FROM notes ORDER BY updated_at DESC").all(); return json({ notes: result.results || [] }); } catch (_) { return json({ notes: [] }); } }
