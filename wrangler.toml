@@ -1,8 +1,8 @@
-name = "edu-db"
+name = "tech-monster"
 compatibility_date = "2026-05-13"
 pages_build_output_dir = "."
 
 [[d1_databases]]
 binding = "DB"
-database_name = "edu-DB"
-database_id = "ac3dcce3-6bb1-4fa4-9866-9ea5444779e4"
+database_name = "tech_monster_db"
+database_id = "REPLACE_WITH_YOUR_D1_DATABASE_ID"

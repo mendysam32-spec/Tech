@@ -803,3 +803,43 @@ body[data-accent="dark"] h1, body[data-accent="dark"] h2, body[data-accent="dark
     color: #baffed;
 }
 .avatar-choice small { display:block; font-size:.68rem; margin-top:.25rem; }
+
+
+/* ===== Login page staff button upgrade ===== */
+.login-role-tabs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    padding: 8px;
+    border-radius: 22px;
+    background: rgba(15, 23, 42, 0.06);
+    border: 1px solid rgba(15, 23, 42, 0.08);
+}
+.login-role-tab {
+    border: 0;
+    border-radius: 18px;
+    padding: 12px 14px;
+    font-weight: 900;
+    color: #334155;
+    background: rgba(255, 255, 255, 0.72);
+    transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
+}
+.login-role-tab:hover { transform: translateY(-1px); }
+.login-role-tab.active {
+    color: #ffffff;
+    background: linear-gradient(135deg, var(--tm-accent), var(--tm-accent-2));
+    box-shadow: 0 10px 24px rgba(37, 99, 235, .25);
+}
+.login-role-tab.admin-tab.active {
+    background: linear-gradient(135deg, #111827, #7c3aed, #f59e0b);
+}
+body.admin-login-mode .glass-card:first-child {
+    border-top: 5px solid #7c3aed;
+    box-shadow: 0 16px 40px rgba(124, 58, 237, .18);
+}
+body.admin-login-mode #loginTitle::before {
+    content: "⚙️ ";
+}
+@media (max-width: 420px) {
+    .login-role-tabs { grid-template-columns: 1fr; }
+}

@@ -19,9 +19,13 @@
     <div class="row g-4">
         <div class="col-md-6">
             <div class="glass-card p-4">
-                <h3 class="fw-bold mb-3">Enter the Arena</h3>
-                <p>Use only username and password. Admin, teacher, and student accounts all enter here.</p>
-                <form id="loginForm">
+                <div class="login-role-tabs mb-3" aria-label="Choose login type">
+                    <button type="button" id="studentLoginTab" class="login-role-tab active">Student Login</button>
+                    <button type="button" id="adminLoginTab" class="login-role-tab admin-tab">Admin Login</button>
+                </div>
+                <h3 class="fw-bold mb-2" id="loginTitle">Enter the Arena</h3>
+                <p id="loginDescription">Students can login or create an account using only username and password.</p>
+                <form id="loginForm" data-login-mode="student">
                     <div class="mb-3">
                         <label class="form-label">Username</label>
                         <input type="text" id="loginUsername" class="form-control" autocomplete="username" required>
@@ -29,10 +33,10 @@
                     <div class="mb-3">
                         <label class="form-label">Password</label>
                         <input type="password" id="loginPassword" class="form-control" autocomplete="current-password" minlength="3" required>
-                        <small class="opacity-75">New student accounts are created automatically.</small>
+                        <small id="loginHint" class="opacity-75">New student accounts are created automatically.</small>
                     </div>
                     <div id="loginMessage" class="small mb-3"></div>
-                    <button class="glass-btn w-100" type="submit">Login</button>
+                    <button id="loginSubmitBtn" class="glass-btn w-100" type="submit">Student Login</button>
                 </form>
             </div>
         </div>
