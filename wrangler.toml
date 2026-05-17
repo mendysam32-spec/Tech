@@ -4,5 +4,5 @@ pages_build_output_dir = "."
 
 [[d1_databases]]
 binding = "DB"
-database_name = "tech_monster_db"
-database_id = "REPLACE_WITH_YOUR_D1_DATABASE_ID"
+database_name = "edu-db"
+database_id = "ac3dcce3-6bb1-4fa4-9866-9ea5444779e4"
