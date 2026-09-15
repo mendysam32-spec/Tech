@@ -31,6 +31,9 @@ document.addEventListener("DOMContentLoaded", async () => {
     document.getElementById("certificateSubject").addEventListener("change", renderCertificate);
     document.getElementById("eventForm").addEventListener("submit", saveEvent);
     document.getElementById("assignmentForm").addEventListener("submit", saveAssignment);
+    document.getElementById("accessStudent").addEventListener("change", renderAccessForSelectedStudent);
+    document.getElementById("accessAllowAll").addEventListener("change", handleAccessAllowAllToggle);
+    document.getElementById("saveAccess").addEventListener("click", saveStudentAccess);
     await renderAdminState();
 });
 
@@ -61,6 +64,7 @@ async function loadAdminData() {
     renderCertificate();
     renderEvents();
     renderAssignments();
+    renderAccessOptions();
 }
 
 async function loadConfig() {
@@ -302,7 +306,105 @@ function collectNote() { return { subject: document.getElementById("noteSubject"
 async function saveNote(event) { event.preventDefault(); const note = collectNote(); try { await API.adminNotes(editingNoteId ? "PUT" : "POST", { id: editingNoteId, note }); } catch (_) { if (editingNoteId) notesCache = notesCache.map(n => n.id === editingNoteId ? { ...note, id: editingNoteId } : n); else notesCache.push({ ...note, id: crypto.randomUUID ? crypto.randomUUID() : String(Date.now()) }); } resetNoteForm(); await loadNotes(); renderNotes(); }
 function resetNoteForm() { editingNoteId = ""; document.getElementById("noteForm").reset(); fillSubjectSelects(); document.getElementById("noteSubmitBtn").textContent = "Add Note"; document.getElementById("cancelNoteEdit").style.display = "none"; }
 function loadNoteIntoForm(note) { editingNoteId = note.id; document.getElementById("noteSubject").value = note.subject; document.getElementById("noteTitle").value = note.title; document.getElementById("noteContent").value = note.content; document.getElementById("noteSubmitBtn").textContent = "Save Note"; document.getElementById("cancelNoteEdit").style.display = "inline-block"; }
-function renderNotes() { const list = document.getElementById("noteList"); const session = Storage.getAdminSession(); const notes = notesCache.filter(n => session?.role === "admin" || n.subject === session?.subject); if (!notes.length) { list.innerHTML = `<p class="empty-state">No cloud notes yet.</p>`; return; } list.innerHTML = ""; notes.forEach(note => { const item = document.createElement("div"); item.className = "admin-list-item"; item.innerHTML = `<div><strong>${note.title}</strong><p class="mb-0">${note.subject}</p></div><div class="d-flex gap-2"><button class="secondary-btn nav-action edit-note" type="button">Edit</button><button class="secondary-btn nav-action delete-note" type="button">Delete</button></div>`; item.querySelector(".edit-note").addEventListener("click", () => loadNoteIntoForm(note)); item.querySelector(".delete-note").addEventListener("click", async () => { try { await API.adminNotes("DELETE", { id: note.id }); } catch (_) {} notesCache = notesCache.filter(n => n.id !== note.id); renderNotes(); }); list.appendChild(item); }); }
+function renderNotes() { const list = document.getElementById("noteList"); const session = Storage.getAdminSession(); const notes = notesCache.filter(n => session?.role === "admin" || n.subject === session?.subject); if (!notes.length) { list.innerHTML = `<p class="empty-state">No cloud notes yet.</p>`; return; } list.innerHTML = ""; notes.forEach(note => { const item = document.createElement("div"); item.className = "admin-list-item"; item.innerHTML = `<div><strong>${note.title}</strong><p class="mb-0">${note.subject}</p></div><div class="d-flex gap-2"><button class="secondary-btn nav-action edit-note" type="button">Edit</button><button class="secondary-btn nav-action delete-note" type="button">Delete</button></div>`; item.querySelector(".edit-note").addEventListener("click", () => loadNoteIntoForm(note)); item.querySelector(".delete-note").addEventListener("click", async () => { try { await API.adminNotes("DELETE", { id: note.id }); } catch (_) {} notesCache = notesCache.filter(n => n.id !== note.id); renderNotes(); });         list.appendChild(item);
+    });
+}
+
+function allSubjectNames() {
+    return subjectsCache.map(s => s.name);
+}
+
+function renderAccessOptions() {
+    const select = document.getElementById("accessStudent");
+    if (!select) return;
+    select.innerHTML = "";
+    if (!studentsCache.length) { select.innerHTML = `<option value="">No students yet</option>`; renderAccessSubjectList(); return; }
+    studentsCache.forEach(user => {
+        const option = document.createElement("option");
+        const id = user.id || user.username || user.name;
+        option.value = id;
+        option.dataset.name = user.name || "";
+        option.dataset.class = user.class || user.studentClass || "";
+        option.textContent = `${user.profile?.nickname || user.name} - ${option.dataset.class || "General"}`;
+        select.appendChild(option);
+    });
+    renderAccessForSelectedStudent();
+}
+
+function selectedAccessStudent() {
+    const id = document.getElementById("accessStudent").value;
+    return studentsCache.find(u => (u.id || u.username || u.name) === id) || null;
+}
+
+function renderAccessForSelectedStudent() {
+    renderAccessSubjectList();
+    renderAccessMessage("");
+}
+
+function renderAccessSubjectList() {
+    const box = document.getElementById("accessSubjectList");
+    if (!box) return;
+    const user = selectedAccessStudent();
+    const names = allSubjectNames();
+    if (!names.length) { box.innerHTML = `<div class="col-12"><small class="text-muted">No subjects available.</small></div>`; return; }
+
+    const allowed = user ? Storage.normalizeAllowedSubjects(user.allowedSubjects || user.allowed_subjects) : null;
+    const allowAll = !Array.isArray(allowed);
+    const allowAllCheck = document.getElementById("accessAllowAll");
+    if (allowAllCheck) allowAllCheck.checked = allowAll;
+
+    box.innerHTML = names.map((name, i) => {
+        const checked = allowAll || allowed.some(a => String(a).toLowerCase() === String(name).toLowerCase());
+        return `<div class="col-md-3 col-lg-2"><div class="form-check"><input class="form-check-input access-subject-cb" type="checkbox" id="accessSub_${i}" value="${name}" ${checked ? "checked" : ""} ${allowAll ? "disabled" : ""}><label class="form-check-label small" for="accessSub_${i}">${name}</label></div></div>`;
+    }).join("");
+
+    const updateAllowAll = () => {
+        const anyChecked = [...box.querySelectorAll(".access-subject-cb")].some(cb => cb.checked);
+        if (allowAllCheck) allowAllCheck.checked = false; // once a subject is checked, restriction is active
+        if (!anyChecked && allowAllCheck) allowAllCheck.checked = true;
+    };
+    box.querySelectorAll(".access-subject-cb").forEach(cb => cb.addEventListener("change", updateAllowAll));
+}
+
+function handleAccessAllowAllToggle() {
+    const allowAll = document.getElementById("accessAllowAll").checked;
+    const box = document.getElementById("accessSubjectList");
+    if (!box) return;
+    box.querySelectorAll(".access-subject-cb").forEach(cb => {
+        cb.checked = allowAll ? true : cb.checked;
+        cb.disabled = allowAll;
+    });
+    renderAccessMessage("");
+}
+
+function renderAccessMessage(text) {
+    const el = document.getElementById("accessMessage");
+    if (el) el.textContent = text || "";
+}
+
+async function saveStudentAccess() {
+    const user = selectedAccessStudent();
+    if (!user) return renderAccessMessage("Select a student first.");
+    const allowAll = document.getElementById("accessAllowAll").checked;
+    const names = allSubjectNames();
+    const subjectCbs = [...document.querySelectorAll("#accessSubjectList .access-subject-cb")];
+    const selected = subjectCbs.filter(cb => cb.checked).map(cb => cb.value);
+    const allowedSubjects = allowAll ? null : (selected.length ? selected : null);
+
+    const saveForCloud = async () => {
+        try {
+            const id = user.id || user.username || user.name;
+            await API.adminStudentAccess(id, allowedSubjects || []);
+            return true;
+        } catch (_) { return false; }
+    };
+
+    const savedCloud = await saveForCloud();
+    Storage.saveUserAccess({ ...user, allowedSubjects: Storage.normalizeAllowedSubjects(allowedSubjects) }, allowedSubjects || []);
+    renderAccessMessage(`Access saved for ${user.profile?.nickname || user.name}${savedCloud ? " (synced to cloud)" : " (local only)"}.`);
+    await loadStudents();
+}
+
 
 async function loadStudents() { try { studentsCache = (await API.adminStudents()).students || []; } catch (_) { studentsCache = Storage.getUsers().map(u => Storage.normalizeUser(u)); } }
 function renderStudentOptions() { const select = document.getElementById("certificateStudent"); select.innerHTML = ""; if (!studentsCache.length) { select.innerHTML = `<option value="">No students yet</option>`; return; } studentsCache.forEach(user => { const option = document.createElement("option"); option.value = user.id || user.name; option.textContent = `${user.profile?.nickname || user.name} - ${user.class || "General"}`; select.appendChild(option); }); }

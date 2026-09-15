@@ -36,18 +36,20 @@ document.addEventListener("DOMContentLoaded", () => {
             `;
         });
 
+        const img = q.image ? `<div class="text-center mb-3"><img src="${q.image}" class="img-fluid rounded" style="max-height:260px;" alt="Question diagram"></div>` : "";
         container.innerHTML += `
             <div class="glass-card p-4 mb-4">
                 <div class="d-flex justify-content-between align-items-center">
-                    <h5 class="fw-bold">Question ${index + 1}</h5>
+                    <h5 class="fw-bold">Question ${index + 1}${q.year ? ` • Paper ${q.year}` : ""}</h5>
                     <span class="topic-pill">${q.topic || "General"}</span>
                 </div>
                 <p class="mb-3">${q.question}</p>
+                ${img}
                 ${optionsHTML}
 
                 <div class="mt-3 p-3 rounded bg-light text-dark">
                     <strong>Explanation:</strong>
-                    <p class="mb-0">${q.explanation}</p>
+                    <p class="mb-0">${q.explanation || "No explanation provided."}</p>
                 </div>
             </div>
         `;

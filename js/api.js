@@ -80,6 +80,9 @@ const API = {
         return this.request("/admin/notes", { method, staff: true, ...(body ? { body: JSON.stringify(body) } : {}) });
     },
     async adminStudents() { return this.request("/admin/students", { staff: true }); },
+    async adminStudentAccess(studentId, allowedSubjects = []) {
+        return this.request("/admin/students/access", { method: "POST", staff: true, body: JSON.stringify({ studentId, allowedSubjects }) });
+    },
     async adminEvents(method = "GET", body = null) {
         return this.request("/admin/events", { method, staff: true, ...(body ? { body: JSON.stringify(body) } : {}) });
     },

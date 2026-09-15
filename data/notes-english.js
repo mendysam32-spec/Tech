@@ -1,0 +1,766 @@
+// Aki Ola English series - WAEC/GABECE objective-focused study notes.
+window.englishNotes = [
+  {
+    grade: "Grade 7",
+    topicNumber: 1,
+    title: "Nouns",
+    icon: "📝",
+    image: "",
+    imageNote: "Insert image: A chart classifying nouns (common, proper, abstract, collective).",
+    explanation:
+      "A noun is a word used to name a person, place, thing, animal, idea or quality. Nouns are the names we give to everything around us, and they form the foundation of every sentence.",
+    points: [
+      "A common noun names a general person, place or thing, e.g. boy, city, table.",
+      "A proper noun names a specific person, place or thing and begins with a capital letter, e.g. Kofi, Accra, Monday.",
+      "An abstract noun names an idea, quality or state that cannot be touched, e.g. happiness, honesty, freedom.",
+      "A collective noun names a group of people, animals or things, e.g. a team, a flock, a crowd.",
+      "A concrete noun names something that can be seen or touched, e.g. chair, water, tree.",
+      "A countable noun can be counted, e.g. one book, two books.",
+      "An uncountable noun cannot be counted, e.g. water, rice, information."
+    ],
+    definitions: [
+      "Noun: a naming word for a person, place, thing, animal, idea or quality.",
+      "Common noun: a general name for any of a class of persons, places or things.",
+      "Proper noun: the specific name of a particular person, place or thing.",
+      "Abstract noun: the name of an idea, quality or state.",
+      "Collective noun: a word that names a group."
+    ],
+    examples: [
+      "Common: boy, girl, school, city, dog.",
+      "Proper: John, Addis Ababa, Ghana, January.",
+      "Abstract: courage, beauty, wisdom, sorrow.",
+      "Collective: a herd of cattle, a swarm of bees, a class of pupils."
+    ],
+    waecFocus: [
+      "Abstract nouns name ideas and qualities like happiness and honesty.",
+      "Collective nouns name groups like 'a team' or 'a flock'.",
+      "Proper nouns must begin with a capital letter.",
+      "Uncountable nouns like 'water' and 'information' take a singular verb."
+    ],
+    memoryTip:
+      "Ask 'What is it called?' — the name you give is the noun. Abstract = cannot touch; collective = a group."
+  },
+
+  {
+    grade: "Grade 7",
+    topicNumber: 2,
+    title: "Pronouns",
+    icon: "👤",
+    image: "",
+    imageNote: "Insert image: Personal, possessive, reflexive and relative pronouns with examples.",
+    explanation:
+      "A pronoun is a word used in place of a noun to avoid repeating it. Pronouns make sentences shorter and clearer.",
+    points: [
+      "A personal pronoun stands for a person or thing, e.g. I, you, he, she, it, we, they.",
+      "A possessive pronoun shows ownership, e.g. mine, yours, his, hers, ours, theirs.",
+      "A reflexive pronoun ends in '-self' or '-selves', e.g. myself, yourself, themselves.",
+      "A relative pronoun introduces a relative clause, e.g. who, whom, whose, which, that.",
+      "A demonstrative pronoun points to something, e.g. this, that, these, those.",
+      "An indefinite pronoun does not refer to a specific person, e.g. somebody, anything, none.",
+      "An interrogative pronoun asks a question, e.g. who, whom, whose, which, what."
+    ],
+    definitions: [
+      "Pronoun: a word used in place of a noun.",
+      "Personal pronoun: I, you, he, she, it, we, they.",
+      "Possessive pronoun: shows ownership (mine, yours, hers).",
+      "Reflexive pronoun: ends in -self or -selves."
+    ],
+    examples: [
+      "Personal: She loves her dog.",
+      "Possessive: That book is mine.",
+      "Reflexive: He blamed himself.",
+      "Relative: The girl who won is my sister."
+    ],
+    waecFocus: [
+      "Use 'who' for people and 'which' for things.",
+      "Use 'whom' as an object, e.g. The man whom I met.",
+      "Use 'whose' to show possession.",
+      "Between you and me, not 'between you and I'.",
+      "Reflexive pronouns end in -self or -selves."
+    ],
+    memoryTip:
+      "If you can replace a word with 'I, you, he', it is a pronoun. Who = people, which = things, whose = possession."
+  },
+
+  {
+    grade: "Grade 7",
+    topicNumber: 3,
+    title: "Verbs and Tenses",
+    icon: "⚡",
+    image: "",
+    imageNote: "Insert image: Present, past and future tense forms with examples.",
+    explanation:
+      "A verb is a word that shows action, occurrence or a state of being. Tenses show the time at which an action happens: present, past or future.",
+    points: [
+      "A main verb carries the meaning, e.g. run, eat, think.",
+      "An auxiliary (helping) verb helps the main verb, e.g. is, have, will.",
+      "The present tense shows action happening now, e.g. She writes.",
+      "The past tense shows action that already happened, e.g. She wrote.",
+      "The future tense shows action that will happen, e.g. She will write.",
+      "The present perfect uses 'have/has + past participle', e.g. She has written.",
+      "The past perfect uses 'had + past participle', e.g. She had written.",
+      "The future perfect uses 'will have + past participle', e.g. She will have written."
+    ],
+    rules: [
+      "Use 'since' with a point in time and 'for' with a duration.",
+      "Use 'has' with singular subjects and 'have' with plural subjects in the present perfect.",
+      "The continuous tense uses 'be + -ing', e.g. She is writing.",
+      "A second conditional uses 'if + past tense, would + base form'.",
+      "A third conditional uses 'if + had + past participle, would have + past participle'.",
+      "After 'by this time next year', use the future perfect."
+    ],
+    examples: [
+      "Present: He eats rice.",
+      "Past: He ate rice.",
+      "Future: He will eat rice.",
+      "Present perfect: He has eaten rice.",
+      "Past perfect: He had eaten rice before I arrived."
+    ],
+    waecFocus: [
+      "I have lived here since 2020, not 'for 2020'.",
+      "She has worked here for five years, not 'since five years'.",
+      "By next year, I will have completed my studies.",
+      "If he had studied, he would have passed the exam.",
+      "Scarcely had I left when it rained.",
+      "No sooner had he arrived than the meeting began."
+    ],
+    memoryTip:
+      "'For' + duration (five years), 'since' + point (2020). Have/has = present perfect; had = past perfect."
+  },
+
+  {
+    grade: "Grade 7",
+    topicNumber: 4,
+    title: "Adjectives",
+    icon: "🌈",
+    image: "",
+    imageNote: "Insert image: Adjectives describing a noun (colour, size, quality).",
+    explanation:
+      "An adjective is a word that describes or modifies a noun or pronoun. It tells us more about the quality, size, colour or number of something.",
+    points: [
+      "An adjective of quality tells what kind, e.g. beautiful, tall, honest.",
+      "An adjective of quantity tells how much, e.g. some, much, little.",
+      "An adjective of number tells how many, e.g. one, two, many.",
+      "A demonstrative adjective points out, e.g. this book, those cars.",
+      "A possessive adjective shows ownership, e.g. my, your, his, her.",
+      "The comparative degree compares two things using '-er' or 'more'.",
+      "The superlative degree compares three or more using '-est' or 'most'."
+    ],
+    rules: [
+      "Use 'than' with the comparative degree: taller than.",
+      "Use 'the' with the superlative degree: the tallest.",
+      "When comparing two people or things, use the comparative, not the superlative.",
+      "Add -er/-est for short adjectives, and use more/most for long adjectives.",
+      "Some adjectives are irregular: good, better, best; bad, worse, worst."
+    ],
+    examples: [
+      "Quality: a brave soldier.",
+      "Quantity: some water.",
+      "Number: three books.",
+      "Comparative: taller than.",
+      "Superlative: the tallest."
+    ],
+    waecFocus: [
+      "Of the two boys, John is the taller (not 'the tallest').",
+      "He is taller than his brother.",
+      "Good, better, best and bad, worse, worst are irregular.",
+      "Keep quiet, not 'keep quietly'."
+    ],
+    memoryTip:
+      "Adjectives describe nouns. Comparative compares two (-er), superlative compares three or more (-est)."
+  },
+
+  {
+    grade: "Grade 7",
+    topicNumber: 5,
+    title: "Adverbs",
+    icon: "🏃",
+    image: "",
+    imageNote: "Insert image: Adverbs of manner, time and place in example sentences.",
+    explanation:
+      "An adverb is a word that modifies a verb, an adjective or another adverb. It often tells how, when or where an action happens.",
+    points: [
+      "An adverb of manner tells how, e.g. quickly, carefully, loudly.",
+      "An adverb of time tells when, e.g. yesterday, now, soon.",
+      "An adverb of place tells where, e.g. here, there, inside.",
+      "An adverb of frequency tells how often, e.g. always, never, often.",
+      "An adverb of degree tells to what extent, e.g. very, too, quite.",
+      "Most adverbs of manner are formed by adding '-ly' to an adjective, e.g. slow → slowly."
+    ],
+    definitions: [
+      "Adverb of manner: tells how (quickly, carefully).",
+      "Adverb of time: tells when (yesterday, soon).",
+      "Adverb of place: tells where (here, there).",
+      "Adverb of frequency: tells how often (always, never).",
+      "Adverb of degree: tells to what extent (very, too)."
+    ],
+    examples: [
+      "Manner: She sang sweetly.",
+      "Time: We met yesterday.",
+      "Place: Put it there.",
+      "Frequency: He always arrives early.",
+      "Degree: The test was very difficult."
+    ],
+    waecFocus: [
+      "Use an adverb (not an adjective) after an action verb: He works carefully.",
+      "Use an adjective after a linking verb: The work is careful. (unusual)",
+      "She sings beautifully, not 'she sings beautiful'.",
+      "'Very' is an adverb of degree."
+    ],
+    memoryTip:
+      "Adverbs often end in -ly and answer the questions how, when or where."
+  },
+
+  {
+    grade: "Grade 7",
+    topicNumber: 6,
+    title: "Prepositions and Conjunctions",
+    icon: "🔗",
+    image: "",
+    imageNote: "Insert image: Prepositions of place/time and common conjunctions.",
+    explanation:
+      "A preposition shows the relationship between a noun or pronoun and another word in the sentence. A conjunction joins words, phrases or clauses together.",
+    points: [
+      "A preposition shows position, time or direction, e.g. in, on, at, under, over, between.",
+      "Use 'in' with towns, countries and months.",
+      "Use 'on' with days of the week and dates.",
+      "Use 'at' with specific times and places.",
+      "A conjunction joins words or clauses, e.g. and, but, or, because, although.",
+      "Coordinating conjunctions join equals: and, but, or, so.",
+      "Subordinating conjunctions introduce dependent clauses: because, when, although, if."
+    ],
+    rules: [
+      "In the morning, in March, in Ghana.",
+      "On Monday, on the 5th of May.",
+      "At 8 o'clock, at the station.",
+      "Fond of, similar to, good at, interested in, capable of.",
+      "Senior to, junior to (not 'than').",
+      "Married to, agree with, angry with."
+    ],
+    examples: [
+      "Preposition: The cat is under the table.",
+      "Conjunction: I came early because I was prepared.",
+      "Preposition: We arrived in Accra on Sunday.",
+      "Conjunction: He was tired, so he slept."
+    ],
+    waecFocus: [
+      "We arrived in Accra (with a town).",
+      "The meeting is on Monday (with a day).",
+      "Train leaves at 8 o'clock (with a time).",
+      "He is good at mathematics.",
+      "She is fond of music.",
+      "He is senior to me, not 'senior than me'."
+    ],
+    memoryTip:
+      "Use 'in' for big places/time, 'on' for days, 'at' for exact time. Watch fixed phrases like 'good at'."
+  },
+
+  {
+    grade: "Grade 7",
+    topicNumber: 7,
+    title: "Articles: A, An, The",
+    icon: "📄",
+    image: "",
+    imageNote: "Insert image: The and a/an used before nouns with examples.",
+    explanation:
+      "Articles are small words that come before nouns. 'A' and 'an' are indefinite articles, while 'the' is the definite article.",
+    points: [
+      "'A' is used before a word beginning with a consonant sound.",
+      "'An' is used before a word beginning with a vowel sound.",
+      "Use 'a'/'an' for a non-specific or general noun.",
+      "Use 'the' for a specific noun that is already known.",
+      "The choice of 'a' or 'an' depends on the sound, not the spelling.",
+      "Uncountable nouns do not take 'a' or 'an'."
+    ],
+    rules: [
+      "A book, a car, a university (y sound).",
+      "An apple, an hour (silent h), an umbrella.",
+      "'An' is used with 'honest' and 'hour' because of the vowel sound.",
+      "'A' is used with 'university' and 'useful' because of the 'y' sound.",
+      "Do not use 'a'/'an' with words like advice, information, furniture, water."
+    ],
+    examples: [
+      "He bought a new car.",
+      "She is an honest woman.",
+      "The man we met is my uncle.",
+      "Some useful advice (not 'a useful advice')."
+    ],
+    waecFocus: [
+      "An umbrella, an honest man, an hour.",
+      "A university, a useful tool, a European.",
+      "'Advice', 'information' and 'furniture' take no 'a'/'an'.",
+      "'The' is used for something already mentioned or specifically known."
+    ],
+    memoryTip:
+      "Choose 'a' or 'an' by sound, not by letter: 'an hour' (silent h), 'a university' (y sound)."
+  },
+
+  {
+    grade: "Grade 7",
+    topicNumber: 8,
+    title: "Concord / Subject-Verb Agreement",
+    icon: "⚖️",
+    image: "",
+    imageNote: "Insert image: Examples of singular and plural subjects with matching verbs.",
+    explanation:
+      "Concord means agreement between the subject and the verb. A singular subject takes a singular verb, and a plural subject takes a plural verb.",
+    points: [
+      "A singular subject takes a singular verb, e.g. He goes.",
+      "A plural subject takes a plural verb, e.g. They go.",
+      "The verb agrees with the subject, not with words in between.",
+      "Words like 'together with' and 'as well as' do not change the number of the subject.",
+      "Either/or and neither/nor agree with the nearer subject.",
+      "Collective nouns may be singular or plural depending on meaning.",
+      "Uncountable nouns take a singular verb."
+    ],
+    rules: [
+      "Neither of the boys IS present.",
+      "One of my friends IS coming.",
+      "The student, together with his teachers, HAS left.",
+      "Neither the manager nor the workers WERE responsible (nearer subject plural).",
+      "The staff IS divided OR The staff ARE divided (depending on meaning)."
+    ],
+    examples: [
+      "The news is good (news is singular).",
+      "Mathematics is my favourite subject.",
+      "The poor are always with us.",
+      "A number of students are absent.",
+      "The number of students is increasing."
+    ],
+    waecFocus: [
+      "Neither/either + OF + noun takes a singular verb.",
+      "The committee has reached a decision (unit) / The committee have disagreed (individuals).",
+      "News, mathematics, physics, measles are singular.",
+      "The furniture is new (uncountable).",
+      "The pair of shoes is expensive."
+    ],
+    memoryTip:
+      "Find the real subject and match the verb to it. Ignore phrases like 'together with'."
+  },
+
+  {
+    grade: "Grade 8",
+    topicNumber: 9,
+    title: "Sentence Structure",
+    icon: "🧩",
+    image: "",
+    imageNote: "Insert image: Simple, compound and complex sentence examples.",
+    explanation:
+      "A sentence is a group of words that expresses a complete thought. Sentences can be simple, compound or complex depending on how the clauses are joined.",
+    points: [
+      "A clause is a group of words with a subject and a verb.",
+      "A simple sentence has one independent clause, e.g. I study hard.",
+      "A compound sentence has two independent clauses joined by 'and', 'but' or 'or'.",
+      "A complex sentence has one independent clause and at least one dependent clause.",
+      "A phrase is a group of words without a subject and verb that acts as one unit.",
+      "Every sentence must begin with a capital letter and end with a full stop, question mark or exclamation mark."
+    ],
+    definitions: [
+      "Sentence: a group of words expressing a complete thought.",
+      "Clause: a group of words with a subject and a verb.",
+      "Phrase: a group of words without a subject and verb.",
+      "Simple sentence: one independent clause.",
+      "Compound sentence: two independent clauses joined by a coordinating conjunction.",
+      "Complex sentence: one independent clause and at least one dependent clause."
+    ],
+    examples: [
+      "Simple: The boy ran home.",
+      "Compound: The boy ran home, and his sister followed.",
+      "Complex: The boy ran home because it was raining.",
+      "Phrase: under the tree."
+    ],
+    waecFocus: [
+      "Identify whether a sentence is simple, compound or complex.",
+      "A compound sentence uses a coordinating conjunction like 'and', 'but' or 'or'.",
+      "A complex sentence has subordinating conjunctions like 'because', 'when', 'although'.",
+      "A phrase has no subject and verb."
+    ],
+    memoryTip:
+      "Compound = two complete sentences joined; complex = a main idea plus a dependent part."
+  },
+
+  {
+    grade: "Grade 8",
+    topicNumber: 10,
+    title: "Reported Speech",
+    icon: "💬",
+    image: "",
+    imageNote: "Insert image: Direct and reported speech conversion examples.",
+    explanation:
+      "Reported (indirect) speech tells what someone said without using their exact words and quotation marks. Change the tense, pronouns and time expressions when converting.",
+    points: [
+      "Direct speech uses the exact words and quotation marks, e.g. He said, 'I am tired.'",
+      "Reported speech has no quotation marks, e.g. He said that he was tired.",
+      "The tense usually moves one step back in reported speech.",
+      "Pronouns change to match the speaker or listener.",
+      "Time expressions like 'today' change to 'that day'.",
+      "Verbs like 'say', 'tell', 'ask' introduce reported speech."
+    ],
+    rules: [
+      "Present becomes past: 'I am' → 'he was'.",
+      "'Will' becomes 'would', 'can' becomes 'could'.",
+      "'Today' becomes 'that day', 'tomorrow' becomes 'the next day'.",
+      "Use 'asked' for questions and 'told' for commands.",
+      "Yes/no questions use 'if' or 'whether'."
+    ],
+    examples: [
+      "Direct: She said, 'I am happy.'",
+      "Reported: She said that she was happy.",
+      "Direct: He said, 'I will come tomorrow.'",
+      "Reported: He said that he would come the next day.",
+      "Direct: 'Are you ready?' he asked. → He asked if I was ready."
+    ],
+    waecFocus: [
+      "He said, 'I am tired' → He said that he was tired.",
+      "'I will' becomes 'would' in reported speech.",
+      "'Today' changes to 'that day'.",
+      "Questions in reported speech begin with 'if' or 'whether'."
+    ],
+    memoryTip:
+      "Push the tense one step back and drop the quotation marks. Change 'today'→'that day', 'will'→'would'."
+  },
+
+  {
+    grade: "Grade 8",
+    topicNumber: 11,
+    title: "Active and Passive Voice",
+    icon: "🔄",
+    image: "",
+    imageNote: "Insert image: Active and passive transformation of a sentence.",
+    explanation:
+      "Voice shows whether the subject performs or receives the action. In the active voice the subject acts, and in the passive voice the subject is acted upon.",
+    points: [
+      "In the active voice, the subject performs the action, e.g. The boy broke the glass.",
+      "In the passive voice, the subject receives the action, e.g. The glass was broken by the boy.",
+      "The passive voice uses the verb 'be' + the past participle.",
+      "The tense of 'be' changes to match the tense in the active sentence.",
+      "The object of the active sentence becomes the subject of the passive sentence.",
+      "The new passive subject of the active verb is introduced by 'by'."
+    ],
+    rules: [
+      "Active (present): He eats rice → Passive: Rice is eaten by him.",
+      "Active (past): He ate rice → Passive: Rice was eaten by him.",
+      "Active (future): He will eat rice → Passive: Rice will be eaten by him.",
+      "Active (continuous): He is eating rice → Passive: Rice is being eaten by him.",
+      "Passive forms use am/is/are, was/were, be, being, been with the past participle."
+    ],
+    examples: [
+      "Active: The teacher marked the scripts.",
+      "Passive: The scripts were marked by the teacher.",
+      "Active: She writes a letter.",
+      "Passive: A letter is written by her.",
+      "Active: They will build a house.",
+      "Passive: A house will be built by them."
+    ],
+    waecFocus: [
+      "Present passive: am/is/are + past participle.",
+      "Past passive: was/were + past participle.",
+      "Perfect passive: has/have/had been + past participle.",
+      "The agent is introduced by 'by'."
+    ],
+    memoryTip:
+      "Passive = be + past participle. The object of the active sentence jumps to the front."
+  },
+
+  {
+    grade: "Grade 8",
+    topicNumber: 12,
+    title: "Lexis: Synonyms and Antonyms",
+    icon: "📚",
+    image: "",
+    imageNote: "Insert image: Pairs of synonyms and antonyms with example sentences.",
+    explanation:
+      "Lexis is the vocabulary of a language. Synonyms are words with the same or similar meaning, while antonyms are words with opposite meanings.",
+    points: [
+      "A synonym is a word with the same or nearly the same meaning as another word.",
+      "An antonym is a word with the opposite meaning of another word.",
+      "Words must be judged by their meaning in context.",
+      "Some words can be synonyms or antonyms depending on how they are used in a sentence.",
+      "Reading widely builds a strong vocabulary for lexis questions."
+    ],
+    examples: [
+      "Synonyms: big/large, start/begin, happy/joyful, brave/courageous.",
+      "Antonyms: big/small, start/end, happy/sad, brave/cowardly.",
+      "Nearest in meaning: preside = chair.",
+      "Opposite in meaning: diligent = the opposite is lazy."
+    ],
+    waecFocus: [
+      "Nearest in meaning questions ask for a synonym of the underlined word.",
+      "Opposite in meaning questions ask for an antonym.",
+      "Read the whole sentence to understand the word in context.",
+      "Rule out clearly wrong options before choosing."
+    ],
+    memoryTip:
+      "Synonym = similar meaning; antonym = opposite meaning. Use context to decide."
+  },
+
+  {
+    grade: "Grade 8",
+    topicNumber: 13,
+    title: "Idioms and Proverbs",
+    icon: "🔑",
+    image: "",
+    imageNote: "Insert image: Common English idioms with their meanings.",
+    explanation:
+      "An idiom is an expression whose meaning cannot be worked out from the individual words. A proverb is a short, well-known saying that gives advice or states a general truth.",
+    points: [
+      "An idiom has a special meaning different from the literal words.",
+      "A proverb is a popular saying that gives advice or wisdom.",
+      "Idioms are tested by asking what an expression means in context.",
+      "Many idioms and proverbs appear in WAEC objective questions.",
+      "Learn idioms with their exact meanings."
+    ],
+    examples: [
+      "Black sheep: a disgraceful member of a family.",
+      "Hit the nail on the head: to be exactly right.",
+      "Bury the hatchet: to make peace.",
+      "Spill the beans: to reveal a secret.",
+      "Bite the bullet: to face a difficult situation bravely.",
+      "Caught red-handed: caught in the act.",
+      "Still waters run deep: quiet people often have deep thoughts."
+    ],
+    waecFocus: [
+      "Know the meanings of common idioms and proverbs.",
+      "Read the sentence to see how the idiom is used.",
+      "Common ones: black sheep, hit the nail on the head, bury the hatchet, spill the beans.",
+      "Apply the meaning that fits the context."
+    ],
+    memoryTip:
+      "Idioms are tested in context. Match the meaning to the sentence, not to the literal words."
+  },
+
+  {
+    grade: "Grade 8",
+    topicNumber: 14,
+    title: "Figures of Speech",
+    icon: "🎨",
+    image: "",
+    imageNote: "Insert image: Simile, metaphor, personification and hyperbole examples.",
+    explanation:
+      "Figures of speech are imaginative uses of language that make writing more colourful and expressive. They are frequently tested in the objective paper.",
+    points: [
+      "A simile compares two things using 'like' or 'as'.",
+      "A metaphor compares two things directly without 'like' or 'as'.",
+      "Personification gives human qualities to non-human things.",
+      "Hyperbole is deliberate exaggeration.",
+      "Onomatopoeia uses words that imitate natural sounds.",
+      "Alliteration repeats initial consonant sounds.",
+      "An oxymoron combines two contradictory terms."
+    ],
+    definitions: [
+      "Simile: comparison using 'like' or 'as'.",
+      "Metaphor: direct comparison without 'like' or 'as'.",
+      "Personification: giving human qualities to non-human things.",
+      "Hyperbole: deliberate exaggeration.",
+      "Onomatopoeia: words that imitate sounds (buzz, hiss).",
+      "Alliteration: repetition of initial consonant sounds."
+    ],
+    examples: [
+      "Simile: as brave as a lion.",
+      "Metaphor: He is a lion in battle.",
+      "Personification: The wind whispered.",
+      "Hyperbole: I could eat a horse.",
+      "Oxymoron: open secret, deafening silence.",
+      "Alliteration: Peter picked a peck."
+    ],
+    waecFocus: [
+      "Simile uses like/as; metaphor does not.",
+      "Personification gives human actions to objects or nature.",
+      "Hyperbole is exaggeration from questions like 'a thousand times'.",
+      "Identify the figure used in a quoted line."
+    ],
+    memoryTip:
+      "Simile = like/as; metaphor = is/was comparison; personification = human action on a non-human thing."
+  },
+
+  {
+    grade: "Grade 8",
+    topicNumber: 15,
+    title: "Punctuation and Spelling",
+    icon: "✒️",
+    image: "",
+    imageNote: "Insert image: Correctly used full stop, comma, question mark and quotation marks.",
+    explanation:
+      "Punctuation marks are signs that make the meaning of a sentence clear. Correct spelling and punctuation are essential for clear written English.",
+    points: [
+      "A full stop (.) ends a statement.",
+      "A question mark (?) ends a direct question.",
+      "An exclamation mark (!) shows strong feeling.",
+      "A comma (,) separates items in a list and parts of a sentence.",
+      "Quotation marks (' ') enclose direct speech.",
+      "An apostrophe shows possession or that letters are missing.",
+      "Every sentence begins with a capital letter."
+    ],
+    rules: [
+      "Use a comma between items in a list: I bought a pen, a book and a bag.",
+      "Use an apostrophe for possession: John's book.",
+      "Use an apostrophe for contractions: don't = do not.",
+      "Capital letter for proper nouns and the start of a sentence.",
+      "Commonly misspelt words: accommodation, necessary, separate, committee, pronunciation, definitely, occasion."
+    ],
+    examples: [
+      "Statement: She lives in Accra.",
+      "Question: Where are you going?",
+      "Exclamation: What a beautiful day!",
+      "Possession: The boy's bag.",
+      "Spelling: accommodation, necessary, separate."
+    ],
+    waecFocus: [
+      "Choose the correctly spelt word from the options.",
+      "Common correct spellings: accommodation, committee, necessary, separate, definitely, pronunciation, occasion.",
+      "Know the use of the comma, apostrophe, question mark and quotation marks.",
+      "Never use 'lose' and 'loose' interchangeably in spelling questions."
+    ],
+    memoryTip:
+      "Revision of spelling is key: accommodation has double c and double m. Remember the common WAEC spelling traps."
+  },
+
+  {
+    grade: "Grade 9",
+    topicNumber: 16,
+    title: "Comprehension Skills",
+    icon: "📖",
+    image: "",
+    imageNote: "Insert image: A short passage with a question on the main idea.",
+    explanation:
+      "Comprehension is the ability to read and understand a passage and answer questions about it. It requires careful reading, understanding of meaning and drawing conclusions.",
+    points: [
+      "Read the passage carefully before answering the questions.",
+      "Find the main idea or topic sentence of each paragraph.",
+      "Look for supporting details that explain the main idea.",
+      "Draw inferences from what is stated in the passage.",
+      "The meaning of a word in a passage is its meaning in context.",
+      "Answer questions directly from the information given.",
+      "Pay attention to word meanings, summaries and conclusions."
+    ],
+    definitions: [
+      "Main idea: the central point of a passage or paragraph.",
+      "Supporting detail: a fact or example that supports the main idea.",
+      "Inference: a conclusion drawn from given facts.",
+      "Context: the surrounding words that give a word its meaning."
+    ],
+    waecFocus: [
+      "Identify the main idea of a passage.",
+      "Choose the meaning of a word as used in the passage.",
+      "Draw the most logical conclusion from the passage.",
+      "Choose the best response in a situational comprehension question.",
+      "Understand the meaning of idiomatic expressions in context."
+    ],
+    memoryTip:
+      "For comprehension, read for the central idea, find meaning from context and choose the answer most directly supported by the passage."
+  },
+
+  {
+    grade: "Grade 9",
+    topicNumber: 17,
+    title: "Essay and Letter Writing",
+    icon: "✉️",
+    image: "",
+    imageNote: "Insert image: Format of a formal letter showing address, date, salutation and body.",
+    explanation:
+      "Essay and letter writing tests the ability to express ideas clearly and correctly in written English. Formal and informal letters have different formats.",
+    points: [
+      "A narrative essay tells a story.",
+      "A descriptive essay describes a person, place or thing.",
+      "An argumentative essay presents arguments for or against an issue.",
+      "A formal letter uses 'Dear Sir/Madam' and 'Yours faithfully'.",
+      "An informal letter uses 'Dear' + first name and 'Yours sincerely' or 'Love'.",
+      "A formal letter has the sender's address at the top followed by the date.",
+      "The heading of a formal letter is written before the salutation."
+    ],
+    rules: [
+      "Formal letter order: sender's address, date, heading, salutation, body, subscription, signature and name.",
+      "Use 'Yours faithfully' with 'Dear Sir/Madam'.",
+      "Use 'Yours sincerely' when the recipient is named.",
+      "Begin the body with a polite introduction of your purpose.",
+      "End with a suitable closing and your full name."
+    ],
+    examples: [
+      "Formal: Dear Sir, ... Yours faithfully, ... (signature) Adwoa Mensah.",
+      "Informal: Dear Kofi, ... Your friend, Kwame.",
+      "Salutation for formal letter: Dear Sir / Dear Madam.",
+      "Inappropriate closing for formal: Your loving friend."
+    ],
+    waecFocus: [
+      "Format of a formal letter: address, date, heading, salutation, body, subscription.",
+      "'Yours faithfully' after 'Dear Sir/Madam'.",
+      "'Your loving friend' is not appropriate for a formal letter.",
+      "The body carries the main message of the letter."
+    ],
+    memoryTip:
+      "Formal letter = Dear Sir/Madam + Yours faithfully. Keep the address and date at the top and the signature and full name at the bottom."
+  },
+
+  {
+    grade: "Grade 9",
+    topicNumber: 18,
+    title: "Summary Writing",
+    icon: "📉",
+    image: "",
+    imageNote: "Insert image: Main points selected from a short passage.",
+    explanation:
+      "Summary writing is the skill of picking out the main points from a passage and expressing them briefly, clearly and in your own words where possible.",
+    points: [
+      "Read the passage and understand its meaning first.",
+      "Identify the main points that answer the summary question.",
+      "Express the points in your own words.",
+      "Do not copy long sections from the passage.",
+      "Write in your own words while keeping the meaning.",
+      "Count and obey the word limit.",
+      "Number your points if required."
+    ],
+    waecFocus: [
+      "The summary must cover all the main points requested.",
+      "Do not exceed the word limit given.",
+      "Express points clearly and briefly.",
+      "Use your own words where possible."
+    ],
+    memoryTip:
+      "Summary = pick the key points, write them briefly in your own words, and obey the word limit."
+  },
+
+  {
+    grade: "Grade 9",
+    topicNumber: 19,
+    title: "Grammar: Special Constructions",
+    icon: "🧠",
+    image: "",
+    imageNote: "Insert image: Examples of 'it is high time', 'would rather' and conditionals.",
+    explanation:
+      "Some English constructions follow special rules that are often tested in the objective paper. These include 'would rather', 'it is high time', 'had better', and certain conjunctions.",
+    points: [
+      "'Would rather' is followed by the base form of the verb.",
+      "'Had better' is followed by the base form of the verb.",
+      "'It is high time' is followed by the past form of the verb.",
+      "Use 'scarcely...when' and 'hardly...when'.",
+      "Use 'no sooner...than'.",
+      "After 'wish' for an unreal present, use the past form.",
+      "Verbs like 'deny', 'avoid', 'enjoy' take a gerund."
+    ],
+    rules: [
+      "I would rather study than sleep.",
+      "You had better finish your work.",
+      "It is high time we went home.",
+      "Scarcely had I left when it rained.",
+      "No sooner had he arrived than the meeting began.",
+      "Hardly had the film begun when the power went off.",
+      "He denied taking the money (gerund).",
+      "He is used to waking up early (gerund)."
+    ],
+    examples: [
+      "Would rather + base: I would rather stay.",
+      "Had better + base: You had better go.",
+      "It is high time + past: It is high time we left.",
+      "Scarcely...when / No sooner...than / Hardly...when."
+    ],
+    waecFocus: [
+      "Would rather + base form verb.",
+      "Had better + base form verb.",
+      "It is high time + past verb.",
+      "Scarcely/Hardly...when and No sooner...than.",
+      "After 'deny', 'avoid', 'enjoy' use a gerund."
+    ],
+    memoryTip:
+      "Memorise the pairs: Scarcely...when, No sooner...than, Hardly...when. Would rather + base, It is high time + past."
+  }
+];

@@ -29,14 +29,27 @@ function renderUser(user) {
     updateXPBar(user);
 }
 
+const LOCAL_SUBJECTS = ["Technical Drawing", "English", "Maths", "Science"];
+
 async function loadSubjects() {
     const select = document.getElementById("subjectSelect");
     if (!select) return;
-    let subjects = [{ name: "Technical Drawing" }];
+    const user = Storage.getCurrentUser();
+    let subjects = LOCAL_SUBJECTS.map(name => ({ name }));
     try {
         const data = await API.subjects();
-        subjects = data.subjects?.length ? data.subjects : subjects;
+        const cloud = data.subjects?.length ? data.subjects : [];
+        for (const s of cloud) {
+            if (!subjects.some(x => x.name.toLowerCase() === String(s.name).toLowerCase())) subjects.push(s);
+        }
     } catch (_) {}
+
+    subjects = Storage.filterAllowedSubjects(user, subjects);
+    if (!subjects.length) {
+        select.innerHTML = `<option value="">No subjects available</option>`;
+        localStorage.setItem("tm_selectedSubject", "");
+        return;
+    }
 
     const saved = localStorage.getItem("tm_selectedSubject") || subjects[0].name;
     select.innerHTML = subjects.map(s => `<option value="${s.name}">${s.name}</option>`).join("");

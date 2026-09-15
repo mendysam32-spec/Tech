@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Library | Tech Monster</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/theme.css">
+</head>
+<body>
+<nav class="navbar"><div class="container"><span class="app-logo">Tech Monster</span><a href="dashboard.html" class="secondary-btn">Back to Dashboard</a></div></nav>
+<div class="container mt-4">
+    <div class="glass-card p-4">
+        <div class="d-flex flex-wrap justify-content-between gap-3 align-items-center mb-3">
+            <div>
+                <h3 class="mb-1">Library</h3>
+                <p class="mb-0 opacity-75 small">Notes + Past Papers — your complete revision arena.</p>
+            </div>
+            <select id="librarySubject" class="form-select subject-select"></select>
+        </div>
+
+        <div class="library-search-wrap mb-3">
+            <input id="librarySearch" class="form-control" placeholder="Search notes or papers — e.g. 'projection', '2026', 'circle'..." autocomplete="off">
+            <button id="clearSearch" class="secondary-btn nav-action" type="button" style="display:none;">Clear</button>
+        </div>
+
+        <div class="library-tabs mb-4" role="tablist" aria-label="Library sections">
+            <button type="button" id="tabNotes" class="library-tab active" data-tab="notes">📘 Study Notes</button>
+            <button type="button" id="tabPapers" class="library-tab" data-tab="papers">📄 Past Papers</button>
+        </div>
+
+        <div id="panelNotes">
+            <div id="notesContainer"></div>
+        </div>
+
+        <div id="panelPapers" style="display:none;">
+            <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
+                <h5 class="mb-0">Past Papers</h5>
+                <small id="papersHint" class="opacity-75">Select a year to view the full paper, then choose Attempt or Just Read.</small>
+            </div>
+            <div id="papersContainer"></div>
+
+            <!-- Paper detail / read view -->
+            <div id="paperDetail" style="display:none;">
+                <button id="backToPapers" class="secondary-btn nav-action mb-3" type="button">← Back to papers</button>
+                <div id="paperDetailHeader" class="glass-card p-3 mb-3"></div>
+                <div class="d-flex flex-wrap gap-2 mb-3" id="paperDetailActions">
+                    <button id="detailAttemptBtn" class="glass-btn" type="button">✏️ Attempt this paper (untimed)</button>
+                    <button id="detailToggleAnswers" class="secondary-btn" type="button">👁️ Show answers</button>
+                    <button id="detailPrintBtn" class="secondary-btn" type="button">🖨️ Print</button>
+                </div>
+                <div id="paperDetailContent"></div>
+                <div class="d-flex flex-wrap gap-2 mt-4">
+                    <button class="glass-btn" type="button" onclick="document.getElementById('detailAttemptBtn').click()">✏️ Attempt now</button>
+                    <button class="secondary-btn" type="button" onclick="document.getElementById('backToPapers').click()">← Back</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<footer class="brand-footer signature-footer"><span class="signature-mark">S&amp;P Group</span><span class="signature-line">Created by S&amp;P Groups • Tech Monster Signature</span></footer>
+<script src="js/bootstrap.bundle.min.js"></script>
+<script src="js/api.js"></script>
+<script src="js/storage.js"></script>
+<!-- notes banks -->
+<script src="data/notesData.js"></script>
+<script src="data/notes-english.js"></script>
+<script src="data/notes-maths.js"></script>
+<script src="data/notes-science.js"></script>
+<!-- question banks for paper slicing -->
+<script src="data/questions.js"></script>
+<script src="data/questions-english.js"></script>
+<script src="data/questions-maths.js"></script>
+<script src="data/questions-science.js"></script>
+<script src="data/2026.js"></script>
+<script src="data/papers.js"></script>
+<script src="js/library.js"></script>
+<script src="js/nav.js"></script>
+</body>
+</html>
+

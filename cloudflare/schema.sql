@@ -15,6 +15,7 @@ CREATE TABLE IF NOT EXISTS students (
   last_played_date TEXT NOT NULL DEFAULT '',
   badges TEXT NOT NULL DEFAULT '[]',
   topic_stats TEXT NOT NULL DEFAULT '{}',
+  allowed_subjects TEXT NOT NULL DEFAULT '',
   created_at TEXT NOT NULL,
   updated_at TEXT NOT NULL,
   UNIQUE(name, student_class)
@@ -102,6 +103,15 @@ CREATE INDEX IF NOT EXISTS idx_notes_subject ON notes(subject);
 
 INSERT OR IGNORE INTO subjects (id, name, created_at, updated_at)
 VALUES ('technical-drawing', 'Technical Drawing', datetime('now'), datetime('now'));
+
+INSERT OR IGNORE INTO subjects (id, name, created_at, updated_at)
+VALUES ('english', 'English', datetime('now'), datetime('now'));
+
+INSERT OR IGNORE INTO subjects (id, name, created_at, updated_at)
+VALUES ('maths', 'Maths', datetime('now'), datetime('now'));
+
+INSERT OR IGNORE INTO subjects (id, name, created_at, updated_at)
+VALUES ('science', 'Science', datetime('now'), datetime('now'));
 
 
 -- GradeUP-style control center tables

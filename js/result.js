@@ -13,16 +13,53 @@ document.addEventListener("DOMContentLoaded", () => {
     Storage.renderIdentity(document.getElementById("avatarReaction"), user);
 
     let reaction = "Good attempt. Review one weak area and return stronger.";
-    if (score >= 90) reaction = "Elite performance. Your account just got louder.";
+    if (score >= 95) reaction = "🏆 Sensational! A Tower Hero performance — your avatar celebrates you!";
+    else if (score >= 90) reaction = "Elite performance. Your account just got louder.";
     else if (score >= 80) reaction = "Powerful win. You are building Hall of Fame form.";
     else if (score >= 60) reaction = "Nice progress. One review round can push you higher.";
     else if (score >= 40) reaction = "You are warming up. The review page is your upgrade path.";
 
     document.getElementById("reactionText").textContent = reaction;
+    if (score >= 95) celebrateAvatar();
+    // paper badge if last was a past-paper attempt
+    try {
+        const paper = JSON.parse(localStorage.getItem("tm_lastPaper") || "null");
+        if (paper && paper.mode === "paper") {
+            const badge = document.createElement("div");
+            badge.className = "topic-pill d-inline-block mb-2";
+            badge.textContent = `📄 Past Paper ${paper.year} • ${paper.subject} • Untimed • Full explanations in Review`;
+            document.getElementById("reactionText").after(badge);
+            const reviewLink = document.querySelector('a[href="review.html"]');
+            if (reviewLink) { reviewLink.textContent = `Review Paper ${paper.year} + Explanations`; reviewLink.classList.add("pulse"); }
+        }
+    } catch (_) {}
     renderAvatarUnlockMessage();
     renderResultBadges(user);
     renderResultFocus(user);
 });
+
+function celebrateAvatar() {
+    const avatar = document.getElementById("avatarReaction");
+    if (!avatar) return;
+
+    const wrapper = document.createElement("div");
+    wrapper.className = "celebration-burst mb-3";
+    avatar.parentNode.insertBefore(wrapper, avatar.nextSibling);
+    wrapper.appendChild(avatar);
+
+    avatar.classList.add("celebrate");
+
+    const crown = document.createElement("div");
+    crown.className = "avatar-crown";
+    crown.textContent = "👑";
+    wrapper.appendChild(crown);
+
+    const toast = document.createElement("div");
+    toast.className = "tower-toast";
+    toast.innerHTML = `<h4 class="fw-bold mb-1">Tower Hero!</h4><div class="lead mb-0">95%+ — you've joined the elite.</div>`;
+    const reactionText = document.getElementById("reactionText");
+    if (reactionText && reactionText.parentNode) reactionText.parentNode.insertBefore(toast, reactionText.nextSibling);
+}
 
 function renderResultBadges(user) {
     const container = document.getElementById("resultBadges");

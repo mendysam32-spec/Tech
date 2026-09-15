@@ -48,6 +48,13 @@ export function canUseAvatar(user, avatar, profile = null) {
   return normalizeUnlockedAvatars(p.unlockedAvatars, { ...user, profile: p }).includes(avatar);
 }
 
+export function normalizeAllowedSubjects(value) {
+  if (value == null || value === "") return null;
+  let list = Array.isArray(value) ? value : [];
+  if (typeof value === "string") { try { const p = JSON.parse(value); return normalizeAllowedSubjects(p); } catch (_) { list = value.split(","); } }
+  list = list.map(s => String(s).trim()).filter(Boolean);
+  return list.length ? [...new Set(list)] : null;
+}
 export function publicUser(row) {
   const profile = { ...DEFAULT_PROFILE, ...parseJson(row.profile_settings, {}) };
   profile.successfulQuizzes = Number(profile.successfulQuizzes || 0);
@@ -57,7 +64,7 @@ export function publicUser(row) {
     if (profile.avatar === "custom-photo") profile.avatar = "avatar1";
   }
   if (!canUseAvatar(row, profile.avatar || row.avatar || "avatar1", profile)) profile.avatar = "avatar1";
-  return { id: row.id, username: row.username || usernameFrom(row.name), name: row.name, class: row.student_class || "General", xp: row.xp || 0, level: row.level || 1, bestScore: row.best_score || 0, totalQuizzes: row.total_quizzes || 0, avatar: profile.avatar || row.avatar || "avatar1", profile, streak: row.streak || 0, dailyQuizCount: row.daily_quiz_count || 0, lastPlayedDate: row.last_played_date || "", badges: parseJson(row.badges, []), topicStats: parseJson(row.topic_stats, {}) };
+  return { id: row.id, username: row.username || usernameFrom(row.name), name: row.name, class: row.student_class || "General", xp: row.xp || 0, level: row.level || 1, bestScore: row.best_score || 0, totalQuizzes: row.total_quizzes || 0, avatar: profile.avatar || row.avatar || "avatar1", profile, streak: row.streak || 0, dailyQuizCount: row.daily_quiz_count || 0, lastPlayedDate: row.last_played_date || "", badges: parseJson(row.badges, []), topicStats: parseJson(row.topic_stats, {}), allowedSubjects: normalizeAllowedSubjects(row.allowed_subjects) };
 }
 export function publicStaff(row) { return { id: row.id, role: row.role, name: row.name, username: row.username, subject: row.subject || "All Subjects" }; }
 export function canUseUltimate(user) { return Number(user.best_score || user.bestScore || 0) >= 95 || Number(user.level || 1) >= 10; }
@@ -68,6 +75,13 @@ export function unlockedBadges(user, existingBadges = []) { const earned = BADGE
 export async function getUserFromToken(env, request) { const auth = request.headers.get("Authorization") || ""; const token = auth.replace("Bearer ", "").trim(); if (!token) return null; const session = await env.DB.prepare("SELECT student_id FROM sessions WHERE token = ? AND expires_at > datetime('now')").bind(token).first(); if (!session) return null; return env.DB.prepare("SELECT * FROM students WHERE id = ?").bind(session.student_id).first(); }
 export async function getStaffFromToken(env, request) { const auth = request.headers.get("Authorization") || ""; const token = auth.replace("Bearer ", "").trim(); if (!token) return null; const session = await env.DB.prepare("SELECT staff_id FROM staff_sessions WHERE token = ? AND expires_at > datetime('now')").bind(token).first(); if (!session) return null; return env.DB.prepare("SELECT * FROM staff_users WHERE id = ?").bind(session.staff_id).first(); }
 export async function requireStaff(env, request, adminOnly = false) { const staff = await getStaffFromToken(env, request); if (!staff) return { error: json({ error: "Staff login required." }, 401) }; if (adminOnly && staff.role !== "admin") return { error: json({ error: "Admin permission required." }, 403) }; return { staff }; }
-export async function ensureDefaultSubject(env) { const row = await env.DB.prepare("SELECT id FROM subjects WHERE lower(name)=lower('Technical Drawing')").first(); if (!row) await env.DB.prepare("INSERT INTO subjects (id, name, created_at, updated_at) VALUES (?, 'Technical Drawing', datetime('now'), datetime('now'))").bind(crypto.randomUUID()).run(); }
+export async function ensureDefaultSubjects(env) {
+  const defaults = ["Technical Drawing", "English", "Maths", "Science"];
+  for (const name of defaults) {
+    const row = await env.DB.prepare("SELECT id FROM subjects WHERE lower(name)=lower(?)").bind(name).first();
+    if (!row) await env.DB.prepare("INSERT INTO subjects (id, name, created_at, updated_at) VALUES (?, ?, datetime('now'), datetime('now'))").bind(crypto.randomUUID(), name).run();
+  }
+}
+export async function ensureDefaultSubject(env) { await ensureDefaultSubjects(env); }
 export async function createStudentSession(env, user) { const token = crypto.randomUUID() + crypto.randomUUID(); await env.DB.prepare("INSERT INTO sessions (token, student_id, expires_at, created_at) VALUES (?, ?, datetime('now', '+30 days'), datetime('now'))").bind(token, user.id).run(); return token; }
 export async function createStaffSession(env, staff) { const token = crypto.randomUUID() + crypto.randomUUID(); await env.DB.prepare("INSERT INTO staff_sessions (token, staff_id, expires_at, created_at) VALUES (?, ?, datetime('now', '+12 hours'), datetime('now'))").bind(token, staff.id).run(); return token; }

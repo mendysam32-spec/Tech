@@ -140,7 +140,8 @@ const Storage = {
             lastPlayedDate: user.lastPlayedDate || "",
             profile,
             badges: Array.isArray(user.badges) ? user.badges : [],
-            topicStats: user.topicStats || {}
+            topicStats: user.topicStats || {},
+            allowedSubjects: Storage.normalizeAllowedSubjects(user.allowedSubjects || user.allowed_subjects)
         };
 
         if (!this.isThemeUnlocked(normalized, profile.accent)) normalized.profile.accent = "blue";
@@ -168,6 +169,48 @@ const Storage = {
 
     canUseUltimate(user) {
         return Number(user?.bestScore || 0) >= 95 || Number(user?.level || 1) >= 10;
+    },
+
+    normalizeAllowedSubjects(value) {
+        const uniq = list => [...new Set(list.map(s => String(s).trim()).filter(Boolean))];
+        if (value === null || value === undefined || value === "") return null;
+        if (Array.isArray(value)) {
+            const cleaned = uniq(value);
+            return cleaned.length ? cleaned : null;
+        }
+        if (typeof value === "string") {
+            try { const parsed = JSON.parse(value); return this.normalizeAllowedSubjects(parsed); } catch (_) {}
+            const list = uniq(value.split(","));
+            return list.length ? list : null;
+        }
+        return null;
+    },
+
+    canAccessSubject(user, subject) {
+        const allowed = user?.allowedSubjects;
+        if (!Array.isArray(allowed) || allowed.length === 0) return true;
+        return allowed.some(name => String(name).toLowerCase() === String(subject).toLowerCase());
+    },
+
+    filterAllowedSubjects(user, subjects) {
+        const allowed = user?.allowedSubjects;
+        if (!Array.isArray(allowed) || allowed.length === 0) return subjects;
+        return subjects.filter(s => allowed.some(a => String(a).toLowerCase() === String(s.name || s).toLowerCase()));
+    },
+
+    saveUserAccess(user, allowedSubjects) {
+        const list = Array.isArray(allowedSubjects) ? allowedSubjects.filter(Boolean) : [];
+        const nextUser = { ...user, allowedSubjects: this.normalizeAllowedSubjects(list) };
+        const users = this.getUsers().map(u =>
+            (u.username || u.name) === (user.username || user.name) && (u.class || u.studentClass || "") === (user.class || user.studentClass || "")
+                ? nextUser : u
+        );
+        this.saveUsers(users);
+        const current = this.getCurrentUser();
+        if (current && (current.username || current.name) === (user.username || user.name) && (current.class || "") === (user.class || "")) {
+            this.setCurrentUser({ ...current, allowedSubjects: nextUser.allowedSubjects });
+        }
+        return nextUser;
     },
 
     normalizeUnlockedAvatars(value, user = {}) {

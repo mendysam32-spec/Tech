@@ -36,6 +36,8 @@
             <div class="col-lg-6"><div class="glass-card p-4 h-100 control-tile"><h4>Assignments</h4><form id="assignmentForm" class="row g-2"><div class="col-md-6"><input id="assignmentTitle" class="form-control" placeholder="Assignment title" required></div><div class="col-md-6"><select id="assignmentSubject" class="form-select" required></select></div><div class="col-12"><textarea id="assignmentInstructions" class="form-control" rows="4" placeholder="Instructions for students" required></textarea></div><div class="col-12"><button class="glass-btn" type="submit">Give Assignment</button></div></form><h6 class="mt-3">Assignments & Submissions</h6><div id="assignmentList"></div></div></div>
 
             <div class="col-lg-12 admin-only"><div class="glass-card p-4 h-100"><h4>Student Certificates</h4><div class="row g-3"><div class="col-md-5"><label class="form-label">Student</label><select id="certificateStudent" class="form-select"></select></div><div class="col-md-4"><label class="form-label">Subject</label><select id="certificateSubject" class="form-select"></select></div><div class="col-md-3 d-flex align-items-end gap-2"><button id="approveCertificate" class="glass-btn" type="button">Approve</button><button id="printCertificate" class="secondary-btn" type="button">Print</button></div></div><div id="certificatePreview" class="certificate-preview mt-4"></div></div></div>
+
+            <div class="col-lg-12 admin-only"><div class="glass-card p-4 h-100"><h4>Student Subject Access</h4><p class="small text-muted mb-3">By default every student can access all subjects. Use the controls below to restrict which subjects a student can see and attempt. Leave a student with no restrictions for full access.</p><div class="row g-2"><div class="col-md-4"><label class="form-label">Student</label><select id="accessStudent" class="form-select"></select></div><div class="col-md-8 d-flex flex-wrap align-items-end gap-3"><div class="form-check"><input class="form-check-input" type="checkbox" id="accessAllowAll" value="all"><label class="form-check-label" for="accessAllowAll">Allow all subjects (no restriction)</label></div><button id="saveAccess" class="glass-btn" type="button">Save Access</button></div></div><div id="accessSubjectList" class="row g-2 mt-2"></div><div id="accessMessage" class="small mt-2"></div></div></div>
         </div>
     </section>
 </div>
@@ -44,5 +46,7 @@
 <script src="js/api.js"></script>
 <script src="js/storage.js"></script>
 <script src="js/admin.js"></script>
+<script src="js/nav.js"></script>
 </body>
 </html>
+
