@@ -7,12 +7,11 @@ binding = "DB"
 database_name = "tech_monster_db"
 database_id = "1840e456-5cda-4d6a-a0f3-bb1ff7dfb47a"
 
-# Email Service — required for admin password recovery to mendysam32@gmail.com
-# After deploying, onboard a sending domain: npx wrangler email sending enable yourdomain.com
-# and set ADMIN_RECOVERY_EMAIL / EMAIL_FROM in Cloudflare Dashboard or wrangler secrets.
+# Admin recovery defaults — can be overridden via Cloudflare Dashboard > Pages > Settings > Environment variables
+# ADMIN_RECOVERY_EMAIL defaults to mendysam32@gmail.com if not set (see functions/api/_utils.js:32)
+# For email delivery, add a Send Email binding named EMAIL in Dashboard > Pages > tech-monster > Settings > Functions > Bindings
+# and onboard a domain: npx wrangler email sending enable yourdomain.com
+# Then set EMAIL_FROM to an address on that domain (e.g. Tech Monster <noreply@yourdomain.com>)
 [vars]
 ADMIN_RECOVERY_EMAIL = "mendysam32@gmail.com"
 EMAIL_FROM = "Tech Monster <noreply@tech-monster.app>"
-
-[[send_email]]
-name = "EMAIL"
