@@ -6,3 +6,13 @@ pages_build_output_dir = "."
 binding = "DB"
 database_name = "tech_monster_db"
 database_id = "1840e456-5cda-4d6a-a0f3-bb1ff7dfb47a"
+
+# Email Service — required for admin password recovery to mendysam32@gmail.com
+# After deploying, onboard a sending domain: npx wrangler email sending enable yourdomain.com
+# and set ADMIN_RECOVERY_EMAIL / EMAIL_FROM in Cloudflare Dashboard or wrangler secrets.
+[vars]
+ADMIN_RECOVERY_EMAIL = "mendysam32@gmail.com"
+EMAIL_FROM = "Tech Monster <noreply@tech-monster.app>"
+
+[[send_email]]
+name = "EMAIL"

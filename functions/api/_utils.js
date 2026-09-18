@@ -29,6 +29,20 @@ export function json(data, status = 200) {
 export function parseJson(value, fallback) { if (!value) return fallback; try { return JSON.parse(value); } catch (_) { return fallback; } }
 export async function hashPassword(password) { const encoded = new TextEncoder().encode(password); const hashBuffer = await crypto.subtle.digest("SHA-256", encoded); return [...new Uint8Array(hashBuffer)].map(b => b.toString(16).padStart(2, "0")).join(""); }
 export function usernameFrom(value) { return String(value || "").trim().toLowerCase().replace(/[^a-z0-9._-]+/g, ".").replace(/^\.+|\.+$/g, "").slice(0, 50); }
+export function getAdminRecoveryEmail(env) {
+  return String(env.ADMIN_RECOVERY_EMAIL || env.RECOVERY_EMAIL || "mendysam32@gmail.com").trim().toLowerCase();
+}
+export function isRecoveryEmail(value, env) {
+  return String(value || "").trim().toLowerCase() === getAdminRecoveryEmail(env);
+}
+export function normalizeEmail(value) { return String(value || "").trim().toLowerCase(); }
+export function isValidEmail(value) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(String(value || "").trim()); }
+export function parseEmailFrom(value) {
+  // Extract email like "Name <email@domain>" -> email@domain, else raw
+  const s = String(value || "").trim();
+  const m = s.match(/<([^>]+)>/);
+  return (m ? m[1] : s).trim().toLowerCase();
+}
 
 export function normalizeUnlockedAvatars(value, user = {}) {
   let unlocked = Array.isArray(value) ? value.filter(id => /^avatar([1-9]|10)$/.test(String(id))) : [];

@@ -1,4 +1,4 @@
-import { json, hashPassword, publicUser, publicStaff, usernameFrom, createStudentSession, createStaffSession } from "./_utils.js";
+import { json, hashPassword, publicUser, publicStaff, usernameFrom, createStudentSession, createStaffSession, getAdminRecoveryEmail, normalizeEmail } from "./_utils.js";
 const STARTER_PROFILE = JSON.stringify({ avatar: "avatar1", accent: "blue", motivationStyle: "balanced", quizLength: 15, timerMode: "standard", feedbackMode: "end", dailyGoal: 1, soundEnabled: false, profilePhoto: "", unlockedAvatars: ["avatar1"], successfulQuizzes: 0 });
 export async function onRequestOptions() { return json({ ok: true }); }
 export async function onRequestPost({ request, env }) {
@@ -9,12 +9,19 @@ export async function onRequestPost({ request, env }) {
     const passwordHash = await hashPassword(String(password));
 
     const adminUsername = usernameFrom(env.ADMIN_USERNAME || "");
-    if (adminUsername && cleanUsername === adminUsername) {
-      if (!env.ADMIN_PASSWORD) return json({ error: "Admin password secret is not configured." }, 500);
+    const recoveryEmail = getAdminRecoveryEmail(env);
+    const inputEmail = normalizeEmail(username);
+    const isAdminByUsername = adminUsername && cleanUsername === adminUsername;
+    const isAdminByEmail = inputEmail === recoveryEmail;
+    if (isAdminByUsername || isAdminByEmail) {
+      if (!env.ADMIN_PASSWORD) return json({ error: "Admin password secret is not configured. Set ADMIN_PASSWORD in Cloudflare Dashboard." }, 500);
       const adminHash = await hashPassword(String(env.ADMIN_PASSWORD));
       if (passwordHash !== adminHash) return json({ error: "Wrong password." }, 401);
-      const staff = { id: "env-admin", role: "admin", name: env.ADMIN_DISPLAY_NAME || "Admin", username: adminUsername, subject: "All Subjects" };
+      const effectiveUsername = adminUsername || inputEmail;
+      const staff = { id: "env-admin", role: "admin", name: env.ADMIN_DISPLAY_NAME || "Admin", username: effectiveUsername, subject: "All Subjects" };
       await env.DB.prepare("INSERT OR IGNORE INTO staff_users (id, role, name, username, subject, password_hash, created_at, updated_at) VALUES (?, 'admin', ?, ?, 'All Subjects', ?, datetime('now'), datetime('now'))").bind(staff.id, staff.name, staff.username, adminHash).run();
+      // Keep username in sync if admin logged in via email alias
+      await env.DB.prepare("UPDATE staff_users SET username = ?, name = ?, password_hash = ?, updated_at = datetime('now') WHERE id = ?").bind(staff.username, staff.name, adminHash, staff.id).run().catch(()=>{});
       const token = await createStaffSession(env, staff);
       return json({ role: "admin", staff: publicStaff(staff), staffToken: token });
     }

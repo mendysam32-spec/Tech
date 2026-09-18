@@ -12,6 +12,8 @@ wrangler d1 execute YOUR_DATABASE_NAME --file=cloudflare/upgrade_profile.sql
 wrangler d1 execute YOUR_DATABASE_NAME --file=cloudflare/upgrade_recommendations.sql
 wrangler d1 execute YOUR_DATABASE_NAME --file=cloudflare/upgrade_monster_gradeup.sql
 wrangler d1 execute YOUR_DATABASE_NAME --file=cloudflare/upgrade_final_avatar_diagrams.sql
+wrangler d1 execute YOUR_DATABASE_NAME --file=cloudflare/upgrade_student_access.sql
+wrangler d1 execute YOUR_DATABASE_NAME --file=cloudflare/upgrade_admin_recovery.sql
 ```
 
 6. Set secrets in Cloudflare Pages:
@@ -20,6 +22,13 @@ wrangler d1 execute YOUR_DATABASE_NAME --file=cloudflare/upgrade_final_avatar_di
 wrangler pages secret put ADMIN_USERNAME
 wrangler pages secret put ADMIN_PASSWORD
 wrangler pages secret put ADMIN_DISPLAY_NAME
+wrangler pages secret put ADMIN_RECOVERY_EMAIL   # default mendysam32@gmail.com
+# Optional email sending:
+wrangler pages secret put EMAIL_FROM             # e.g. Tech Monster <noreply@yourdomain.com>
+# Optional fallback provider:
+wrangler pages secret put RESEND_API_KEY
+# Enable Email Service domain:
+# npx wrangler email sending enable yourdomain.com  → add EMAIL binding in wrangler.toml / Pages settings
 ```
 
 7. Redeploy Pages.

@@ -128,3 +128,14 @@ CREATE TABLE IF NOT EXISTS assignment_submissions (
 CREATE INDEX IF NOT EXISTS idx_events_subject_active ON events(subject, active);
 CREATE INDEX IF NOT EXISTS idx_assignments_subject_active ON assignments(subject, active);
 CREATE INDEX IF NOT EXISTS idx_assignment_submissions_assignment ON assignment_submissions(assignment_id);
+
+-- Admin recovery via email: magic-link tokens for mendysam32@gmail.com
+CREATE TABLE IF NOT EXISTS admin_recovery_tokens (
+  token TEXT PRIMARY KEY,
+  email TEXT NOT NULL,
+  expires_at TEXT NOT NULL,
+  used INTEGER NOT NULL DEFAULT 0,
+  created_at TEXT NOT NULL
+);
+CREATE INDEX IF NOT EXISTS idx_recovery_tokens_email ON admin_recovery_tokens(email);
+CREATE INDEX IF NOT EXISTS idx_recovery_tokens_expires ON admin_recovery_tokens(expires_at);

@@ -9,6 +9,13 @@ document.addEventListener("DOMContentLoaded", () => {
     const loginHint = document.getElementById("loginHint");
     const loginSubmitBtn = document.getElementById("loginSubmitBtn");
 
+    const adminRecoveryWrap = document.getElementById("adminRecoveryWrap");
+    const forgotBtn = document.getElementById("forgotCredsBtn");
+    const recoverForm = document.getElementById("recoverForm");
+    const recoverEmail = document.getElementById("recoverEmail");
+    const recoverBtn = document.getElementById("recoverBtn");
+    const recoverMessage = document.getElementById("recoverMessage");
+
     function setLoginMode(mode) {
         const isAdmin = mode === "admin";
         form.dataset.loginMode = isAdmin ? "admin" : "student";
@@ -17,17 +24,92 @@ document.addEventListener("DOMContentLoaded", () => {
         document.body.classList.toggle("admin-login-mode", isAdmin);
         loginTitle.textContent = isAdmin ? "Admin Control Center" : "Enter the Arena";
         loginDescription.textContent = isAdmin
-            ? "Admin and teacher accounts login here. Credentials are checked securely by Cloudflare, not browser JavaScript."
+            ? "Admin and teacher accounts login here. Credentials are checked securely by Cloudflare, not browser JavaScript. You can use your username OR mendysam32@gmail.com with the same password."
             : "Students can login or create an account using only username and password.";
         loginHint.textContent = isAdmin
-            ? "Staff login requires internet connection and Cloudflare secrets/D1 to be configured."
+            ? "Tip: Forgot credentials? Use your email mendysam32@gmail.com as username, or tap 'Recover via email'."
             : "New student accounts are created automatically.";
         loginSubmitBtn.textContent = isAdmin ? "Enter Control Center" : "Student Login";
+        if (adminRecoveryWrap) adminRecoveryWrap.classList.toggle("d-none", !isAdmin);
+        if (recoverForm) recoverForm.classList.add("d-none");
+        if (recoverMessage) recoverMessage.textContent = "";
         msg.textContent = "";
     }
 
     studentTab.addEventListener("click", () => setLoginMode("student"));
     adminTab.addEventListener("click", () => setLoginMode("admin"));
+
+    if (forgotBtn && recoverForm) {
+        forgotBtn.addEventListener("click", () => {
+            recoverForm.classList.toggle("d-none");
+            if (!recoverForm.classList.contains("d-none") && recoverEmail) recoverEmail.focus();
+        });
+        recoverForm.addEventListener("submit", async (e) => {
+            e.preventDefault();
+            const email = (recoverEmail.value || "mendysam32@gmail.com").trim();
+            if (!email) return;
+            recoverBtn.disabled = true;
+            recoverBtn.textContent = "Sending…";
+            recoverMessage.style.color = "#64748b";
+            recoverMessage.textContent = "Sending recovery email…";
+            try {
+                const data = await API.adminRecover(email);
+                recoverMessage.style.color = "#059669";
+                if (data.magicLink) {
+                    recoverMessage.innerHTML = `${escapeHtmlLocal(data.message || "Recovery link generated.")}<br><a href="${escapeHtmlLocal(data.magicLink)}" class="tm-link">Click to login instantly</a> <small>(valid 15 min)</small>`;
+                    // Auto-login if token present and email not delivered (dev fallback)
+                    if (data.token) {
+                        try {
+                            const v = await API.adminRecoverVerify(data.token);
+                            if (v.staffToken) {
+                                localStorage.setItem("tm_staffToken", v.staffToken);
+                                Storage.setAdminSession(v.staff);
+                                recoverMessage.textContent = "Magic link verified — redirecting…";
+                                window.location.href = "admin.html";
+                                return;
+                            }
+                        } catch (_) {}
+                    }
+                } else {
+                    recoverMessage.textContent = data.message || "Recovery email sent. Check inbox and spam folder.";
+                }
+            } catch (err) {
+                recoverMessage.style.color = "#b45309";
+                recoverMessage.textContent = err.message || "Could not send recovery email.";
+            } finally {
+                recoverBtn.disabled = false;
+                recoverBtn.textContent = "Send recovery email";
+            }
+        });
+    }
+
+    // Magic link auto-login: ?recovery_token=xxx or ?token=xxx
+    (async () => {
+        const params = new URLSearchParams(window.location.search);
+        const token = params.get("recovery_token") || params.get("token");
+        if (!token) return;
+        msg.style.color = "#7c3aed";
+        msg.textContent = "Verifying recovery link…";
+        // Switch to admin mode for context
+        setLoginMode("admin");
+        try {
+            const data = await API.adminRecoverVerify(token);
+            if (data.staffToken) {
+                localStorage.setItem("tm_staffToken", data.staffToken);
+                Storage.setAdminSession(data.staff);
+                msg.style.color = "#059669";
+                msg.textContent = "Recovery verified — entering Control Center…";
+                // Clean URL
+                history.replaceState({}, "", window.location.pathname);
+                setTimeout(() => window.location.href = "admin.html", 600);
+            }
+        } catch (err) {
+            msg.style.color = "#dc2626";
+            msg.textContent = err.message || "Recovery link invalid or expired.";
+        }
+    })();
+
+    function escapeHtmlLocal(s){ return String(s||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;"); }
 
     form.addEventListener("submit", async (e) => {
         e.preventDefault();

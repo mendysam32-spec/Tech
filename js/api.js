@@ -91,5 +91,12 @@ const API = {
     },
     async approveCertificate(studentId, subject, approved = true) {
         return this.request("/admin/certificates", { method: "POST", staff: true, body: JSON.stringify({ studentId, subject, approved }) });
+    },
+
+    async adminRecover(email) {
+        return this.request("/admin/recover", { method: "POST", body: JSON.stringify({ email }) });
+    },
+    async adminRecoverVerify(token) {
+        return this.request("/admin/recover-verify", { method: "POST", body: JSON.stringify({ token }) });
     }
 };

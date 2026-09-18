@@ -38,7 +38,13 @@ This upgraded version is Cloudflare-ready and moves the important admin/teacher 
    - `ADMIN_USERNAME`
    - `ADMIN_PASSWORD`
    - Optional: `ADMIN_DISPLAY_NAME`
-10. Deploy again.
+   - Optional: `ADMIN_RECOVERY_EMAIL` (default `mendysam32@gmail.com`)
+   - Optional: `EMAIL_FROM` (e.g. `Tech Monster <noreply@yourdomain.com>` — domain must be onboarded)
+   - Optional: `RESEND_API_KEY` (fallback if Cloudflare Email Service not configured)
+10. In Pages project settings, add the Email binding:
+   - Binding name: `EMAIL` (type: Send Email) — see `wrangler.toml` `[[send_email]]`
+   - Onboard your sending domain: `npx wrangler email sending enable yourdomain.com` or Dashboard > Email > Email Sending > Enable domain, then set `EMAIL_FROM` to an address on that domain.
+11. Deploy again.
 
 ## Existing D1 database upgrade
 
@@ -62,7 +68,25 @@ Example secret setup:
 wrangler pages secret put ADMIN_USERNAME
 wrangler pages secret put ADMIN_PASSWORD
 wrangler pages secret put ADMIN_DISPLAY_NAME
+wrangler pages secret put ADMIN_RECOVERY_EMAIL   # default mendysam32@gmail.com
+wrangler pages secret put EMAIL_FROM             # e.g. Tech Monster <noreply@yourdomain.com>
 ```
+
+### Forgot password? Recover via email / login with email
+
+- On the login page, switch to **Admin Login** → tap **"Forgot login? Recover via email"**.
+- Enter `mendysam32@gmail.com` (or your custom `ADMIN_RECOVERY_EMAIL`) and tap **Send recovery email**.
+- You will receive an email containing:
+  - Your current admin **username**
+  - Your **recovery email** (which also works as a username alias)
+  - Your **password** (plaintext from the `ADMIN_PASSWORD` secret)
+  - A **one-click magic link** (valid 15 minutes, single-use) that logs you in without typing credentials.
+
+- **Login with email:** In Admin Login, you can type `mendysam32@gmail.com` in the *Username* field with your admin password — it is treated as an alias for `ADMIN_USERNAME` (handled in `functions/api/unified-login.js:11`).
+
+> Email delivery requires a verified sending domain. If `EMAIL` binding is not configured, the API still returns the magic link in the JSON response (useful for local dev) but warns `Email not sent — check server logs`. Configure either Cloudflare Email Service (`[[send_email]]` → `EMAIL`) or `RESEND_API_KEY`.
+>
+> D1 migration for magic links: `cloudflare/upgrade_admin_recovery.sql` (also merged into `cloudflare/schema.sql:131`). Run `wrangler d1 execute tech_monster_db --file=cloudflare/upgrade_admin_recovery.sql` on existing DBs.
 
 ## Local testing note
 
