@@ -61,6 +61,20 @@ document.addEventListener("DOMContentLoaded", async () => {
         if (detailSubject && detailYear) attemptPaper(detailSubject, detailYear);
     });
 
+    // deep link ?note=<topicId> or ?grade=<gradeId> jumps straight into the Science Book
+    const deepNote = qs.get("note") || qs.get("topic");
+    const deepGrade = qs.get("grade");
+    if (deepNote || deepGrade) {
+        const sel = document.getElementById("librarySubject");
+        if (sel.value !== "Science") { sel.value = "Science"; localStorage.setItem("tm_selectedSubject", "Science"); }
+        activate("notes");
+        await renderNotes();
+        renderPapers();
+        if (deepNote) window.openScienceTopic(deepNote);
+        else window.openScienceGrade(deepGrade);
+        return;
+    }
+
     // deep link ?year=2026 or ?view=2026 to jump to papers + detail
     const deepYear = qs.get("view") || qs.get("year");
     if (deepYear) {
@@ -142,6 +156,262 @@ function renderScienceNote(note) {
     </article>`;
 }
 
+/* ============================================================
+   SCIENCE BOOK CLOSET
+   Shelf (3 grade doors) -> Grade shelf (topic books) -> Topic
+   ============================================================ */
+let scienceView = "shelf";      // "shelf" | "grade" | "topic"
+let scienceGradeId = null;
+let scienceTopicId = null;
+let scienceCloudNotes = [];
+
+function scienceFlatTopics() {
+    const out = [];
+    (window.scienceBook || []).forEach(g => (g.themes || []).forEach(th => (th.topics || []).forEach(t => out.push({ grade: g, theme: th, topic: t }))));
+    return out;
+}
+function scienceFindTopic(id) { return scienceFlatTopics().find(x => x.topic.id === id) || null; }
+function scienceFindGrade(id) { return (window.scienceBook || []).find(g => g.id === id) || null; }
+function scienceGradeSequence(gradeId) {
+    const g = scienceFindGrade(gradeId);
+    if (!g) return [];
+    const seq = [];
+    (g.themes || []).forEach(th => (th.topics || []).forEach(t => seq.push(t)));
+    return seq;
+}
+function scienceTopicNav(found) {
+    const seq = scienceGradeSequence(found.grade.id);
+    const i = seq.findIndex(t => t.id === found.topic.id);
+    if (i < 0) return "";
+    const prev = seq[i - 1], next = seq[i + 1];
+    const btn = (t, dir, arrow) => t
+        ? `<button type="button" class="secondary-btn chapter-btn" onclick="openScienceTopic('${escapeHTML(t.id)}')">${arrow} ${escapeHTML(shortTitle(t.title, 28))}</button>`
+        : "";
+    return `
+    <div class="chapter-nav">
+        ${btn(prev, "prev", "←")}
+        <span class="chapter-progress">${offsetToChapter(i, seq.length, found.grade)}</span>
+        ${btn(next, "next", "→")}
+    </div>`;
+}
+function offsetToChapter(i, len, grade) {
+    const label = i === 0 ? `First chapter of ${escapeHTML(grade.grade)}` : i === len - 1 ? `Last chapter of ${escapeHTML(grade.grade)}` : `Chapter ${i + 1} of ${len}`;
+    return `<span class="chapter-progress-text">${label}</span>`;
+}
+function shortTitle(title, max) { return title.length > max ? title.slice(0, max - 1) + "…" : title; }
+
+function scienceQuestionCount(title) {
+    try { return typeof ScienceQuestions === "undefined" ? 0 : ScienceQuestions.filter(q => q.topic === title).length; }
+    catch (_) { return 0; }
+}
+
+function scienceTotalTopics() { return scienceFlatTopics().length; }
+
+function scienceSearch(query) {
+    const q = (query || "").trim().toLowerCase();
+    if (!q) return null;
+    return scienceFlatTopics().filter(({ grade, theme, topic }) =>
+        `${topic.title} ${topic.explanation} ${theme.title} ${grade.grade} ${(topic.points || []).join(" ")} ${(topic.definitions || []).join(" ")} ${(topic.waecFocus || []).join(" ")}`
+            .toLowerCase().includes(q)
+    );
+}
+
+function renderScienceCloset(query = null) {
+    const container = document.getElementById("notesContainer");
+    if (!container) return;
+    const results = scienceSearch(query);
+
+    if (results) {
+        container.innerHTML = `
+            <div class="closet">
+                <div class="closet-head">
+                    <span class="closet-badge">🔎 Search</span>
+                    <div>
+                        <h5 class="mb-0">Science Book results</h5>
+                        <p class="mb-0 small opacity-75">${results.length} topic${results.length === 1 ? "" : "s"} match “${escapeHTML(query)}”</p>
+                    </div>
+                </div>
+                ${results.length ? `<div class="book-grid">${results.map(r => scienceBookCard(r.topic, r.theme, r.grade)).join("")}</div>`
+                    : `<div class="empty-state">No topics in the Science Book match “${escapeHTML(query)}”.</div>`}
+            </div>
+            ${scienceCloudNotesBlock(query)}`;
+        return;
+    }
+
+    if (scienceView === "topic" && scienceTopicId) {
+        const found = scienceFindTopic(scienceTopicId);
+        if (found) { container.innerHTML = scienceTopicView(found); return; }
+        scienceView = "shelf"; scienceTopicId = null;
+    }
+    if (scienceView === "grade" && scienceGradeId) {
+        const grade = scienceFindGrade(scienceGradeId);
+        if (grade) { container.innerHTML = scienceGradeView(grade); return; }
+        scienceView = "shelf"; scienceGradeId = null;
+    }
+    container.innerHTML = scienceShelfView();
+}
+
+function scienceShelfView() {
+    const grades = window.scienceBook || [];
+    return `
+    <div class="closet">
+        <div class="closet-head">
+            <span class="closet-badge">📕 Foundation Science</span>
+            <div>
+                <h5 class="mb-0">The Science Book</h5>
+                <p class="mb-0 small opacity-75">${scienceTotalTopics()} topics • Grades 7, 8 and 9 • Open a shelf to start reading</p>
+            </div>
+        </div>
+        <div class="closet-doors">
+            ${grades.map(g => {
+                const topicCount = (g.themes || []).reduce((n, th) => n + th.topics.length, 0);
+                return `
+                <button type="button" class="closet-door" onclick="openScienceGrade('${escapeHTML(g.id)}')" aria-label="Open ${escapeHTML(g.grade)}">
+                    <span class="door-panel door-left"></span>
+                    <span class="door-panel door-right"></span>
+                    <span class="door-hinge"></span>
+                    <span class="door-icon">${escapeHTML(g.icon)}</span>
+                    <span class="door-grade">${escapeHTML(g.grade)}</span>
+                    <span class="door-label">${escapeHTML(g.label)}</span>
+                    <span class="door-count">${(g.themes || []).length} themes • ${topicCount} topics</span>
+                    <span class="door-cta">Open shelf →</span>
+                </button>`;
+            }).join("")}
+        </div>
+        <p class="small opacity-75 mt-3 mb-0">💡 Each shelf opens into its themes. Pick a book to read the full topic, then hit <strong>Practice this topic</strong> to quiz yourself on exactly what you just read.</p>
+    </div>
+    ${scienceCloudNotesBlock()}`;
+}
+
+function scienceGradeView(grade) {
+    const topicCount = (grade.themes || []).reduce((n, th) => n + th.topics.length, 0);
+    return `
+    <div class="closet">
+        <div class="closet-head">
+            <span class="closet-badge">${escapeHTML(grade.icon)} ${escapeHTML(grade.grade)}</span>
+            <div class="flex-grow-1">
+                <h5 class="mb-0">${escapeHTML(grade.label)}</h5>
+                <p class="mb-0 small opacity-75">${(grade.themes || []).length} themes • ${topicCount} topics</p>
+            </div>
+            <button type="button" class="secondary-btn nav-action" onclick="backToScienceShelf()">📕 Close shelf</button>
+        </div>
+        <p class="small opacity-75">${escapeHTML(grade.blurb || "")}</p>
+        ${(grade.themes || []).map(th => `
+            <div class="shelf-row">
+                <div class="shelf-bar">
+                    <span class="shelf-theme">${escapeHTML(th.number)} • ${escapeHTML(th.title)}</span>
+                    <span class="shelf-count">${th.topics.length} book${th.topics.length === 1 ? "" : "s"}</span>
+                </div>
+                <div class="book-grid">
+                    ${th.topics.map(t => scienceBookCard(t, th, grade)).join("")}
+                </div>
+            </div>`).join("")}
+        <div class="d-flex flex-wrap gap-2 mt-4">
+            <button type="button" class="glass-btn" onclick="backToScienceShelf()">📕 Back to all shelves</button>
+        </div>
+    </div>`;
+}
+
+function scienceBookCard(topic, theme, grade) {
+    const n = scienceQuestionCount(topic.title);
+    return `
+    <button type="button" class="book-spine" onclick="openScienceTopic('${escapeHTML(topic.id)}')">
+        <span class="book-band">${escapeHTML(topic.unit || "—")}</span>
+        <span class="book-title">${escapeHTML(topic.title)}</span>
+        <span class="book-theme">${escapeHTML(theme ? theme.title : "")}</span>
+        <span class="book-foot">
+            <span class="book-emoji">${escapeHTML(topic.icon || "📘")}</span>
+            <span class="book-qs">${n ? n + " Qs" : "Read"}</span>
+        </span>
+    </button>`;
+}
+
+function scienceTopicView(found) {
+    const { grade, theme, topic } = found;
+    const n = scienceQuestionCount(topic.title);
+    const nav = scienceTopicNav(found);
+    return `
+    <div class="closet">
+        <div class="closet-head">
+            <span class="closet-badge">${escapeHTML(grade.icon)} ${escapeHTML(grade.grade)}</span>
+            <div class="flex-grow-1">
+                <h5 class="mb-0">${escapeHTML(topic.title)}</h5>
+                <p class="mb-0 small opacity-75">${escapeHTML(theme.number)} • ${escapeHTML(theme.title)} • Unit ${escapeHTML(topic.unit || "—")}${topic.page ? ` • p.${escapeHTML(topic.page)}` : ""}</p>
+            </div>
+            <button type="button" class="secondary-btn nav-action" onclick="openScienceGrade('${escapeHTML(grade.id)}')">← Back to shelf</button>
+        </div>
+
+        <div class="d-flex flex-wrap gap-2 mb-3">
+            <a class="glass-btn" href="quiz.html?mode=topic&subject=Science&topic=${encodeURIComponent(topic.title)}">🎯 Practice this topic${n ? ` (${n} question${n === 1 ? "" : "s"})` : ""}</a>
+            <button type="button" class="secondary-btn" onclick="backToScienceShelf()">📕 All shelves</button>
+            <button type="button" class="secondary-btn" onclick="window.print()">🖨️ Print</button>
+        </div>
+
+        ${nav}
+
+        <article class="study-card monster-note">
+            <div class="study-art">
+                ${topic.image ? `<img class="study-image" src="${escapeHTML(topic.image)}" alt="${escapeHTML(topic.title)}">` : `<div class="study-placeholder"><span>${escapeHTML(topic.icon || "📘")}</span><p>${escapeHTML(grade.label)}<br>${escapeHTML(theme.title)}</p></div>`}
+            </div>
+            <div class="study-content">
+                <p class="mini-label">${escapeHTML(grade.grade)} • ${escapeHTML(theme.number)} • Unit ${escapeHTML(topic.unit || "—")}${topic.page ? ` • Page ${escapeHTML(topic.page)}` : ""}</p>
+                <h4>${escapeHTML(topic.title)}</h4>
+                <p>${escapeHTML(topic.explanation)}</p>
+                ${renderList("Key Points", topic.points)}
+                ${renderList("Definitions", topic.definitions)}
+                ${renderList("Formulas", topic.formulas)}
+                ${renderList("Rules to Remember", topic.rules)}
+                ${renderList("Examples", topic.examples)}
+                ${renderList("Exam Focus", topic.waecFocus)}
+                <div class="memory-tip">💡 ${escapeHTML(topic.memoryTip || "Revise this before quiz time.")}</div>
+                ${n ? `<div class="topic-quiz-cta">
+                    <strong>${n} question${n === 1 ? "" : "s"} in the quiz bank</strong> are tagged with this exact topic.
+                    <a class="glass-btn mt-2" href="quiz.html?mode=topic&subject=Science&topic=${encodeURIComponent(topic.title)}">🎯 Practice now</a>
+                </div>` : `<div class="topic-quiz-cta muted">New questions for this topic are being added — read on and check back soon.</div>`}
+            </div>
+        </article>
+
+        ${nav}
+    </div>`;
+}
+
+function scienceCloudNotesBlock(query = null) {
+    const notes = (scienceCloudNotes || []).filter(n => {
+        if (!query) return true;
+        return `${n.title} ${n.content || ""}`.toLowerCase().includes(query.toLowerCase());
+    });
+    if (!notes.length) return "";
+    return `
+    <div class="mt-4">
+        <div class="d-flex align-items-center gap-2 mb-2">
+            <span class="topic-pill">Teacher notes</span>
+            <h6 class="mb-0">Added from the control center</h6>
+        </div>
+        ${notes.map(n => `<article class="study-card monster-note"><div class="study-content"><p class="mini-label">Science • Cloud Note</p><h4>${escapeHTML(n.title)}</h4><div>${n.content}</div></div></article>`).join("")}
+    </div>`;
+}
+
+window.openScienceGrade = function (id) {
+    scienceGradeId = id; scienceTopicId = null; scienceView = "grade";
+    renderScienceCloset(getScienceQuery());
+    document.getElementById("notesContainer")?.scrollIntoView({ behavior: "smooth", block: "start" });
+};
+window.openScienceTopic = function (id) {
+    const found = scienceFindTopic(id);
+    if (!found) return;
+    scienceGradeId = found.grade.id; scienceTopicId = id; scienceView = "topic";
+    renderScienceCloset(getScienceQuery());
+    document.getElementById("notesContainer")?.scrollIntoView({ behavior: "smooth", block: "start" });
+};
+window.backToScienceShelf = function () {
+    scienceView = "shelf"; scienceGradeId = null; scienceTopicId = null;
+    renderScienceCloset(getScienceQuery());
+};
+function getScienceQuery() {
+    const el = document.getElementById("librarySearch");
+    return (el?.value || "").trim().toLowerCase();
+}
+
 async function hydrateSubjects() {
     const select = document.getElementById("librarySubject");
     const currentUser = Storage.getCurrentUser();
@@ -161,6 +431,17 @@ async function renderNotes(filterQuery = null) {
     const container = document.getElementById("notesContainer");
     const subject = document.getElementById("librarySubject").value || "Technical Drawing";
     const q = (filterQuery ?? document.getElementById("librarySearch")?.value ?? "").trim().toLowerCase();
+
+    // Science is served from the bundled Foundation Science Book (closet view).
+    if (subject !== "Science") { scienceView = "shelf"; scienceGradeId = null; scienceTopicId = null; }
+    if (subject === "Science" && window.scienceBook && window.scienceBook.length) {
+        renderScienceCloset(q);
+        try { const data = await API.notes("Science"); scienceCloudNotes = data.notes || []; }
+        catch (_) { scienceCloudNotes = []; }
+        if (scienceCloudNotes.length && scienceView === "shelf") renderScienceCloset(q);
+        return;
+    }
+
     container.innerHTML = `<div class="empty-state">Loading notes...</div>`;
     let notes = [];
     try { const data = await API.notes(subject); notes = data.notes || []; } catch (_) {}
@@ -234,6 +515,12 @@ function renderPapers(filterQuery = null) {
         papers = papers.filter(p => `${p.year} ${p.label} ${p.exam}`.toLowerCase().includes(q));
     }
     const history = getPaperHistory();
+    // Actual servable count, so a paper whose answer key is still being completed
+    // does not advertise questions it cannot yet serve.
+    const servedCount = (p) => {
+        try { return getPaperQuestions(p.subject, p.year).length || p.questions; }
+        catch (_) { return p.questions; }
+    };
 
     if (!papers.length) {
         hint.textContent = q ? `No papers match “${q}”.` : (subject === "Technical Drawing" ? "No papers found." : `Past papers for ${subject} are being prepared. Technical Drawing papers are ready below — switch subject to Technical Drawing to practice.`);
@@ -264,9 +551,9 @@ function renderPapers(filterQuery = null) {
                 <div class="paper-year">${escapeHTML(p.year)}</div>
                 <div class="paper-body">
                     <h6>${escapeHTML(p.label)}</h6>
-                    <p class="small opacity-75 mb-2">${p.questions} questions • ${escapeHTML(p.duration)} • ${escapeHTML(p.exam)}</p>
+                    <p class="small opacity-75 mb-2">${servedCount(p)} questions • ${escapeHTML(p.duration)} • ${escapeHTML(p.exam)}</p>
                     <div class="d-flex gap-2 flex-wrap align-items-center">
-                        <span class="topic-pill">${p.questions} Qs</span>
+                        <span class="topic-pill">${servedCount(p)} Qs</span>
                         <span class="topic-pill">GABECE</span>
                         ${histBadge}
                     </div>
@@ -279,7 +566,7 @@ function renderPapers(filterQuery = null) {
             </article>`;
             }).join("")}
         </div>
-        <div class="mt-3 small opacity-75">💡 Click <strong>View paper</strong> to see all ${papers[0]?.questions || ""} questions with diagrams. You can <strong>Just Read</strong> or hit <strong>Attempt (untimed)</strong> — answers/explanations are shown after submit in Review.</div>
+        <div class="mt-3 small opacity-75">💡 Click <strong>View paper</strong> to see all ${servedCount(papers[0]) || ""} questions with diagrams. You can <strong>Just Read</strong> or hit <strong>Attempt (untimed)</strong> — answers/explanations are shown after submit in Review.</div>
     `;
 }
 
@@ -314,11 +601,19 @@ function renderPaperDetail(subject, year, showAnswers) {
 
     const history = getPaperHistory();
     const h = history[`${subject}__${year}`];
+    const diagramCount = qs.filter(q => q.image).length;
+    const facts = [
+        `${qs.length} questions`,
+        meta ? meta.duration : null,
+        meta ? meta.exam : null,
+        meta && meta.marks ? `${meta.marks} marks` : null,
+        diagramCount ? `${diagramCount} diagrams` : null
+    ].filter(Boolean).join(" • ");
     header.innerHTML = `
         <div class="d-flex flex-wrap justify-content-between gap-3 align-items-center">
             <div>
                 <h5 class="mb-1">${escapeHTML(subject)} — Paper ${escapeHTML(year)}</h5>
-                <p class="mb-0 small opacity-75">${meta ? `${meta.questions} questions • ${meta.duration} • ${meta.exam} • ${qs.filter(q=>q.image).length} diagrams` : `${qs.length} questions`} • Untimed • Reading mode ${showAnswers ? "(answers visible)" : "(answers hidden)"}</p>
+                <p class="mb-0 small opacity-75">${facts} • Untimed • Reading mode ${showAnswers ? "(answers visible)" : "(answers hidden)"}</p>
             </div>
             <span class="topic-pill">${escapeHTML(year)} • ${qs.length} Qs</span>
         </div>
@@ -326,6 +621,7 @@ function renderPaperDetail(subject, year, showAnswers) {
         <div class="mt-2 small opacity-75">💡 <strong>Just Read:</strong> scroll and study. <strong>Attempt:</strong> click “Attempt this paper” — you’ll answer then get instant review with explanations, no timer.</div>
     `;
 
+    let lastPassage = null;
     content.innerHTML = qs.map((q, idx) => {
         const opts = q.options.map((opt, i) => {
             const isCorrect = showAnswers && i === q.correct;
@@ -335,12 +631,20 @@ function renderPaperDetail(subject, year, showAnswers) {
         }).join("");
         const img = q.image ? `<div class="paper-question-image"><img src="${escapeHTML(q.image)}" alt="Diagram Q${idx+1}" loading="lazy"></div>` : "";
         const expl = showAnswers ? `<div class="paper-expl"><strong>Answer: ${String.fromCharCode(65+q.correct)} • Explanation:</strong> ${escapeHTML(q.explanation || "No explanation.")}</div>` : `<div class="paper-expl muted">Answer hidden — toggle “Show answers” or attempt the paper for full review.</div>`;
+        let passage = "";
+        if (q.passage) {
+            const isNew = q.passage !== lastPassage;
+            lastPassage = q.passage;
+            passage = `<details class="paper-passage"${isNew ? " open" : ""}><summary>📄 Passage${isNew ? "" : " (shown above)"}</summary><div class="passage-text">${escapeHTML(q.passage)}</div></details>`;
+        }
+        const section = q.section ? `<span class="topic-pill" style="flex:0 0 auto;">Section ${escapeHTML(q.section)}</span>` : "";
         return `
         <article class="paper-question-card">
             <div class="d-flex justify-content-between align-items-start gap-2 mb-2">
                 <h6 class="mb-0">Q${idx+1}. ${escapeHTML(q.question)}</h6>
-                <span class="topic-pill" style="flex:0 0 auto;">Q${idx+1}/${qs.length}</span>
+                ${section}
             </div>
+            ${passage}
             ${img}
             <div class="paper-options">${opts}</div>
             ${expl}

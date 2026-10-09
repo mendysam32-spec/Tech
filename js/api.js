@@ -41,10 +41,10 @@ const API = {
         });
     },
 
-    async saveScore(score, topicResults = []) {
+    async saveScore(score, topicResults = [], subject = "") {
         return this.request("/score", {
             method: "POST",
-            body: JSON.stringify({ score, topicResults })
+            body: JSON.stringify({ score, topicResults, subject })
         });
     },
 

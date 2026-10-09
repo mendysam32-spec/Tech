@@ -7,6 +7,8 @@ let quizUser = null;
 let selectedSubject = "Technical Drawing";
 let isPaperMode = false;
 let paperYear = null;
+let isTopicMode = false;
+let topicFilter = null;
 
 function shuffle(array) { return array.sort(() => Math.random() - 0.5); }
 
@@ -36,15 +38,23 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     const urlParams = new URLSearchParams(location.search);
     isPaperMode = urlParams.get("mode") === "paper";
+    isTopicMode = urlParams.get("mode") === "topic";
     paperYear = urlParams.get("year");
+    topicFilter = urlParams.get("topic");
     const urlSubject = urlParams.get("subject");
 
-    // Library past-paper mode: subject/year from URL takes priority
-    if (isPaperMode && urlSubject) {
+    // Library past-paper / topic-practice mode: subject/year from URL takes priority
+    if (urlSubject) {
         selectedSubject = urlSubject;
         localStorage.setItem("tm_selectedSubject", urlSubject);
     } else {
         selectedSubject = localStorage.getItem("tm_selectedSubject") || "Technical Drawing";
+    }
+
+    // Topic practice shows dedicated header / untimed
+    if (isTopicMode && topicFilter) {
+        const moodEl = document.getElementById("quizMood");
+        if (moodEl) moodEl.textContent = `${topicFilter} • Practice • Untimed`;
     }
 
     // Paper mode shows dedicated header / untimed
@@ -103,7 +113,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             "Science": typeof ScienceQuestions !== "undefined" ? ScienceQuestions : []
         };
         const bankQuestions = localBanks[selectedSubject] || [];
-        const baseQuestions = bankQuestions.map(q => ({ subject: selectedSubject, ...q }));
+        let baseQuestions = bankQuestions.map(q => ({ subject: selectedSubject, ...q }));
         questionBank = [...baseQuestions, ...cloudQuestions].filter(q => !q.subject || q.subject === selectedSubject);
         try {
             const ev = await API.events(selectedSubject);
@@ -113,6 +123,10 @@ document.addEventListener("DOMContentLoaded", async () => {
                 if (ids.length) questionBank = questionBank.filter(q => ids.includes(q.id));
             }
         } catch (_) {}
+        // Topic practice: only questions from this exact book topic
+        if (isTopicMode && topicFilter) {
+            questionBank = questionBank.filter(q => topicForQuestion(q) === topicFilter);
+        }
     }
 
     // paper fallback if still empty (e.g., other subject without catalog)
@@ -128,15 +142,22 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
 
     if (!questionBank.length) {
+        const isEmptyTopic = isTopicMode && topicFilter;
         document.querySelector(".glass-card").innerHTML = `
-            <h4>No questions available for ${selectedSubject}${isPaperMode && paperYear ? ` — ${paperYear}` : ""}</h4>
-            <p>Ask the admin or assigned teacher to add questions for this subject.</p>
-            <a href="${isPaperMode ? "library.html?tab=papers" : "dashboard.html"}" class="glass-btn">Back</a>`;
-        document.getElementById("timer").textContent = isPaperMode ? "Untimed" : "No quiz";
+            <h4>${isEmptyTopic ? `No questions in “${escapeHtml(topicFilter)}” yet` : `No questions available for ${selectedSubject}${isPaperMode && paperYear ? ` — ${paperYear}` : ""}`}</h4>
+            <p>${isEmptyTopic ? "This topic is in the book but no quiz questions have been written for it yet." : "Ask the admin or assigned teacher to add questions for this subject."}</p>
+            <a href="${isTopicMode ? "library.html" : isPaperMode ? "library.html?tab=papers" : "dashboard.html"}" class="glass-btn">Back to Library</a>`;
+        document.getElementById("timer").textContent = isPaperMode || isTopicMode ? "Untimed" : "No quiz";
         return;
     }
 
-    if (isPaperMode) {
+    if (isTopicMode) {
+        // Topic practice = every question for this book topic, shuffled, untimed
+        selectedQuestions = shuffle([...questionBank]);
+        userAnswers = new Array(selectedQuestions.length).fill(null);
+        timeLeft = 0;
+        updateTimerDisplay();
+    } else if (isPaperMode) {
         // Paper = full set, original order (not shuffled) to mimic real paper
         selectedQuestions = [...questionBank];
         // keep original order for paper realism; optionally shuffle could be toggle but spec says attempt specific paper in order
@@ -164,24 +185,36 @@ document.addEventListener("DOMContentLoaded", async () => {
         const btn = document.getElementById("submitBtn");
         if (btn) btn.textContent = `Submit Paper ${paperYear} • Review & Explanations`;
     }
+    if (isTopicMode && topicFilter) {
+        const btn = document.getElementById("submitBtn");
+        if (btn) btn.textContent = `Finish ${topicFilter} • Review & Explanations`;
+    }
 });
 
 const INSTRUCTION_PREFIXES = [
     "Choose the correct word",
     "Choose the correct form",
     "Choose the correct pronoun",
+    "Choose the correct preposition",
+    "Choose the correct punctuation",
+    "Choose the correct tag",
+    "Choose the correct arrangement",
+    "Choose the word that best fits",
     "Choose the word that best completes the sentence",
     "Choose the word nearest in meaning",
     "Choose the word opposite in meaning",
+    "Choose the best interpretation",
     "Solve for x"
 ];
 
 function splitInstruction(questionText) {
     for (const prefix of INSTRUCTION_PREFIXES) {
-        const marker = prefix + ": ";
-        if (questionText.startsWith(marker)) {
-            return { instruction: prefix + ":", body: questionText.slice(marker.length) };
-        }
+        if (!questionText.startsWith(prefix)) continue;
+        // everything up to the first ": " is the instruction, so qualifiers such as
+        // "Choose the word that best fits gap 71: ..." are handled too
+        const colon = questionText.indexOf(": ");
+        if (colon === -1) continue;
+        return { instruction: questionText.slice(0, colon + 1), body: questionText.slice(colon + 2) };
     }
     return null;
 }
@@ -193,6 +226,18 @@ function escapeHtml(str) {
         .replace(/>/g, "&gt;")
         .replace(/"/g, "&quot;")
         .replace(/'/g, "&#39;");
+}
+
+function renderPassage(question) {
+    const box = document.getElementById("questionPassage");
+    if (!box) return;
+    if (!question.passage) {
+        box.innerHTML = "";
+        box.style.display = "none";
+        return;
+    }
+    box.innerHTML = `<div class="passage-label">Passage</div><div class="passage-text">${escapeHtml(question.passage)}</div>`;
+    box.style.display = "block";
 }
 
 function renderQuestionText(question) {
@@ -229,6 +274,7 @@ function loadQuestion() {
     const topic = topicForQuestion(q);
     document.getElementById("questionNumber").textContent = `Question ${currentIndex + 1} of ${selectedQuestions.length}${isPaperMode && paperYear ? ` • Paper ${paperYear}` : ""}`;
     document.getElementById("questionTopic").textContent = `${selectedSubject}${q.year ? ` • ${q.year}` : ""} • ${topic}`;
+    renderPassage(q);
     renderQuestionText(q);
     updateQuizProgress();
 
@@ -295,7 +341,8 @@ function updateQuizProgress() {
     if (bar) { bar.style.width = percent + "%"; bar.textContent = `${currentIndex + 1}/${selectedQuestions.length}`; }
     if (label) label.textContent = `${answerPercent}% answered`;
     if (mood) {
-        if (isPaperMode) mood.textContent = paperYear ? `Paper ${paperYear} • ${answerPercent}% answered • Untimed` : `${answerPercent}% answered • Untimed`;
+        if (isTopicMode && topicFilter) mood.textContent = `${topicFilter} • ${answerPercent}% answered • Untimed`;
+        else if (isPaperMode) mood.textContent = paperYear ? `Paper ${paperYear} • ${answerPercent}% answered • Untimed` : `${answerPercent}% answered • Untimed`;
         else mood.textContent = answerPercent >= 100 ? "Ready to submit like a legend" : answered >= selectedQuestions.length / 2 ? "Keep attacking the questions" : "Monster Arena Live";
     }
 }
@@ -312,6 +359,7 @@ function updateTimerDisplay() {
     const el = document.getElementById("timer");
     if (!el) return;
     if (isPaperMode) { el.textContent = paperYear ? `Paper ${paperYear} • Untimed` : "Untimed • No limit"; return; }
+    if (isTopicMode) { el.textContent = "Untimed"; return; }
     if (timeLeft <= 0) { el.textContent = "Relaxed"; return; }
     const minutes = Math.floor(timeLeft / 60);
     const seconds = timeLeft % 60;
@@ -339,7 +387,18 @@ async function submitQuiz() {
         localStorage.removeItem("tm_lastPaper");
     }
     await updateUserStats(percentage, topicResults);
-    localStorage.setItem("tm_review", JSON.stringify({ questions: selectedQuestions.map(q => ({ ...q, topic: topicForQuestion(q) })), userAnswers }));
+    localStorage.setItem("tm_review", JSON.stringify({
+        questions: selectedQuestions.map(q => ({ ...q, topic: topicForQuestion(q) })),
+        userAnswers,
+        meta: {
+            mode: isPaperMode ? "paper" : isTopicMode ? "topic" : "normal",
+            subject: selectedSubject,
+            year: paperYear,
+            topic: topicFilter,
+            score: percentage,
+            at: Date.now()
+        }
+    }));
     localStorage.setItem("tm_lastScore", percentage);
     localStorage.setItem("tm_lastTopicResults", JSON.stringify(topicResults));
     window.location.href = "result.html";
@@ -350,10 +409,10 @@ async function updateUserStats(score, topicResults) {
     const beforeUnlocked = Storage.unlockedAvatars(beforeUser).map(a => a.id);
     localStorage.removeItem("tm_lastAvatarUnlock");
     try {
-        const data = await API.saveScore(score, topicResults);
+        const data = await API.saveScore(score, topicResults, selectedSubject);
         Storage.setCurrentUser(data.user);
     } catch (_) {
-        Storage.updateLocalStats(score, topicResults);
+        Storage.updateLocalStats(score, topicResults, selectedSubject);
     }
     const afterUser = Storage.getCurrentUser();
     const afterUnlocked = Storage.unlockedAvatars(afterUser).map(a => a.id);

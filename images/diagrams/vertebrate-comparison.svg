@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 600" font-family="Segoe UI, Arial, sans-serif"><defs>
+<marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#64748b"/></marker>
+<marker id="blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#2563eb"/></marker>
+<marker id="red" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#dc2626"/></marker>
+</defs>
+<text x="450" y="42" text-anchor="middle" font-size="22" font-weight="700" fill="#0f172a">Comparison of the Five Classes of Vertebrates</text>
+<g>
+    <rect x="40" y="76" width="820" height="74" rx="10" fill="#1e3a8a" stroke="#1e3a8a" stroke-width="2"/>
+    <text x="70" y="110" font-size="15" font-weight="700" fill="#fff">Class</text>
+    <text x="235" y="34" font-size="14" fill="#fff">Skin covering</text>
+    <text x="455" y="110" font-size="14" fill="#fff">Body temperature</text>
+    <text x="700" y="110" font-size="13.5" fill="#fff">Reproduction &amp; care</text>
+    <line x1="140" y1="76" x2="140" y2="150" stroke="#cbd5e1" stroke-width="1"/>
+    <line x1="360" y1="76" x2="360" y2="150" stroke="#cbd5e1" stroke-width="1"/>
+    <line x1="575" y1="76" x2="575" y2="150" stroke="#cbd5e1" stroke-width="1"/>
+  </g><g>
+    <rect x="40" y="160" width="820" height="74" rx="10" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+    <text x="70" y="194" font-size="14.5" font-weight="700" fill="#0f172a">Fish</text>
+    <text x="235" y="34" font-size="13.5" fill="#334155">wet scales + slime</text>
+    <text x="455" y="194" font-size="13.5" fill="#334155">cold-blooded (ectothermic)</text>
+    <text x="700" y="194" font-size="13" fill="#334155">eggs in water; no parent care</text>
+    <line x1="140" y1="160" x2="140" y2="234" stroke="#cbd5e1" stroke-width="1"/>
+    <line x1="360" y1="160" x2="360" y2="234" stroke="#cbd5e1" stroke-width="1"/>
+    <line x1="575" y1="160" x2="575" y2="234" stroke="#cbd5e1" stroke-width="1"/>
+  </g><g>
+    <rect x="40" y="244" width="820" height="74" rx="10" fill="#eff6ff" stroke="#cbd5e1" stroke-width="2"/>
+    <text x="70" y="278" font-size="14.5" font-weight="700" fill="#0f172a">Amphibians</text>
+    <text x="235" y="34" font-size="13.5" fill="#334155">moist glandular skin</text>
+    <text x="455" y="278" font-size="13.5" fill="#334155">cold-blooded</text>
+    <text x="700" y="278" font-size="13" fill="#334155">eggs in water; tadpoles; no care</text>
+    <line x1="140" y1="244" x2="140" y2="318" stroke="#cbd5e1" stroke-width="1"/>
+    <line x1="360" y1="244" x2="360" y2="318" stroke="#cbd5e1" stroke-width="1"/>
+    <line x1="575" y1="244" x2="575" y2="318" stroke="#cbd5e1" stroke-width="1"/>
+  </g><g>
+    <rect x="40" y="328" width="820" height="74" rx="10" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+    <text x="70" y="362" font-size="14.5" font-weight="700" fill="#0f172a">Reptiles</text>
+    <text x="235" y="34" font-size="13.5" fill="#334155">dry horny scales</text>
+    <text x="455" y="362" font-size="13.5" fill="#334155">cold-blooded</text>
+    <text x="700" y="362" font-size="13" fill="#334155">shelled eggs on land; no care</text>
+    <line x1="140" y1="328" x2="140" y2="402" stroke="#cbd5e1" stroke-width="1"/>
+    <line x1="360" y1="328" x2="360" y2="402" stroke="#cbd5e1" stroke-width="1"/>
+    <line x1="575" y1="328" x2="575" y2="402" stroke="#cbd5e1" stroke-width="1"/>
+  </g><g>
+    <rect x="40" y="412" width="820" height="74" rx="10" fill="#eff6ff" stroke="#cbd5e1" stroke-width="2"/>
+    <text x="70" y="446" font-size="14.5" font-weight="700" fill="#0f172a">Birds</text>
+    <text x="235" y="34" font-size="13.5" fill="#334155">feathers (scales on legs)</text>
+    <text x="455" y="446" font-size="13.5" fill="#334155">warm-blooded (endothermic)</text>
+    <text x="700" y="446" font-size="13" fill="#334155">shelled eggs; parents often care</text>
+    <line x1="140" y1="412" x2="140" y2="486" stroke="#cbd5e1" stroke-width="1"/>
+    <line x1="360" y1="412" x2="360" y2="486" stroke="#cbd5e1" stroke-width="1"/>
+    <line x1="575" y1="412" x2="575" y2="486" stroke="#cbd5e1" stroke-width="1"/>
+  </g><g>
+    <rect x="40" y="496" width="820" height="74" rx="10" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+    <text x="70" y="530" font-size="14.5" font-weight="700" fill="#0f172a">Mammals</text>
+    <text x="235" y="34" font-size="13.5" fill="#334155">hair or fur</text>
+    <text x="455" y="530" font-size="13.5" fill="#334155">warm-blooded</text>
+    <text x="700" y="530" font-size="13" fill="#334155">live young fed on milk; lots of care</text>
+    <line x1="140" y1="496" x2="140" y2="570" stroke="#cbd5e1" stroke-width="1"/>
+    <line x1="360" y1="496" x2="360" y2="570" stroke="#cbd5e1" stroke-width="1"/>
+    <line x1="575" y1="496" x2="575" y2="570" stroke="#cbd5e1" stroke-width="1"/>
+  </g>
+<text x="450" y="560" text-anchor="middle" font-size="13" fill="#334155">Birds and mammals control their own temperature; fish, amphibians and reptiles do not (they are cold-blooded).</text>
+<text x="450" y="585" text-anchor="middle" font-size="12.5" fill="#475569">Only fish breathe with gills; toads and frogs breathe through moist skin and lungs; the others use lungs alone.</text>
+</svg>

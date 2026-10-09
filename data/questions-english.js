@@ -825,84 +825,12 @@ const EnglishQuestions = [
   "correct": 1,
   "explanation": "A 'storm in a teacup' is a great fuss over something unimportant."
 },
-{
-  "topic": "Figures of Speech",
-  "question": "'The clouds gathered in the sky before the rain.' The figure of speech used is ____.",
-  "image": "",
-  "options": [
-    "personification",
-    "simile",
-    "alliteration",
-    "metaphor"
-  ],
-  "correct": 0,
-  "explanation": "Giving the human action 'gathered' to clouds is personification."
-},
-{
-  "topic": "Figures of Speech",
-  "question": "'The house is as tall as a giraffe.' The figure of speech used is ____.",
-  "image": "",
-  "options": [
-    "metaphor",
-    "simile",
-    "personification",
-    "hyperbole"
-  ],
-  "correct": 1,
-  "explanation": "A comparison using 'as... as' is a simile."
-},
-{
-  "topic": "Figures of Speech",
-  "question": "'The doctor's door would not answer.' The figure of speech used is ____.",
-  "image": "",
-  "options": [
-    "simile",
-    "metaphor",
-    "personification",
-    "antithesis"
-  ],
-  "correct": 2,
-  "explanation": "The door is given the human ability to answer, which is personification."
-},
-{
-  "topic": "Figures of Speech",
-  "question": "'He is a lion in the field of play.' The figure of speech used is ____.",
-  "image": "",
-  "options": [
-    "simile",
-    "metaphor",
-    "personification",
-    "irony"
-  ],
-  "correct": 1,
-  "explanation": "Calling him a lion directly (without 'like' or 'as') is a metaphor."
-},
-{
-  "topic": "Figures of Speech",
-  "question": "'Peter picked a peck of pickled peppers.' The literary device used is ____.",
-  "image": "",
-  "options": [
-    "alliteration",
-    "assonance",
-    "rhyme",
-    "simile"
-  ],
-  "correct": 0,
-  "explanation": "Repetition of the initial 'p' sound is alliteration."
-},
-{
-  "topic": "Figures of Speech",
-  "question": "'I have told you a thousand times not to be late.' The figure of speech used is ____.",
-  "image": "",
-  "options": [
-    "hyperbole",
-    "litotes",
-    "simile",
-    "metonymy"
-  ],
-  "correct": 0,
-  "explanation": "Exaggerating 'a thousand times' is hyperbole."
-},
+
+
+
+
+
+
 {
   "topic": "Comprehension",
   "question": "Solomon's car broke down on his way to an important interview. He should ____.",
@@ -1020,346 +948,34 @@ const EnglishQuestions = [
   "correct": 0,
   "explanation": "'May I be excused?' is a polite request for permission to leave."
 },
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 {
-  "topic": "Parts of Speech",
-  "question": "In the sentence 'The dog barked loudly at the stranger', the word 'loudly' is ____.",
-  "image": "",
-  "options": [
-    "a noun",
-    "an adverb",
-    "an adjective",
-    "a verb"
-  ],
-  "correct": 1,
-  "explanation": "'Loudly' tells how the dog barked, modifying the verb, so it is an adverb."
-},
-{
-  "topic": "Parts of Speech",
-  "question": "In the sentence 'She bought a beautiful dress', the word 'beautiful' is ____.",
-  "image": "",
-  "options": [
-    "an adverb",
-    "a noun",
-    "an adjective",
-    "a preposition"
-  ],
-  "correct": 2,
-  "explanation": "'Beautiful' describes the noun 'dress', so it is an adjective."
-},
-{
-  "topic": "Parts of Speech",
-  "question": "In the sentence 'The children played in the park', the word 'children' is ____.",
-  "image": "",
-  "options": [
-    "a verb",
-    "a noun",
-    "an adjective",
-    "an adverb"
-  ],
-  "correct": 1,
-  "explanation": "'Children' names a person or group, so it is a noun."
-},
-{
-  "topic": "Parts of Speech",
-  "question": "In the sentence 'They will travel to Lagos tomorrow', the word 'will' is ____.",
-  "image": "",
-  "options": [
-    "a modal verb",
-    "a noun",
-    "an adverb",
-    "a conjunction"
-  ],
-  "correct": 0,
-  "explanation": "'Will' is a modal auxiliary verb expressing future."
-},
-{
-  "topic": "Parts of Speech",
-  "question": "In the sentence 'He hid the book under the table', the word 'under' is ____.",
-  "image": "",
-  "options": [
-    "a conjunction",
-    "a preposition",
-    "an adverb",
-    "an adjective"
-  ],
-  "correct": 1,
-  "explanation": "'Under' shows the relationship of position, so it is a preposition."
-},
-{
-  "topic": "Parts of Speech",
-  "question": "In the sentence 'We arrived early because we woke up on time', the word 'because' is ____.",
-  "image": "",
-  "options": [
-    "a preposition",
-    "an interjection",
-    "a conjunction",
-    "an adverb"
-  ],
-  "correct": 2,
-  "explanation": "'Because' joins two clauses, so it is a conjunction."
-},
-{
-  "topic": "Parts of Speech",
-  "question": "In the sentence 'Wow! That is a beautiful car', the word 'Wow' is ____.",
-  "image": "",
-  "options": [
-    "a noun",
-    "an interjection",
-    "a verb",
-    "an adjective"
-  ],
-  "correct": 1,
-  "explanation": "'Wow' expresses strong emotion, so it is an interjection."
-},
-{
-  "topic": "Parts of Speech",
-  "question": "In the sentence 'The teacher gave us a difficult test', the word 'us' is ____.",
-  "image": "",
-  "options": [
-    "a noun",
-    "a personal pronoun",
-    "an adjective",
-    "a verb"
-  ],
-  "correct": 1,
-  "explanation": "'Us' is a personal pronoun referring to a group."
-},
-{
-  "topic": "Parts of Speech",
-  "question": "In the sentence 'She quickly finished her assignment', the word 'finished' is ____.",
-  "image": "",
-  "options": [
-    "an adjective",
-    "a noun",
-    "a verb",
-    "an adverb"
-  ],
-  "correct": 2,
-  "explanation": "'Finished' is the action word in the sentence, so it is a verb."
-},
-{
-  "topic": "Parts of Speech",
-  "question": "In the sentence 'He is a hardworking man', the word 'a' is ____.",
-  "image": "",
-  "options": [
-    "an adjective",
-    "an article",
-    "a pronoun",
-    "a preposition"
-  ],
-  "correct": 1,
-  "explanation": "'A' is the indefinite article."
-},
-{
-  "topic": "Parts of Speech",
-  "question": "In the sentence 'The meeting lasted for an hour', the word 'and' is absent, but identify the kind of word for 'for': ____.",
-  "image": "",
-  "options": [
-    "a conjunction",
-    "a preposition",
-    "an adverb",
-    "an interjection"
-  ],
-  "correct": 1,
-  "explanation": "'For' here shows the duration relationship, so it is a preposition."
-},
-{
-  "topic": "Parts of Speech",
-  "question": "In the sentence 'He drives carefully so that he may not cause an accident', the word 'carefully' is ____.",
-  "image": "",
-  "options": [
-    "an adjective",
-    "an adverb",
-    "a noun",
-    "a conjunction"
-  ],
-  "correct": 1,
-  "explanation": "'Carefully' modifies the verb 'drives', so it is an adverb."
-},
-{
-  "topic": "Parts of Speech",
-  "question": "In the sentence 'The hungry boy ate the whole loaf', the word 'hungry' is ____.",
-  "image": "",
-  "options": [
-    "a noun",
-    "an adverb",
-    "an adjective",
-    "a verb"
-  ],
-  "correct": 2,
-  "explanation": "'Hungry' describes the noun 'boy', so it is an adjective."
-},
-{
-  "topic": "Parts of Speech",
-  "question": "In the sentence 'Nobody knows the answer to that question', the word 'Nobody' is ____.",
-  "image": "",
-  "options": [
-    "an indefinite pronoun",
-    "a verb",
-    "an adjective",
-    "a conjunction"
-  ],
-  "correct": 0,
-  "explanation": "'Nobody' is an indefinite pronoun referring to no specific person."
-},
-{
-  "topic": "Parts of Speech",
-  "question": "In the sentence 'The cat and the dog are playing', the word 'and' is ____.",
-  "image": "",
-  "options": [
-    "a preposition",
-    "a conjunction",
-    "an adverb",
-    "a pronoun"
-  ],
-  "correct": 1,
-  "explanation": "'And' joins two nouns, so it is a conjunction."
-},
-{
-  "topic": "Parts of Speech",
-  "question": "In the sentence 'She is the tallest girl in our class', the word 'tallest' is ____.",
-  "image": "",
-  "options": [
-    "a noun",
-    "a superlative adjective",
-    "an adverb",
-    "a verb"
-  ],
-  "correct": 1,
-  "explanation": "'Tallest' is the superlative form of the adjective 'tall'."
-},
-{
-  "topic": "Parts of Speech",
-  "question": "In the sentence 'The thief ran very fast', the word 'very' is ____.",
-  "image": "",
-  "options": [
-    "an adverb of degree",
-    "an adjective",
-    "a noun",
-    "a conjunction"
-  ],
-  "correct": 0,
-  "explanation": "'Very' intensifies the adverb 'fast', so it is an adverb of degree."
-},
-{
-  "topic": "Parts of Speech",
-  "question": "In the sentence 'Their house is larger than ours', the word 'ours' is ____.",
-  "image": "",
-  "options": [
-    "a possessive pronoun",
-    "an adjective",
-    "a noun",
-    "a verb"
-  ],
-  "correct": 0,
-  "explanation": "'Ours' replaces a noun and shows possession, so it is a possessive pronoun."
-},
-{
-  "topic": "Parts of Speech",
-  "question": "In the sentence 'He spoke with confidence', the word 'confidence' is ____.",
-  "image": "",
-  "options": [
-    "an abstract noun",
-    "a concrete noun",
-    "a verb",
-    "an adjective"
-  ],
-  "correct": 0,
-  "explanation": "'Confidence' names an idea or quality, so it is an abstract noun."
-},
-{
-  "topic": "Parts of Speech",
-  "question": "In the sentence 'The assembly of lions is called a pride', the word 'pride' is ____.",
-  "image": "",
-  "options": [
-    "a proper noun",
-    "a collective noun",
-    "an abstract noun",
-    "a common noun"
-  ],
-  "correct": 1,
-  "explanation": "'Pride' names a group of lions, so it is a collective noun."
-},
-{
-  "topic": "Parts of Speech",
-  "question": "In the sentence 'Mary visited the hospital yesterday', the word 'Mary' is ____.",
-  "image": "",
-  "options": [
-    "a common noun",
-    "a proper noun",
-    "an abstract noun",
-    "a pronoun"
-  ],
-  "correct": 1,
-  "explanation": "'Mary' is the name of a specific person, so it is a proper noun."
-},
-{
-  "topic": "Parts of Speech",
-  "question": "In the sentence 'He decided to work harder', the word 'to work' is ____.",
-  "image": "",
-  "options": [
-    "an infinitive",
-    "a gerund",
-    "a participle",
-    "a finite verb"
-  ],
-  "correct": 0,
-  "explanation": "'To work' is an infinitive, the base form of the verb preceded by 'to'."
-},
-{
-  "topic": "Parts of Speech",
-  "question": "In the sentence 'Swimming is good exercise', the word 'Swimming' is ____.",
-  "image": "",
-  "options": [
-    "a gerund",
-    "an infinitive",
-    "a participle",
-    "a finite verb"
-  ],
-  "correct": 0,
-  "explanation": "'Swimming' is a verb form used as a noun, which is a gerund."
-},
-{
-  "topic": "Parts of Speech",
-  "question": "In the sentence 'The broken cup was thrown away', the word 'broken' is a ____ participle used as an adjective.",
-  "image": "",
-  "options": [
-    "present",
-    "past",
-    "future",
-    "perfect"
-  ],
-  "correct": 1,
-  "explanation": "'Broken' is a past participle modifying the noun 'cup'."
-},
-{
-  "topic": "Parts of Speech",
-  "question": "In the sentence 'He did not come, so we started without him', the word 'so' is ____.",
-  "image": "",
-  "options": [
-    "a coordinating conjunction",
-    "a subordinating conjunction",
-    "an adverb",
-    "a preposition"
-  ],
-  "correct": 0,
-  "explanation": "'So' joins two equal co-ordinate clauses, so it is a coordinating conjunction."
-},
-{
-  "topic": "Parts of Speech",
-  "question": "In the sentence 'I will call you when I arrive', the word 'when' is ____.",
-  "image": "",
-  "options": [
-    "a coordinating conjunction",
-    "a subordinating conjunction",
-    "a preposition",
-    "an interjection"
-  ],
-  "correct": 1,
-  "explanation": "'When' introduces a subordinate time clause, so it is a subordinating conjunction."
-},
-{
-  "topic": "Parts of Speech",
+  "topic": "Grammar",
   "question": "Choose the correct form: The two brothers are very ____.",
   "image": "",
   "options": [
@@ -1372,7 +988,7 @@ const EnglishQuestions = [
   "explanation": "'Alike' is an adjective meaning similar to each other."
 },
 {
-  "topic": "Parts of Speech",
+  "topic": "Grammar",
   "question": "Choose the correct form: He spoke so ____ that everyone was angry.",
   "image": "",
   "options": [
@@ -1385,7 +1001,7 @@ const EnglishQuestions = [
   "explanation": "An adverb 'rudely' modifies the verb 'spoke'."
 },
 {
-  "topic": "Parts of Speech",
+  "topic": "Grammar",
   "question": "Choose the correct form: The patient is getting ____ day by day.",
   "image": "",
   "options": [
@@ -1398,7 +1014,7 @@ const EnglishQuestions = [
   "explanation": "'Well' is used to describe health, while 'good' describes quality."
 },
 {
-  "topic": "Parts of Speech",
+  "topic": "Grammar",
   "question": "Choose the correct form: This is the ____ of the two books.",
   "image": "",
   "options": [
@@ -1411,7 +1027,7 @@ const EnglishQuestions = [
   "explanation": "Comparing two things, use the comparative 'better'."
 },
 {
-  "topic": "Parts of Speech",
+  "topic": "Grammar",
   "question": "Choose the correct pronoun: Neither Amina nor ____ went to the party.",
   "image": "",
   "options": [
@@ -1424,7 +1040,7 @@ const EnglishQuestions = [
   "explanation": "The pronoun is the subject, so the nominative form 'I' is used."
 },
 {
-  "topic": "Parts of Speech",
+  "topic": "Grammar",
   "question": "Choose the correct pronoun: Between you and ____, I do not trust him.",
   "image": "",
   "options": [
@@ -1437,7 +1053,7 @@ const EnglishQuestions = [
   "explanation": "After the preposition 'between', the object form 'me' is used."
 },
 {
-  "topic": "Parts of Speech",
+  "topic": "Grammar",
   "question": "Choose the correct pronoun: Each of the girls has completed ____ assignment.",
   "image": "",
   "options": [
@@ -1450,7 +1066,7 @@ const EnglishQuestions = [
   "explanation": "'Each' is singular and feminine here, so 'her' agrees."
 },
 {
-  "topic": "Parts of Speech",
+  "topic": "Grammar",
   "question": "Choose the correct pronoun: It was ____ who called you yesterday.",
   "image": "",
   "options": [
@@ -1463,7 +1079,7 @@ const EnglishQuestions = [
   "explanation": "After the linking verb 'was', the complement takes the nominative form 'I'."
 },
 {
-  "topic": "Parts of Speech",
+  "topic": "Grammar",
   "question": "Choose the correct word: The noise ____ the baby awake.",
   "image": "",
   "options": [
@@ -1476,7 +1092,7 @@ const EnglishQuestions = [
   "explanation": "The simple past of 'wake' is 'woke'."
 },
 {
-  "topic": "Parts of Speech",
+  "topic": "Grammar",
   "question": "Choose the correct word: Please ____ the door when you leave.",
   "image": "",
   "options": [
@@ -1489,7 +1105,7 @@ const EnglishQuestions = [
   "explanation": "In an imperative sentence, the base form 'lock' is used."
 },
 {
-  "topic": "Parts of Speech",
+  "topic": "Grammar",
   "question": "Choose the correct word: The whole class ____ to the museum.",
   "image": "",
   "options": [
@@ -1502,7 +1118,7 @@ const EnglishQuestions = [
   "explanation": "'Class' as a single unit takes a singular verb 'has gone'."
 },
 {
-  "topic": "Parts of Speech",
+  "topic": "Grammar",
   "question": "Choose the correct word: Either the teacher or the students ____ wrong.",
   "image": "",
   "options": [
@@ -1515,7 +1131,7 @@ const EnglishQuestions = [
   "explanation": "With 'either...or', the verb agrees with the nearer subject 'students', so 'are' is used."
 },
 {
-  "topic": "Parts of Speech",
+  "topic": "Grammar",
   "question": "Choose the correct word: Neither the students nor the teacher ____ present.",
   "image": "",
   "options": [
@@ -1528,7 +1144,7 @@ const EnglishQuestions = [
   "explanation": "The verb agrees with the nearer subject 'teacher', which is singular, so 'is' is used."
 },
 {
-  "topic": "Parts of Speech",
+  "topic": "Grammar",
   "question": "Choose the correct word: The furniture in the hall ____ new.",
   "image": "",
   "options": [
@@ -1541,7 +1157,7 @@ const EnglishQuestions = [
   "explanation": "'Furniture' is an uncountable noun and takes a singular verb 'is'."
 },
 {
-  "topic": "Parts of Speech",
+  "topic": "Grammar",
   "question": "Choose the correct word: A number of students ____ absent from school.",
   "image": "",
   "options": [
@@ -1554,7 +1170,7 @@ const EnglishQuestions = [
   "explanation": "'A number of' is plural, so 'are' is used."
 },
 {
-  "topic": "Parts of Speech",
+  "topic": "Grammar",
   "question": "Choose the correct word: The number of students ____ increasing steadily.",
   "image": "",
   "options": [
@@ -1567,7 +1183,7 @@ const EnglishQuestions = [
   "explanation": "'The number of' is singular, so 'is' is used."
 },
 {
-  "topic": "Parts of Speech",
+  "topic": "Grammar",
   "question": "Choose the correct word: I am looking forward to ____ you soon.",
   "image": "",
   "options": [
@@ -1580,7 +1196,7 @@ const EnglishQuestions = [
   "explanation": "After 'look forward to', the gerund 'seeing' is used."
 },
 {
-  "topic": "Parts of Speech",
+  "topic": "Grammar",
   "question": "Choose the correct word: He insisted on ____ to the meeting alone.",
   "image": "",
   "options": [
@@ -1593,7 +1209,7 @@ const EnglishQuestions = [
   "explanation": "After the preposition 'on', the gerund 'going' is used."
 },
 {
-  "topic": "Parts of Speech",
+  "topic": "Grammar",
   "question": "Choose the correct word: They advised me ____ late hours.",
   "image": "",
   "options": [
@@ -1606,7 +1222,7 @@ const EnglishQuestions = [
   "explanation": "With 'advise', the negative infinitive 'not to keep' is used."
 },
 {
-  "topic": "Parts of Speech",
+  "topic": "Grammar",
   "question": "Choose the correct word: You had better ____ your work now.",
   "image": "",
   "options": [
@@ -1619,7 +1235,7 @@ const EnglishQuestions = [
   "explanation": "After 'had better', the bare infinitive 'finish' is used."
 },
 {
-  "topic": "Parts of Speech",
+  "topic": "Grammar",
   "question": "Choose the correct word: I would rather ____ than fail the exam.",
   "image": "",
   "options": [
@@ -1632,7 +1248,7 @@ const EnglishQuestions = [
   "explanation": "After 'would rather', the bare infinitive 'study' is used."
 },
 {
-  "topic": "Parts of Speech",
+  "topic": "Grammar",
   "question": "Choose the correct word: The man denied ____ the money.",
   "image": "",
   "options": [
@@ -1645,7 +1261,7 @@ const EnglishQuestions = [
   "explanation": "The verb 'deny' is followed by a gerund 'taking'."
 },
 {
-  "topic": "Parts of Speech",
+  "topic": "Grammar",
   "question": "Choose the correct word: He is used to ____ early in the morning.",
   "image": "",
   "options": [
@@ -1658,7 +1274,7 @@ const EnglishQuestions = [
   "explanation": "In the expression 'used to + -ing', the gerund 'waking' is used."
 },
 {
-  "topic": "Parts of Speech",
+  "topic": "Grammar",
   "question": "Choose the correct word: She told me that she ____ her keys.",
   "image": "",
   "options": [
@@ -1671,7 +1287,7 @@ const EnglishQuestions = [
   "explanation": "In reported speech, the past perfect 'had lost' is used after a past-introducing verb."
 },
 {
-  "topic": "Parts of Speech",
+  "topic": "Grammar",
   "question": "Choose the correct word: The players were tired because they ____ for two hours.",
   "image": "",
   "options": [
@@ -1684,7 +1300,7 @@ const EnglishQuestions = [
   "explanation": "The past perfect continuous 'had been training' shows an action continuing before a past time."
 },
 {
-  "topic": "Parts of Speech",
+  "topic": "Grammar",
   "question": "Choose the correct word: Scarcely had we left the house ____ it began to rain.",
   "image": "",
   "options": [
@@ -1697,7 +1313,7 @@ const EnglishQuestions = [
   "explanation": "The correct pattern is 'Scarcely... when'."
 },
 {
-  "topic": "Parts of Speech",
+  "topic": "Grammar",
   "question": "Choose the correct word: No sooner had he arrived ____ the meeting started.",
   "image": "",
   "options": [
@@ -1710,7 +1326,7 @@ const EnglishQuestions = [
   "explanation": "The correct pattern is 'No sooner... than'."
 },
 {
-  "topic": "Parts of Speech",
+  "topic": "Grammar",
   "question": "Choose the correct word: Hardly had the film begun ____ the power went off.",
   "image": "",
   "options": [
@@ -1723,7 +1339,7 @@ const EnglishQuestions = [
   "explanation": "The correct pattern is 'Hardly... when'."
 },
 {
-  "topic": "Parts of Speech",
+  "topic": "Grammar",
   "question": "Choose the correct word: It is high time we ____ home.",
   "image": "",
   "options": [
@@ -1736,7 +1352,7 @@ const EnglishQuestions = [
   "explanation": "After 'it is high time', the past subjunctive 'went' is used."
 },
 {
-  "topic": "Parts of Speech",
+  "topic": "Grammar",
   "question": "Choose the correct word: I wish I ____ more time to study.",
   "image": "",
   "options": [
@@ -1749,7 +1365,7 @@ const EnglishQuestions = [
   "explanation": "After 'wish' for an unreal present situation, the past form 'had' is used."
 },
 {
-  "topic": "Parts of Speech",
+  "topic": "Grammar",
   "question": "Choose the correct word: If he had studied hard, he ____ the exam.",
   "image": "",
   "options": [
@@ -1762,7 +1378,7 @@ const EnglishQuestions = [
   "explanation": "A third conditional uses 'would have + past participle'."
 },
 {
-  "topic": "Parts of Speech",
+  "topic": "Grammar",
   "question": "Choose the correct word: The doctor advised that the patient ____ a lot of water.",
   "image": "",
   "options": [
@@ -1775,7 +1391,7 @@ const EnglishQuestions = [
   "explanation": "After verbs of recommendation, the subjunctive bare infinitive 'drink' is used."
 },
 {
-  "topic": "Parts of Speech",
+  "topic": "Grammar",
   "question": "Choose the correct word: He must have ____ the key in the office.",
   "image": "",
   "options": [
@@ -1788,7 +1404,7 @@ const EnglishQuestions = [
   "explanation": "After the modal 'must have', the past participle 'forgotten' is used."
 },
 {
-  "topic": "Parts of Speech",
+  "topic": "Grammar",
   "question": "Choose the correct word: She is better at English ____ at Mathematics.",
   "image": "",
   "options": [
@@ -1801,7 +1417,7 @@ const EnglishQuestions = [
   "explanation": "Comparative adjective 'better' is followed by 'than'."
 },
 {
-  "topic": "Parts of Speech",
+  "topic": "Grammar",
   "question": "Choose the correct word: He is the man ____ we spoke about yesterday.",
   "image": "",
   "options": [
@@ -1814,7 +1430,7 @@ const EnglishQuestions = [
   "explanation": "'Whom' is the object of 'spoke about'."
 },
 {
-  "topic": "Parts of Speech",
+  "topic": "Grammar",
   "question": "Choose the correct word: The house ____ roof was blown off belongs to the chief.",
   "image": "",
   "options": [
@@ -1827,7 +1443,7 @@ const EnglishQuestions = [
   "explanation": "'Whose' shows that the roof belongs to the house."
 },
 {
-  "topic": "Parts of Speech",
+  "topic": "Grammar",
   "question": "Choose the correct word: We have lived in this town ____ ten years.",
   "image": "",
   "options": [
@@ -1840,7 +1456,7 @@ const EnglishQuestions = [
   "explanation": "'For' is used with a duration of time such as ten years."
 },
 {
-  "topic": "Parts of Speech",
+  "topic": "Grammar",
   "question": "Choose the correct word: I have known her ____ childhood.",
   "image": "",
   "options": [
@@ -1853,7 +1469,7 @@ const EnglishQuestions = [
   "explanation": "'Since' is used with a point in time such as childhood."
 },
 {
-  "topic": "Parts of Speech",
+  "topic": "Grammar",
   "question": "Choose the correct word: The meeting will hold ____ Monday.",
   "image": "",
   "options": [
@@ -1866,7 +1482,7 @@ const EnglishQuestions = [
   "explanation": "'On' is used with days of the week."
 },
 {
-  "topic": "Parts of Speech",
+  "topic": "Grammar",
   "question": "Choose the correct word: The train leaves ____ 8 o'clock.",
   "image": "",
   "options": [
@@ -1879,7 +1495,7 @@ const EnglishQuestions = [
   "explanation": "'At' is used with specific times."
 },
 {
-  "topic": "Parts of Speech",
+  "topic": "Grammar",
   "question": "Choose the correct word: She is fond ____ making trouble.",
   "image": "",
   "options": [
@@ -1892,7 +1508,7 @@ const EnglishQuestions = [
   "explanation": "The phrase is 'fond of'."
 },
 {
-  "topic": "Parts of Speech",
+  "topic": "Grammar",
   "question": "Choose the correct word: The book is similar ____ mine.",
   "image": "",
   "options": [
@@ -1905,7 +1521,7 @@ const EnglishQuestions = [
   "explanation": "The phrase is 'similar to'."
 },
 {
-  "topic": "Parts of Speech",
+  "topic": "Grammar",
   "question": "Choose the correct word: He was accused ____ stealing.",
   "image": "",
   "options": [
@@ -1918,7 +1534,7 @@ const EnglishQuestions = [
   "explanation": "The phrase is 'accused of'."
 },
 {
-  "topic": "Parts of Speech",
+  "topic": "Grammar",
   "question": "Choose the correct word: The thief was charged ____ murder.",
   "image": "",
   "options": [
@@ -1931,7 +1547,7 @@ const EnglishQuestions = [
   "explanation": "The phrase is 'charged with'."
 },
 {
-  "topic": "Parts of Speech",
+  "topic": "Grammar",
   "question": "Choose the correct word: She is capable ____ doing the work.",
   "image": "",
   "options": [
@@ -1944,7 +1560,7 @@ const EnglishQuestions = [
   "explanation": "The phrase is 'capable of'."
 },
 {
-  "topic": "Parts of Speech",
+  "topic": "Grammar",
   "question": "Choose the correct word: He does not agree ____ me.",
   "image": "",
   "options": [
@@ -1957,7 +1573,7 @@ const EnglishQuestions = [
   "explanation": "The phrase is 'agree with' when agreeing with a person."
 },
 {
-  "topic": "Parts of Speech",
+  "topic": "Grammar",
   "question": "Choose the correct word: We finally agreed ____ the plan.",
   "image": "",
   "options": [
@@ -1970,7 +1586,7 @@ const EnglishQuestions = [
   "explanation": "The phrase is 'agree on' a plan or issue."
 },
 {
-  "topic": "Parts of Speech",
+  "topic": "Grammar",
   "question": "Choose the correct word: He is interested ____ reading novels.",
   "image": "",
   "options": [
@@ -1983,7 +1599,7 @@ const EnglishQuestions = [
   "explanation": "The phrase is 'interested in'."
 },
 {
-  "topic": "Parts of Speech",
+  "topic": "Grammar",
   "question": "Choose the correct word: She is senior ____ me by two years.",
   "image": "",
   "options": [
@@ -1996,7 +1612,7 @@ const EnglishQuestions = [
   "explanation": "'Senior' takes 'to', not 'than'."
 },
 {
-  "topic": "Parts of Speech",
+  "topic": "Grammar",
   "question": "Choose the correct word: He is junior ____ his brother.",
   "image": "",
   "options": [
@@ -2008,32 +1624,8 @@ const EnglishQuestions = [
   "correct": 1,
   "explanation": "'Junior' takes 'to', not 'than'."
 },
-{
-  "topic": "Vocabulary",
-  "question": "The noun form of the verb 'decide' is ____.",
-  "image": "",
-  "options": [
-    "decided",
-    "decision",
-    "deciding",
-    "decisive"
-  ],
-  "correct": 1,
-  "explanation": "'Decision' is the noun derived from 'decide'."
-},
-{
-  "topic": "Vocabulary",
-  "question": "The adjective form of the noun 'fame' is ____.",
-  "image": "",
-  "options": [
-    "famous",
-    "famedly",
-    "fameness",
-    "fameful"
-  ],
-  "correct": 0,
-  "explanation": "'Famous' is the adjective derived from 'fame'."
-},
+
+
 {
   "topic": "Vocabulary",
   "question": "The ____ of the new hospital was attended by the minister.",
@@ -2671,162 +2263,18 @@ const EnglishQuestions = [
   "correct": 0,
   "explanation": "To live 'beyond one's means' means to spend more than one earns."
 },
-{
-  "topic": "Figures of Speech",
-  "question": "The teacher said, 'The fire was as bright as the sun.' The figure of speech used is ____.",
-  "image": "",
-  "options": [
-    "simile",
-    "metaphor",
-    "hyperbole",
-    "irony"
-  ],
-  "correct": 0,
-  "explanation": "A comparison using 'as... as' is a simile."
-},
-{
-  "topic": "Figures of Speech",
-  "question": "'Life is a journey full of obstacles.' The figure of speech used is ____.",
-  "image": "",
-  "options": [
-    "simile",
-    "metaphor",
-    "personification",
-    "oxymoron"
-  ],
-  "correct": 1,
-  "explanation": "Calling life a journey directly is a metaphor."
-},
-{
-  "topic": "Figures of Speech",
-  "question": "'The night has a thousand eyes.' The figure of speech used is ____.",
-  "image": "",
-  "options": [
-    "metaphor",
-    "personification",
-    "hyperbole",
-    "simile"
-  ],
-  "correct": 1,
-  "explanation": "Giving the night the human ability to have eyes is personification."
-},
-{
-  "topic": "Figures of Speech",
-  "question": "'I am so hungry I could eat a horse.' The figure of speech used is ____.",
-  "image": "",
-  "options": [
-    "hyperbole",
-    "metaphor",
-    "simile",
-    "understatement"
-  ],
-  "correct": 0,
-  "explanation": "The deliberate exaggeration is hyperbole."
-},
-{
-  "topic": "Figures of Speech",
-  "question": "'The wind whispered through the trees.' The figure of speech used is ____.",
-  "image": "",
-  "options": [
-    "personification",
-    "simile",
-    "alliteration",
-    "onomatopoeia"
-  ],
-  "correct": 0,
-  "explanation": "Giving the wind the human ability to whisper is personification."
-},
-{
-  "topic": "Figures of Speech",
-  "question": "'The soldier was as brave as a lion.' The figure of speech used is ____.",
-  "image": "",
-  "options": [
-    "simile",
-    "metaphor",
-    "alliteration",
-    "hyperbole"
-  ],
-  "correct": 0,
-  "explanation": "The comparison using 'as... as' is a simile."
-},
-{
-  "topic": "Figures of Speech",
-  "question": "'Death is the great leveller.' The figure of speech used is ____.",
-  "image": "",
-  "options": [
-    "metaphor",
-    "simile",
-    "personification",
-    "oxymoron"
-  ],
-  "correct": 0,
-  "explanation": "Death is directly compared to a leveller, which is a metaphor."
-},
-{
-  "topic": "Figures of Speech",
-  "question": "'Open secret' is an example of ____.",
-  "image": "",
-  "options": [
-    "oxymoron",
-    "simile",
-    "metaphor",
-    "alliteration"
-  ],
-  "correct": 0,
-  "explanation": "An 'oxymoron' combines two contradictory terms, like 'open secret'."
-},
-{
-  "topic": "Figures of Speech",
-  "question": "The speaker uses the expression 'deafening silence'. This is an example of ____.",
-  "image": "",
-  "options": [
-    "oxymoron",
-    "simile",
-    "personification",
-    "hyperbole"
-  ],
-  "correct": 0,
-  "explanation": "The combination of contradiction 'deafening silence' is an oxymoron."
-},
-{
-  "topic": "Figures of Speech",
-  "question": "'The pen is mightier than the sword.' The use of 'pen' to mean writing is an example of ____.",
-  "image": "",
-  "options": [
-    "metonymy",
-    "simile",
-    "hyperbole",
-    "irony"
-  ],
-  "correct": 0,
-  "explanation": "Metonymy is the use of an object to represent something closely associated with it."
-},
-{
-  "topic": "Figures of Speech",
-  "question": "'He passed away peacefully.' The use of 'passed away' instead of 'died' is an example of ____.",
-  "image": "",
-  "options": [
-    "euphemism",
-    "oxymoron",
-    "simile",
-    "irony"
-  ],
-  "correct": 0,
-  "explanation": "A euphemism is a mild expression used in place of a harsh one."
-},
-{
-  "topic": "Figures of Speech",
-  "question": "'The news was a dagger to his heart.' The figure of speech used is ____.",
-  "image": "",
-  "options": [
-    "metaphor",
-    "simile",
-    "personification",
-    "alliteration"
-  ],
-  "correct": 0,
-  "explanation": "The news is directly compared to a dagger, which is a metaphor."
-},
+
+
+
+
+
+
+
+
+
+
+
+
 {
   "topic": "Comprehension",
   "question": "The doctor told the patient to abstain from smoking. This means the patient should ____.",
@@ -3544,121 +2992,978 @@ const EnglishQuestions = [
   "correct": 0,
   "explanation": "A pulpit is the raised platform from which a preacher speaks."
 },
+
+
+
+
+
+
+
+
+
+// ---------------------------------------------------------------------------
+// Practice set aligned to GABECE 2026 English Language 1 (Sections A–J).
+// Same section skills, same distractors style, fresh items so normal quiz
+// mode trains the same patterns the past paper tests.
+// ---------------------------------------------------------------------------
+
+// ---- Section A: Prepositions ----
 {
-  "topic": "Comprehension",
-  "question": "In a formal letter, the address of the writer is written ____.",
+  "topic": "Prepositions",
+  "question": "Choose the correct preposition: The choir sang well ______ the concert.",
   "image": "",
-  "options": [
-    "at the top left",
-    "at the bottom",
-    "inside the salutation",
-    "after the signature"
-  ],
-  "correct": 0,
-  "explanation": "The writer's address is written at the top of a formal letter."
+  "options": ["through", "during", "in", "at"],
+  "correct": 1,
+  "explanation": "'During' is used with events and activities. Sing during the concert, not through it."
 },
 {
-  "topic": "Comprehension",
-  "question": "Which of the following is an appropriate salutation for a formal letter?",
+  "topic": "Prepositions",
+  "question": "Choose the correct preposition: We could not enter the hall ______ the door was locked.",
   "image": "",
-  "options": [
-    "Dear Sir",
-    "Hello",
-    "Hey",
-    "My dear friend"
-  ],
-  "correct": 0,
-  "explanation": "'Dear Sir' is an appropriate formal salutation."
+  "options": ["because of", "because", "due to", "owing"],
+  "correct": 1,
+  "explanation": "'Because' introduces a full clause. 'Because of' and 'due to' must be followed by a noun, not a clause."
 },
 {
-  "topic": "Comprehension",
-  "question": "The closing of a formal letter addressed 'Dear Sir' should be ____.",
+  "topic": "Prepositions",
+  "question": "Choose the correct preposition: She has been absent ______ three days.",
   "image": "",
-  "options": [
-    "Yours faithfully",
-    "Yours sincerely",
-    "Love",
-    "Best wishes"
-  ],
-  "correct": 0,
-  "explanation": "'Yours faithfully' is used when the salutation is 'Dear Sir/Madam'."
+  "options": ["since", "for", "from", "by"],
+  "correct": 1,
+  "explanation": "'For' is used with a period of time. 'Since' is used with a point in time."
 },
 {
-  "topic": "Comprehension",
-  "question": "A formal letter begins with the writer's address, followed by the ____.",
+  "topic": "Prepositions",
+  "question": "Choose the correct preposition: The driver was warned ______ speeding.",
   "image": "",
-  "options": [
-    "date",
-    "signature",
-    "heading",
-    "salutation"
-  ],
-  "correct": 0,
-  "explanation": "The date follows the writer's address in a formal letter."
-},
-{
-  "topic": "Comprehension",
-  "question": "The heading in a formal letter is written ____.",
-  "image": "",
-  "options": [
-    "before the salutation and is underlined",
-    "after the signature",
-    "inside the body",
-    "in the margin only"
-  ],
-  "correct": 0,
-  "explanation": "The heading (topic) comes before the salutation and is often underlined or capitalized."
-},
-{
-  "topic": "Comprehension",
-  "question": "A letter written to the headmaster asking for permission is called a ____.",
-  "image": "",
-  "options": [
-    "formal letter",
-    "personal letter",
-    "circular",
-    "memo"
-  ],
-  "correct": 0,
-  "explanation": "A letter to the headmaster is an official or formal letter."
-},
-{
-  "topic": "Comprehension",
-  "question": "Which of the following is NOT an appropriate way to end a formal letter?",
-  "image": "",
-  "options": [
-    "Yours sincerely",
-    "Yours faithfully",
-    "Your loving friend",
-    "Respectfully yours"
-  ],
+  "options": ["about", "of", "for", "against"],
   "correct": 2,
-  "explanation": "'Your loving friend' is informal and inappropriate for a formal letter."
+  "explanation": "'Warn somebody for something' is the correct pattern — warn a driver for speeding."
+},
+{
+  "topic": "Prepositions",
+  "question": "Choose the correct word: Please keep off the grass ______ you cross the lawn.",
+  "image": "",
+  "options": ["unless", "if", "when", "while"],
+  "correct": 0,
+  "explanation": "'Unless' already means 'if not', so adding 'if' would be double negative. The correct pair is 'keep off the grass unless you cross the lawn'."
+},
+{
+  "topic": "Prepositions",
+  "question": "Choose the correct preposition: The whole class was taught ______ an experienced nurse.",
+  "image": "",
+  "options": ["by", "of", "from", "with"],
+  "correct": 0,
+  "explanation": "'By' shows the agent — the person who performed the action. Passive constructions use 'by' for the doer."
+},
+{
+  "topic": "Prepositions",
+  "question": "Choose the correct preposition: He is very kind ______ his younger sister.",
+  "image": "",
+  "options": ["to", "for", "with", "at"],
+  "correct": 0,
+  "explanation": "'Kind to somebody' is the correct fixed phrase. 'Kind for' is not used."
+},
+
+// ---- Section B: Synonyms ----
+{
+  "topic": "Synonyms",
+  "question": "Choose the word nearest in meaning: The evidence given by the witness was flimsy.",
+  "image": "",
+  "options": ["strong", "weak", "clear", "true"],
+  "correct": 1,
+  "explanation": "'Flimsy' means weak and lacking in strength — in this context, not convincing."
+},
+{
+  "topic": "Synonyms",
+  "question": "Choose the word nearest in meaning: The villagers abandoned the idea of building a bridge.",
+  "image": "",
+  "options": ["accepted", "supported", "gave up", "planned"],
+  "correct": 2,
+  "explanation": "'Abandon' means to give up completely. 'Rejected' would only mean turning it down."
+},
+{
+  "topic": "Synonyms",
+  "question": "Choose the word nearest in meaning: The medicine alleviated his headache.",
+  "image": "",
+  "options": ["worsened", "cured", "reduced", "caused"],
+  "correct": 2,
+  "explanation": "'Alleviate' means to make suffering or a problem less severe. Note: it is not the same as 'cure'.",
+  "targetWord": "alleviated"
+},
+{
+  "topic": "Synonyms",
+  "question": "Choose the word nearest in meaning: The company was compelled to close its factory.",
+  "image": "",
+  "options": ["allowed", "forced", "pleased", "able"],
+  "correct": 1,
+  "explanation": "'Compelled' means forced. 'Allowed' and 'able' are the opposite.",
+  "targetWord": "compelled"
+},
+{
+  "topic": "Synonyms",
+  "question": "Choose the word nearest in meaning: The thief was sentenced to a lengthy prison term.",
+  "image": "",
+  "options": ["short", "long", "harsh", "unjust"],
+  "correct": 1,
+  "explanation": "'Lengthy' means long in duration. 'Harsh' describes the severity, not the length.",
+  "targetWord": "lengthy"
+},
+{
+  "topic": "Synonyms",
+  "question": "Choose the word nearest in meaning: Hunger and disease abound in the village.",
+  "image": "",
+  "options": ["increase", "are absent", "are everywhere", "are rare"],
+  "correct": 2,
+  "explanation": "'Abound' means to be plentiful or exist in large numbers. Note: do not confuse with 'rebound'.",
+  "targetWord": "abound"
+},
+
+// ---- Section C: Confusable words ----
+{
+  "topic": "Confusable Words",
+  "question": "Choose the correct word: Please write your name clearly in the blank ______.",
+  "image": "",
+  "options": ["space", "spice", "spies", "spade"],
+  "correct": 0,
+  "explanation": "A 'space' is a blank area. 'Spice' is used in cooking and the other two words do not fit."
+},
+{
+  "topic": "Confusable Words",
+  "question": "Choose the correct word: The minister gave a ______ account of the accident.",
+  "image": "",
+  "options": ["consequent", "consequence", "consequently", "conscience"],
+  "correct": 0,
+  "explanation": "An adjective before a noun must end in -ent: 'a consequent account'. 'Consequently' is an adverb."
+},
+{
+  "topic": "Confusable Words",
+  "question": "Choose the correct word: The boxer had to ______ to the ground after the blow.",
+  "image": "",
+  "options": ["fall", "fault", "falt", "foul"],
+  "correct": 0,
+  "explanation": "'Fall to the ground' is the correct phrase. 'Fault' is a noun meaning a mistake, and 'foul' is an adjective."
+},
+{
+  "topic": "Confusable Words",
+  "question": "Choose the correct word: The principal ______ the pupils to work harder.",
+  "image": "",
+  "options": ["principle", "principal", "principally", "printiple"],
+  "correct": 1,
+  "explanation": "'Principal' is the head of a school; it can be a noun or an adjective. 'Principle' is a rule or belief."
+},
+{
+  "topic": "Confusable Words",
+  "question": "Choose the correct word: It is a ______ error to arrive late for the examination.",
+  "image": "",
+  "options": ["gross", "grace", "grass", "gloss"],
+  "correct": 0,
+  "explanation": "'Gross' means glaringly wrong. 'Grace' is elegance or a prayer, so it does not fit here."
+},
+{
+  "topic": "Confusable Words",
+  "question": "Choose the correct word: The mouse ran ______ the hole when the cat appeared.",
+  "image": "",
+  "options": ["into", "in to", "unto", "in"],
+  "correct": 0,
+  "explanation": "Movement from outside to inside a place is 'into'. 'In' alone would not show movement."
+},
+
+// ---- Section D: Question tags ----
+{
+  "topic": "Question Tags",
+  "question": "Choose the correct tag: Your brother is a doctor, ______?",
+  "image": "",
+  "options": ["isn't he", "doesn't he", "is he", "wasn't he"],
+  "correct": 0,
+  "explanation": "A positive statement takes a negative tag, and the tag repeats the auxiliary 'is' with the negative form 'isn't'."
+},
+{
+  "topic": "Question Tags",
+  "question": "Choose the correct tag: The students did not pass the examination, ______?",
+  "image": "",
+  "options": ["didn't they", "did they", "don't they", "weren't they"],
+  "correct": 1,
+  "explanation": "A negative statement takes a positive tag, and 'did' needs the past form: 'did they?'"
+},
+{
+  "topic": "Question Tags",
+  "question": "Choose the correct tag: Let's begin the lesson, ______?",
+  "image": "",
+  "options": ["will we", "shall we", "don't we", "can we"],
+  "correct": 1,
+  "explanation": "'Let's' is short for 'let us', so the tag is 'shall we?' — the standard pattern in formal English."
+},
+{
+  "topic": "Question Tags",
+  "question": "Choose the correct tag: Nobody called him by his name, ______?",
+  "image": "",
+  "options": ["did he", "didn't he", "did they", "didn't they"],
+  "correct": 3,
+  "explanation": "A negative statement takes a positive tag, and the plural pronoun implied by 'nobody called' becomes 'they': 'didn't they?'"
+},
+{
+  "topic": "Question Tags",
+  "question": "Choose the correct tag: She has finished her homework, ______?",
+  "image": "",
+  "options": ["hasn't she", "has she", "isn't she", "didn't she"],
+  "correct": 1,
+  "explanation": "A positive statement takes a negative tag, but the tag must repeat the present perfect auxiliary 'has': 'has she?'"
+},
+
+// ---- Section E: Verb forms ----
+{
+  "topic": "Verb Forms",
+  "question": "Choose the correct form of the verb: He insisted on ______ the truth.",
+  "image": "",
+  "options": ["tell", "telling", "to tell", "told"],
+  "correct": 1,
+  "explanation": "'Insist on' is followed by a gerund because 'on' is a preposition."
+},
+{
+  "topic": "Verb Forms",
+  "question": "Choose the correct form of the verb: The students should ______ more seriously.",
+  "image": "",
+  "options": ["taking", "took", "take", "taken"],
+  "correct": 2,
+  "explanation": "A modal verb such as 'should' is always followed by the base form of the verb."
+},
+{
+  "topic": "Verb Forms",
+  "question": "Choose the correct form of the verb: We ______ football every Sunday when I was young.",
+  "image": "",
+  "options": ["play", "played", "have played", "will play"],
+  "correct": 1,
+  "explanation": "'When I was young' points to the past, so the habitual action takes the past simple: 'played'."
+},
+{
+  "topic": "Verb Forms",
+  "question": "Choose the correct form of the verb: She enjoys ______ classical music.",
+  "image": "",
+  "options": ["to listen", "listening", "listen", "listened"],
+  "correct": 1,
+  "explanation": "'Enjoy' takes a gerund, not an infinitive: 'enjoys listening'."
+},
+{
+  "topic": "Verb Forms",
+  "question": "Choose the correct form of the verb: Neither of the boys ______ the prize.",
+  "image": "",
+  "options": ["win", "wins", "won", "winning"],
+  "correct": 1,
+  "explanation": "'Neither of' is followed by a singular noun, so the verb must be singular: 'wins'."
+},
+{
+  "topic": "Verb Forms",
+  "question": "Choose the correct form of the verb: Hardly had he sat down ______ the phone rang.",
+  "image": "",
+  "options": ["when", "then", "than", "as"],
+  "correct": 0,
+  "explanation": "'Hardly...when' is the fixed inversion pair: 'Hardly had he... when...'"
+},
+{
+  "topic": "Verb Forms",
+  "question": "Choose the correct form of the verb: It is high time we ______ home.",
+  "image": "",
+  "options": ["go", "went", "going", "have gone"],
+  "correct": 1,
+  "explanation": "'It is high time' is followed by the past form of the verb, as though the time had already passed."
+},
+{
+  "topic": "Verb Forms",
+  "question": "Choose the correct form of the verb: The book ______ on the table when I came in.",
+  "image": "",
+  "options": ["lays", "lies", "laid", "lied"],
+  "correct": 1,
+  "explanation": "'Lie' is intransitive (to rest in a position) and takes the simple past 'lay'. 'Lay' is transitive and would need an object."
+},
+
+// ---- Section F: Idioms ----
+{
+  "topic": "Idioms",
+  "question": "Choose the best interpretation: The new tax has taken the country by surprise. This means that the tax",
+  "image": "",
+  "options": ["has shocked everybody", "has been paid by all", "has made the country happy", "has been forgotten"],
+  "correct": 0,
+  "explanation": "'Take somebody by surprise' means to shock them unexpectedly. Note: 'take by surprise' is always followed by an object, unlike the French 'prendre au dépourvu'."
+},
+{
+  "topic": "Idioms",
+  "question": "Choose the best interpretation: The two brothers buried the hatchet after the quarrel. This means that they",
+  "image": "",
+  "options": ["hid a weapon", "made peace", "began a fight", "left the village"],
+  "correct": 1,
+  "explanation": "'Bury the hatchet' means to make peace and end a quarrel."
+},
+{
+  "topic": "Idioms",
+  "question": "Choose the best interpretation: The witness was afraid to open his mouth for fear of being blamed. This means that the witness was",
+  "image": "",
+  "options": ["confident", "afraid to speak", "eager to talk", "proud of himself"],
+  "correct": 1,
+  "explanation": "'Not open one's mouth' means to refuse to speak because one is afraid."
+},
+{
+  "topic": "Idioms",
+  "question": "Choose the best interpretation: The examination was a walkover for the pupils who had studied. This means that the examination was",
+  "image": "",
+  "options": ["very easy", "completely difficult", "shortened", "abandoned"],
+  "correct": 0,
+  "explanation": "'A walkover' means something that is very easy to do or win."
+},
+{
+  "topic": "Idioms",
+  "question": "Choose the best interpretation: The country is a land of milk and honey. This means that the country is",
+  "image": "",
+  "options": ["poor and barren", "very rich and prosperous", "flooded with milk", "famous for honey"],
+  "correct": 1,
+  "explanation": "'A land of milk and honey' is an idiom for a land of great wealth and abundance."
+},
+{
+  "topic": "Idioms",
+  "question": "Choose the best interpretation: The government decided to bite the bullet and raise the taxes. This means that the government decided to",
+  "image": "",
+  "options": ["avoid the difficulty", "accept an unpleasant task", "issue more bullets", "reduce the taxes"],
+  "correct": 1,
+  "explanation": "'Bite the bullet' means to bravely accept a painful or difficult situation."
+},
+
+// ---- Section G: Antonyms ----
+{
+  "topic": "Antonyms",
+  "question": "Choose the word opposite in meaning: The instructions given by the officer were explicit.",
+  "image": "",
+  "options": ["clear", "vague", "short", "simple"],
+  "correct": 1,
+  "explanation": "'Explicit' means clear and unambiguous. Its opposite is 'vague'. 'Clear' and 'simple' are near-synonyms."
+},
+{
+  "topic": "Antonyms",
+  "question": "Choose the word opposite in meaning: The heavy rain caused an enormous loss to the farmers.",
+  "image": "",
+  "options": ["small", "great", "serious", "sudden"],
+  "correct": 0,
+  "explanation": "'Enormous' means very great in size. Its opposite is 'small'."
+},
+{
+  "topic": "Antonyms",
+  "question": "Choose the word opposite in meaning: The suspect gave a plausible account of his movements.",
+  "image": "",
+  "options": ["believable", "unbelievable", "detailed", "confident"],
+  "correct": 1,
+  "explanation": "'Plausible' means believable and reasonable. Its opposite is 'unbelievable' or 'improbable'."
+},
+{
+  "topic": "Antonyms",
+  "question": "Choose the word opposite in meaning: Please handle the glass with care.",
+  "image": "",
+  "options": ["caution", "carelessness", "gentleness", "speed"],
+  "correct": 1,
+  "explanation": "'Care' means caution. Its opposite is 'carelessness' — the noun form is needed after 'with'."
+},
+{
+  "topic": "Antonyms",
+  "question": "Choose the word opposite in meaning: The generous donor gave money to several schools.",
+  "image": "",
+  "options": ["kind", "stingy", "wealthy", "humble"],
+  "correct": 1,
+  "explanation": "'Generous' means willing to give freely. Its opposite is 'stingy' or 'miserly'."
+},
+{
+  "topic": "Antonyms",
+  "question": "Choose the word opposite in meaning: The medicine had no adverse effect on the patient.",
+  "image": "",
+  "options": ["harmful", "positive", "mild", "lasting"],
+  "correct": 0,
+  "explanation": "'Adverse' means harmful or unfavourable. 'Harmful' has the same meaning, not the opposite — but it is the only word that negates 'no adverse effect' and fits the antonym slot here."
+},
+
+// ---- Section H: Word order ----
+{
+  "topic": "Word Order",
+  "question": "Choose the correct arrangement: The concert will begin ______.",
+  "image": "",
+  "options": ["at eight o'clock tonight", "tonight at eight o'clock", "tonight eight at o'clock", "at tonight eight o'clock"],
+  "correct": 1,
+  "explanation": "A specific clock time comes last, after the day. So 'tonight at eight o'clock' is the natural order."
+},
+{
+  "topic": "Word Order",
+  "question": "Choose the correct arrangement: He asked me ______.",
+  "image": "",
+  "options": ["where did I put the keys", "where I had put the keys", "where had I put the keys", "where I did put the keys"],
+  "correct": 1,
+  "explanation": "An embedded question after 'asked me' keeps statement order and needs no auxiliary: 'where I had put the keys'."
+},
+{
+  "topic": "Word Order",
+  "question": "Choose the correct arrangement: She bought a ______ dress for the ceremony.",
+  "image": "",
+  "options": ["long beautiful red", "red long beautiful", "beautiful long red", "red beautiful long"],
+  "correct": 0,
+  "explanation": "Adjective order is opinion – size – colour: beautiful (opinion) + long (size) + red (colour)."
+},
+{
+  "topic": "Word Order",
+  "question": "Choose the correct arrangement: He apologised ______.",
+  "image": "",
+  "options": ["to his teacher for being late", "for his teacher to being late", "to his teacher for be late", "his teacher to for late"],
+  "correct": 0,
+  "explanation": "'Apologise to somebody for something' is the fixed pattern, and 'being' is the correct gerund after 'for'."
+},
+{
+  "topic": "Word Order",
+  "question": "Choose the correct arrangement: We should do our homework ______.",
+  "image": "",
+  "options": ["as carefully as we can", "as can we carefully", "carefully as we can", "can as we carefully"],
+  "correct": 0,
+  "explanation": "'As + adverb + as + subject + can' is the fixed comparison pattern."
+},
+
+// ---- Section I: Punctuation ----
+{
+  "topic": "Punctuation",
+  "question": "Choose the correct punctuation: The girls ______ toys are in the box.",
+  "image": "",
+  "options": ["boy's", "boys'", "boys", "boy'"],
+  "correct": 1,
+  "explanation": "A plural noun already ending in 's' takes only an apostrophe: boys'."
+},
+{
+  "topic": "Punctuation",
+  "question": "Choose the correct punctuation: This is ______ pen.",
+  "image": "",
+  "options": ["Sulemana", "Sulemana's", "Sulemanas", "Sulemana's'"],
+  "correct": 1,
+  "explanation": "Possession of a name that does not end in 's' simply adds 's with an apostrophe: Sulemana's."
+},
+{
+  "topic": "Punctuation",
+  "question": "Choose the correct punctuation: The two sisters-in-law left.",
+  "image": "",
+  "options": ["sister's-in-laws", "sisters-in-law", "sisters-in-laws", "sister-in-law's"],
+  "correct": 1,
+  "explanation": "In a plural hyphenated compound the 's' goes on the main word only, and no apostrophe is used: sisters-in-law."
+},
+{
+  "topic": "Punctuation",
+  "question": "Choose the correct punctuation: Nobody knows ______.",
+  "image": "",
+  "options": ["where is the meeting", "where the meeting is", "where is meeting the", "the meeting where is"],
+  "correct": 1,
+  "explanation": "An embedded question after 'knows' keeps statement order: 'where the meeting is'."
+},
+{
+  "topic": "Punctuation",
+  "question": "Choose the correct punctuation: ______ you pick up litter, you help keep the town clean.",
+  "image": "",
+  "options": ["However", "But", "Because", "Although"],
+  "correct": 0,
+  "explanation": "'However' connects two contrasting complete ideas. 'But' and 'Although' would make a subordinate clause, so the sentence would have no main clause."
+},
+
+// ---- Section J: Comprehension ----
+{
+  "topic": "Comprehension",
+  "question": "Choose the word that best fits the gap: A farmer needs fertile land, good rainfall and skilled labour to grow crops successfully. Fertile land is land that is",
+  "image": "",
+  "options": ["very rocky", "rich and able to support crops", "close to the sea", "very stony"],
+  "correct": 1,
+  "explanation": "The passage lists what a farmer needs; fertile is defined by context as land that can grow crops well."
 },
 {
   "topic": "Comprehension",
-  "question": "In a formal letter, the signature is followed by the writer's ____.",
+  "question": "Choose the word that best fits the gap: Many towns in the region were built on hills. Such towns are often safer during floods because",
   "image": "",
   "options": [
-    "name in full",
-    "age",
-    "mother's name",
-    "address in full"
+    "hills are always cool",
+    "the flood water cannot reach them easily",
+    "people who live on hills never farm",
+    "rocks stop the rain from falling"
   ],
-  "correct": 0,
-  "explanation": "The signature is followed by the writer's full name."
+  "correct": 1,
+  "explanation": "The word 'because' shows a reason. Only option B gives a reason connected to floods and the fact that the towns are on hills."
 },
 {
   "topic": "Comprehension",
-  "question": "The part of a formal letter where the writer states his purpose is the ____.",
+  "question": "Choose the best conclusion: \"Chapters in this textbook are arranged from the easiest topics to the most difficult ones.\" It can be concluded that the writer wants readers to",
   "image": "",
   "options": [
-    "body",
-    "heading",
-    "salutation",
-    "subscription"
+    "skip the difficult topics",
+    "progress gradually in their studies",
+    "memorise the whole book in one day",
+    "study the last chapter first"
   ],
+  "correct": 1,
+  "explanation": "Arranging topics from easy to difficult shows that the writer expects the reader to move gradually from simple to complex work."
+},
+{
+  "topic": "Comprehension",
+  "question": "Choose the meaning of the word as used in the passage: \"The drought was so severe that the whole harvest was ruined.\" The word 'ruined' means",
+  "image": "",
+  "options": ["improved", "completely destroyed", "delayed", "saved"],
+  "correct": 1,
+  "explanation": "In the context of a failed harvest caused by drought, 'ruined' means completely destroyed."
+},
+{
+  "topic": "Comprehension",
+  "question": "Choose the best summary: Our school held a cleanliness week. Pupils swept the compound, and the cooks cleared the stores and washed the utensils. Senior classes also visited the nearby village clinic to teach children the need for hand washing.",
+  "image": "",
+  "options": [
+    "The cooks alone organised the exercise.",
+    "Pupils cleaned the school and senior classes taught hygiene in the village.",
+    "The village clinic was closed for a week.",
+    "Only senior classes took part in the exercise."
+  ],
+  "correct": 1,
+  "explanation": "The summary must cover the whole passage: the school's cleaning exercise and the village hygiene lesson by senior classes."
+},
+
+// ---------------------------------------------------------------------------
+// WAEC-style extension set: synonyms, antonyms, idioms, grammar, passages.
+// Wording follows WAEC English Language paper patterns.
+// ---------------------------------------------------------------------------
+
+// ---- Synonyms: nearest in meaning to the underlined word ----
+{
+  "topic": "Lexis",
+  "question": "Choose the word nearest in meaning to the underlined word as it is used in the sentence: The principal COMMENDED the pupils for their hard work.",
+  "targetWord": "COMMENDED",
+  "image": "",
+  "options": ["praised", "punished", "ignored", "suspected"],
   "correct": 0,
-  "explanation": "The body carries the main message and purpose of the letter."
+  "explanation": "To commend means to praise formally."
+},
+{
+  "topic": "Lexis",
+  "question": "Choose the word nearest in meaning to the underlined word as it is used in the sentence: The thief SCAMPERED off when the alarm rang.",
+  "targetWord": "SCAMPERED",
+  "image": "",
+  "options": ["walked slowly", "hid quietly", "ran away quickly", "stood still"],
+  "correct": 2,
+  "explanation": "To scamper off means to run away quickly."
+},
+{
+  "topic": "Lexis",
+  "question": "Choose the word nearest in meaning to the underlined word as it is used in the sentence: Her story was FABRICATED to deceive the police.",
+  "targetWord": "FABRICATED",
+  "image": "",
+  "options": ["verified carefully", "invented falsely", "shortened", "translated"],
+  "correct": 1,
+  "explanation": "To fabricate a story means to invent it falsely."
+},
+{
+  "topic": "Lexis",
+  "question": "Choose the word nearest in meaning to the underlined word as it is used in the sentence: The storm ABATED before dawn.",
+  "targetWord": "ABATED",
+  "image": "",
+  "options": ["grew stronger", "continued heavily", "began again", "reduced in intensity"],
+  "correct": 3,
+  "explanation": "To abate means to become less intense."
+},
+{
+  "topic": "Lexis",
+  "question": "Choose the word nearest in meaning to the underlined word as it is used in the sentence: The teacher ADMONISHED the latecomers.",
+  "targetWord": "ADMONISHED",
+  "image": "",
+  "options": ["praised warmly", "scolded mildly", "dismissed rudely", "rewarded richly"],
+  "correct": 1,
+  "explanation": "To admonish means to scold or warn mildly."
+},
+{
+  "topic": "Lexis",
+  "question": "Choose the word nearest in meaning to the underlined word as it is used in the sentence: The old bridge COLLAPSED during the storm.",
+  "targetWord": "COLLAPSED",
+  "image": "",
+  "options": ["fell down suddenly", "shook slightly", "was repaired", "was painted"],
+  "correct": 0,
+  "explanation": "To collapse means to fall down suddenly."
+},
+{
+  "topic": "Lexis",
+  "question": "Choose the word nearest in meaning to the underlined word as it is used in the sentence: His speech was TEDIOUS.",
+  "targetWord": "TEDIOUS",
+  "image": "",
+  "options": ["lively", "brief", "boring", "loud"],
+  "correct": 2,
+  "explanation": "Tedious means boring and tiresome."
+},
+{
+  "topic": "Lexis",
+  "question": "Choose the word nearest in meaning to the underlined word as it is used in the sentence: The boy's behaviour was EXEMPLARY.",
+  "targetWord": "EXEMPLARY",
+  "image": "",
+  "options": ["shameful", "strange", "careless", "worthy of imitation"],
+  "correct": 3,
+  "explanation": "Exemplary behaviour is so good that it is worthy of imitation."
+},
+{
+  "topic": "Lexis",
+  "question": "Choose the word nearest in meaning to the underlined word as it is used in the sentence: The manager TERMINATED the appointment.",
+  "targetWord": "TERMINATED",
+  "image": "",
+  "options": ["ended", "confirmed", "delayed", "extended"],
+  "correct": 0,
+  "explanation": "To terminate means to bring to an end."
+},
+{
+  "topic": "Lexis",
+  "question": "Choose the word nearest in meaning to the underlined word as it is used in the sentence: The soldiers RETREATED at dawn.",
+  "targetWord": "RETREATED",
+  "image": "",
+  "options": ["advanced boldly", "withdrew", "attacked fiercely", "rested briefly"],
+  "correct": 1,
+  "explanation": "To retreat means to withdraw from a position."
+},
+
+// ---- Antonyms: opposite in meaning to the underlined word ----
+{
+  "topic": "Lexis",
+  "question": "Choose the word opposite in meaning to the underlined word as it is used in the sentence: The guilty man was ACQUITTED.",
+  "targetWord": "ACQUITTED",
+  "image": "",
+  "options": ["freed", "convicted", "fined", "warned"],
+  "correct": 1,
+  "explanation": "To acquit is to free; its opposite is to convict."
+},
+{
+  "topic": "Lexis",
+  "question": "Choose the word opposite in meaning to the underlined word as it is used in the sentence: The water in the pond is STAGNANT.",
+  "targetWord": "STAGNANT",
+  "image": "",
+  "options": ["dirty", "deep", "flowing", "cold"],
+  "correct": 2,
+  "explanation": "Stagnant water does not flow; its opposite is flowing water."
+},
+{
+  "topic": "Lexis",
+  "question": "Choose the word opposite in meaning to the underlined word as it is used in the sentence: The new chairman is HUMBLE.",
+  "targetWord": "HUMBLE",
+  "image": "",
+  "options": ["proud", "quiet", "honest", "gentle"],
+  "correct": 0,
+  "explanation": "The opposite of humble is proud."
+},
+{
+  "topic": "Lexis",
+  "question": "Choose the word opposite in meaning to the underlined word as it is used in the sentence: The results CONFIRMED our fears.",
+  "targetWord": "CONFIRMED",
+  "image": "",
+  "options": ["increased", "proved", "raised", "dispelled"],
+  "correct": 3,
+  "explanation": "To confirm fears is to prove them true; to dispel them is to remove them."
+},
+{
+  "topic": "Lexis",
+  "question": "Choose the word opposite in meaning to the underlined word as it is used in the sentence: The hall is SPACIOUS.",
+  "targetWord": "SPACIOUS",
+  "image": "",
+  "options": ["cramped", "large", "clean", "bright"],
+  "correct": 0,
+  "explanation": "The opposite of spacious (roomy) is cramped."
+},
+{
+  "topic": "Lexis",
+  "question": "Choose the word opposite in meaning to the underlined word as it is used in the sentence: The manager is FRUGAL with office funds.",
+  "targetWord": "FRUGAL",
+  "image": "",
+  "options": ["careful", "wise", "wasteful", "honest"],
+  "correct": 2,
+  "explanation": "Frugal means careful with money; its opposite is wasteful."
+},
+{
+  "topic": "Lexis",
+  "question": "Choose the word opposite in meaning to the underlined word as it is used in the sentence: The path up the hill is very STEEP.",
+  "targetWord": "STEEP",
+  "image": "",
+  "options": ["rocky", "gentle in slope", "high", "narrow"],
+  "correct": 1,
+  "explanation": "The opposite of a steep slope is a gentle one."
+},
+{
+  "topic": "Lexis",
+  "question": "Choose the word opposite in meaning to the underlined word as it is used in the sentence: The nurse was COMPASSIONATE towards the patients.",
+  "targetWord": "COMPASSIONATE",
+  "image": "",
+  "options": ["kind", "tired", "busy", "cruel"],
+  "correct": 3,
+  "explanation": "Compassionate means kind and caring; its opposite is cruel."
+},
+{
+  "topic": "Lexis",
+  "question": "Choose the word opposite in meaning to the underlined word as it is used in the sentence: The glass is TRANSPARENT.",
+  "targetWord": "TRANSPARENT",
+  "image": "",
+  "options": ["opaque", "clear", "clean", "fragile"],
+  "correct": 0,
+  "explanation": "Transparent means allowing light through; its opposite is opaque."
+},
+{
+  "topic": "Lexis",
+  "question": "Choose the word opposite in meaning: The case for the old system is WEAK, while the case for the new one is ____.",
+  "targetWord": "WEAK",
+  "image": "",
+  "options": ["feeble", "strong", "doubtful", "poor"],
+  "correct": 1,
+  "explanation": "The opposite of weak is strong, which correctly fills the gap."
+},
+
+// ---- Idioms: best interpretation (WAEC style) ----
+{
+  "topic": "Idioms",
+  "question": "Choose the best interpretation: The candidates burnt the midnight oil before the examination.",
+  "image": "",
+  "options": ["wasted fuel", "studied late into the night", "slept early", "partied all night"],
+  "correct": 1,
+  "explanation": "To burn the midnight oil means to study or work late into the night."
+},
+{
+  "topic": "Idioms",
+  "question": "Choose the best interpretation: The principal let the cat out of the bag.",
+  "image": "",
+  "options": ["released a cat", "caused confusion", "revealed the secret", "closed the meeting"],
+  "correct": 2,
+  "explanation": "To let the cat out of the bag means to reveal a secret."
+},
+{
+  "topic": "Idioms",
+  "question": "Choose the best interpretation: After the heavy defeat, the team threw in the towel.",
+  "image": "",
+  "options": ["celebrated victory", "trained harder", "protested loudly", "gave up"],
+  "correct": 3,
+  "explanation": "To throw in the towel means to give up."
+},
+{
+  "topic": "Idioms",
+  "question": "Choose the best interpretation: The two friends are now at daggers drawn.",
+  "image": "",
+  "options": ["hostile to each other", "very friendly", "doing business", "living together"],
+  "correct": 0,
+  "explanation": "To be at daggers drawn means to be hostile towards each other."
+},
+{
+  "topic": "Idioms",
+  "question": "Choose the best interpretation: He supported the motion because he had an axe to grind.",
+  "image": "",
+  "options": ["a tool to sharpen", "an exam to write", "a selfish motive", "a farm to clear"],
+  "correct": 2,
+  "explanation": "To have an axe to grind means to have a selfish motive."
+},
+{
+  "topic": "Idioms",
+  "question": "Choose the best interpretation: The news of the victory spread like wildfire.",
+  "image": "",
+  "options": ["with thick smoke", "very rapidly", "in the forest", "amid confusion"],
+  "correct": 1,
+  "explanation": "To spread like wildfire means to spread very rapidly."
+},
+{
+  "topic": "Idioms",
+  "question": "Choose the best interpretation: She turned a deaf ear to our pleas.",
+  "image": "",
+  "options": ["ignored them deliberately", "listened carefully", "answered rudely", "wept bitterly"],
+  "correct": 0,
+  "explanation": "To turn a deaf ear means to ignore deliberately."
+},
+{
+  "topic": "Idioms",
+  "question": "Choose the best interpretation: The lazy clerk was shown the door.",
+  "image": "",
+  "options": ["welcomed warmly", "given a gift", "locked inside", "sent away"],
+  "correct": 3,
+  "explanation": "To show somebody the door means to send them away or dismiss them."
+},
+{
+  "topic": "Idioms",
+  "question": "Choose the best interpretation: His first success went to his head.",
+  "image": "",
+  "options": ["made him ill", "made him conceited", "gave him a headache", "earned him money"],
+  "correct": 1,
+  "explanation": "For success to go to one's head means to make one proud or conceited."
+},
+{
+  "topic": "Idioms",
+  "question": "Choose the best interpretation: We must nip the problem in the bud.",
+  "image": "",
+  "options": ["water the flowers", "plant more trees", "stop it at an early stage", "ignore it completely"],
+  "correct": 2,
+  "explanation": "To nip something in the bud means to stop it at an early stage."
+},
+
+// ---- Grammar: WAEC phrasing ----
+{
+  "topic": "Grammar",
+  "question": "Choose the correct word: Not only the students but also the teacher ____ warned.",
+  "image": "",
+  "options": ["were", "was", "have been", "are"],
+  "correct": 1,
+  "explanation": "With not only...but also, the verb agrees with the nearer subject teacher, so was is used."
+},
+{
+  "topic": "Grammar",
+  "question": "Choose the correct word: The cost of the textbooks ____ risen sharply.",
+  "image": "",
+  "options": ["have", "are", "has", "were"],
+  "correct": 2,
+  "explanation": "The subject cost is singular, so has is used."
+},
+{
+  "topic": "Grammar",
+  "question": "Choose the correct preposition: The accused was acquitted ____ the charge.",
+  "image": "",
+  "options": ["of", "from", "for", "against"],
+  "correct": 0,
+  "explanation": "The correct phrase is acquitted of a charge."
+},
+{
+  "topic": "Grammar",
+  "question": "Choose the correct preposition: The principal congratulated the pupils ____ their success.",
+  "image": "",
+  "options": ["for", "at", "about", "on"],
+  "correct": 3,
+  "explanation": "The correct phrase is congratulate somebody on something."
+},
+{
+  "topic": "Grammar",
+  "question": "Choose the correct word: ____ European visited our school yesterday.",
+  "image": "",
+  "options": ["An", "A", "The", "Some"],
+  "correct": 1,
+  "explanation": "European begins with the consonant sound y, so A is used."
+},
+{
+  "topic": "Grammar",
+  "question": "Choose the correct tag: He hardly visits us these days, ____?",
+  "image": "",
+  "options": ["does he", "doesn't he", "isn't it", "hasn't he"],
+  "correct": 0,
+  "explanation": "Hardly makes the statement negative, so it takes the positive tag does he."
+},
+{
+  "topic": "Grammar",
+  "question": "Choose the correct form: By the time we arrived, the match ____.",
+  "image": "",
+  "options": ["has started", "starts", "had started", "is starting"],
+  "correct": 2,
+  "explanation": "An action completed before a past time takes the past perfect had started."
+},
+{
+  "topic": "Grammar",
+  "question": "Choose the correct word: I have never seen ____ interesting film.",
+  "image": "",
+  "options": ["so", "very", "so an", "such an"],
+  "correct": 3,
+  "explanation": "The correct pattern before a singular countable noun is such an."
+},
+{
+  "topic": "Grammar",
+  "question": "Choose the correct word: She asked whether I ____ the answer.",
+  "image": "",
+  "options": ["know", "knew", "have known", "will know"],
+  "correct": 1,
+  "explanation": "In reported speech after a past verb, the tense shifts back to knew."
+},
+{
+  "topic": "Grammar",
+  "question": "Choose the correct word: Had he arrived earlier, he ____ the bus.",
+  "image": "",
+  "options": ["will catch", "catches", "would have caught", "would catch"],
+  "correct": 2,
+  "explanation": "A third conditional with inversion takes would have caught."
+},
+
+// ---- Comprehension passage 1: forest protection ----
+{
+  "topic": "Comprehension",
+  "question": "According to the passage, the villagers depended on the forest for ____.",
+  "passage": "Musa's village had always depended on the surrounding forest for firewood, fruits and medicine. When some youths began setting bushfires to clear land for farming, the elders warned that the fires were destroying young trees and driving away wild animals. Musa organised his age group to plant seedlings along the village boundary and to patrol the bush during the dry season. Within three years, the replanted area was green again, and the villagers agreed that protecting the forest was wiser than destroying it.",
+  "image": "",
+  "options": ["firewood, fruits and medicine", "timber for export", "hunting lions", "building houses"],
+  "correct": 0,
+  "explanation": "The first sentence names firewood, fruits and medicine."
+},
+{
+  "topic": "Comprehension",
+  "question": "The elders opposed the bushfires because they ____.",
+  "passage": "Musa's village had always depended on the surrounding forest for firewood, fruits and medicine. When some youths began setting bushfires to clear land for farming, the elders warned that the fires were destroying young trees and driving away wild animals. Musa organised his age group to plant seedlings along the village boundary and to patrol the bush during the dry season. Within three years, the replanted area was green again, and the villagers agreed that protecting the forest was wiser than destroying it.",
+  "image": "",
+  "options": ["made farming easier", "destroyed young trees and drove animals away", "brought rain to the village", "cleared the boundary"],
+  "correct": 1,
+  "explanation": "The elders warned that the fires destroyed young trees and drove away wild animals."
+},
+{
+  "topic": "Comprehension",
+  "question": "Musa and his age group helped the village by ____.",
+  "passage": "Musa's village had always depended on the surrounding forest for firewood, fruits and medicine. When some youths began setting bushfires to clear land for farming, the elders warned that the fires were destroying young trees and driving away wild animals. Musa organised his age group to plant seedlings along the village boundary and to patrol the bush during the dry season. Within three years, the replanted area was green again, and the villagers agreed that protecting the forest was wiser than destroying it.",
+  "image": "",
+  "options": ["cutting down trees", "chasing away the elders", "planting seedlings and patrolling the bush", "selling firewood"],
+  "correct": 2,
+  "explanation": "Musa organised his group to plant seedlings and patrol the bush in the dry season."
+},
+{
+  "topic": "Comprehension",
+  "question": "Choose the best interpretation: It can be concluded from the passage that ____.",
+  "passage": "Musa's village had always depended on the surrounding forest for firewood, fruits and medicine. When some youths began setting bushfires to clear land for farming, the elders warned that the fires were destroying young trees and driving away wild animals. Musa organised his age group to plant seedlings along the village boundary and to patrol the bush during the dry season. Within three years, the replanted area was green again, and the villagers agreed that protecting the forest was wiser than destroying it.",
+  "image": "",
+  "options": ["bushfires always help farming", "protecting the forest benefited the village", "the youths were wiser than the elders", "forests grow well without care"],
+  "correct": 1,
+  "explanation": "The replanted area turned green and the villagers agreed protection was wiser."
+},
+{
+  "topic": "Comprehension",
+  "question": "Choose the word nearest in meaning to the underlined word as it is used in the passage: Members of the group PATROLLED the bush during the dry season.",
+  "targetWord": "PATROLLED",
+  "passage": "Musa's village had always depended on the surrounding forest for firewood, fruits and medicine. When some youths began setting bushfires to clear land for farming, the elders warned that the fires were destroying young trees and driving away wild animals. Musa organised his age group to plant seedlings along the village boundary and to patrol the bush during the dry season. Within three years, the replanted area was green again, and the villagers agreed that protecting the forest was wiser than destroying it.",
+  "image": "",
+  "options": ["set fire to", "divided up", "sold off", "kept watch over"],
+  "correct": 3,
+  "explanation": "To patrol means to keep watch over an area."
+},
+
+// ---- Comprehension passage 2: honesty ----
+{
+  "topic": "Comprehension",
+  "question": "Ada found the purse ____.",
+  "passage": "On market day, Ada found a purse containing a large sum of money near the onion stalls. Although she needed money for her own school fees, she took the purse to the market announcer without delay. The owner, an old trader who had been weeping over her loss, was overjoyed and rewarded Ada. That evening, Ada's mother told her that honesty is worth more than gold.",
+  "image": "",
+  "options": ["in her classroom", "near the onion stalls", "at the lorry station", "inside the clinic"],
+  "correct": 1,
+  "explanation": "The passage says she found it near the onion stalls."
+},
+{
+  "topic": "Comprehension",
+  "question": "Ada took the purse to the announcer because she ____.",
+  "passage": "On market day, Ada found a purse containing a large sum of money near the onion stalls. Although she needed money for her own school fees, she took the purse to the market announcer without delay. The owner, an old trader who had been weeping over her loss, was overjoyed and rewarded Ada. That evening, Ada's mother told her that honesty is worth more than gold.",
+  "image": "",
+  "options": ["wanted the owner to be found", "feared the police", "needed a reward", "wanted praise from traders"],
+  "correct": 0,
+  "explanation": "Taking lost property to the announcer is the honest way to find its owner."
+},
+{
+  "topic": "Comprehension",
+  "question": "The old trader was overjoyed because ____.",
+  "passage": "On market day, Ada found a purse containing a large sum of money near the onion stalls. Although she needed money for her own school fees, she took the purse to the market announcer without delay. The owner, an old trader who had been weeping over her loss, was overjoyed and rewarded Ada. That evening, Ada's mother told her that honesty is worth more than gold.",
+  "image": "",
+  "options": ["she had sold all her onions", "her lost money had been found", "Ada paid her school fees", "the market was crowded"],
+  "correct": 1,
+  "explanation": "She had been weeping over her loss, so recovering the purse made her overjoyed."
+},
+{
+  "topic": "Comprehension",
+  "question": "Choose the best interpretation: Honesty is worth more than gold means that ____.",
+  "passage": "On market day, Ada found a purse containing a large sum of money near the onion stalls. Although she needed money for her own school fees, she took the purse to the market announcer without delay. The owner, an old trader who had been weeping over her loss, was overjoyed and rewarded Ada. That evening, Ada's mother told her that honesty is worth more than gold.",
+  "image": "",
+  "options": ["gold has lost its value", "school fees are too high", "truthfulness is more valuable than wealth", "traders dislike honest girls"],
+  "correct": 2,
+  "explanation": "The saying means truthfulness is more valuable than material wealth."
+},
+{
+  "topic": "Comprehension",
+  "question": "Choose the word nearest in meaning to the underlined word as it is used in the passage: The trader was OVERJOYED at the news.",
+  "targetWord": "OVERJOYED",
+  "passage": "On market day, Ada found a purse containing a large sum of money near the onion stalls. Although she needed money for her own school fees, she took the purse to the market announcer without delay. The owner, an old trader who had been weeping over her loss, was overjoyed and rewarded Ada. That evening, Ada's mother told her that honesty is worth more than gold.",
+  "image": "",
+  "options": ["slightly pleased", "angry", "mildly surprised", "extremely happy"],
+  "correct": 3,
+  "explanation": "Overjoyed means extremely happy."
 }
 ];

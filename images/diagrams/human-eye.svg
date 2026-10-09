@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 520" font-family="Segoe UI, Arial, sans-serif"><defs>
+<marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#64748b"/></marker>
+<marker id="blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#2563eb"/></marker>
+<marker id="red" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#dc2626"/></marker>
+</defs>
+<text x="440" y="44" text-anchor="middle" font-size="22" font-weight="700" fill="#0f172a">Structure of the Human Eye (horizontal section)</text>
+<ellipse cx="400" cy="270" rx="285" ry="135" fill="#f8fafc" stroke="#475569" stroke-width="4"/>
+<ellipse cx="400" cy="270" rx="278" ry="128" fill="none" stroke="#cbd5e1" stroke-width="2"/>
+<path d="M160 175 C 90 180 90 360 160 365 C 122 330 122 210 160 175 Z" fill="#e0f2fe" stroke="#0e7490" stroke-width="2.5"/>
+<ellipse cx="255" cy="270" rx="36" ry="66" fill="#6366f1" stroke="#312e81" stroke-width="2.5"/>
+<ellipse cx="255" cy="270" rx="17" ry="40" fill="#0f172a"/>
+<ellipse cx="330" cy="270" rx="26" ry="54" fill="#f1f5f9" stroke="#334155" stroke-width="2.5"/>
+<ellipse cx="520" cy="270" rx="140" ry="86" fill="#bae6fd" opacity="0.55"/>
+<path d="M295 155 A 268 122 0 0 1 295 385" fill="none" stroke="#f59e0b" stroke-width="18" stroke-linecap="round"/>
+<polygon points="670,270 808,242 792,286 700,284" fill="#fca5a5" stroke="#dc2626" stroke-width="2.5"/>
+<path d="M700 284 C 740 300 760 305 800 300" fill="none" stroke="#dc2626" stroke-width="2.5"/>
+<g font-size="12.5" fill="#334155">
+<line x1="218" y1="157" x2="155" y2="292" stroke="#0e7490" stroke-width="1.4" marker-end="url(#a)"/>
+  <circle cx="155" cy="292" r="3.2" fill="#0e7490"/>
+  <text x="212" y="154">Cornea — transparent front window that bends light in</text>
+  <line x1="254" y1="189" x2="255" y2="245" stroke="#4338ca" stroke-width="1.4" marker-end="url(#a)"/>
+  <circle cx="255" cy="245" r="3.2" fill="#4338ca"/>
+  <text x="248" y="186">Iris — the coloured part that controls the pupil size</text>
+  <line x1="270" y1="223" x2="267" y2="285" stroke="#0f172a" stroke-width="1.4" marker-end="url(#a)"/>
+  <circle cx="267" cy="285" r="3.2" fill="#0f172a"/>
+  <text x="264" y="220">Pupil — the hole light enters through</text>
+  <line x1="348" y1="203" x2="330" y2="238" stroke="#334155" stroke-width="1.4" marker-end="url(#a)"/>
+  <circle cx="330" cy="238" r="3.2" fill="#334155"/>
+  <text x="342" y="200">Lens — focuses light onto the retina</text>
+  <line x1="538" y1="208" x2="520" y2="290" stroke="#0ea5e9" stroke-width="1.4" marker-end="url(#a)"/>
+  <circle cx="520" cy="290" r="3.2" fill="#0ea5e9"/>
+  <text x="532" y="205">Vitreous humour — jelly that keeps the eyeball firm</text>
+  <line x1="538" y1="455" x2="648" y2="258" stroke="#f59e0b" stroke-width="1.4" marker-end="url(#a)"/>
+  <circle cx="648" cy="258" r="3.2" fill="#f59e0b"/>
+  <text x="532" y="452">Retina — light-sensitive cells (rods and cones) that make the image</text>
+  <line x1="690" y1="229" x2="742" y2="268" stroke="#dc2626" stroke-width="1.4" marker-end="url(#a)"/>
+  <circle cx="742" cy="268" r="3.2" fill="#dc2626"/>
+  <text x="684" y="226">Optic nerve — carries the image signal to the brain</text>
+</g>
+<text x="440" y="486" text-anchor="middle" font-size="13" fill="#334155">Light: cornea → pupil → lens → retina (image) → optic nerve → brain.</text>
+</svg>

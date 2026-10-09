@@ -51,7 +51,7 @@
       const navHrefs = new Set(NAV_ITEMS.map(i => i.href.split("?")[0].split("#")[0].toLowerCase()));
       const keepIds = new Set(["startQuizLink"]);
       document.querySelectorAll(".container a[href], .hero-panel a[href], .glass-card a[href], .navbar a[href]").forEach(a => {
-        if (a.closest("#tmSidebar") || keepIds.has(a.id)) return;
+        if (a.closest("#tmSidebar") || keepIds.has(a.id) || a.classList.contains("tm-nav-keep")) return;
         const raw = (a.getAttribute("href") || "").split("?")[0].split("#")[0].trim().toLowerCase();
         if (!raw || raw === "#") return;
         if (navHrefs.has(raw) || navHrefs.has(raw.replace("./",""))) {

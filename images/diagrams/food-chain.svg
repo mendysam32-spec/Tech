@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 360" font-family="Segoe UI, Arial, sans-serif"><defs>
+<marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#64748b"/></marker>
+<marker id="blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#2563eb"/></marker>
+</defs>
+<text x="450" y="44" text-anchor="middle" font-size="22" font-weight="700" fill="#0f172a">A Simple Food Chain</text>
+<text x="450" y="68" text-anchor="middle" font-size="13" fill="#475569">The arrows show the direction in which energy passes (who eats whom).</text>
+
+<g>
+  <circle cx="80" cy="190" r="58" fill="#f0fdf4" stroke="#334155" stroke-width="2"/>
+  <text x="80" y="188" text-anchor="middle" font-size="44">🍀</text>
+  <text x="80" y="276" text-anchor="middle" font-size="14.5" font-weight="700" fill="#0f172a">Producer</text>
+  <text x="80" y="295" text-anchor="middle" font-size="12" fill="#475569">grass makes its own food</text>
+</g>
+<g>
+  <circle cx="270" cy="190" r="58" fill="#fefce8" stroke="#334155" stroke-width="2"/>
+  <text x="270" y="188" text-anchor="middle" font-size="44">🦗</text>
+  <text x="270" y="276" text-anchor="middle" font-size="14.5" font-weight="700" fill="#0f172a">1st consumer</text>
+  <text x="270" y="295" text-anchor="middle" font-size="12" fill="#475569">grasshopper eats grass</text>
+</g>
+<g>
+  <circle cx="460" cy="190" r="58" fill="#fefce8" stroke="#334155" stroke-width="2"/>
+  <text x="460" y="188" text-anchor="middle" font-size="44">🦎</text>
+  <text x="460" y="276" text-anchor="middle" font-size="14.5" font-weight="700" fill="#0f172a">2nd consumer</text>
+  <text x="460" y="295" text-anchor="middle" font-size="12" fill="#475569">lizard eats the insect</text>
+</g>
+<g>
+  <circle cx="650" cy="190" r="58" fill="#fefce8" stroke="#334155" stroke-width="2"/>
+  <text x="650" y="188" text-anchor="middle" font-size="44">🦅</text>
+  <text x="650" y="276" text-anchor="middle" font-size="14.5" font-weight="700" fill="#0f172a">3rd consumer</text>
+  <text x="650" y="295" text-anchor="middle" font-size="12" fill="#475569">hawk hunts the lizard</text>
+</g>
+<path d="M145 185 L206 185" stroke="#16a34a" stroke-width="4" marker-end="url(#a)"/>
+<path d="M335 185 L396 185" stroke="#16a34a" stroke-width="4" marker-end="url(#a)"/>
+<path d="M525 185 L586 185" stroke="#16a34a" stroke-width="4" marker-end="url(#a)"/>
+<text x="450" y="330" text-anchor="middle" font-size="13" fill="#475569">Grass → Grasshopper → Lizard → Hawk. Removing one link starves the organisms that depend on it.</text>
+</svg>

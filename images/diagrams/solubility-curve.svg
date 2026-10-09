@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 840 560" font-family="Segoe UI, Arial, sans-serif"><defs>
+<marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#64748b"/></marker>
+<marker id="blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#2563eb"/></marker>
+</defs>
+<text x="420" y="44" text-anchor="middle" font-size="22" font-weight="700" fill="#0f172a">Solubility Curves (g of solute / 100 g water)</text>
+<line x1="110" y1="470" x2="750" y2="470" stroke="#334155" stroke-width="3" marker-end="url(#a)"/>
+<line x1="110" y1="470" x2="110" y2="80" stroke="#334155" stroke-width="3" marker-end="url(#a)"/>
+<text x="750" y="500" text-anchor="middle" font-size="14" fill="#334155">Temperature (°C)</text>
+<text x="40" y="90" font-size="14" fill="#334155">Solubility (g)</text>
+<g font-size="11.5" fill="#64748b">
+  <text x="98" y="474">0</text><line x1="110" y1="470" x2="116" y2="470" stroke="#cbd5e1"/><text x="98" y="399">50</text><line x1="110" y1="395" x2="116" y2="395" stroke="#cbd5e1"/><text x="98" y="324">100</text><line x1="110" y1="320" x2="116" y2="320" stroke="#cbd5e1"/><text x="98" y="249">150</text><line x1="110" y1="245" x2="116" y2="245" stroke="#cbd5e1"/><text x="98" y="174">200</text><line x1="110" y1="170" x2="116" y2="170" stroke="#cbd5e1"/><text x="98" y="99">250</text><line x1="110" y1="95" x2="116" y2="95" stroke="#cbd5e1"/>
+  <text x="110" y="485">0</text><line x1="110" y1="470" x2="110" y2="464" stroke="#cbd5e1"/><text x="238" y="485">20</text><line x1="238" y1="470" x2="238" y2="464" stroke="#cbd5e1"/><text x="366" y="485">40</text><line x1="366" y1="470" x2="366" y2="464" stroke="#cbd5e1"/><text x="494" y="485">60</text><line x1="494" y1="470" x2="494" y2="464" stroke="#cbd5e1"/><text x="622" y="485">80</text><line x1="622" y1="470" x2="622" y2="464" stroke="#cbd5e1"/><text x="750" y="485">100</text><line x1="750" y1="470" x2="750" y2="464" stroke="#cbd5e1"/>
+</g>
+<path d="M110 473 L122 470 L134 464 L146 458 L158 449 L170 440 L182 428 L194 419 L206 407 L218 395 L230 380 L242 362 L254 344 L266 327 L278 311 L290 290 L302 262 L314 236 L326 212 L338 188 L350 166 L362 146 L374 128 L386 113 L398 100 L410 89 L422 83 L434 80" fill="none" stroke="#f59e0b" stroke-width="3.5"/>
+<path d="M140 440 L250 438 L360 434 L470 428 L580 418 L700 408" fill="none" stroke="#2563eb" stroke-width="3.5"/>
+<text x="430" y="70" font-size="14" font-weight="700" fill="#f59e0b">KNO₃ — rises steeply (very soluble when hot)</text>
+<text x="430" y="92" font-size="14" font-weight="700" fill="#2563eb">NaCl — almost flat (barely affected by heat)</text>
+<text x="420" y="536" text-anchor="middle" font-size="13" fill="#334155">Read the curve: the solubility of each solute at any temperature is found on the line.</text>
+</svg>

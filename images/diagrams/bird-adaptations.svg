@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 540" font-family="Segoe UI, Arial, sans-serif"><defs>
+<marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#64748b"/></marker>
+<marker id="blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#2563eb"/></marker>
+<marker id="red" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#dc2626"/></marker>
+</defs>
+<text x="440" y="42" text-anchor="middle" font-size="22" font-weight="700" fill="#0f172a">Adaptations of Birds for Flight</text>
+<ellipse cx="440" cy="250" rx="120" ry="70" fill="#fbcfe8" stroke="#db2777" stroke-width="3"/>
+<circle cx="330" cy="190" r="42" fill="#fbcfe8" stroke="#db2777" stroke-width="3"/>
+<path d="M292 176 L238 188 L294 196 Z" fill="#f9a8d4" stroke="#db2777" stroke-width="2.5"/>
+<circle cx="318" cy="180" r="6" fill="#9f1239"/>
+<path d="M440 230 Q540 170 600 200 Q550 260 470 260 Z" fill="#f9a8d4" stroke="#db2777" stroke-width="3"/>
+<path d="M500 300 Q590 330 640 300 q20 30 0 58 q-50 30 -130 6" fill="#f9a8d4" stroke="#db2777" stroke-width="3"/>
+<path d="M400 310 L380 420 L408 420 L416 318" fill="#0f766e" stroke="#0f766e" stroke-width="2"/>
+<path d="M470 306 L472 424 L500 424 L500 312" fill="#0f766e" stroke="#0f766e" stroke-width="2"/>
+<path d="M430 300 Q433 340 430 380" stroke="#f9a8d4" stroke-width="4"/><path d="M452 300 Q455 340 452 380" stroke="#f9a8d4" stroke-width="4"/><path d="M474 300 Q477 340 474 380" stroke="#f9a8d4" stroke-width="4"/>
+<g font-size="12.5" fill="#334155">
+<line x1="622" y1="189" x2="575" y2="213" stroke="#db2777" stroke-width="1.4" marker-end="url(#a)"/>
+  <circle cx="575" cy="213" r="3.2" fill="#db2777"/>
+  <text x="616" y="186">Wing — large surface covered with flight feathers; pushes air for lift</text>
+  <line x1="458" y1="143" x2="292" y2="186" stroke="#db2777" stroke-width="1.4" marker-end="url(#a)"/>
+  <circle cx="292" cy="186" r="3.2" fill="#db2777"/>
+  <text x="452" y="140">Beak — light, replaces heavy teeth</text>
+  <line x1="76" y1="153" x2="470" y2="240" stroke="#db2777" stroke-width="1.4" marker-end="url(#a)"/>
+  <circle cx="470" cy="240" r="3.2" fill="#db2777"/>
+  <text x="70" y="150">Feathers — light, smooth, keep the body air-light</text>
+  <line x1="638" y1="337" x2="640" y2="320" stroke="#db2777" stroke-width="1.4" marker-end="url(#a)"/>
+  <circle cx="640" cy="320" r="3.2" fill="#db2777"/>
+  <text x="632" y="334">Tail feathers — steering and braking</text>
+  <line x1="386" y1="393" x2="470" y2="300" stroke="#0f766e" stroke-width="1.4" marker-end="url(#a)"/>
+  <circle cx="470" cy="300" r="3.2" fill="#0f766e"/>
+  <text x="380" y="390">Keel (breast bone) — bears strong flight muscles</text>
+  <line x1="526" y1="433" x2="600" y2="300" stroke="#0f766e" stroke-width="1.4" marker-end="url(#a)"/>
+  <circle cx="600" cy="300" r="3.2" fill="#0f766e"/>
+  <text x="520" y="430">Hollow bones — light but strong</text>
+</g>
+<g>
+  <circle cx="690" cy="180" r="34" fill="none" stroke="#64748b" stroke-width="2.5"/>
+  <circle cx="690" cy="180" r="16" fill="#fff" stroke="#475569" stroke-width="2.5"/>
+  <line x1="690" y1="146" x2="690" y2="214" stroke="#475569" stroke-width="1.5"/>
+  <line x1="656" y1="180" x2="724" y2="180" stroke="#475569" stroke-width="1.5"/>
+  <circle cx="666" cy="160" r="2.5" fill="#475569"/><circle cx="714" cy="160" r="2.5" fill="#475569"/><circle cx="666" cy="200" r="2.5" fill="#475569"/><circle cx="714" cy="200" r="2.5" fill="#475569"/>
+  <text x="690" y="236" text-anchor="middle" font-size="11.5" fill="#475569">cutaway of a hollow bone</text>
+  <text x="690" y="250" text-anchor="middle" font-size="11.5" fill="#475569">— inner struts add strength</text>
+</g>
+<text x="440" y="505" text-anchor="middle" font-size="13" fill="#334155">Streamlined body, hollow bones, feathers, strong muscles and a beak — all reduce weight or add lift.</text>
+</svg>

@@ -19,7 +19,8 @@ export async function onRequestPost({ request, env }) {
     const user = await getUserFromToken(env, request);
     if (!user) return json({ error: "Please login again." }, 401);
 
-    const { score, topicResults } = await request.json();
+    const { score, topicResults, subject } = await request.json();
+    const quizSubject = String(subject || topicResults?.[0]?.subject || "Technical Drawing").slice(0, 60);
     const cleanScore = Math.max(0, Math.min(100, Number(score || 0)));
 
     const xp = Number(user.xp || 0) + cleanScore;
@@ -32,7 +33,7 @@ export async function onRequestPost({ request, env }) {
     const playedYesterday = user.last_played_date === yesterdayKey();
     const streak = playedToday ? Number(user.streak || 0) : (playedYesterday ? Number(user.streak || 0) + 1 : 1);
     const dailyQuizCount = playedToday ? Number(user.daily_quiz_count || 0) + 1 : 1;
-    const topicStats = mergeTopicStats(parseJson(user.topic_stats, {}), topicResults);
+    const topicStats = mergeTopicStats(parseJson(user.topic_stats, {}), topicResults, quizSubject);
 
     const badgeUser = {
       ...user,

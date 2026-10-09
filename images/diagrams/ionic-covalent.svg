@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 600" font-family="Segoe UI, Arial, sans-serif"><defs>
+<marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#64748b"/></marker>
+<marker id="blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#2563eb"/></marker>
+<marker id="red" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#dc2626"/></marker>
+</defs>
+<text x="450" y="42" text-anchor="middle" font-size="22" font-weight="700" fill="#0f172a">Ionic and Covalent Bonding</text>
+<g font-size="14.5" font-weight="700" fill="#0f172a"><text x="230" y="80" text-anchor="middle">IONIC — electron TRANSFER</text><text x="680" y="80" text-anchor="middle">COVALENT — electron SHARING</text></g>
+<line x1="460" y1="70" x2="460" y2="540" stroke="#e2e8f0" stroke-width="2"/>
+<g>
+  <circle cx="170" cy="200" r="72" stroke="#f59e0b" stroke-width="2.5" fill="none"/>
+  <circle cx="170" cy="200" r="42" stroke="#f59e0b" stroke-width="2.5" fill="none"/>
+  <circle cx="170" cy="200" r="14" fill="#fca5a5" stroke="#dc2626" stroke-width="2"/>
+  <circle cx="170" cy="128" r="6" fill="#f59e0b"/><circle cx="170" cy="272" r="6" fill="#f59e0b"/>
+  <circle cx="236.31639156820773" cy="228.03812064622284" r="6" fill="#f59e0b"/><circle cx="197.06682494103137" cy="266.7187154223728" r="6" fill="#f59e0b"/><circle cx="141.96187935377716" cy="266.31639156820773" r="6" fill="#f59e0b"/><circle cx="103.28128457762723" cy="227.06682494103137" r="6" fill="#f59e0b"/><circle cx="103.68360843179227" cy="171.9618793537772" r="6" fill="#f59e0b"/><circle cx="142.93317505896866" cy="133.28128457762722" r="6" fill="#f59e0b"/><circle cx="198.03812064622284" cy="133.68360843179227" r="6" fill="#f59e0b"/><circle cx="236.71871542237278" cy="172.93317505896866" r="6" fill="#f59e0b"/>
+  <circle cx="216" cy="176" r="6" fill="#f59e0b"/>
+  <text x="170" y="300" text-anchor="middle" font-size="13" fill="#b45309">Na atom (2,8,1)</text>
+  <text x="170" y="318" text-anchor="middle" font-size="12" fill="#b45309">1 outer electron</text>
+</g>
+<path d="M244 190 L296 190" stroke="#dc2626" stroke-width="4" marker-end="url(#red)"/>
+<text x="270" y="182" text-anchor="middle" font-size="12" font-weight="700" fill="#dc2626">e⁻</text>
+<g>
+  <circle cx="360" cy="200" r="84" stroke="#6366f1" stroke-width="2.5" fill="none"/>
+  <circle cx="360" cy="200" r="52" stroke="#6366f1" stroke-width="2.5" fill="none"/>
+  <circle cx="360" cy="200" r="20" fill="#fca5a5" stroke="#dc2626" stroke-width="2"/>
+  <circle cx="360" cy="116" r="6" fill="#93c5fd"/><circle cx="360" cy="284" r="6" fill="#93c5fd"/>
+  <circle cx="408.86401628086725" cy="217.78504745293478" r="6" fill="#93c5fd"/><circle cx="381.97614961051636" cy="247.1280049259058" r="6" fill="#93c5fd"/><circle cx="342.21495254706525" cy="248.86401628086725" r="6" fill="#93c5fd"/><circle cx="312.87199507409423" cy="221.97614961051636" r="6" fill="#93c5fd"/><circle cx="311.13598371913275" cy="182.21495254706522" r="6" fill="#93c5fd"/><circle cx="338.0238503894836" cy="152.87199507409423" r="6" fill="#93c5fd"/><circle cx="377.78504745293475" cy="151.13598371913275" r="6" fill="#93c5fd"/><circle cx="407.12800492590577" cy="178.02385038948358" r="6" fill="#93c5fd"/>
+  <circle cx="431.0890261154775" cy="244.7476297244106" r="6" fill="#93c5fd"/><circle cx="378.62618001404627" cy="281.9088848543572" r="6" fill="#93c5fd"/><circle cx="315.25237027558944" cy="271.0890261154775" r="6" fill="#93c5fd"/><circle cx="278.0911151456428" cy="218.6261800140463" r="6" fill="#93c5fd"/><circle cx="288.91097388452243" cy="155.25237027558944" r="6" fill="#93c5fd"/><circle cx="341.3738199859537" cy="118.09111514564283" r="6" fill="#93c5fd"/>
+  <circle cx="316" cy="250" r="6" fill="#93c5fd"/>
+  <text x="360" y="300" text-anchor="middle" font-size="13" fill="#3730a3">Cl atom (2,8,7)</text>
+  <text x="360" y="318" text-anchor="middle" font-size="12" fill="#3730a3">needs 1 more electron</text>
+</g>
+<g>
+  <circle cx="205" cy="440" r="44" stroke="#f59e0b" stroke-width="2.5" fill="none"/>
+  <circle cx="205" cy="440" r="20" stroke="#f59e0b" stroke-width="2.5" fill="none"/>
+  <circle cx="205" cy="440" r="10" fill="#fca5a5" stroke="#dc2626" stroke-width="2"/>
+  <circle cx="205" cy="408" r="5" fill="#f59e0b"/><circle cx="205" cy="472" r="5" fill="#f59e0b"/>
+  <circle cx="245.52668373612693" cy="457.13440706158065" r="5" fill="#f59e0b"/><circle cx="221.5408374639636" cy="480.77254831367225" r="5" fill="#f59e0b"/><circle cx="187.86559293841938" cy="480.5266837361269" r="5" fill="#f59e0b"/><circle cx="164.22745168632775" cy="456.5408374639636" r="5" fill="#f59e0b"/><circle cx="164.47331626387304" cy="422.8655929384194" r="5" fill="#f59e0b"/><circle cx="188.4591625360364" cy="399.22745168632775" r="5" fill="#f59e0b"/><circle cx="222.13440706158062" cy="399.4733162638731" r="5" fill="#f59e0b"/><circle cx="245.77254831367225" cy="423.4591625360364" r="5" fill="#f59e0b"/>
+  <text x="205" y="508" text-anchor="middle" font-size="13" font-weight="700" fill="#b45309">Na⁺ (2,8)</text>
+  <text x="205" y="528" text-anchor="middle" font-size="11.5" fill="#475569">lost its outer electron</text>
+</g>
+<g>
+  <circle cx="330" cy="440" r="52" stroke="#6366f1" stroke-width="2.5" fill="none"/>
+  <circle cx="330" cy="440" r="30" stroke="#6366f1" stroke-width="2.5" fill="none"/>
+  <circle cx="330" cy="440" r="12" fill="#fca5a5" stroke="#dc2626" stroke-width="2"/>
+  <circle cx="330" cy="470" r="5" fill="#93c5fd"/><circle cx="330" cy="410" r="5" fill="#93c5fd"/>
+  <circle cx="357.6318298200865" cy="451.68255026925954" r="5" fill="#93c5fd"/><circle cx="341.27784372542976" cy="467.799464759322" r="5" fill="#93c5fd"/><circle cx="318.31744973074046" cy="467.6318298200865" r="5" fill="#93c5fd"/><circle cx="302.200535240678" cy="451.27784372542976" r="5" fill="#93c5fd"/><circle cx="302.3681701799134" cy="428.31744973074046" r="5" fill="#93c5fd"/><circle cx="318.7221562745703" cy="412.200535240678" r="5" fill="#93c5fd"/><circle cx="341.68255026925954" cy="412.3681701799135" r="5" fill="#93c5fd"/><circle cx="357.799464759322" cy="428.7221562745703" r="5" fill="#93c5fd"/>
+  <circle cx="374.00749235720036" cy="467.70091363892084" r="5" fill="#93c5fd"/><circle cx="341.5304923896477" cy="490.70550014793537" r="5" fill="#93c5fd"/><circle cx="302.29908636107916" cy="484.00749235720036" r="5" fill="#93c5fd"/><circle cx="279.29449985206463" cy="451.5304923896477" r="5" fill="#93c5fd"/><circle cx="285.99250764279964" cy="412.29908636107916" r="5" fill="#93c5fd"/><circle cx="318.46950761035225" cy="389.29449985206463" r="5" fill="#93c5fd"/><circle cx="357.70091363892084" cy="395.99250764279964" r="5" fill="#93c5fd"/><circle cx="380.70550014793537" cy="428.46950761035225" r="5" fill="#93c5fd"/>
+  <text x="330" y="520" text-anchor="middle" font-size="13" font-weight="700" fill="#3730a3">Cl⁻ (2,8,8)</text>
+  <text x="330" y="540" text-anchor="middle" font-size="11.5" fill="#475569">gained one electron</text>
+</g>
+<text x="230" y="580" text-anchor="middle" font-size="12.5" fill="#334155">Opposite charges attract → ionic lattice (e.g. NaCl).</text>
+<g>
+  <circle cx="600" cy="200" r="34" fill="none" stroke="#16a34a" stroke-width="2.5"/>
+  <circle cx="664" cy="200" r="34" fill="none" stroke="#16a34a" stroke-width="2.5"/>
+  <circle cx="600" cy="200" r="7" fill="#86efac"/><circle cx="664" cy="200" r="7" fill="#86efac"/>
+  <circle cx="645" cy="192" r="6" fill="#86efac"/><circle cx="645" cy="208" r="6" fill="#86efac"/>
+  <path d="M622 200 H650" stroke="#16a34a" stroke-width="5"/>
+  <text x="632" y="172" text-anchor="middle" font-size="12.5" font-weight="700" fill="#166534">shared pair of electrons</text>
+  <text x="632" y="252" text-anchor="middle" font-size="12">H + H → H—H (H₂)</text>
+</g>
+<text x="680" y="300" text-anchor="middle" font-size="12.5" fill="#475569" width="240">Each hydrogen atom shares one electron so the pair is owned by both.</text>
+<g>
+  <circle cx="680" cy="440" r="70" fill="#f0fdf4" stroke="#16a34a" stroke-width="2.5" style="stroke-dasharray:6 5"/>
+  <text x="680" y="444" text-anchor="middle" font-size="13.5" font-weight="700" fill="#166534">Covalent bond</text>
+  <text x="680" y="466" text-anchor="middle" font-size="12" fill="#475569">formed between two</text>
+  <text x="680" y="484" text-anchor="middle" font-size="12" fill="#475569">non-metals (e.g. H₂, O₂, H₂O)</text>
+</g>
+<text x="680" y="548" text-anchor="middle" font-size="12.5" fill="#334155">NaCl conducts when molten because Na⁺ and Cl⁻ are free to move.</text>
+</svg>

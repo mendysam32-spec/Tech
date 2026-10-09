@@ -13,16 +13,16 @@ const TM_DEFAULT_PROFILE = {
 };
 
 const TM_AVATARS = [
-    { id: "avatar1", name: "Rookie Monster", image: "images/avatars/avatar1.png" },
-    { id: "avatar2", name: "Spark Monster", image: "images/avatars/avatar2.png" },
-    { id: "avatar3", name: "Green Genius", image: "images/avatars/avatar3.png" },
-    { id: "avatar4", name: "Pink Striker", image: "images/avatars/avatar4.png" },
-    { id: "avatar5", name: "Dark Engineer", image: "images/avatars/avatar5.png" },
-    { id: "avatar6", name: "Royal Monster", image: "images/avatars/avatar6.png" },
-    { id: "avatar7", name: "Ocean Brain", image: "images/avatars/avatar7.png" },
-    { id: "avatar8", name: "Fire Builder", image: "images/avatars/avatar8.png" },
-    { id: "avatar9", name: "Forest Master", image: "images/avatars/avatar9.png" },
-    { id: "avatar10", name: "Legendary Monster", image: "images/avatars/avatar10.png" }
+    { id: "avatar1", name: "Rookie Monster", image: "images/avatars/avatar1.svg" },
+    { id: "avatar2", name: "Prince Monster", image: "images/avatars/avatar2.svg" },
+    { id: "avatar3", name: "Green Genius", image: "images/avatars/avatar3.svg" },
+    { id: "avatar4", name: "Princess Monster", image: "images/avatars/avatar4.svg" },
+    { id: "avatar5", name: "Dark Engineer", image: "images/avatars/avatar5.svg" },
+    { id: "avatar6", name: "King Monster", image: "images/avatars/avatar6.svg" },
+    { id: "avatar7", name: "Ocean Brain", image: "images/avatars/avatar7.svg" },
+    { id: "avatar8", name: "Fire Builder", image: "images/avatars/avatar8.svg" },
+    { id: "avatar9", name: "Forest Master", image: "images/avatars/avatar9.svg" },
+    { id: "avatar10", name: "Queen Monster", image: "images/avatars/avatar10.svg" }
 ];
 
 const TM_THEMES = [
@@ -304,20 +304,56 @@ const Storage = {
         return date.toISOString().slice(0, 10);
     },
 
-    mergeTopicStats(existing, topicResults) {
-        const stats = { ...(existing || {}) };
-        (topicResults || []).forEach(result => {
-            const topic = result.topic || "General";
-            const current = stats[topic] || { correct: 0, total: 0 };
-            current.correct += result.correct ? 1 : 0;
-            current.total += 1;
-            stats[topic] = current;
-        });
-        return stats;
+    isPerSubjectStats(stats) {
+        const values = Object.values(stats || {});
+        if (!values.length) return false;
+        // New format: { "Technical Drawing": { "Projection": {correct,total} } }
+        // Legacy format: { "Projection": {correct,total} }
+        return values.some(v => v && typeof v === "object" && !("correct" in v || "total" in v));
     },
 
-    topicSummary(topicStats) {
-        const entries = Object.entries(topicStats || {});
+    topicStatsForSubject(topicStats, subject) {
+        const stats = topicStats || {};
+        if (!subject) return {};
+        if (this.isPerSubjectStats(stats)) {
+            return { ...(stats[subject] || {}) };
+        }
+        // Legacy flat stats pre-date per-subject tracking (app was
+        // TD-only). Attribute them to Technical Drawing so they don't
+        // leak into English/Maths/Science radars.
+        if (String(subject).toLowerCase() === "technical drawing") return { ...stats };
+        return {};
+    },
+
+    mergeTopicStats(existing, topicResults, defaultSubject = "") {
+        const stats = { ...(existing || {}) };
+        const perSubject = this.isPerSubjectStats(stats);
+        // Migrate legacy flat stats under Technical Drawing (the original
+        // single-subject app) so old entries don't leak into every subject.
+        let base = stats;
+        if (!perSubject && Object.keys(stats).length) {
+            base = { "Technical Drawing": { ...stats } };
+        } else if (perSubject) {
+            base = {};
+            Object.entries(stats).forEach(([subj, topics]) => { base[subj] = { ...(topics || {}) }; });
+        } else {
+            base = {};
+        }
+        (topicResults || []).forEach(result => {
+            const subject = String(result.subject || defaultSubject || "Technical Drawing").slice(0, 60);
+            const topic = String(result.topic || "General").slice(0, 40);
+            if (!base[subject]) base[subject] = {};
+            const current = base[subject][topic] || { correct: 0, total: 0 };
+            current.correct = Number(current.correct || 0) + (result.correct ? 1 : 0);
+            current.total = Number(current.total || 0) + 1;
+            base[subject][topic] = current;
+        });
+        return base;
+    },
+
+    topicSummary(topicStats, subject = "") {
+        const source = subject ? this.topicStatsForSubject(topicStats, subject) : (topicStats || {});
+        const entries = Object.entries(source);
         if (!entries.length) return { strongest: "Not enough data", focus: "Take a quiz first" };
 
         const ranked = entries
@@ -357,7 +393,7 @@ const Storage = {
         return user;
     },
 
-    updateLocalStats(score, topicResults = []) {
+    updateLocalStats(score, topicResults = [], subject = "") {
         let users = this.getUsers();
         let currentUser = this.getCurrentUser();
         if (!currentUser) return null;
@@ -374,7 +410,8 @@ const Storage = {
         currentUser.streak = streak;
         currentUser.dailyQuizCount = playedToday ? Number(currentUser.dailyQuizCount || 0) + 1 : 1;
         currentUser.lastPlayedDate = today;
-        currentUser.topicStats = this.mergeTopicStats(currentUser.topicStats, topicResults);
+        const quizSubject = subject || topicResults?.[0]?.subject || localStorage.getItem("tm_selectedSubject") || "Technical Drawing";
+        currentUser.topicStats = this.mergeTopicStats(currentUser.topicStats, topicResults, quizSubject);
         const passScore = Number(this.getAppConfig().passingScore || 70);
         if (Number(score) >= passScore) this.unlockNextAvatar(currentUser);
         currentUser.badges = this.unlockedBadges(currentUser);

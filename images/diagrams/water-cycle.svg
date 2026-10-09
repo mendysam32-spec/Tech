@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 560" font-family="Segoe UI, Arial, sans-serif"><defs>
+<marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#64748b"/></marker>
+<marker id="blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#2563eb"/></marker>
+</defs>
+<rect width="900" height="560" fill="#e0f2fe"/>
+<text x="450" y="44" text-anchor="middle" font-size="22" font-weight="700" fill="#0f172a">The Water Cycle</text>
+<g stroke="#fbbf24" stroke-width="4" fill="none">
+  <line x1="150" y1="120" x2="158" y2="104"/><line x1="170" y1="120" x2="178" y2="104"/><line x1="190" y1="120" x2="198" y2="104"/>
+  <line x1="150" y1="112" x2="150" y2="96" stroke-width="2.5"/><line x1="170" y1="112" x2="170" y2="92" stroke-width="2.5"/><line x1="190" y1="112" x2="190" y2="96" stroke-width="2.5"/>
+</g>
+<circle cx="170" cy="122" r="30" fill="#fde047" stroke="#f59e0b" stroke-width="3"/>
+<text x="170" y="200" text-anchor="middle" font-size="13" fill="#b45309" font-weight="700">THE SUN —</text>
+<text x="170" y="216" text-anchor="middle" font-size="13" fill="#b45309" font-weight="700">source of energy</text>
+<path d="M300 150 Q400 96 520 120 Q600 132 690 120" fill="none" stroke="#94a3b8" stroke-width="5" stroke-linecap="round" opacity=".9"/>
+<path d="M340 168 Q450 116 580 140" fill="none" stroke="#94a3b8" stroke-width="5" stroke-linecap="round" opacity=".9"/>
+<rect x="480" y="416" width="420" height="144" fill="#38bdf8"/>
+<path d="M480 416 Q560 380 640 416 L640 416 Q720 372 800 404 L900 380 V560 H480 Z" fill="#0ea5e9"/>
+<path d="M0 430 L180 360 L300 430" fill="none" stroke="#86efac" stroke-width="6"/>
+<rect x="0" y="430" width="480" height="130" fill="#bbf7d0"/>
+<path d="M60 400 L0 360 V430 H180 L120 372" fill="none" stroke="#86efac" stroke-width="6"/>
+<g font-size="12" fill="#14532d">
+  <text x="20" y="496">land collects water</text>
+</g>
+<path d="M120 470 C 240 460 360 482 480 470" fill="none" stroke="#0369a1" stroke-width="1"/>
+<g font-size="12.5" fill="#1e293b">
+  <text x="30" y="344" fill="#166534" font-weight="700">② transport of water</text>
+  <text x="30" y="360" fill="#166534" font-weight="700">vapour to the clouds</text>
+</g>
+<path d="M150 320 C 220 250 260 150 470 150" fill="none" stroke="#0284c7" stroke-width="3" stroke-dasharray="8 6" marker-end="url(#blue)"/>
+<text x="300" y="210" font-size="13" font-weight="700" fill="#0369a1" transform="rotate(-22 300 210)">① EVAPORATION</text>
+<path d="M560 150 C 620 230 600 330 620 420" fill="none" stroke="#0284c7" stroke-width="3" stroke-dasharray="8 6" marker-end="url(#blue)"/>
+<text x="632" y="300" font-size="13" font-weight="700" fill="#0369a1">③ CONDENSATION +</text>
+<text x="632" y="318" font-size="13" font-weight="700" fill="#0369a1">PRECIPITATION (rain)</text>
+<path d="M250 470 L480 470" stroke="#0369a1" stroke-width="3" marker-end="url(#blue)"/>
+<text x="365" y="500" text-anchor="middle" font-size="13" font-weight="700" fill="#0369a1">④ COLLECTION (run-off back to the sea/rivers)</text>
+</svg>

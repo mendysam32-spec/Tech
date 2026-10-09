@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 480" font-family="Segoe UI, Arial, sans-serif"><defs>
+<marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#64748b"/></marker>
+<marker id="blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#2563eb"/></marker>
+<marker id="red" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#dc2626"/></marker>
+</defs>
+<text x="460" y="44" text-anchor="middle" font-size="22" font-weight="700" fill="#0f172a">Purifying Water for Public Supply</text>
+
+<g>
+  <rect x="40" y="150" width="160" height="150" rx="18" fill="#f8fafc" stroke="#2563eb" stroke-width="2.5"/>
+  <text x="120" y="210" text-anchor="middle" font-size="40">🌊</text>
+  <text x="120" y="252" text-anchor="middle" font-size="14.5" font-weight="700" fill="#0f172a">1. Intake</text>
+  <text x="120" y="272" text-anchor="middle" font-size="11.5" fill="#475569">water taken from river or reservoir</text>
+</g>
+<g>
+  <rect x="210" y="150" width="160" height="150" rx="18" fill="#f8fafc" stroke="#2563eb" stroke-width="2.5"/>
+  <text x="290" y="210" text-anchor="middle" font-size="40">🛢️</text>
+  <text x="290" y="252" text-anchor="middle" font-size="14.5" font-weight="700" fill="#0f172a">2. Storage</text>
+  <text x="290" y="272" text-anchor="middle" font-size="11.5" fill="#475569">solids settle in the storage tank</text>
+</g>
+<g>
+  <rect x="380" y="150" width="160" height="150" rx="18" fill="#f8fafc" stroke="#2563eb" stroke-width="2.5"/>
+  <text x="460" y="210" text-anchor="middle" font-size="40">⏳</text>
+  <text x="460" y="252" text-anchor="middle" font-size="14.5" font-weight="700" fill="#0f172a">3. Filtration</text>
+  <text x="460" y="272" text-anchor="middle" font-size="11.5" fill="#475569">through sand and gravel beds</text>
+</g>
+<g>
+  <rect x="550" y="150" width="160" height="150" rx="18" fill="#f8fafc" stroke="#2563eb" stroke-width="2.5"/>
+  <text x="630" y="210" text-anchor="middle" font-size="40">🧪</text>
+  <text x="630" y="252" text-anchor="middle" font-size="14.5" font-weight="700" fill="#0f172a">4. Chlorination</text>
+  <text x="630" y="272" text-anchor="middle" font-size="11.5" fill="#475569">chlorine kills micro-organisms</text>
+</g>
+<g>
+  <rect x="720" y="150" width="160" height="150" rx="18" fill="#f8fafc" stroke="#2563eb" stroke-width="2.5"/>
+  <text x="800" y="210" text-anchor="middle" font-size="40">🚰</text>
+  <text x="800" y="252" text-anchor="middle" font-size="14.5" font-weight="700" fill="#0f172a">5. To taps</text>
+  <text x="800" y="272" text-anchor="middle" font-size="11.5" fill="#475569">treated water piped to homes</text>
+</g>
+<path d="M200 225 L300 225" stroke="#0284c7" stroke-width="4" marker-end="url(#blue)"/>
+<path d="M370 225 L470 225" stroke="#0284c7" stroke-width="4" marker-end="url(#blue)"/>
+<path d="M540 225 L640 225" stroke="#0284c7" stroke-width="4" marker-end="url(#blue)"/>
+<path d="M710 225 L810 225" stroke="#0284c7" stroke-width="4" marker-end="url(#blue)"/>
+<text x="460" y="380" text-anchor="middle" font-size="13" fill="#334155">At home, the same result is achieved by boiling water or by using a simple filter.</text>
+<text x="460" y="404" text-anchor="middle" font-size="12.5" fill="#475569">Filtration removes solid particles; chlorination kills the germs that cause typhoid and cholera.</text>
+<text x="460" y="452" text-anchor="middle" font-size="12.5" fill="#64748b">Distillation is used only in small laboratories because it uses too much energy for a whole town.</text>
+</svg>

@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 520" font-family="Segoe UI, Arial, sans-serif"><defs>
+<marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#64748b"/></marker>
+<marker id="blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#2563eb"/></marker>
+<marker id="red" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#dc2626"/></marker>
+</defs>
+<text x="440" y="44" text-anchor="middle" font-size="22" font-weight="700" fill="#0f172a">External Structure of the Tilapia Fish</text>
+<path d="M200 270 Q220 160 420 160 Q620 160 660 270 Q640 300 420 360 Q240 360 200 270 Z" fill="#5eead4" stroke="#0f766e" stroke-width="3"/>
+<path d="M660 270 L740 200 L706 270 L740 340 Z" fill="#2dd4bf" stroke="#0f766e" stroke-width="2.5"/>
+<path d="M340 158 Q380 96 450 104 Q510 114 520 158 Z" fill="#2dd4bf" stroke="#0f766e" stroke-width="2.5"/>
+<path d="M230 326 Q300 372 360 332" fill="none" stroke="#2dd4bf" stroke-width="10" stroke-linecap="round"/>
+<path d="M330 348 Q400 396 470 348" fill="none" stroke="#2dd4bf" stroke-width="10" stroke-linecap="round"/>
+<path d="M470 342 Q540 382 606 320" fill="none" stroke="#2dd4bf" stroke-width="9" stroke-linecap="round"/>
+<path d="M300 206 Q326 258 306 292" fill="none" stroke="#0f766e" stroke-width="3"/>
+<path d="M338 206 Q360 258 344 292" fill="none" stroke="#0f766e" stroke-width="3"/>
+<path d="M204 270 Q180 244 216 218" fill="none" stroke="#0f766e" stroke-width="4" stroke-linecap="round"/>
+<circle cx="248" cy="236" r="18" fill="#f8fafc" stroke="#0f172a" stroke-width="3"/>
+<circle cx="248" cy="236" r="7" fill="#0f172a"/>
+<path d="M235 296 Q250 316 272 306" fill="none" stroke="#0f766e" stroke-width="2.5"/>
+<path d="M352 226 Q364 258 352 290" fill="none" stroke="#0f766e" stroke-width="1.4"/><path d="M392 226 Q404 258 392 290" fill="none" stroke="#0f766e" stroke-width="1.4"/><path d="M432 226 Q444 258 432 290" fill="none" stroke="#0f766e" stroke-width="1.4"/><path d="M472 226 Q484 258 472 290" fill="none" stroke="#0f766e" stroke-width="1.4"/><path d="M512 226 Q524 258 512 290" fill="none" stroke="#0f766e" stroke-width="1.4"/><path d="M552 226 Q564 258 552 290" fill="none" stroke="#0f766e" stroke-width="1.4"/><path d="M592 226 Q604 258 592 290" fill="none" stroke="#0f766e" stroke-width="1.4"/>
+<path d="M300 262 L628 278" stroke="#0f172a" stroke-width="2" stroke-dasharray="10 6"/>
+<ellipse cx="470" cy="196" rx="46" ry="20" fill="none" stroke="#0f172a" stroke-width="1.8" stroke-dasharray="6 5"/>
+<g font-size="12.5" fill="#334155">
+<line x1="182" y1="203" x2="214" y2="252" stroke="#0f766e" stroke-width="1.4" marker-end="url(#a)"/>
+  <circle cx="214" cy="252" r="3.2" fill="#0f766e"/>
+  <text x="176" y="200">Mouth — takes in food and water</text>
+  <line x1="234" y1="221" x2="248" y2="236" stroke="#0f172a" stroke-width="1.4" marker-end="url(#a)"/>
+  <circle cx="248" cy="236" r="3.2" fill="#0f172a"/>
+  <text x="228" y="218">Eye — sight</text>
+  <line x1="306" y1="153" x2="345" y2="248" stroke="#0f766e" stroke-width="1.4" marker-end="url(#a)"/>
+  <circle cx="345" cy="248" r="3.2" fill="#0f766e"/>
+  <text x="300" y="150">Gills (operculum) — take in dissolved oxygen</text>
+  <line x1="566" y1="153" x2="600" y2="205" stroke="#0f766e" stroke-width="1.4" marker-end="url(#a)"/>
+  <circle cx="600" cy="205" r="3.2" fill="#0f766e"/>
+  <text x="560" y="150">Scales — overlapping protection</text>
+  <line x1="454" y1="233" x2="470" y2="270" stroke="#0f172a" stroke-width="1.4" marker-end="url(#a)"/>
+  <circle cx="470" cy="270" r="3.2" fill="#0f172a"/>
+  <text x="448" y="230">Lateral line — feels water movement</text>
+  <line x1="426" y1="83" x2="440" y2="112" stroke="#2dd4bf" stroke-width="1.4" marker-end="url(#a)"/>
+  <circle cx="440" cy="112" r="3.2" fill="#2dd4bf"/>
+  <text x="420" y="80">Dorsal fin — keeps the fish upright</text>
+  <line x1="726" y1="191" x2="725" y2="240" stroke="#2dd4bf" stroke-width="1.4" marker-end="url(#a)"/>
+  <circle cx="725" cy="240" r="3.2" fill="#2dd4bf"/>
+  <text x="720" y="188">Caudal fin (tail) — steering and pushing forward</text>
+  <line x1="306" y1="365" x2="300" y2="340" stroke="#2dd4bf" stroke-width="1.4" marker-end="url(#a)"/>
+  <circle cx="300" cy="340" r="3.2" fill="#2dd4bf"/>
+  <text x="300" y="362">Pectoral fin — balance and braking</text>
+  <line x1="406" y1="423" x2="400" y2="385" stroke="#2dd4bf" stroke-width="1.4" marker-end="url(#a)"/>
+  <circle cx="400" cy="385" r="3.2" fill="#2dd4bf"/>
+  <text x="400" y="420">Pelvic fin — balance</text>
+  <line x1="556" y1="363" x2="565" y2="340" stroke="#2dd4bf" stroke-width="1.4" marker-end="url(#a)"/>
+  <circle cx="565" cy="340" r="3.2" fill="#2dd4bf"/>
+  <text x="550" y="360">Anal fin — balance</text>
+  <line x1="506" y1="135" x2="480" y2="205" stroke="#0f172a" stroke-width="1.4" marker-end="url(#a)"/>
+  <circle cx="480" cy="205" r="3.2" fill="#0f172a"/>
+  <text x="500" y="132">Swim bladder (internal, dashed) — controls buoyancy</text>
+</g>
+<text x="440" y="470" text-anchor="middle" font-size="13" fill="#334155">Streamlined body reduces resistance · swim bladder controls buoyancy · gills take in oxygen dissolved in water.</text>
+</svg>

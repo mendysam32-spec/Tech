@@ -55,7 +55,11 @@ async function loadSubjects() {
     select.innerHTML = subjects.map(s => `<option value="${s.name}">${s.name}</option>`).join("");
     select.value = subjects.some(s => s.name === saved) ? saved : subjects[0].name;
     localStorage.setItem("tm_selectedSubject", select.value);
-    select.addEventListener("change", () => localStorage.setItem("tm_selectedSubject", select.value));
+    renderTopicRadar(Storage.getCurrentUser() || user);
+    select.addEventListener("change", () => {
+        localStorage.setItem("tm_selectedSubject", select.value);
+        renderTopicRadar(Storage.getCurrentUser());
+    });
 }
 
 function updateXPBar(user) {
@@ -102,19 +106,21 @@ function renderBadges(user) {
 }
 
 function renderTopicRadar(user) {
-    const summary = Storage.topicSummary(user.topicStats);
+    const subject = localStorage.getItem("tm_selectedSubject") || "Technical Drawing";
+    const subjectStats = Storage.topicStatsForSubject(user.topicStats, subject);
+    const summary = Storage.topicSummary(user.topicStats, subject);
     document.getElementById("strongestTopic").textContent = summary.strongest;
     document.getElementById("focusTopic").textContent = summary.focus;
     const bars = document.getElementById("topicBars");
-    bars.innerHTML = "";
-    Object.entries(user.topicStats || {}).forEach(([topic, stat]) => {
+    bars.innerHTML = `<small class="text-muted d-block mb-2">Showing ${subject} only</small>`;
+    Object.entries(subjectStats || {}).forEach(([topic, stat]) => {
         const percent = Math.round((Number(stat.correct || 0) / Math.max(1, Number(stat.total || 0))) * 100);
         const row = document.createElement("div");
         row.className = "topic-row";
         row.innerHTML = `<div class="d-flex justify-content-between"><small>${topic}</small><small>${percent}%</small></div><div class="progress mini-progress"><div class="progress-bar" style="width:${percent}%"></div></div>`;
         bars.appendChild(row);
     });
-    if (!bars.innerHTML) bars.innerHTML = `<span class="empty-state">Topic progress appears after your next quiz.</span>`;
+    if (!Object.keys(subjectStats || {}).length) bars.innerHTML += `<span class="empty-state">No ${subject} progress yet. Take a ${subject} quiz.</span>`;
 }
 
 async function loadDashboardHall() {

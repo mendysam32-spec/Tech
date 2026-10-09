@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 440" font-family="Segoe UI, Arial, sans-serif"><defs>
+<marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#64748b"/></marker>
+<marker id="blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#2563eb"/></marker>
+<marker id="red" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#dc2626"/></marker>
+</defs>
+<text x="430" y="44" text-anchor="middle" font-size="22" font-weight="700" fill="#0f172a">Isotopes of Hydrogen</text>
+
+<g>
+  <circle cx="210" cy="250" r="120" stroke="#0ea5e9" stroke-width="2" fill="none"/>
+  <circle cx="210" cy="250" r="42" fill="#fca5a5" stroke="#dc2626" stroke-width="3"/>
+  
+  <circle cx="194" cy="264" r="24" fill="#f87171" stroke="#dc2626" stroke-width="2.5"/><text x="194" y="270" text-anchor="middle" font-size="16" font-weight="700" fill="#7f1d1d">p</text>
+  <circle cx="322" cy="250" r="12" fill="#93c5fd" stroke="#1d4ed8" stroke-width="2"/>
+  <text x="210" y="408" text-anchor="middle" font-size="15" font-weight="700" fill="#0f172a">Hydrogen-1 (protium)</text>
+  <text x="210" y="428" text-anchor="middle" font-size="12.5" fill="#475569">1 proton · 0 neutrons</text>
+</g>
+<g>
+  <circle cx="650" cy="250" r="120" stroke="#0ea5e9" stroke-width="2" fill="none"/>
+  <circle cx="650" cy="250" r="42" fill="#fca5a5" stroke="#dc2626" stroke-width="3"/>
+  <circle cx="672" cy="234" r="22" fill="#cbd5e1" stroke="#475569" stroke-width="2.5"/><text x="672" y="240" text-anchor="middle" font-size="15" font-weight="700" fill="#334155">n</text>
+  <circle cx="634" cy="264" r="24" fill="#f87171" stroke="#dc2626" stroke-width="2.5"/><text x="634" y="270" text-anchor="middle" font-size="16" font-weight="700" fill="#7f1d1d">p</text>
+  <circle cx="762" cy="250" r="12" fill="#93c5fd" stroke="#1d4ed8" stroke-width="2"/>
+  <text x="650" y="408" text-anchor="middle" font-size="15" font-weight="700" fill="#0f172a">Hydrogen-2 (deuterium)</text>
+  <text x="650" y="428" text-anchor="middle" font-size="12.5" fill="#475569">1 proton · 1 neutron</text>
+</g>
+<rect x="40" y="100" width="780" height="260" rx="16" fill="none" stroke="#e2e8f0" stroke-width="2" stroke-dasharray="6 5"/>
+<text x="430" y="120" text-anchor="middle" font-size="13" fill="#475569">Same number of protons (1) — the same element — but different numbers of neutrons.</text>
+</svg>
