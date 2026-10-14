@@ -29,7 +29,7 @@ function renderUser(user) {
     updateXPBar(user);
 }
 
-const LOCAL_SUBJECTS = ["Technical Drawing", "English", "Maths", "Science"];
+const LOCAL_SUBJECTS = ["Technical Drawing", "English", "Maths", "Science", "SES"];
 
 async function loadSubjects() {
     const select = document.getElementById("subjectSelect");

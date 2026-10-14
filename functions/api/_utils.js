@@ -92,7 +92,7 @@ export async function getUserFromToken(env, request) { const auth = request.head
 export async function getStaffFromToken(env, request) { const auth = request.headers.get("Authorization") || ""; const token = auth.replace("Bearer ", "").trim(); if (!token) return null; const session = await env.DB.prepare("SELECT staff_id FROM staff_sessions WHERE token = ? AND expires_at > datetime('now')").bind(token).first(); if (!session) return null; return env.DB.prepare("SELECT * FROM staff_users WHERE id = ?").bind(session.staff_id).first(); }
 export async function requireStaff(env, request, adminOnly = false) { const staff = await getStaffFromToken(env, request); if (!staff) return { error: json({ error: "Staff login required." }, 401) }; if (adminOnly && staff.role !== "admin") return { error: json({ error: "Admin permission required." }, 403) }; return { staff }; }
 export async function ensureDefaultSubjects(env) {
-  const defaults = ["Technical Drawing", "English", "Maths", "Science"];
+  const defaults = ["Technical Drawing", "English", "Maths", "Science", "SES"];
   for (const name of defaults) {
     const row = await env.DB.prepare("SELECT id FROM subjects WHERE lower(name)=lower(?)").bind(name).first();
     if (!row) await env.DB.prepare("INSERT INTO subjects (id, name, created_at, updated_at) VALUES (?, ?, datetime('now'), datetime('now'))").bind(crypto.randomUUID(), name).run();

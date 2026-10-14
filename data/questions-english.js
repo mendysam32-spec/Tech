@@ -3499,6 +3499,7 @@ const EnglishQuestions = [
 {
   "topic": "Comprehension",
   "question": "Choose the meaning of the word as used in the passage: \"The drought was so severe that the whole harvest was ruined.\" The word 'ruined' means",
+  "targetWord": "ruined",
   "image": "",
   "options": ["improved", "completely destroyed", "delayed", "saved"],
   "correct": 1,

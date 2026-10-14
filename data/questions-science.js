@@ -314,7 +314,7 @@ const ScienceQuestions = [
     "explanation": "Calcium is needed for strong bones and teeth."
   },
   {
-    "topic": "Specialised Plant and Animal Cells",
+    "topic": "Deficiency Diseases",
     "question": "Deficiency of iron in the diet causes",
     "image": "",
     "options": ["goitre", "anaemia", "rickets", "beriberi"],
@@ -403,7 +403,7 @@ const ScienceQuestions = [
   },
   {
     "topic": "Specialised Plant and Animal Cells",
-    "question": "Which structure in the red blood cells carries oxygen?",
+    "question": "Which substance in the red blood cells carries oxygen?",
     "image": "",
     "options": ["Plasma", "White blood cell", "Hemoglobin", "Platelet"],
     "correct": 2,
@@ -579,7 +579,7 @@ const ScienceQuestions = [
   },
   {
     "topic": "Abiotic (Ecological) Factors",
-    "question": "The soil that holds the most water and is best for planting most crops is",
+    "question": "The soil that is best for planting most crops is",
     "image": "",
     "options": ["sandy soil", "loamy soil", "clay soil", "gravel"],
     "correct": 1,
@@ -1578,7 +1578,7 @@ const ScienceQuestions = [
     "explanation": "Burning wood converts stored chemical energy into heat and light."
   },
   {
-    "topic": "The Human Respiratory System",
+    "topic": "Principle of Conservation of Energy",
     "question": "The food we eat is a source of which energy that the body uses to work?",
     "image": "",
     "options": ["Chemical energy", "Electrical energy", "Nuclear energy", "Light energy"],
@@ -1602,7 +1602,7 @@ const ScienceQuestions = [
     "explanation": "Dams use the kinetic energy of falling water to drive turbines and generate electricity."
   },
   {
-    "topic": "The Endocrine System",
+    "topic": "Sound Energy",
     "question": "Sound energy is produced when an object",
     "image": "",
     "options": ["vibrates", "is heated slowly", "is at rest", "reflects light"],
@@ -1634,7 +1634,7 @@ const ScienceQuestions = [
     "explanation": "Dispersion splits white light into the colours of the rainbow."
   },
   {
-    "topic": "The Endocrine System",
+    "topic": "Sound Energy",
     "question": "Sound is caused by the",
     "image": "",
     "options": ["vibration of objects", "reflection of light", "movement of the sun", "flow of electric current alone"],
@@ -1731,7 +1731,7 @@ const ScienceQuestions = [
   },
   {
     "topic": "Forces: Definition, Effects and Measurement",
-    "question": "The force that makes an object remain at rest or in uniform motion unless acted upon is described by",
+    "question": "The property that makes an object remain at rest or in uniform motion unless acted upon is described by",
     "image": "",
     "options": ["inertia", "friction", "gravity", "magnetism"],
     "correct": 0,
@@ -2543,7 +2543,7 @@ const ScienceQuestions = [
     "image": "",
     "options": ["300 m/s", "30 m/s", "3 m/s", "0.3 m/s"],
     "correct": 1,
-    "explanation": "Divide by 3.6: 1000/3.6 gives 30 m/s."
+    "explanation": "Divide by 3.6: 108/3.6 gives 30 m/s."
   },
   {
     "topic": "Concepts of Mass and Weight",
@@ -2941,7 +2941,7 @@ const ScienceQuestions = [
     "topic": "The Hand Lens",
     "question": "Which of the following is a limitation of a hand lens?",
     "image": "",
-    "options": ["it cannot be used in daylight", "it requires electricity to work", "it is always too heavy to carry", "it cannot magnify very large objects as a microscope does"],
+    "options": ["it cannot be used in daylight", "it requires electricity to work", "it is always too heavy to carry", "it cannot magnify very small objects as much as a microscope does"],
     "correct": 3,
     "explanation": "A hand lens gives limited magnification and cannot show the fine internal structure of cells."
   },
@@ -2994,7 +2994,7 @@ const ScienceQuestions = [
     "explanation": "Bacteria decay dead matter, fix nitrogen and are used to make yoghurt, cheese and antibiotics."
   },
   {
-    "topic": "Unicellular Organisms (Bacterium, Euglena)",
+    "topic": "The Microscope",
     "question": "A useful way to increase the magnification of a microscope is to",
     "image": "",
     "options": ["move the slide further from the lens", "use the high power objective lens and adjust the focus carefully", "remove the eyepiece", "use a lower power lens only"],
@@ -3669,9 +3669,9 @@ const ScienceQuestions = [
     "topic": "Comparison of Classes of Vertebrates",
     "question": "Fish are restricted to aquatic habitats mainly because they",
     "image": "",
-    "options": ["have feathers", "have lungs like mammals", "cannot move on land", "breathe through gills that must stay wet and are heavy in water"],
+    "options": ["have feathers", "have lungs like mammals", "cannot move on land", "breathe through gills that collapse out of water"],
     "correct": 3,
-    "explanation": "Gills collapse out of water, and the density of water supports the fish's heavy body."
+    "explanation": "Gills collapse out of water so fish cannot breathe on land, and the density of water supports the fish's heavy body."
   },
   {
     "topic": "Modern Atomic Theory",

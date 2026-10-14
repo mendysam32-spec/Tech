@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 520" font-family="Segoe UI, Arial, sans-serif"><defs>
+<marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#64748b"/></marker>
+<marker id="blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#2563eb"/></marker>
+<marker id="red" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#dc2626"/></marker>
+</defs>
+<text x="440" y="44" text-anchor="middle" font-size="22" font-weight="700" fill="#0f172a">Unicellular Micro-organisms</text>
+<text x="220" y="80" text-anchor="middle" font-size="15" font-weight="700" fill="#166534">BACTERIUM</text>
+<rect x="70" y="110" width="300" height="260" rx="130" fill="#fefce8" stroke="#ca8a04" stroke-width="3"/>
+<rect x="88" y="128" width="264" height="224" rx="112" fill="#fef9c3"/>
+<rect x="104" y="144" width="232" height="192" rx="96" fill="#fefce8"/>
+<circle cx="250" cy="230" r="40" fill="#e9d5ff" stroke="#9333ea" stroke-width="2"/>
+<path d="M250 190 q 14 -22 -4 -44 M275 196 q 16 -22 -2 -48" fill="none" stroke="#9333ea" stroke-width="2"/>
+<path d="M96 330 c -30 -20 -36 -44 -8 -58 M104 348 c -28 -18 -32 -40 -6 -52" fill="none" stroke="#854d0e" stroke-width="4" stroke-linecap="round"/>
+<circle cx="330" cy="150" r="6" fill="#fbbf24"/><circle cx="340" cy="170" r="5" fill="#fbbf24"/><circle cx="316" cy="138" r="5" fill="#fbbf24"/>
+<text x="660" y="80" text-anchor="middle" font-size="15" font-weight="700" fill="#166534">EUGLENA</text>
+<path d="M470 170 Q490 110 540 110 Q700 110 770 90 Q790 110 790 122 Q790 150 770 165 Q680 210 540 205 Q485 205 470 170 Z" fill="#bbf7d0" stroke="#16a34a" stroke-width="3"/>
+<path d="M480 122 c -26 -16 -30 -34 -6 -50 M484 138 c -24 -16 -28 -32 -6 -46" fill="none" stroke="#16a34a" stroke-width="4" stroke-linecap="round"/>
+<circle cx="500" cy="128" r="9" fill="#f87171"/>
+<circle cx="512" cy="148" r="14" fill="#c4b5fd" stroke="#7c3aed" stroke-width="2"/>
+<path d="M560 190 q 24 -16 52 -4 q 22 10 44 -6" fill="none" stroke="#22c55e" stroke-width="8" stroke-linecap="round"/>
+<path d="M620 120 q 20 -14 42 -2 q 18 10 36 -4" fill="none" stroke="#22c55e" stroke-width="8" stroke-linecap="round"/>
+<circle cx="700" cy="178" r="13" fill="#fda4af" stroke="#e11d48" stroke-width="2"/>
+<path d="M715 172 q 14 -8 24 2" fill="none" stroke="#e11d48" stroke-width="2"/>
+<g font-size="12.5" fill="#334155">
+<line x1="88" y1="139" x2="250" y2="112" stroke="#ca8a04" stroke-width="1.4" marker-end="url(#a)"/>
+  <circle cx="250" cy="112" r="3.2" fill="#ca8a04"/>
+  <text x="82" y="136">Capsule — outer slime layer, extra protection</text>
+  <line x1="110" y1="159" x2="250" y2="125" stroke="#ca8a04" stroke-width="1.4" marker-end="url(#a)"/>
+  <circle cx="250" cy="125" r="3.2" fill="#ca8a04"/>
+  <text x="104" y="156">Cell wall (rigid) — gives the cell its shape</text>
+  <line x1="126" y1="179" x2="250" y2="140" stroke="#ca8a04" stroke-width="1.4" marker-end="url(#a)"/>
+  <circle cx="250" cy="140" r="3.2" fill="#ca8a04"/>
+  <text x="120" y="176">Cell membrane — controls what enters and leaves</text>
+  <line x1="246" y1="239" x2="250" y2="230" stroke="#9333ea" stroke-width="1.4" marker-end="url(#a)"/>
+  <circle cx="250" cy="230" r="3.2" fill="#9333ea"/>
+  <text x="240" y="236">DNA in the cytoplasm — no true nucleus</text>
+  <line x1="114" y1="335" x2="95" y2="345" stroke="#854d0e" stroke-width="1.4" marker-end="url(#a)"/>
+  <circle cx="95" cy="345" r="3.2" fill="#854d0e"/>
+  <text x="108" y="332">Flagellum — whirls to push the bacterium around</text>
+  <line x1="496" y1="107" x2="498" y2="120" stroke="#16a34a" stroke-width="1.4" marker-end="url(#a)"/>
+  <circle cx="498" cy="120" r="3.2" fill="#16a34a"/>
+  <text x="490" y="104">Flagellum — movement</text>
+  <line x1="518" y1="137" x2="500" y2="128" stroke="#f87171" stroke-width="1.4" marker-end="url(#a)"/>
+  <circle cx="500" cy="128" r="3.2" fill="#f87171"/>
+  <text x="512" y="134">Eye spot — senses light for the euglena</text>
+  <line x1="530" y1="159" x2="512" y2="148" stroke="#7c3aed" stroke-width="1.4" marker-end="url(#a)"/>
+  <circle cx="512" cy="148" r="3.2" fill="#7c3aed"/>
+  <text x="524" y="156">Nucleus (true nucleus) — controls the cell</text>
+  <line x1="476" y1="213" x2="600" y2="182" stroke="#22c55e" stroke-width="1.4" marker-end="url(#a)"/>
+  <circle cx="600" cy="182" r="3.2" fill="#22c55e"/>
+  <text x="470" y="210">Chloroplasts — make food by photosynthesis</text>
+  <line x1="718" y1="185" x2="700" y2="178" stroke="#e11d48" stroke-width="1.4" marker-end="url(#a)"/>
+  <circle cx="700" cy="178" r="3.2" fill="#e11d48"/>
+  <text x="712" y="182">Contractile vacuole — pumps out excess water</text>
+</g>
+<text x="440" y="470" text-anchor="middle" font-size="12.5" fill="#475569">Bacteria cause diseases but also decay waste, fix nitrogen and make yoghurt. Euglena is a plant-like animal — it moves and has chloroplasts.</text>
+</svg>

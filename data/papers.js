@@ -45,7 +45,8 @@ const PaperTotals = {
   ],
   // Scaffolds – fill when notes/books for other subjects land in data/
   "Maths": [],
-  "Science": []
+  "Science": [],
+  "SES": []
 };
 
 const MAX_PAPER_QUESTIONS = 80;
@@ -119,7 +120,8 @@ window.getPaperQuestions = function(subject, year) {
     "Technical Drawing": (typeof Questions !== "undefined" ? Questions : []),
     "English": (typeof EnglishQuestions !== "undefined" ? EnglishQuestions : []),
     "Maths": (typeof MathsQuestions !== "undefined" ? MathsQuestions : []),
-    "Science": (typeof ScienceQuestions !== "undefined" ? ScienceQuestions : [])
+    "Science": (typeof ScienceQuestions !== "undefined" ? ScienceQuestions : []),
+    "SES": (typeof SESQuestions !== "undefined" ? SESQuestions : [])
   };
   const pool = banks[subject] || [];
   return pool.slice(0, 30).map(q => ({ subject, year: Number(y) || 0, ...q }));

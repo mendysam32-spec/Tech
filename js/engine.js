@@ -9,8 +9,39 @@ let isPaperMode = false;
 let paperYear = null;
 let isTopicMode = false;
 let topicFilter = null;
+let passageFilter = null;
+let noteFilter = null;
+let activePassageTitle = null;
 
 function shuffle(array) { return array.sort(() => Math.random() - 0.5); }
+
+// WASSCE passage rotation: group topic questions by passageId so each
+// practice attempt serves ONE full static passage set.
+function groupByPassage(questions) {
+    const groups = {};
+    const order = [];
+    questions.forEach(q => {
+        const key = q.passageId || "__nopassage__";
+        if (!groups[key]) { groups[key] = []; order.push(key); }
+        groups[key].push(q);
+    });
+    return { groups, order };
+}
+
+function pickPassageSet(questionBank, requestedId) {
+    const { groups, order } = groupByPassage(questionBank);
+    const passageKeys = order.filter(k => k !== "__nopassage__");
+    if (!passageKeys.length) return null;
+    if (requestedId && groups[requestedId]) return { id: requestedId, questions: groups[requestedId] };
+    // Rotate: avoid serving the same passage twice in a row.
+    let last = null;
+    try { last = localStorage.getItem("tm_lastPassage_" + topicFilter); } catch (_) {}
+    let pool = passageKeys.filter(k => k !== last);
+    if (!pool.length) pool = passageKeys.slice();
+    const id = pool[Math.floor(Math.random() * pool.length)];
+    try { localStorage.setItem("tm_lastPassage_" + topicFilter, id); } catch (_) {}
+    return { id, questions: groups[id] };
+}
 
 function topicForQuestion(question) {
     if (question.topic) return question.topic;
@@ -41,6 +72,8 @@ document.addEventListener("DOMContentLoaded", async () => {
     isTopicMode = urlParams.get("mode") === "topic";
     paperYear = urlParams.get("year");
     topicFilter = urlParams.get("topic");
+    passageFilter = urlParams.get("passage");
+    noteFilter = urlParams.get("note");
     const urlSubject = urlParams.get("subject");
 
     // Library past-paper / topic-practice mode: subject/year from URL takes priority
@@ -56,8 +89,6 @@ document.addEventListener("DOMContentLoaded", async () => {
         const moodEl = document.getElementById("quizMood");
         if (moodEl) moodEl.textContent = `${topicFilter} • Practice • Untimed`;
     }
-
-    // Paper mode shows dedicated header / untimed
     if (isPaperMode && paperYear) {
         const moodEl = document.getElementById("quizMood");
         if (moodEl) moodEl.textContent = `Past Paper ${paperYear} • ${selectedSubject} • Untimed`;
@@ -66,7 +97,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
 
     if (!isPaperMode && !Storage.canAccessSubject(quizUser, selectedSubject)) {
-        const firstAllowed = (Storage.filterAllowedSubjects(quizUser, [{ name: "Technical Drawing" }, { name: "English" }, { name: "Maths" }, { name: "Science" }])[0] || {}).name;
+        const firstAllowed = (Storage.filterAllowedSubjects(quizUser, [{ name: "Technical Drawing" }, { name: "English" }, { name: "Maths" }, { name: "Science" }, { name: "SES" }])[0] || {}).name;
         if (firstAllowed) { selectedSubject = firstAllowed; localStorage.setItem("tm_selectedSubject", firstAllowed); }
         else {
             document.querySelector(".glass-card").innerHTML = `<h4>No subjects available</h4><p>Your admin has not given you access to any subjects yet.</p><a href="dashboard.html" class="glass-btn">Back to Dashboard</a>`;
@@ -110,7 +141,8 @@ document.addEventListener("DOMContentLoaded", async () => {
             "Technical Drawing": typeof Questions !== "undefined" ? Questions : [],
             "English": typeof EnglishQuestions !== "undefined" ? EnglishQuestions : [],
             "Maths": typeof MathsQuestions !== "undefined" ? MathsQuestions : [],
-            "Science": typeof ScienceQuestions !== "undefined" ? ScienceQuestions : []
+            "Science": typeof ScienceQuestions !== "undefined" ? ScienceQuestions : [],
+            "SES": typeof SESQuestions !== "undefined" ? SESQuestions : []
         };
         const bankQuestions = localBanks[selectedSubject] || [];
         let baseQuestions = bankQuestions.map(q => ({ subject: selectedSubject, ...q }));
@@ -135,7 +167,8 @@ document.addEventListener("DOMContentLoaded", async () => {
             "Technical Drawing": typeof Questions !== "undefined" ? Questions : [],
             "English": typeof EnglishQuestions !== "undefined" ? EnglishQuestions : [],
             "Maths": typeof MathsQuestions !== "undefined" ? MathsQuestions : [],
-            "Science": typeof ScienceQuestions !== "undefined" ? ScienceQuestions : []
+            "Science": typeof ScienceQuestions !== "undefined" ? ScienceQuestions : [],
+            "SES": typeof SESQuestions !== "undefined" ? SESQuestions : []
         };
         const pool = localBanks[selectedSubject] || [];
         questionBank = pool.slice(0, 20).map(q => ({ subject: selectedSubject, year: Number(paperYear) || 0, ...q }));
@@ -152,11 +185,24 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
 
     if (isTopicMode) {
-        // Topic practice = every question for this book topic, shuffled, untimed
-        selectedQuestions = shuffle([...questionBank]);
+        // Passage topics (Comprehension / Summary): serve ONE full static
+        // passage set per attempt, rotating so each visit brings a new passage.
+        // Other topics: every question for the topic, shuffled, untimed.
+        const pick = pickPassageSet(questionBank, passageFilter);
+        if (pick) {
+            // Keep WASSCE passage order (not shuffled): read Q1..Qn in order,
+            // Next until the last question, then Submit.
+            selectedQuestions = [...pick.questions];
+            activePassageTitle = selectedQuestions[0]?.passageTitle || null;
+        } else {
+            selectedQuestions = shuffle([...questionBank]);
+            activePassageTitle = null;
+        }
         userAnswers = new Array(selectedQuestions.length).fill(null);
         timeLeft = 0;
         updateTimerDisplay();
+        const moodEl = document.getElementById("quizMood");
+        if (moodEl && activePassageTitle) moodEl.textContent = `${topicFilter} • ${activePassageTitle} • Untimed`;
     } else if (isPaperMode) {
         // Paper = full set, original order (not shuffled) to mimic real paper
         selectedQuestions = [...questionBank];
@@ -187,7 +233,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
     if (isTopicMode && topicFilter) {
         const btn = document.getElementById("submitBtn");
-        if (btn) btn.textContent = `Finish ${topicFilter} • Review & Explanations`;
+        if (btn) btn.textContent = activePassageTitle ? `Submit ${activePassageTitle} • Review & Explanations` : `Finish ${topicFilter} • Review & Explanations`;
     }
 });
 
@@ -228,6 +274,39 @@ function escapeHtml(str) {
         .replace(/'/g, "&#39;");
 }
 
+function escapeRegex(str) {
+    return str.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
+// Vocabulary-in-passage: every "meaning as used" word for this passage is
+// shown bold in the theme colour, so learners can spot it while reading.
+// Words are collected from all questions in the current passage set
+// (minimum five per comprehension passage).
+function passageVocabWords(passageId, fallbackWord) {
+    const words = [];
+    try {
+        (selectedQuestions || []).forEach(q => {
+            if (q && q.passageId === passageId && q.targetWord) words.push(q.targetWord);
+        });
+    } catch (_) {}
+    if (!words.length && fallbackWord) words.push(fallbackWord);
+    // longest first so phrases win over single words; de-duplicated
+    return [...new Set(words)].sort((a, b) => b.length - a.length);
+}
+
+function highlightPassageText(passage, words) {
+    let html = escapeHtml(passage);
+    (words || []).forEach(w => {
+        if (!w) return;
+        const needle = escapeRegex(escapeHtml(w));
+        try {
+            const re = new RegExp(`\\b(${needle})\\b`, "gi");
+            html = html.replace(re, `<strong class="passage-vocab">$1</strong>`);
+        } catch (_) {}
+    });
+    return html;
+}
+
 function renderPassage(question) {
     const box = document.getElementById("questionPassage");
     if (!box) return;
@@ -236,7 +315,8 @@ function renderPassage(question) {
         box.style.display = "none";
         return;
     }
-    box.innerHTML = `<div class="passage-label">Passage</div><div class="passage-text">${escapeHtml(question.passage)}</div>`;
+    const words = passageVocabWords(question.passageId, question.targetWord);
+    box.innerHTML = `<div class="passage-label">Passage</div><div class="passage-text">${highlightPassageText(question.passage, words)}</div>`;
     box.style.display = "block";
 }
 
@@ -247,7 +327,17 @@ function renderQuestionText(question) {
 
     if (!split) {
         if (instructionEl) instructionEl.style.display = "none";
-        textEl.textContent = question.question;
+        // Vocabulary-in-context: the tested word stands out bold in theme colour.
+        if (question.targetWord) {
+            const body = escapeHtml(question.question);
+            const escaped = escapeHtml(question.targetWord);
+            const pos = body.indexOf(escaped);
+            textEl.innerHTML = pos !== -1
+                ? body.slice(0, pos) + `<span class="question-target">${escaped}</span>` + body.slice(pos + escaped.length)
+                : body;
+        } else {
+            textEl.textContent = question.question;
+        }
         return;
     }
 
@@ -272,7 +362,7 @@ function renderQuestionText(question) {
 function loadQuestion() {
     const q = selectedQuestions[currentIndex];
     const topic = topicForQuestion(q);
-    document.getElementById("questionNumber").textContent = `Question ${currentIndex + 1} of ${selectedQuestions.length}${isPaperMode && paperYear ? ` • Paper ${paperYear}` : ""}`;
+    document.getElementById("questionNumber").textContent = `Question ${currentIndex + 1} of ${selectedQuestions.length}${isPaperMode && paperYear ? ` • Paper ${paperYear}` : ""}${isTopicMode && activePassageTitle ? ` • ${activePassageTitle}` : ""}`;
     document.getElementById("questionTopic").textContent = `${selectedSubject}${q.year ? ` • ${q.year}` : ""} • ${topic}`;
     renderPassage(q);
     renderQuestionText(q);
@@ -341,7 +431,7 @@ function updateQuizProgress() {
     if (bar) { bar.style.width = percent + "%"; bar.textContent = `${currentIndex + 1}/${selectedQuestions.length}`; }
     if (label) label.textContent = `${answerPercent}% answered`;
     if (mood) {
-        if (isTopicMode && topicFilter) mood.textContent = `${topicFilter} • ${answerPercent}% answered • Untimed`;
+        if (isTopicMode && topicFilter) mood.textContent = activePassageTitle ? `${topicFilter} • ${activePassageTitle} • ${answerPercent}% answered • Untimed` : `${topicFilter} • ${answerPercent}% answered • Untimed`;
         else if (isPaperMode) mood.textContent = paperYear ? `Paper ${paperYear} • ${answerPercent}% answered • Untimed` : `${answerPercent}% answered • Untimed`;
         else mood.textContent = answerPercent >= 100 ? "Ready to submit like a legend" : answered >= selectedQuestions.length / 2 ? "Keep attacking the questions" : "Monster Arena Live";
     }
@@ -395,6 +485,9 @@ async function submitQuiz() {
             subject: selectedSubject,
             year: paperYear,
             topic: topicFilter,
+            note: noteFilter || null,
+            passage: selectedQuestions[0]?.passageId || passageFilter || null,
+            passageTitle: activePassageTitle || null,
             score: percentage,
             at: Date.now()
         }

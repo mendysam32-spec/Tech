@@ -170,6 +170,51 @@
     if (user && user.profile && user.profile.accent) document.body.dataset.accent = user.profile.accent;
   }
 
+  // Chapter return links for post-quiz navigation (result.html + review.html).
+  // Works for every Library subject: given the quiz meta, resolve the exact
+  // chapter just practised (via ?note= id when present, else title match)
+  // and the next chapter in the same grade so learners keep reading.
+  function flatBookTopics(book) {
+    const out = [];
+    (book || []).forEach(g => {
+      const seq = [];
+      (g.themes || []).forEach(th => (th.topics || []).forEach(t => {
+        seq.push(t);
+        out.push({ grade: g, topic: t, seq });
+      }));
+    });
+    return out;
+  }
+  window.tmChapterLinks = function (subject, topicTitle, noteId) {
+    try {
+      const books = {
+        English: (typeof window !== "undefined" && window.englishBook) || null,
+        SES: (typeof window !== "undefined" && window.sesBook) || null,
+        Science: (typeof window !== "undefined" && window.scienceBook) || null
+      };
+      const book = books[subject];
+      if (book) {
+        const flat = flatBookTopics(book);
+        let found = noteId ? flat.find(x => x.topic.id === noteId) : null;
+        if (!found && topicTitle) found = flat.find(x => x.topic.title === topicTitle);
+        if (found) {
+          const seq = found.seq;
+          const i = seq.findIndex(t => t.id === found.topic.id);
+          const nxt = i >= 0 ? seq[i + 1] : null;
+          return {
+            backUrl: `library.html?note=${encodeURIComponent(found.topic.id)}`,
+            backLabel: `📖 Back to ${found.topic.title}`,
+            nextUrl: nxt ? `library.html?note=${encodeURIComponent(nxt.id)}` : null,
+            nextLabel: nxt ? `Next: ${nxt.title} →` : null
+          };
+        }
+      }
+      if (subject === "Maths") return { backUrl: "library.html", backLabel: "📖 Back to Maths notes", nextUrl: null, nextLabel: null };
+      if (subject) return { backUrl: "library.html", backLabel: "📖 Back to Library notes", nextUrl: null, nextLabel: null };
+      return {};
+    } catch (_) { return {}; }
+  };
+
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", inject);
   else inject();
 })();

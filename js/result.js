@@ -38,6 +38,7 @@ document.addEventListener("DOMContentLoaded", () => {
     renderAvatarUnlockMessage();
     renderResultBadges(user);
     renderResultFocus(user);
+    renderReturnToChapter();
 });
 
 const LEGEND_PRAISE = {
@@ -288,6 +289,49 @@ function renderResultFocus(user) {
         `Next best practice area${subject ? ` in ${subject}` : ""}: ${summary.focus}.`;
 }
 
+
+function renderReturnToChapter() {
+    const btn = document.getElementById("chapterReturnBtn");
+    const nextBtn = document.getElementById("nextChapterBtn");
+    let meta = null;
+    try { meta = JSON.parse(localStorage.getItem("tm_review") || "null")?.meta || null; } catch (_) {}
+    if (!meta || meta.mode !== "topic" || !meta.topic) {
+        if (btn) btn.style.display = "none";
+        if (nextBtn) nextBtn.style.display = "none";
+        return;
+    }
+    // Exact chapter + next chapter for every Library subject.
+    let links = null;
+    try { links = (typeof window.tmChapterLinks === "function") ? window.tmChapterLinks(meta.subject, meta.topic, meta.note) : null; } catch (_) { links = null; }
+    if (!links || !links.backUrl) {
+        // Legacy English-only fallback when book data is unavailable.
+        let url = "library.html";
+        try {
+            const book = (typeof window !== "undefined" && window.englishBook) || [];
+            if ((meta.subject || "") === "English") {
+                const flat = [];
+                book.forEach(g => (g.themes || []).forEach(th => (th.topics || []).forEach(t => flat.push(t))));
+                const found = flat.find(t => t.title === meta.topic);
+                if (found) url = `library.html?note=${encodeURIComponent(found.id)}`;
+            }
+        } catch (_) {}
+        links = { backUrl: url, backLabel: `📖 Back to ${meta.topic}`, nextUrl: null, nextLabel: null };
+    }
+    if (btn) {
+        btn.style.display = "inline-block";
+        btn.href = links.backUrl;
+        btn.textContent = links.backLabel || `📖 Back to ${meta.topic}`;
+    }
+    if (nextBtn) {
+        if (links.nextUrl) {
+            nextBtn.style.display = "inline-block";
+            nextBtn.href = links.nextUrl;
+            nextBtn.textContent = links.nextLabel || "Next chapter →";
+        } else {
+            nextBtn.style.display = "none";
+        }
+    }
+}
 
 function renderAvatarUnlockMessage() {
     const box = document.getElementById("avatarUnlockMessage");
