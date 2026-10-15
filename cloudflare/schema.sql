@@ -113,6 +113,9 @@ VALUES ('maths', 'Maths', datetime('now'), datetime('now'));
 INSERT OR IGNORE INTO subjects (id, name, created_at, updated_at)
 VALUES ('science', 'Science', datetime('now'), datetime('now'));
 
+INSERT OR IGNORE INTO subjects (id, name, created_at, updated_at)
+VALUES ('ses', 'SES', datetime('now'), datetime('now'));
+
 
 -- GradeUP-style control center tables
 -- Tech Monster GradeUP-style upgrade: events, assignments, avatar rewards

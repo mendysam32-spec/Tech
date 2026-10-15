@@ -14,6 +14,7 @@ wrangler d1 execute YOUR_DATABASE_NAME --file=cloudflare/upgrade_monster_gradeup
 wrangler d1 execute YOUR_DATABASE_NAME --file=cloudflare/upgrade_final_avatar_diagrams.sql
 wrangler d1 execute YOUR_DATABASE_NAME --file=cloudflare/upgrade_student_access.sql
 wrangler d1 execute YOUR_DATABASE_NAME --file=cloudflare/upgrade_admin_recovery.sql
+wrangler d1 execute YOUR_DATABASE_NAME --file=cloudflare/upgrade_ses_subject.sql
 ```
 
 6. Set secrets in Cloudflare Pages:

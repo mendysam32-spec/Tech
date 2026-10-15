@@ -540,7 +540,7 @@ function sesShelfView() {
             <span class="closet-badge">🌍 SES Book</span>
             <div>
                 <h5 class="mb-0">The SES Book</h5>
-                <p class="mb-0 small opacity-75">${sesTotalTopics()} topics • Grades 7 and 8 open • Grade 9 coming soon — open a shelf to start reading</p>
+                <p class="mb-0 small opacity-75">${sesTotalTopics()} topics • Grades 7, 8 and 9 • Open a shelf to start reading</p>
             </div>
         </div>
         <div class="closet-doors">

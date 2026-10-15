@@ -187,6 +187,5 @@ const SESQuestions = [
   { topic: "Weather, Climate and Environment", question: "Daily condition of the air is", image: "", options: ["weather", "climate", "season", "soil"], correct: 0, explanation: "Weather daily; climate 30-year average." },
   { topic: "Weather, Climate and Environment", question: "Rainfall is measured with a", image: "", options: ["rain gauge", "thermometer", "barometer", "ruler"], correct: 0, explanation: "Rain gauge mm; thermometer temperature; barometer pressure." },
   { topic: "Weather, Climate and Environment", question: "The rainy season in The Gambia is", image: "", options: ["June to October", "November to May", "January to March", "December only"], correct: 0, explanation: "Dry Nov–May with harmattan." },
-  { topic: "Weather, Climate and Environment", question: "The River Gambia takes its source from", image: "", options: ["Fouta Djallon", "Mount Everest", "River Nile", "Lake Chad"], correct: 0, explanation: "Fouta Djallon, mouth Atlantic." },
-  { topic: "Grade 9 Topics Coming Soon", question: "Grade 9 SES shelf is currently", image: "", options: ["awaiting notes — revise Grades 7–8", "deleted forever", "for maths only", "closed to students"], correct: 0, explanation: "Paste Grade 9 notes to unlock; keep revising 7–8." }
+  { topic: "Weather, Climate and Environment", question: "The River Gambia takes its source from", image: "", options: ["Fouta Djallon", "Mount Everest", "River Nile", "Lake Chad"], correct: 0, explanation: "Fouta Djallon, mouth Atlantic." }
 ];
