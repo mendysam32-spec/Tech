@@ -1,4 +1,4 @@
-const CACHE_VERSION = "v2";
+const CACHE_VERSION = "v3";
 const CACHE_NAME = `tech-monster-shell-${CACHE_VERSION}`;
 const DATA_CACHE_NAME = `tech-monster-data-${CACHE_VERSION}`;
 const API_PREFIX = "/api/";
@@ -184,7 +184,28 @@ async function navigationResponse(event) {
   }
 }
 
+// App code (html/js/css) must always be the latest build, otherwise a
+// deploy can leave students on stale UI. Network-first, cache as fallback.
+// Large static data/images stay stale-while-revalidate for speed.
+const APP_CODE = /\.(?:html?|js|css)$/i;
+
 async function assetResponse(event) {
+  const path = normalizeUrl(event.request.url);
+
+  if (APP_CODE.test(path)) {
+    try {
+      const response = await fetch(event.request);
+      if (response && response.ok) {
+        keepAlive(event, writeToCache(CACHE_NAME, event.request, response.clone()));
+      }
+      return response;
+    } catch (_) {
+      const cached = await caches.match(event.request);
+      if (cached) return cached;
+      return new Response("", { status: 503 });
+    }
+  }
+
   const cached = await caches.match(event.request);
   const network = fetch(event.request).then((response) => {
     if (response && response.ok && event.request.method === "GET") {
@@ -193,7 +214,7 @@ async function assetResponse(event) {
     return response;
   }).catch(() => null);
   if (cached) {
-    event.waitUntil(network);
+    keepAlive(event, network);
     return cached;
   }
   const fresh = await network;
