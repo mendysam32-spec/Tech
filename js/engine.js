@@ -12,11 +12,16 @@ let topicFilter = null;
 let passageFilter = null;
 let noteFilter = null;
 let activePassageTitle = null;
+let activePassageTitles = [];
 
 function shuffle(array) { return array.sort(() => Math.random() - 0.5); }
 
-// WASSCE passage rotation: group topic questions by passageId so each
-// practice attempt serves ONE full static passage set.
+// English rule: every quiz attempt must contain at least this many DIFFERENT
+// passages, so a learner always practises on varied reading material.
+const MIN_ENGLISH_PASSAGES = 3;
+
+// WASSCE passage rotation: group questions by passageId so each practice
+// attempt serves full static passage sets.
 function groupByPassage(questions) {
     const groups = {};
     const order = [];
@@ -28,19 +33,82 @@ function groupByPassage(questions) {
     return { groups, order };
 }
 
-function pickPassageSet(questionBank, requestedId) {
+// Choose N distinct passage ids, rotating so consecutive attempts differ.
+function choosePassageIds(passageKeys, count, storageKey) {
+    const chosen = [];
+    if (!passageKeys.length) return chosen;
+    let last = [];
+    try { last = JSON.parse(localStorage.getItem(storageKey) || "[]"); } catch (_) {}
+    const fresh = passageKeys.filter(k => last.indexOf(k) === -1);
+    const repeat = passageKeys.filter(k => last.indexOf(k) !== -1);
+    fresh.concat(repeat).forEach(k => {
+        if (chosen.length >= count) return;
+        if (chosen.indexOf(k) === -1) chosen.push(k);
+    });
+    return chosen;
+}
+
+// Topic mode (Comprehension / Summary): serve MIN_ENGLISH_PASSAGES full
+// passage sets per attempt, each kept in WASSCE order (Q1..Qn, then the
+// next passage), so the reading flows like a real paper.
+function pickPassageSets(questionBank, requestedId) {
     const { groups, order } = groupByPassage(questionBank);
     const passageKeys = order.filter(k => k !== "__nopassage__");
     if (!passageKeys.length) return null;
-    if (requestedId && groups[requestedId]) return { id: requestedId, questions: groups[requestedId] };
-    // Rotate: avoid serving the same passage twice in a row.
-    let last = null;
-    try { last = localStorage.getItem("tm_lastPassage_" + topicFilter); } catch (_) {}
-    let pool = passageKeys.filter(k => k !== last);
-    if (!pool.length) pool = passageKeys.slice();
-    const id = pool[Math.floor(Math.random() * pool.length)];
-    try { localStorage.setItem("tm_lastPassage_" + topicFilter, id); } catch (_) {}
-    return { id, questions: groups[id] };
+    const storageKey = "tm_lastPassages_" + topicFilter;
+
+    const ids = [];
+    // A specific passage was requested: keep it first, then top up so the
+    // attempt still carries the full minimum of passages.
+    if (requestedId && groups[requestedId]) ids.push(requestedId);
+    const fillers = choosePassageIds(
+        passageKeys.filter(k => ids.indexOf(k) === -1),
+        Math.max(0, MIN_ENGLISH_PASSAGES - ids.length),
+        storageKey
+    );
+    ids.push(...fillers);
+
+    const questions = [];
+    const titles = [];
+    ids.forEach(id => {
+        groups[id].forEach(q => questions.push(q));
+        titles.push(groups[id][0]?.passageTitle || id);
+    });
+    try { localStorage.setItem(storageKey, JSON.stringify(ids)); } catch (_) {}
+    return { ids, questions, titles };
+}
+
+// Mixed English quiz (normal quiz and exam prep): guarantee the attempt
+// carries at least MIN_ENGLISH_PASSAGES different passages.
+function selectEnglishQuestions(bank, count, storageKey) {
+    const { groups, order } = groupByPassage(bank);
+    const passageKeys = order.filter(k => k !== "__nopassage__");
+    if (passageKeys.length < MIN_ENGLISH_PASSAGES) {
+        return shuffle([...bank]).slice(0, count);
+    }
+    const ids = choosePassageIds(passageKeys, MIN_ENGLISH_PASSAGES, storageKey);
+    // Keep each seeded passage's questions together, but only a share of the
+    // attempt so the rest of the paper still covers other topics.
+    const perPassage = Math.max(1, Math.min(4, Math.floor(count / (ids.length * 2))));
+    const seeded = [];
+    ids.forEach(id => { groups[id].slice(0, perPassage).forEach(q => seeded.push(q)); });
+    const seededSet = new Set(seeded);
+    const rest = shuffle(bank.filter(q => !seededSet.has(q)));
+    try { localStorage.setItem(storageKey, JSON.stringify(ids)); } catch (_) {}
+    return seeded.concat(rest).slice(0, count);
+}
+
+// Distinct passages actually served in the current attempt, in order.
+function attemptPassageInfo() {
+    const ids = [];
+    selectedQuestions.forEach(q => {
+        if (q.passageId && ids.indexOf(q.passageId) === -1) ids.push(q.passageId);
+    });
+    const titles = ids.map(id => {
+        const first = selectedQuestions.find(q => q.passageId === id);
+        return (first && first.passageTitle) || id;
+    });
+    return { ids, titles };
 }
 
 function topicForQuestion(question) {
@@ -198,7 +266,9 @@ document.addEventListener("DOMContentLoaded", async () => {
             document.getElementById("timer").textContent = "No exam";
             return;
         }
-        selectedQuestions = shuffle([...questionBank]).slice(0, 60);
+        selectedQuestions = selectedSubject === "English"
+            ? selectEnglishQuestions(questionBank, 60, "tm_lastPassages_exam_prep")
+            : shuffle([...questionBank]).slice(0, 60);
         userAnswers = new Array(selectedQuestions.length).fill(null);
         // 90 seconds per question (WAEC-style objective pacing)
         timeLeft = selectedQuestions.length * 90;
@@ -240,24 +310,31 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
 
     if (isTopicMode) {
-        // Passage topics (Comprehension / Summary): serve ONE full static
-        // passage set per attempt, rotating so each visit brings a new passage.
-        // Other topics: every question for the topic, shuffled, untimed.
-        const pick = pickPassageSet(questionBank, passageFilter);
+        // Passage topics (Comprehension / Summary): serve at least
+        // MIN_ENGLISH_PASSAGES full static passage sets per attempt, rotating
+        // so each visit brings new passages. Other topics: every question for
+        // the topic, shuffled, untimed.
+        const pick = pickPassageSets(questionBank, passageFilter);
         if (pick) {
-            // Keep WASSCE passage order (not shuffled): read Q1..Qn in order,
-            // Next until the last question, then Submit.
+            // Keep WASSCE passage order (not shuffled): read Q1..Qn of each
+            // passage in turn, then Submit.
             selectedQuestions = [...pick.questions];
-            activePassageTitle = selectedQuestions[0]?.passageTitle || null;
+            activePassageTitle = pick.titles[0] || null;
+            activePassageTitles = pick.titles.slice();
         } else {
             selectedQuestions = shuffle([...questionBank]);
             activePassageTitle = null;
+            activePassageTitles = [];
         }
         userAnswers = new Array(selectedQuestions.length).fill(null);
         timeLeft = 0;
         updateTimerDisplay();
         const moodEl = document.getElementById("quizMood");
-        if (moodEl && activePassageTitle) moodEl.textContent = `${topicFilter} • ${activePassageTitle} • Untimed`;
+        if (moodEl && activePassageTitle) {
+            moodEl.textContent = activePassageTitles.length > 1
+                ? `${topicFilter} • ${activePassageTitles.length} passages • Untimed`
+                : `${topicFilter} • ${activePassageTitle} • Untimed`;
+        }
     } else if (isPaperMode) {
         // Paper = full set, original order (not shuffled) to mimic real paper
         selectedQuestions = [...questionBank];
@@ -270,7 +347,9 @@ document.addEventListener("DOMContentLoaded", async () => {
         if (bar) { /* width updated via updateQuizProgress */ }
     } else {
         const questionCount = Math.max(1, Math.min(Number(profile.quizLength || 15), questionBank.length));
-        selectedQuestions = shuffle([...questionBank]).slice(0, questionCount);
+        selectedQuestions = selectedSubject === "English"
+            ? selectEnglishQuestions(questionBank, questionCount, "tm_lastPassages_mixed")
+            : shuffle([...questionBank]).slice(0, questionCount);
         userAnswers = new Array(selectedQuestions.length).fill(null);
         timeLeft = timerSeconds(profile.timerMode);
         updateTimerDisplay();
@@ -288,7 +367,9 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
     if (isTopicMode && topicFilter) {
         const btn = document.getElementById("submitBtn");
-        if (btn) btn.textContent = activePassageTitle ? `Submit ${activePassageTitle} • Review & Explanations` : `Finish ${topicFilter} • Review & Explanations`;
+        if (btn) btn.textContent = activePassageTitles.length > 1
+        ? `Submit ${activePassageTitles.length} Passages • Review & Explanations`
+        : activePassageTitle ? `Submit ${activePassageTitle} • Review & Explanations` : `Finish ${topicFilter} • Review & Explanations`;
     }
 });
 
@@ -437,7 +518,10 @@ function renderQuestionText(question) {
 function loadQuestion() {
     const q = selectedQuestions[currentIndex];
     const topic = topicForQuestion(q);
-    document.getElementById("questionNumber").textContent = `Question ${currentIndex + 1} of ${selectedQuestions.length}${isPaperMode && paperYear ? ` • Paper ${paperYear}` : ""}${isTopicMode && activePassageTitle ? ` • ${activePassageTitle}` : ""}`;
+    const passageLabel = activePassageTitles.length > 1
+        ? (q.passageTitle || activePassageTitle)
+        : activePassageTitle;
+    document.getElementById("questionNumber").textContent = `Question ${currentIndex + 1} of ${selectedQuestions.length}${isPaperMode && paperYear ? ` • Paper ${paperYear}` : ""}${isTopicMode && passageLabel ? ` • ${passageLabel}` : ""}`;
     document.getElementById("questionTopic").textContent = `${selectedSubject}${q.year ? ` • ${q.year}` : ""} • ${topic}`;
     renderPassage(q);
     renderQuestionText(q);
@@ -507,7 +591,9 @@ function updateQuizProgress() {
     if (label) label.textContent = `${answerPercent}% answered`;
     if (mood) {
         if (isExamPrep) mood.textContent = `🎯 WAEC Exam Prep • ${selectedSubject} • ${answerPercent}% answered • Timed`;
-        else if (isTopicMode && topicFilter) mood.textContent = activePassageTitle ? `${topicFilter} • ${activePassageTitle} • ${answerPercent}% answered • Untimed` : `${topicFilter} • ${answerPercent}% answered • Untimed`;
+        else if (isTopicMode && topicFilter) mood.textContent = activePassageTitles.length > 1
+            ? `${topicFilter} • ${activePassageTitles.length} passages • ${answerPercent}% answered • Untimed`
+            : activePassageTitle ? `${topicFilter} • ${activePassageTitle} • ${answerPercent}% answered • Untimed` : `${topicFilter} • ${answerPercent}% answered • Untimed`;
         else if (isPaperMode) mood.textContent = paperYear ? `Paper ${paperYear} • ${answerPercent}% answered • Untimed` : `${answerPercent}% answered • Untimed`;
         else mood.textContent = answerPercent >= 100 ? "Ready to submit like a legend" : answered >= selectedQuestions.length / 2 ? "Keep attacking the questions" : "Monster Arena Live";
     }
@@ -560,6 +646,7 @@ async function submitQuiz() {
         localStorage.removeItem("tm_lastPaper");
     }
     await updateUserStats(percentage, topicResults);
+    const attemptPassages = attemptPassageInfo();
     localStorage.setItem("tm_review", JSON.stringify({
         questions: selectedQuestions.map(q => ({ ...q, topic: topicForQuestion(q) })),
         userAnswers,
@@ -569,8 +656,10 @@ async function submitQuiz() {
             year: paperYear,
             topic: topicFilter,
             note: noteFilter || null,
-            passage: selectedQuestions[0]?.passageId || passageFilter || null,
-            passageTitle: activePassageTitle || null,
+            passage: attemptPassages.ids[0] || passageFilter || null,
+            passageTitle: attemptPassages.titles[0] || activePassageTitle || null,
+            passageTitles: attemptPassages.titles,
+            passageCount: attemptPassages.titles.length,
             score: percentage,
             at: Date.now()
         }

@@ -970,8 +970,8 @@ function englishPassagePickerCard(title, topicId) {
     <div class="study-card passage-picker">
         <div class="study-content">
             <p class="mini-label">📚 Passage sets • ${sets.length} available</p>
-            <h4>Choose your passage — or let Practice rotate</h4>
-            <p class="small opacity-75">Tap <strong>Practice</strong> for a surprise passage (it changes every visit), or start directly with one below. Each set shows its static passage on every question.</p>
+            <h4>Choose your passage — every attempt serves 3</h4>
+            <p class="small opacity-75">Tap <strong>Practice</strong> for a surprise set of passages (they change every visit), or start directly with one below. Every attempt gives you at least <strong>3 passages</strong>, and each set shows its static passage on every question.</p>
             <div class="d-flex flex-wrap gap-2">${links}</div>
         </div>
     </div>`;
