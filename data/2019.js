@@ -3,10 +3,11 @@
 // Reference: GABECE/TD/2019. Transcribed verbatim from the official paper.
 //
 // Diagram handling: the official paper prints 16 questions against a figure.
-// In this app quiz.html renders #questionImage ABOVE #questionText, so the
-// paper's "the diagram below" is worded "above" here, matching data/2015.js.
+// The quiz no longer renders question images (diagrams live in the Notes area
+// only), so the paper's "the diagram below" is worded "above" here, matching
+// data/2015.js.
 // Figures are referenced as images/2019/qN.png and are supplied separately;
-// drop the extracted PNGs into images/2019/ to activate them.
+// drop the extracted PNGs into images/2019/ to activate them in the Notes area.
 //
 // Q34 and Q35 share one figure, so both point at q34.png (same pattern as
 // data/2026.js q36.png).

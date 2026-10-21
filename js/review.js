@@ -122,7 +122,7 @@ document.addEventListener("DOMContentLoaded", () => {
             `;
         });
 
-        const img = q.image ? `<div class="text-center mb-3"><img src="${esc(q.image)}" class="img-fluid rounded" style="max-height:260px;" alt="Question diagram" onerror="this.style.display='none'"></div>` : "";
+        // Question diagrams are shown in the Notes/Library area only.
 
         let passageHTML = "";
         if (q.passage) {
@@ -147,7 +147,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 </div>
                 <p class="mb-3">${highlightTarget(q.question, q.targetWord)}</p>
                 ${passageHTML}
-                ${img}
                 ${optionsHTML}
                 <p class="mb-0">${answered}</p>
 

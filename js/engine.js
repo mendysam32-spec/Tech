@@ -335,10 +335,6 @@ function escapeRegex(str) {
 
 function isOffline() { return navigator.onLine === false; }
 
-function subjectSlug(subject) {
-    return String(subject || "").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "") || "general";
-}
-
 function partLabelHtml(text, keywords) {
     if (!keywords || !keywords.length) return text;
     let html = text;
@@ -351,25 +347,6 @@ function partLabelHtml(text, keywords) {
         } catch (_) {}
     });
     return html;
-}
-
-function renderQuestionImage(imageUrl, suggestedPath) {
-    const container = document.getElementById("questionImage");
-    if (!container) return;
-    container.style.display = "block";
-    if (!imageUrl || imageUrl.trim() === "") {
-        container.innerHTML = `<div class="tm-sci-placeholder"><div class="tm-sci-emoji">🖼️</div><div class="tm-sci-path">${escapeHtml(suggestedPath)}</div><div class="tm-sci-hint">No image set — add your diagram at this path.</div></div>`;
-        return;
-    }
-    const img = document.createElement("img");
-    img.className = "img-fluid rounded shadow";
-    img.style.maxHeight = "300px";
-    img.alt = "Question image";
-    img.src = imageUrl;
-    img.onerror = () => {
-        container.innerHTML = `<div class="tm-sci-placeholder"><div class="tm-sci-emoji">🖼️</div><div class="tm-sci-path">${escapeHtml(suggestedPath)}</div><div class="tm-sci-hint">Add your diagram image at this path.</div></div>`;
-    };
-    container.appendChild(img);
 }
 
 // Vocabulary-in-passage: every "meaning as used" word for this passage is
@@ -466,8 +443,13 @@ function loadQuestion() {
     renderQuestionText(q);
     updateQuizProgress();
 
-    const suggestedPath = `images/${subjectSlug(selectedSubject)}/${subjectSlug(topic)}/q${currentIndex + 1}.png`;
-    renderQuestionImage(q.image, suggestedPath);
+    // Question diagrams live in the Notes/Library area only, so the quiz
+    // shows no image container at all.
+    const imageContainer = document.getElementById("questionImage");
+    if (imageContainer) {
+        imageContainer.innerHTML = "";
+        imageContainer.style.display = "none";
+    }
 
     const feedback = document.getElementById("instantFeedback");
     feedback.textContent = "";
