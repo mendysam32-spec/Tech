@@ -524,7 +524,8 @@ function updateQuizProgress() {
     if (bar) { bar.style.width = percent + "%"; bar.textContent = `${currentIndex + 1}/${selectedQuestions.length}`; }
     if (label) label.textContent = `${answerPercent}% answered`;
     if (mood) {
-        if (isTopicMode && topicFilter) mood.textContent = activePassageTitle ? `${topicFilter} • ${activePassageTitle} • ${answerPercent}% answered • Untimed` : `${topicFilter} • ${answerPercent}% answered • Untimed`;
+        if (isExamPrep) mood.textContent = `🎯 WAEC Exam Prep • ${selectedSubject} • ${answerPercent}% answered • Timed`;
+        else if (isTopicMode && topicFilter) mood.textContent = activePassageTitle ? `${topicFilter} • ${activePassageTitle} • ${answerPercent}% answered • Untimed` : `${topicFilter} • ${answerPercent}% answered • Untimed`;
         else if (isPaperMode) mood.textContent = paperYear ? `Paper ${paperYear} • ${answerPercent}% answered • Untimed` : `${answerPercent}% answered • Untimed`;
         else mood.textContent = answerPercent >= 100 ? "Ready to submit like a legend" : answered >= selectedQuestions.length / 2 ? "Keep attacking the questions" : "Monster Arena Live";
     }
