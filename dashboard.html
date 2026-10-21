@@ -89,6 +89,21 @@
         </div>
 
         <div class="col-lg-4">
+            <div class="glass-card p-4 h-100 exam-prep-card">
+                <h5>Prepare for Exam <span id="examPrepLockBadge" class="badge bg-warning text-dark ms-2" style="font-size:0.75rem;">Locked</span></h5>
+                <p class="small mb-3">Unlock a full timed WAEC-style exam simulation for <span id="examPrepSubject"></span> using gold coins earned from quizzes.</p>
+                <div id="examPrepLocked" class="text-center mb-3">
+                    <div class="d-flex justify-content-center gap-2 flex-wrap mb-2" id="examPrepCoinOptions"></div>
+                    <p class="small text-muted mb-0">Coins: <strong id="examPrepCoins">0</strong></p>
+                </div>
+                <div id="examPrepUnlocked" style="display:none;" class="text-center">
+                    <button id="startExamPrepBtn" class="glass-btn">✏️ Start Exam Prep</button>
+                    <p class="small text-success mt-2" id="examPrepExpiry"></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-4">
             <div class="glass-card p-4 h-100">
                 <h5>Learning Radar</h5>
                 <p>Strongest: <strong id="strongestTopic"></strong></p>

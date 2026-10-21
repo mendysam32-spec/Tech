@@ -3966,5 +3966,579 @@ const EnglishQuestions = [
   "options": ["slightly pleased", "angry", "mildly surprised", "extremely happy"],
   "correct": 3,
   "explanation": "Overjoyed means extremely happy."
+},
+// ============================================================
+// EXPANSION: WAEC English Language — full syllabus question bank
+// ============================================================
+
+{
+  "topic": "Nouns",
+  "question": "Which of the following is an abstract noun?",
+  "image": "",
+  "options": ["table", "freedom", "book", "teacher"],
+  "correct": 1,
+  "explanation": "Freedom cannot be perceived by the senses; it is an abstract noun."
+},
+{
+  "topic": "Nouns",
+  "question": "The plural of 'criterion' is ____.",
+  "image": "",
+  "options": ["criterions", "criterias", "criteria", "criterion"],
+  "correct": 2,
+  "explanation": "Criterion is a Greek-derived noun; its plural is criteria."
+},
+{
+  "topic": "Nouns",
+  "question": "Which noun is uncountable?",
+  "image": "",
+  "options": ["chair", "information", "cup", "student"],
+  "correct": 1,
+  "explanation": "Information is uncountable and has no plural form."
+},
+{
+  "topic": "Nouns",
+  "question": "A group of ships is called a ____.",
+  "image": "",
+  "options": ["flock", "fleet", "crowd", "team"],
+  "correct": 1,
+  "explanation": "Fleet is the collective noun for ships."
+},
+{
+  "topic": "Pronouns",
+  "question": "Between you and ____, I trust no one.",
+  "image": "",
+  "options": ["I", "me", "myself", "mine"],
+  "correct": 1,
+  "explanation": "After the preposition 'between', use the object pronoun 'me'."
+},
+{
+  "topic": "Pronouns",
+  "question": "The teacher praised John and ____.",
+  "image": "",
+  "options": ["I", "me", "myself", "mine"],
+  "correct": 1,
+  "explanation": 'As the object of the verb "praised", use the object pronoun "me".'
+},
+{
+  "topic": "Pronouns",
+  "question": "Everyone ____ submitted his or her assignment.",
+  "image": "",
+  "options": ["have", "has", "were", "are"],
+  "correct": 1,
+  "explanation": "Everyone is an indefinite pronoun and takes a singular verb."
+},
+{
+  "topic": "Determiners",
+  "question": "____ water is essential for life.",
+  "image": "",
+  "options": ["The", "A", "An", "No article"],
+  "correct": 0,
+  "explanation": "Use the definite article 'the' for water in a specific/general truth sense; no article also works but 'the' is best here among the choices for a specific statement."
+},
+{
+  "topic": "Determiners",
+  "question": "I have ____ friends in Lagos.",
+  "image": "",
+  "options": ["little", "a little", "few", "a few"],
+  "correct": 3,
+  "explanation": "'Friends' is countable; 'a few' means some (positive). 'Few' would mean hardly any (negative)."
+},
+{
+  "topic": "Determiners",
+  "question": "There is ____ milk left in the jug.",
+  "image": "",
+  "options": ["many", "few", "a little", "several"],
+  "correct": 2,
+  "explanation": "'Milk' is uncountable; 'a little' means some (positive)."
+},
+{
+  "topic": "Verbs",
+  "question": "She ____ to school every day.",
+  "image": "",
+  "options": ["go", "goes", "going", "went"],
+  "correct": 1,
+  "explanation": "Third-person singular subject 'she' takes the verb with -s: goes."
+},
+{
+  "topic": "Verbs",
+  "question": "The baby ____ all night.",
+  "image": "",
+  "options": ["sleep", "sleeps", "sleeping", "slept"],
+  "correct": 1,
+  "explanation": "Third-person singular subject 'baby' takes 'sleeps'."
+},
+{
+  "topic": "Verbs",
+  "question": "Which verb is transitive?",
+  "image": "",
+  "options": ["arrive", "sleep", "kill", "die"],
+  "correct": 2,
+  "explanation": "'Kill' takes a direct object (e.g., kill a snake); the others are intransitive."
+},
+{
+  "topic": "Adverbs",
+  "question": "She sings ____.",
+  "image": "",
+  "options": ["beautiful", "beautifully", "beauty", "more beautiful"],
+  "correct": 1,
+  "explanation": "The verb 'sings' is modified by the adverb 'beautifully'."
+},
+{
+  "topic": "Adverbs",
+  "question": "He always ____ early.",
+  "image": "",
+  "options": ["come", "comes", "coming", "came"],
+  "correct": 1,
+  "explanation": "Adverb of frequency 'always' goes with the present simple 'comes'."
+},
+{
+  "topic": "The Adjective",
+  "question": "Which is the correct superlative of 'good'?",
+  "image": "",
+  "options": ["goodest", "best", "most good", "better"],
+  "correct": 1,
+  "explanation": "Good → better → best is the irregular comparison."
+},
+{
+  "topic": "The Adjective",
+  "question": "She is ____ than her sister.",
+  "image": "",
+  "options": ["more tall", "taller", "tallest", "the tallest"],
+  "correct": 1,
+  "explanation": "Comparative of 'tall' is 'taller'; used with 'than'."
+},
+{
+  "topic": "Simple Sentences",
+  "question": "Which is a simple sentence?",
+  "image": "",
+  "options": ["The bell rang and the students entered.", "The bell rang.", "Because the bell rang, the students entered.", "The bell rang, yet the students stayed."],
+  "correct": 1,
+  "explanation": "'The bell rang' has one subject and one predicate — one independent clause."
+},
+{
+  "topic": "Simple Sentences",
+  "question": "John and Mary sang and danced. This sentence is ____.",
+  "image": "",
+  "options": ["simple", "compound", "complex", "compound-complex"],
+  "correct": 0,
+  "explanation": "It has a compound subject and compound predicate but only one independent clause, so it is simple."
+},
+{
+  "topic": "Tenses Forms",
+  "question": "By next week, she ____ her degree.",
+  "image": "",
+  "options": ["will complete", "will have completed", "completes", "has completed"],
+  "correct": 1,
+  "explanation": "Future perfect: action completed before a future time — 'will have completed'."
+},
+{
+  "topic": "Tenses Forms",
+  "question": "He ____ since 6 a.m.",
+  "image": "",
+  "options": ["sleeps", "has been sleeping", "slept", "will sleep"],
+  "correct": 1,
+  "explanation": "Present perfect continuous emphasizes duration from past to present."
+},
+{
+  "topic": "Tenses Forms",
+  "question": "The train ____ before I arrived.",
+  "image": "",
+  "options": ["leaves", "has left", "had left", "will leave"],
+  "correct": 2,
+  "explanation": "Past perfect: action completed before another past action — 'had left'."
+},
+{
+  "topic": "Active and Passive Voice",
+  "question": "Change to passive: The thief stole the bicycle.",
+  "image": "",
+  "options": ["The bicycle stole the thief.", "The bicycle was stolen by the thief.", "The thief was stolen by the bicycle.", "The bicycle is stolen."],
+  "correct": 1,
+  "explanation": "Object 'bicycle' + was + past participle 'stolen' + by + doer."
+},
+{
+  "topic": "Active and Passive Voice",
+  "question": "Which sentence is in the passive voice?",
+  "image": "",
+  "options": ["The farmer planted maize.", "Maize was planted by the farmer.", "The children played football.", "She writes letters."],
+  "correct": 1,
+  "explanation": "The subject 'maize' receives the action — passive voice."
+},
+{
+  "topic": "Subject-Verb Agreement",
+  "question": "One of the boys ____ absent.",
+  "image": "",
+  "options": ["are", "were", "is", "have been"],
+  "correct": 2,
+  "explanation": "The subject is 'One' (singular), so the verb is 'is'."
+},
+{
+  "topic": "Subject-Verb Agreement",
+  "question": "Neither of them ____ come.",
+  "image": "",
+  "options": ["have", "has", "were", "are"],
+  "correct": 1,
+  "explanation": "Neither is singular and takes a singular verb."
+},
+{
+  "topic": "Subject-Verb Agreement",
+  "question": "The news ____ good.",
+  "image": "",
+  "options": ["are", "were", "is", "have been"],
+  "correct": 2,
+  "explanation": "News is an uncountable noun taking a singular verb."
+},
+{
+  "topic": "Phrases",
+  "question": "Which group is a phrase (no subject-verb)?",
+  "image": "",
+  "options": ["under the table", "the boy ran", "she is happy", "because it rained"],
+  "correct": 0,
+  "explanation": "'Under the table' is a prepositional phrase with no subject + verb."
+},
+{
+  "topic": "Clauses",
+  "question": "Which is a subordinate clause?",
+  "image": "",
+  "options": ["The bell rang.", "because it was late", "She sings.", "The dog barked."],
+  "correct": 1,
+  "explanation": "'Because it was late' cannot stand alone — it is dependent/subordinate."
+},
+{
+  "topic": "Compound Sentences",
+  "question": "Which is a compound sentence?",
+  "image": "",
+  "options": ["She sings.", "The rain stopped, and the sun came out.", "Although it rained, we went.", "The girl who won is here."],
+  "correct": 1,
+  "explanation": "Two independent clauses joined by the coordinating conjunction 'and'."
+},
+{
+  "topic": "Complex Sentences",
+  "question": "Which is a complex sentence?",
+  "image": "",
+  "options": ["He left because he was sick.", "She sings and dances.", "The sun rose.", "The bird flew."],
+  "correct": 0,
+  "explanation": "One main clause ('He left') plus one subordinate clause ('because he was sick')."
+},
+{
+  "topic": "Conditional Sentences",
+  "question": "If you study hard, you ____ WAEC.",
+  "image": "",
+  "options": ["will pass", "would pass", "would have passed", "passed"],
+  "correct": 0,
+  "explanation": "Type 1 conditional: if + present simple, will + base verb."
+},
+{
+  "topic": "Conditional Sentences",
+  "question": "If I were you, I ____ apologise.",
+  "image": "",
+  "options": ["will", "would", "would have", "shall"],
+  "correct": 1,
+  "explanation": "Type 2 conditional: if + past simple, would + base verb."
+},
+{
+  "topic": "Conditional Sentences",
+  "question": "If she had studied, she ____ passed.",
+  "image": "",
+  "options": ["will", "would", "would have", "shall"],
+  "correct": 2,
+  "explanation": "Type 3 conditional: if + past perfect, would have + past participle."
+},
+{
+  "topic": "Used To",
+  "question": "I ____ walk to school, but now I drive.",
+  "image": "",
+  "options": ["use to", "used to", "am used to", "get used to"],
+  "correct": 1,
+  "explanation": "'Used to' expresses a past habit that no longer happens."
+},
+{
+  "topic": "Used To",
+  "question": "I am ____ the heat.",
+  "image": "",
+  "options": ["used to", "use to", "used to walk", "get used to"],
+  "correct": 0,
+  "explanation": "'Be used to' means accustomed to something."
+},
+{
+  "topic": "Conjunctions",
+  "question": "I stayed ____ I was sick.",
+  "image": "",
+  "options": ["and", "but", "because", "or"],
+  "correct": 2,
+  "explanation": "'Because' is a subordinating conjunction showing reason."
+},
+{
+  "topic": "Conjunctions",
+  "question": "____ James ____ John are brothers.",
+  "image": "",
+  "options": ["Either, or", "Both, and", "Neither, nor", "Not only, but"],
+  "correct": 1,
+  "explanation": "Correlative conjunction 'both ... and' joins two equal items."
+},
+{
+  "topic": "Prepositions",
+  "question": "She is good ____ mathematics.",
+  "image": "",
+  "options": ["in", "at", "on", "for"],
+  "correct": 1,
+  "explanation": "The correct dependent preposition is 'good at'."
+},
+{
+  "topic": "Prepositions",
+  "question": "He is married ____ a doctor.",
+  "image": "",
+  "options": ["with", "to", "for", "by"],
+  "correct": 1,
+  "explanation": "The correct dependent preposition is 'married to'."
+},
+{
+  "topic": "Prepositions",
+  "question": "The book consists ____ five chapters.",
+  "image": "",
+  "options": ["of", "in", "from", "with"],
+  "correct": 0,
+  "explanation": "The correct dependent preposition is 'consist of'."
+},
+{
+  "topic": "Punctuations",
+  "question": "Which sentence is correctly punctuated?",
+  "image": "",
+  "options": ["Hello how are you.", "Hello, how are you?", "Hello how are you?", "hello how are you"],
+  "correct": 1,
+  "explanation": "A direct question ends with a question mark; the greeting is set off by a comma."
+},
+{
+  "topic": "Punctuations",
+  "question": "Choose the correct use of the apostrophe.",
+  "image": "",
+  "options": ["The boys book is here.", "The boys' book is here.", "The boy's books are here.", "The boys books are here."],
+  "correct": 2,
+  "explanation": "'The boy's books' = one boy owns multiple books (singular possessive + plural noun)."
+},
+{
+  "topic": "Relative Clause",
+  "question": "The woman ____ car was stolen reported the case.",
+  "image": "",
+  "options": ["who", "whom", "whose", "which"],
+  "correct": 2,
+  "explanation": "'Whose' shows possession — the car belongs to the woman."
+},
+{
+  "topic": "Relative Clause",
+  "question": "Mr. Ade, who is our principal, retired today. The underlined clause is ____.",
+  "image": "",
+  "options": ["defining", "non-defining", "adverbial", "noun"],
+  "correct": 1,
+  "explanation": "The clause adds extra information and is set off by commas — non-defining."
+},
+{
+  "topic": "Direct and Reported Speech",
+  "question": "'I am tired,' she said. Reported: She said that she ____ tired.",
+  "image": "",
+  "options": ["is", "was", "will be", "has been"],
+  "correct": 1,
+  "explanation": "Present 'am' backshifts to past 'was' in reported speech."
+},
+{
+  "topic": "Direct and Reported Speech",
+  "question": "'Where are you going?' she asked. Reported: She asked where I ____.",
+  "image": "",
+  "options": ["go", "am going", "was going", "went"],
+  "correct": 2,
+  "explanation": "Reported wh- question uses statement word order with backshifted tense."
+},
+{
+  "topic": "Idioms",
+  "question": "'A piece of cake' means ____.",
+  "image": "",
+  "options": ["a sweet dessert", "very easy", "very difficult", "a real cake"],
+  "correct": 1,
+  "explanation": "The idiom 'a piece of cake' means something very easy."
+},
+{
+  "topic": "Idioms",
+  "question": "'Once in a blue moon' means ____.",
+  "image": "",
+  "options": ["every day", "very rarely", "every week", "always"],
+  "correct": 1,
+  "explanation": "The idiom means something that happens very rarely."
+},
+{
+  "topic": "Synonyms",
+  "question": "Choose the word nearest in meaning to 'ENORMOUS'.",
+  "image": "",
+  "options": ["tiny", "huge", "small", "weak"],
+  "correct": 1,
+  "explanation": "Enormous is a synonym of huge."
+},
+{
+  "topic": "Synonyms",
+  "question": "Choose the word nearest in meaning to 'FURIOUS'.",
+  "image": "",
+  "options": ["calm", "angry", "happy", "tired"],
+  "correct": 1,
+  "explanation": "Furious is a synonym of angry (very angry)."
+},
+{
+  "topic": "Antonyms",
+  "question": "Choose the word opposite to 'HONEST'.",
+  "image": "",
+  "options": ["truthful", "dishonest", "kind", "brave"],
+  "correct": 1,
+  "explanation": "Dishonest is the antonym of honest."
+},
+{
+  "topic": "Antonyms",
+  "question": "Choose the word opposite to 'ALLOW'.",
+  "image": "",
+  "options": ["permit", "forbid", "enable", "accept"],
+  "correct": 1,
+  "explanation": "Forbid is the opposite of allow."
+},
+{
+  "topic": "Prefixes and Suffixes",
+  "question": "The prefix 'un-' means ____.",
+  "image": "",
+  "options": ["again", "not", "before", "under"],
+  "correct": 1,
+  "explanation": "'Un-' means not, as in happy → unhappy."
+},
+{
+  "topic": "Prefixes and Suffixes",
+  "question": "The suffix '-ness' turns an adjective into a ____.",
+  "image": "",
+  "options": ["verb", "noun", "adverb", "preposition"],
+  "correct": 1,
+  "explanation": "'Happy' (adjective) + '-ness' → 'happiness' (noun)."
+},
+{
+  "topic": "Contractions",
+  "question": "I'm is short for ____.",
+  "image": "",
+  "options": ["I am", "I have", "I will", "I had"],
+  "correct": 0,
+  "explanation": "The apostrophe replaces the missing letter 'a' in 'I am'."
+},
+{
+  "topic": "Contractions",
+  "question": "It's is short for ____.",
+  "image": "",
+  "options": ["it is", "its", "it was", "it has"],
+  "correct": 0,
+  "explanation": "It's = it is / it has; Its = possessive."
+},
+{
+  "topic": "Question Tags",
+  "question": "You are coming, ____?",
+  "image": "",
+  "options": ["are you", "aren't you", "do you", "don't you"],
+  "correct": 1,
+  "explanation": "A positive statement takes a negative tag."
+},
+{
+  "topic": "Question Tags",
+  "question": "She can sing, ____?",
+  "image": "",
+  "options": ["can she", "can't she", "does she", "doesn't she"],
+  "correct": 1,
+  "explanation": "Same auxiliary verb 'can' in the negative tag."
+},
+{
+  "topic": "Homophones",
+  "question": "Choose the correct spelling: ____ book is over there.",
+  "image": "",
+  "options": ["Their", "There", "They're", "Thair"],
+  "correct": 0,
+  "explanation": "'Their' shows possession; 'there' is a place; 'they're' = they are."
+},
+{
+  "topic": "Homophones",
+  "question": "I can ____ the sea from here.",
+  "image": "",
+  "options": ["see", "sea", "sew", "cie"],
+  "correct": 0,
+  "explanation": "'See' means to perceive with the eyes; 'sea' is the ocean."
+},
+{
+  "topic": "Correct and Incorrect Usage",
+  "question": "Which sentence is correct?",
+  "image": "",
+  "options": ["He is more taller than me.", "He is taller than me.", "He is tallest than me.", "He is more tall than me."],
+  "correct": 1,
+  "explanation": "Avoid double comparative 'more taller'; use 'taller'."
+},
+{
+  "topic": "Correct and Incorrect Usage",
+  "question": "Which sentence is correct?",
+  "image": "",
+  "options": ["Discuss about the matter.", "Discuss the matter.", "Discussing about the matter.", "Discussed about the matter."],
+  "correct": 1,
+  "explanation": "'Discuss' is transitive and takes no preposition: discuss the matter."
+},
+{
+  "topic": "Vocabulary",
+  "question": "Choose the word nearest in meaning to 'DESTITUTE'.",
+  "image": "",
+  "options": ["wealthy", "poor", "happy", "brave"],
+  "correct": 1,
+  "explanation": "Destitute means extremely poor, lacking basic necessities."
+},
+{
+  "topic": "Vocabulary",
+  "question": "Choose the word opposite to 'GENEROUS'.",
+  "image": "",
+  "options": ["kind", "stingy", "helpful", "giving"],
+  "correct": 1,
+  "explanation": "Stingy is unwilling to spend or give — the opposite of generous."
+},
+{
+  "topic": "Confusable Words",
+  "question": "Choose the correct word: ____ going to the market.",
+  "image": "",
+  "options": ["Their", "There", "They're", "Thare"],
+  "correct": 2,
+  "explanation": "'They're' = they are; fits the sentence 'They are going to the market'."
+},
+{
+  "topic": "Verb Forms",
+  "question": "The past participle of 'write' is ____.",
+  "image": "",
+  "options": ["wrote", "written", "write", "writing"],
+  "correct": 1,
+  "explanation": "Write → wrote → written."
+},
+{
+  "topic": "Verb Forms",
+  "question": "She has ____ her homework.",
+  "image": "",
+  "options": ["do", "did", "done", "doing"],
+  "correct": 2,
+  "explanation": "Present perfect uses has/have + past participle: has done."
+},
+{
+  "topic": "Word Order",
+  "question": "Choose the correct word order: ____",
+  "image": "",
+  "options": ["always He comes early.", "He always comes early.", "He comes always early.", "Always comes he early."],
+  "correct": 1,
+  "explanation": "Adverb of frequency 'always' goes before the main verb."
+},
+{
+  "topic": "Comprehension",
+  "question": "The best title for the passage is ____.",
+  "passage": "Every year, thousands of students sit for the West African Senior School Certificate Examination. This examination is not only a test of knowledge but also of discipline, time management, and endurance. Candidates who prepare adequately usually perform excellently.",
+  "image": "",
+  "options": ["School fees are high", "Preparing for WASSCE", "The market was crowded", "Traders dislike honest girls"],
+  "correct": 1,
+  "explanation": "The passage is about WASSCE preparation and the qualities needed."
+},
+{
+  "topic": "Comprehension",
+  "question": "According to the passage, candidates who prepare adequately usually ____.",
+  "passage": "Every year, thousands of students sit for the West African Senior School Certificate Examination. This examination is not only a test of knowledge but also of discipline, time management, and endurance. Candidates who prepare adequately usually perform excellently.",
+  "image": "",
+  "options": ["fail", "perform excellently", "rely on malpractice", "are disgraced"],
+  "correct": 1,
+  "explanation": "The passage states they 'usually perform excellently'."
 }
 ];

@@ -48,6 +48,14 @@ const TM_BADGES = [
     { id: "legendary_winner", name: "Legendary Winner", rule: user => (user.badges || []).includes("legendary_winner") }
 ];
 
+// Coin cost -> unlock duration (in months) for purchasable features.
+// "Prepare for Exam" unlocks a full timed exam simulation for the chosen subject.
+const FEATURE_PRICES = {
+    exam_prep: { 25: 1, 50: 2, 75: 5, 100: 12 }
+};
+const MONTH_MS = 30 * 24 * 60 * 60 * 1000;
+
+
 const Storage = {
     getUsers() {
         return JSON.parse(localStorage.getItem("tm_users")) || [];
@@ -139,6 +147,7 @@ const Storage = {
             streak: Number(user.streak || 0),
             dailyQuizCount: Number(user.dailyQuizCount || 0),
             lastPlayedDate: user.lastPlayedDate || "",
+            featureUnlocks: user.featureUnlocks || {},
             profile,
             badges: Array.isArray(user.badges) ? user.badges : [],
             topicStats: user.topicStats || {},
@@ -500,5 +509,43 @@ const Storage = {
             log.push({ from: fromLevel, to: toLevel, coins, at: Date.now() });
             localStorage.setItem("tm_levelLog", JSON.stringify(log.slice(-50)));
         } catch (_) {}
+    },
+
+    // --- Purchasable feature unlocks (coin-funded, time-limited) ---
+    getFeatureUnlocks(user) {
+        const u = user || this.getCurrentUser();
+        return u ? (u.featureUnlocks || {}) : {};
+    },
+
+    isFeatureUnlocked(user, featureId) {
+        const u = user || this.getCurrentUser();
+        if (!u) return false;
+        const expiry = Number((u.featureUnlocks || {})[featureId] || 0);
+        return expiry > 0 && Date.now() < expiry;
+    },
+
+    unlockFeature(featureId, coins) {
+        const user = this.getCurrentUser();
+        if (!user) return { success: false, error: "No user logged in." };
+        const priceMap = FEATURE_PRICES[featureId];
+        if (!priceMap) return { success: false, error: "Unknown feature." };
+        if (!Object.prototype.hasOwnProperty.call(priceMap, coins)) {
+            return { success: false, error: "Invalid coin amount." };
+        }
+        const currentCoins = Number(user.coins || 0);
+        if (currentCoins < Number(coins)) {
+            return { success: false, error: "Not enough gold coins." };
+        }
+        const months = priceMap[coins];
+        const expiry = Date.now() + months * MONTH_MS;
+        user.coins = currentCoins - Number(coins);
+        user.featureUnlocks = { ...(user.featureUnlocks || {}), [featureId]: expiry };
+
+        const users = this.getUsers().map(u =>
+            (u.name === user.name && (u.class || u.studentClass) === user.class) ? user : u
+        );
+        this.saveUsers(users);
+        this.setCurrentUser(user);
+        return { success: true, months, expiry, coinsRemaining: user.coins };
     }
 };

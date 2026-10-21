@@ -70,6 +70,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     const urlParams = new URLSearchParams(location.search);
     isPaperMode = urlParams.get("mode") === "paper";
     isTopicMode = urlParams.get("mode") === "topic";
+    isExamPrep = urlParams.get("mode") === "exam_prep";
     paperYear = urlParams.get("year");
     topicFilter = urlParams.get("topic");
     passageFilter = urlParams.get("passage");
@@ -114,6 +115,13 @@ document.addEventListener("DOMContentLoaded", async () => {
         }
     }
 
+    // ---- EXAM PREP GUARD: locked until purchased with gold coins ----
+    if (isExamPrep && !Storage.isFeatureUnlocked(quizUser, "exam_prep")) {
+        document.querySelector(".glass-card").innerHTML = `<h4>🔒 Exam Prep is locked</h4><p>Unlock it on your dashboard using gold coins earned from quizzes, then return to start the timed WAEC-style exam.</p><a href="dashboard.html" class="glass-btn">Back to Dashboard</a>`;
+        document.getElementById("timer").textContent = "Locked";
+        return;
+    }
+
     const profile = quizUser.profile || TM_DEFAULT_PROFILE;
     let questionBank = [];
 
@@ -138,7 +146,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
 
     // ---- NORMAL QUIZ MODE ----
-    if (!questionBank.length && !isPaperMode) {
+    if (!questionBank.length && !isPaperMode && !isExamPrep) {
         let cloudQuestions = [];
         try {
             const data = await API.questions(selectedSubject);
@@ -167,6 +175,45 @@ document.addEventListener("DOMContentLoaded", async () => {
         if (isTopicMode && topicFilter) {
             questionBank = questionBank.filter(q => topicForQuestion(q) === topicFilter);
         }
+    }
+
+    // ---- EXAM PREP MODE: full-length timed simulation ----
+    if (isExamPrep && !questionBank.length) {
+        let cloudQuestions = [];
+        try {
+            const data = await API.questions(selectedSubject);
+            cloudQuestions = data.questions || [];
+        } catch (_) {}
+        const localBanks = {
+            "Technical Drawing": typeof Questions !== "undefined" ? Questions : [],
+            "English": typeof EnglishQuestions !== "undefined" ? EnglishQuestions : [],
+            "Maths": typeof MathsQuestions !== "undefined" ? MathsQuestions : [],
+            "Science": typeof ScienceQuestions !== "undefined" ? ScienceQuestions : [],
+            "SES": typeof SESQuestions !== "undefined" ? SESQuestions : []
+        };
+        let baseQuestions = (localBanks[selectedSubject] || []).map(q => ({ subject: selectedSubject, ...q }));
+        questionBank = [...baseQuestions, ...cloudQuestions].filter(q => !q.subject || q.subject === selectedSubject);
+        if (!questionBank.length) {
+            document.querySelector(".glass-card").innerHTML = `<h4>No exam questions available for ${selectedSubject}</h4><p>Ask the admin to add questions for this subject.</p><a href="dashboard.html" class="glass-btn">Back to Dashboard</a>`;
+            document.getElementById("timer").textContent = "No exam";
+            return;
+        }
+        selectedQuestions = shuffle([...questionBank]).slice(0, 60);
+        userAnswers = new Array(selectedQuestions.length).fill(null);
+        // 90 seconds per question (WAEC-style objective pacing)
+        timeLeft = selectedQuestions.length * 90;
+        updateTimerDisplay();
+        startTimer();
+        const moodEl = document.getElementById("quizMood");
+        if (moodEl) moodEl.textContent = `WAEC Exam Prep • ${selectedSubject} • Timed`;
+        loadQuestion();
+        document.getElementById("nextBtn").onclick = nextQuestion;
+        document.getElementById("prevBtn").onclick = prevQuestion;
+        document.getElementById("submitBtn").onclick = submitQuiz;
+        const btn = document.getElementById("submitBtn");
+        if (btn) btn.textContent = "Submit Exam Prep • Review & Explanations";
+        document.getElementById("quizPercent").textContent = "0% answered";
+        return;
     }
 
     // paper fallback if still empty (e.g., other subject without catalog)
@@ -496,6 +543,13 @@ function updateTimerDisplay() {
     if (!el) return;
     if (isPaperMode) { el.textContent = paperYear ? `Paper ${paperYear} • Untimed` : "Untimed • No limit"; return; }
     if (isTopicMode) { el.textContent = "Untimed"; return; }
+    if (isExamPrep) {
+        if (timeLeft <= 0) { el.textContent = "Time's up"; return; }
+        const minutes = Math.floor(timeLeft / 60);
+        const seconds = timeLeft % 60;
+        el.textContent = `${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
+        return;
+    }
     if (timeLeft <= 0) { el.textContent = "Relaxed"; return; }
     const minutes = Math.floor(timeLeft / 60);
     const seconds = timeLeft % 60;
@@ -527,7 +581,7 @@ async function submitQuiz() {
         questions: selectedQuestions.map(q => ({ ...q, topic: topicForQuestion(q) })),
         userAnswers,
         meta: {
-            mode: isPaperMode ? "paper" : isTopicMode ? "topic" : "normal",
+            mode: isPaperMode ? "paper" : isTopicMode ? "topic" : isExamPrep ? "exam_prep" : "normal",
             subject: selectedSubject,
             year: paperYear,
             topic: topicFilter,

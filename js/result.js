@@ -35,6 +35,18 @@ document.addEventListener("DOMContentLoaded", () => {
             if (reviewLink) { reviewLink.textContent = `Review Paper ${paper.year} + Explanations`; reviewLink.classList.add("pulse"); }
         }
     } catch (_) {}
+    // exam prep badge if last was a timed exam-prep attempt
+    try {
+        const review = JSON.parse(localStorage.getItem("tm_review") || "null");
+        if (review && review.meta && review.meta.mode === "exam_prep") {
+            const badge = document.createElement("div");
+            badge.className = "topic-pill d-inline-block mb-2";
+            badge.textContent = `🎯 WAEC Exam Prep • ${review.meta.subject} • Timed • ${review.meta.score}% • Full explanations in Review`;
+            document.getElementById("reactionText").after(badge);
+            const reviewLink = document.querySelector('a[href="review.html"]');
+            if (reviewLink) { reviewLink.textContent = `Review Exam Prep + Explanations`; reviewLink.classList.add("pulse"); }
+        }
+    } catch (_) {}
     renderAvatarUnlockMessage();
     renderResultBadges(user);
     renderResultFocus(user);

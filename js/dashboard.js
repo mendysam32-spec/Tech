@@ -63,9 +63,12 @@ async function loadSubjects() {
     select.value = subjects.some(s => s.name === saved) ? saved : subjects[0].name;
     localStorage.setItem("tm_selectedSubject", select.value);
     renderTopicRadar(Storage.getCurrentUser() || user);
+    renderExamPrep(Storage.getCurrentUser() || user, select.value);
     select.addEventListener("change", () => {
-        localStorage.setItem("tm_selectedSubject", select.value);
+        const subj = select.value;
+        localStorage.setItem("tm_selectedSubject", subj);
         renderTopicRadar(Storage.getCurrentUser());
+        renderExamPrep(Storage.getCurrentUser(), subj);
     });
 }
 
@@ -96,6 +99,82 @@ function renderPreferences(user) {
     document.getElementById("prefQuizLength").textContent = profile.quizLength || 15;
     document.getElementById("prefTimer").textContent = profile.timerMode || "standard";
     document.getElementById("prefFeedback").textContent = profile.feedbackMode === "instant" ? "instant" : "after quiz";
+}
+
+function renderPreferences(user) {
+    const profile = user.profile || {};
+    document.getElementById("prefQuizLength").textContent = profile.quizLength || 15;
+    document.getElementById("prefTimer").textContent = profile.timerMode || "standard";
+    document.getElementById("prefFeedback").textContent = profile.feedbackMode === "instant" ? "instant" : "after quiz";
+}
+
+/* ============================================================
+   PREPARE FOR EXAM — coin-funded, time-limited unlock
+   ============================================================ */
+const EXAM_PREP_PRICE_OPTIONS = [
+    { coins: 25, months: 1, label: "1 month" },
+    { coins: 50, months: 2, label: "2 months" },
+    { coins: 75, months: 5, label: "5 months" },
+    { coins: 100, months: 12, label: "1 year" }
+];
+
+function formatExpiry(expiry) {
+    const d = new Date(Number(expiry));
+    return d.toLocaleDateString(undefined, { month: "short", day: "numeric", year: "numeric" });
+}
+
+function renderExamPrep(user, subject) {
+    const card = document.getElementById("examPrepLockBadge");
+    const subjEl = document.getElementById("examPrepSubject");
+    const locked = document.getElementById("examPrepLocked");
+    const unlocked = document.getElementById("examPrepUnlocked");
+    const optionsBox = document.getElementById("examPrepCoinOptions");
+    const coinsEl = document.getElementById("examPrepCoins");
+    const expiryEl = document.getElementById("examPrepExpiry");
+    const startBtn = document.getElementById("startExamPrepBtn");
+    if (!card || !subjEl || !locked || !unlocked) return;
+
+    subjEl.textContent = subject || "English";
+    coinsEl.textContent = Storage.getCoins ? Storage.getCoins() : 0;
+
+    const isUnlocked = Storage.isFeatureUnlocked(user, "exam_prep");
+    card.textContent = isUnlocked ? "Unlocked" : "Locked";
+    card.className = isUnlocked ? "badge bg-success text-white ms-2" : "badge bg-warning text-dark ms-2";
+    card.style.fontSize = "0.75rem";
+
+    locked.style.display = isUnlocked ? "none" : "";
+    unlocked.style.display = isUnlocked ? "" : "none";
+
+    if (isUnlocked) {
+        const unlocks = Storage.getFeatureUnlocks(user);
+        const expiry = unlocks["exam_prep"];
+        if (expiry) expiryEl.textContent = "Active until " + formatExpiry(expiry) + ".";
+        startBtn.onclick = () => {
+            localStorage.setItem("tm_examPrepSubject", subject || "English");
+            window.location.href = "quiz.html?mode=exam_prep&subject=" + encodeURIComponent(subject || "English");
+        };
+        return;
+    }
+
+    optionsBox.innerHTML = "";
+    EXAM_PREP_PRICE_OPTIONS.forEach(opt => {
+        const btn = document.createElement("button");
+        btn.className = "secondary-btn nav-action";
+        btn.textContent = `Unlock ${opt.label} (${opt.coins} coins)`;
+        btn.onclick = async () => {
+            const res = Storage.unlockFeature("exam_prep", opt.coins);
+            if (res.success) {
+                btn.textContent = "Unlocked!";
+                btn.disabled = true;
+                btn.classList.replace("secondary-btn", "glass-btn");
+                renderExamPrep(Storage.getCurrentUser(), subject);
+            } else {
+                btn.textContent = res.error;
+                setTimeout(() => { btn.textContent = `Unlock ${opt.label} (${opt.coins} coins)`; }, 1500);
+            }
+        };
+        optionsBox.appendChild(btn);
+    });
 }
 
 function renderBadges(user) {
