@@ -96,6 +96,14 @@ document.addEventListener("DOMContentLoaded", async () => {
         // topic will be updated per question to include year
     }
 
+    // ---- SCIENCE SUBJECT: development stage — offline mode only ----
+    if (selectedSubject === "Science" && !isOffline()) {
+        selectedSubject = "Technical Drawing";
+        localStorage.setItem("tm_selectedSubject", selectedSubject);
+        const moodEl = document.getElementById("quizMood");
+        if (moodEl) moodEl.textContent = "Science is in development (offline mode only) — switched to Technical Drawing";
+    }
+
     if (!isPaperMode && !Storage.canAccessSubject(quizUser, selectedSubject)) {
         const firstAllowed = (Storage.filterAllowedSubjects(quizUser, [{ name: "Technical Drawing" }, { name: "English" }, { name: "Maths" }, { name: "Science" }, { name: "SES" }])[0] || {}).name;
         if (firstAllowed) { selectedSubject = firstAllowed; localStorage.setItem("tm_selectedSubject", firstAllowed); }
@@ -278,6 +286,45 @@ function escapeRegex(str) {
     return str.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 }
 
+function isOffline() { return navigator.onLine === false; }
+
+function subjectSlug(subject) {
+    return String(subject || "").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "") || "general";
+}
+
+function partLabelHtml(text, keywords) {
+    if (!keywords || !keywords.length) return text;
+    let html = text;
+    [...keywords].sort((a, b) => b.length - a.length).forEach(k => {
+        if (!k) return;
+        const needle = escapeRegex(String(k));
+        try {
+            const re = new RegExp(`\\b(${needle})\\b`, "gi");
+            html = html.replace(re, `<span class="question-part-label">$1</span>`);
+        } catch (_) {}
+    });
+    return html;
+}
+
+function renderQuestionImage(imageUrl, suggestedPath) {
+    const container = document.getElementById("questionImage");
+    if (!container) return;
+    container.style.display = "block";
+    if (!imageUrl || imageUrl.trim() === "") {
+        container.innerHTML = `<div class="tm-sci-placeholder"><div class="tm-sci-emoji">🖼️</div><div class="tm-sci-path">${escapeHtml(suggestedPath)}</div><div class="tm-sci-hint">No image set — add your diagram at this path.</div></div>`;
+        return;
+    }
+    const img = document.createElement("img");
+    img.className = "img-fluid rounded shadow";
+    img.style.maxHeight = "300px";
+    img.alt = "Question image";
+    img.src = imageUrl;
+    img.onerror = () => {
+        container.innerHTML = `<div class="tm-sci-placeholder"><div class="tm-sci-emoji">🖼️</div><div class="tm-sci-path">${escapeHtml(suggestedPath)}</div><div class="tm-sci-hint">Add your diagram image at this path.</div></div>`;
+    };
+    container.appendChild(img);
+}
+
 // Vocabulary-in-passage: every "meaning as used" word for this passage is
 // shown bold in the theme colour, so learners can spot it while reading.
 // Words are collected from all questions in the current passage set
@@ -328,16 +375,18 @@ function renderQuestionText(question) {
     if (!split) {
         if (instructionEl) instructionEl.style.display = "none";
         // Vocabulary-in-context: the tested word stands out bold in theme colour.
+        const body = escapeHtml(question.question);
+        let highlighted = body;
         if (question.targetWord) {
-            const body = escapeHtml(question.question);
             const escaped = escapeHtml(question.targetWord);
             const pos = body.indexOf(escaped);
-            textEl.innerHTML = pos !== -1
+            highlighted = pos !== -1
                 ? body.slice(0, pos) + `<span class="question-target">${escaped}</span>` + body.slice(pos + escaped.length)
                 : body;
-        } else {
-            textEl.textContent = question.question;
         }
+        // Diagram part labels: theme colour + bold + italic, across all subjects.
+        highlighted = partLabelHtml(highlighted, question.partKeywords);
+        textEl.innerHTML = highlighted;
         return;
     }
 
@@ -356,6 +405,8 @@ function renderQuestionText(question) {
                 + body.slice(pos + escaped.length);
         }
     }
+    // Diagram part labels: theme colour + bold + italic, across all subjects.
+    body = partLabelHtml(body, question.partKeywords);
     textEl.innerHTML = body;
 }
 
@@ -368,14 +419,8 @@ function loadQuestion() {
     renderQuestionText(q);
     updateQuizProgress();
 
-    const imageContainer = document.getElementById("questionImage");
-    if (q.image && q.image.trim() !== "") {
-        imageContainer.innerHTML = `<img src="${q.image}" class="img-fluid rounded shadow" style="max-height:300px;" alt="Question image">`;
-        imageContainer.style.display = "block";
-    } else {
-        imageContainer.innerHTML = "";
-        imageContainer.style.display = "none";
-    }
+    const suggestedPath = `images/${subjectSlug(selectedSubject)}/${subjectSlug(topic)}/q${currentIndex + 1}.png`;
+    renderQuestionImage(q.image, suggestedPath);
 
     const feedback = document.getElementById("instantFeedback");
     feedback.textContent = "";
@@ -386,7 +431,8 @@ function loadQuestion() {
     q.options.forEach((opt, index) => {
         const button = document.createElement("button");
         button.className = "option-btn w-100 mb-3 p-3 text-start";
-        button.textContent = opt;
+        // Diagram part labels: theme colour + bold + italic, across all subjects.
+        button.innerHTML = partLabelHtml(escapeHtml(opt), q.partKeywords);
         if (userAnswers[currentIndex] === index) button.classList.add("selected-option");
         button.onclick = () => {
             userAnswers[currentIndex] = index;
@@ -513,5 +559,15 @@ async function updateUserStats(score, topicResults) {
     if (newAvatarId) {
         const avatar = TM_AVATARS.find(item => item.id === newAvatarId);
         localStorage.setItem("tm_lastAvatarUnlock", JSON.stringify(avatar || { id: newAvatarId, name: newAvatarId }));
+    }
+
+    if (afterUser.level > beforeUser.level) {
+        const coins = Storage.levelRewardCoins ? Storage.levelRewardCoins(afterUser.level) : Math.round(75 * afterUser.level);
+        if (Storage.addCoins) Storage.addCoins(coins);
+        localStorage.setItem("tm_pendingLevelUp", JSON.stringify({
+            from: beforeUser.level,
+            to: afterUser.level,
+            coins
+        }));
     }
 }

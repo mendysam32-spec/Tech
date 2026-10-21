@@ -420,6 +420,43 @@ body[data-accent="gold"] {
     text-decoration-color: var(--tm-accent);
 }
 
+/* Diagram part labels — theme colour, bold, italic — applies across all subjects. */
+.question-part-label {
+    color: var(--tm-accent);
+    font-weight: 800;
+    font-style: italic;
+}
+
+/* Science diagram placeholder (offline/dev only) */
+.tm-sci-placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    padding: 18px 12px;
+    border: 2px dashed var(--tm-accent);
+    background: rgba(124, 58, 237, 0.06);
+    border-radius: 14px;
+    max-height: 300px;
+    text-align: center;
+}
+.tm-sci-placeholder .tm-sci-emoji { font-size: 34px; }
+.tm-sci-placeholder .tm-sci-path {
+    font-size: 0.78rem;
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    color: var(--tm-accent);
+    font-weight: 700;
+    word-break: break-all;
+    background: rgba(0,0,0,0.05);
+    padding: 4px 8px;
+    border-radius: 6px;
+}
+.tm-sci-placeholder .tm-sci-hint {
+    font-size: 0.82rem;
+    color: #64748b;
+    margin-top: 4px;
+}
+
 .passage-vocab {
     color: var(--tm-accent);
     font-weight: 800;
@@ -1431,3 +1468,49 @@ body[data-accent="dark"] .topic-quiz-cta { background: linear-gradient(135deg, r
         animation-duration: 0.01s;
     }
 }
+
+/* ================= INFORMAL LETTER MASTERCLASS + WORD-CARD GAME ================= */
+.letter-steps { display: grid; gap: 10px; }
+.letter-step { display: flex; gap: 10px; background: rgba(37,99,235,.05); border: 1px solid rgba(37,99,235,.14); border-radius: 14px; padding: 10px 12px; }
+.step-n { flex: 0 0 28px; height: 28px; border-radius: 50%; display: grid; place-items: center; background: linear-gradient(135deg,#2563eb,#4f46e5); color: #fff; font-weight: 800; }
+.letter-ex { background: rgba(16,185,129,.08); border-left: 3px solid #10b981; border-radius: 0 8px 8px 0; padding: 6px 8px; }
+.mistake-rule { color: #92400e; }
+.letter-type { background: rgba(255,255,255,.7); border: 1px solid rgba(15,23,42,.1); border-radius: 12px; padding: 10px 12px; margin-bottom: 8px; }
+.letter-type summary { cursor: pointer; font-weight: 600; }
+.letter-game { background: rgba(255,255,255,.65); border: 1px solid rgba(37,99,235,.15); border-radius: 16px; padding: 14px; margin-top: 12px; }
+.letter-progress { opacity: .75; margin: 6px 0; }
+.letter-sheet { background: #fff; border: 1px dashed rgba(37,99,235,.35); border-radius: 14px; padding: 14px; line-height: 2.1; white-space: pre-wrap; }
+.letter-blank { display: inline-block; margin: 2px; padding: 4px 12px; border-radius: 999px; border: 2px dashed #93c5fd; background: #eff6ff; color: #1e3a8a; font-weight: 600; cursor: pointer; }
+.letter-blank.filled { border-style: solid; background: #dbeafe; }
+.letter-blank.slot-ok { border-color: #10b981; background: #d1fae5; color: #065f46; }
+.letter-blank.slot-bad { border-color: #f59e0b; background: #fef3c7; color: #92400e; }
+.word-bank { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+.word-card { border-radius: 999px; border: 1px solid rgba(37,99,235,.3); background: linear-gradient(135deg,#fff,#dbeafe); padding: 8px 14px; font-weight: 600; cursor: pointer; transition: .15s ease; }
+.word-card:hover { transform: translateY(-2px); box-shadow: 0 6px 14px rgba(37,99,235,.2); }
+.word-card.used { opacity: .4; cursor: default; }
+.word-card:disabled { cursor: default; }
+.letter-score { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; border-radius: 12px; padding: 10px 12px; margin-top: 12px; font-size: 1.05rem; }
+.letter-score.good { background: #dcfce7; border: 1px solid #86efac; color: #166534; }
+.letter-score.mid { background: #fef3c7; border: 1px solid #fcd34d; color: #92400e; }
+.letter-score.low { background: #fee2e2; border: 1px solid #fca5a5; color: #991b1b; }
+.letter-review { margin-top: 10px; background: #fff; border: 1px solid rgba(15,23,42,.1); border-radius: 12px; padding: 12px; }
+.letter-review.ok { border-color: #86efac; background: #f0fdf4; }
+.mistake-row { display: flex; gap: 10px; border-top: 1px solid rgba(15,23,42,.08); padding: 8px 0; }
+.mistake-slot { flex: 0 0 auto; background: #fef3c7; border: 1px solid #fcd34d; color: #92400e; border-radius: 999px; padding: 2px 10px; font-weight: 700; height: fit-content; }
+.active-ex { outline: 2px solid #2563eb; }
+/* Letter cards carry no side art: force single full-width column at all sizes. */
+.study-card.monster-note.letter-full { grid-template-columns: 1fr; }
+.study-card.monster-note.letter-full .study-content { min-width: 0; }
+#letterGuideMount, #letterGameMount { min-width: 0; max-width: 100%; }
+.letter-game, .letter-sheet { max-width: 100%; box-sizing: border-box; }
+.letter-sheet { overflow-wrap: anywhere; word-break: break-word; }
+.letter-blank { max-width: 100%; white-space: normal; text-align: left; vertical-align: baseline; }
+.word-bank { max-width: 100%; }
+.letter-game .d-flex { max-width: 100%; flex-wrap: wrap; }
+/* Model reference letter: address pinned top-right like the exam model. */
+.model-letter { background: #fff; border: 1px solid rgba(15,23,42,.12); border-radius: 14px; padding: 16px 18px; max-width: 100%; box-sizing: border-box; }
+.model-addr { margin: 0 0 12px auto; width: fit-content; max-width: 100%; text-align: left; font-weight: 600; line-height: 1.5; }
+.model-greet { font-weight: 700; margin: 8px 0; }
+.model-para { margin: 10px 0; line-height: 1.65; }
+.model-label { display: block; font-size: .78rem; font-weight: 800; color: #1d4ed8; background: #eff6ff; border-radius: 999px; padding: 2px 10px; margin-bottom: 4px; width: fit-content; max-width: 100%; }
+.model-close { margin: 12px 0 0 auto; width: fit-content; max-width: 100%; text-align: left; line-height: 1.6; }

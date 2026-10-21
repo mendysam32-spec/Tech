@@ -35,10 +35,17 @@ async function loadSubjects() {
     const select = document.getElementById("subjectSelect");
     if (!select) return;
     const user = Storage.getCurrentUser();
+
+    function isOffline() { return navigator.onLine === false; }
+
+    // SCIENCE SUBJECT: development stage — available in offline mode only.
     let subjects = LOCAL_SUBJECTS.map(name => ({ name }));
+    if (!isOffline()) subjects = subjects.filter(s => s.name !== "Science");
     try {
         const data = await API.subjects();
-        const cloud = data.subjects?.length ? data.subjects : [];
+        const cloudRaw = data.subjects?.length ? data.subjects : [];
+        // SCIENCE SUBJECT: development stage — available in offline mode only.
+        const cloud = !isOffline() ? cloudRaw.filter(s => String(s.name).toLowerCase() !== "science") : cloudRaw;
         for (const s of cloud) {
             if (!subjects.some(x => x.name.toLowerCase() === String(s.name).toLowerCase())) subjects.push(s);
         }
@@ -65,12 +72,13 @@ async function loadSubjects() {
 function updateXPBar(user) {
     const level = Number(user.level || 1);
     const xp = Number(user.xp || 0);
-    const currentLevelStart = (level - 1) * 100;
+    const currentLevelStart = Storage.totalXPForLevel ? Storage.totalXPForLevel(level) : (level - 1) * 100;
     const xpIntoLevel = Math.max(0, xp - currentLevelStart);
-    const percentage = Math.min(100, xpIntoLevel);
+    const needed = Storage.xpPerLevel ? Storage.xpPerLevel(level) : 100;
+    const percentage = Math.min(100, Math.round((xpIntoLevel / Math.max(1, needed)) * 100));
     const xpBar = document.getElementById("xpBar");
     xpBar.style.width = percentage + "%";
-    xpBar.textContent = `${xpIntoLevel}/100 XP`;
+    xpBar.textContent = `${xpIntoLevel}/${needed} XP`;
 }
 
 function renderMission(user) {

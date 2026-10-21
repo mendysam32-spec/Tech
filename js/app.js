@@ -171,6 +171,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 Storage.saveUsers(users);
             }
             Storage.setCurrentUser(existingUser);
+            if (window.Sync) window.Sync.enqueue({ path: "/unified-login", method: "POST", body: JSON.stringify({ username, password }) });
             window.location.href = "dashboard.html";
         }
     });

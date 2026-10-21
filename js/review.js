@@ -21,6 +21,25 @@ document.addEventListener("DOMContentLoaded", () => {
         return body.slice(0, pos) + `<span class="question-target">${needle}</span>` + body.slice(pos + needle.length);
     }
 
+    function escRegex(str) {
+        return str.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    }
+
+    // Diagram part labels: theme colour + bold + italic, across all subjects.
+    function partLabelHtml(text, keywords) {
+        if (!keywords || !keywords.length) return text;
+        let html = text;
+        [...keywords].sort((a, b) => b.length - a.length).forEach(k => {
+            if (!k) return;
+            const needle = escRegex(String(k));
+            try {
+                const re = new RegExp(`\\b(${needle})\\b`, "gi");
+                html = html.replace(re, `<span class="question-part-label">$1</span>`);
+            } catch (_) {}
+        });
+        return html;
+    }
+
     // Passage vocabulary: bold + theme colour for every "as used" word in
     // this passage (minimum five per comprehension passage).
     function escRegex(str) {
@@ -98,12 +117,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
             optionsHTML += `
                 <p class="${className}">
-                    ${esc(opt)}
+                    ${partLabelHtml(esc(opt), q.partKeywords)}
                 </p>
             `;
         });
 
-        const img = q.image ? `<div class="text-center mb-3"><img src="${esc(q.image)}" class="img-fluid rounded" style="max-height:260px;" alt="Question diagram"></div>` : "";
+        const img = q.image ? `<div class="text-center mb-3"><img src="${esc(q.image)}" class="img-fluid rounded" style="max-height:260px;" alt="Question diagram" onerror="this.style.display='none'"></div>` : "";
 
         let passageHTML = "";
         if (q.passage) {
@@ -134,7 +153,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 <div class="mt-3 p-3 rounded bg-light text-dark">
                     <strong>Explanation:</strong>
-                    <p class="mb-0">${esc(q.explanation || "No explanation provided.")}</p>
+                    <p class="mb-0">${partLabelHtml(esc(q.explanation || "No explanation provided."), q.partKeywords)}</p>
                 </div>
             </div>
         `;

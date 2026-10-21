@@ -132,7 +132,8 @@ const Storage = {
             ...user,
             class: user.class || user.studentClass,
             xp: Number(user.xp || 0),
-            level: Number(user.level || 1),
+            level: Storage.levelFromXP(user.xp),
+            coins: Number(user.coins || 0),
             bestScore: Number(user.bestScore || user.best_score || 0),
             totalQuizzes: Number(user.totalQuizzes || user.total_quizzes || 0),
             streak: Number(user.streak || 0),
@@ -165,6 +166,29 @@ const Storage = {
         if (xp >= 700) return "Rising Champion";
         if (xp >= 300) return "Quiz Warrior";
         return "New Challenger";
+    },
+
+    xpPerLevel(baseLevel) {
+        const l = Math.max(1, Number(baseLevel || 1));
+        return Math.round(100 * Math.pow(1.4, l - 1));
+    },
+
+    totalXPForLevel(targetLevel) {
+        const t = Math.max(1, Number(targetLevel || 1));
+        let total = 0;
+        for (let l = 1; l < t; l++) {
+            total += this.xpPerLevel(l);
+        }
+        return total;
+    },
+
+    levelFromXP(xp) {
+        const total = Number(xp || 0);
+        let level = 1;
+        while (this.totalXPForLevel(level + 1) <= total) {
+            level++;
+        }
+        return level;
     },
 
     canUseUltimate(user) {
@@ -406,7 +430,7 @@ const Storage = {
         currentUser.xp = Number(currentUser.xp || 0) + Number(score);
         currentUser.totalQuizzes = Number(currentUser.totalQuizzes || 0) + 1;
         currentUser.bestScore = Math.max(Number(currentUser.bestScore || 0), Number(score));
-        currentUser.level = Math.max(1, Math.floor(currentUser.xp / 100) + 1);
+        currentUser.level = this.levelFromXP ? this.levelFromXP(currentUser.xp) : Math.max(1, Math.floor(currentUser.xp / 100) + 1);
         currentUser.streak = streak;
         currentUser.dailyQuizCount = playedToday ? Number(currentUser.dailyQuizCount || 0) + 1 : 1;
         currentUser.lastPlayedDate = today;
@@ -422,5 +446,59 @@ const Storage = {
         this.saveUsers(users);
         this.setCurrentUser(currentUser);
         return currentUser;
+    },
+
+    getCoins() {
+        const user = this.getCurrentUser();
+        return user ? Number(user.coins || 0) : 0;
+    },
+
+    addCoins(amount) {
+        if (!amount) return this.getCurrentUser();
+        const user = this.getCurrentUser();
+        if (!user) return null;
+        user.coins = Number(user.coins || 0) + Number(amount);
+        const users = this.getUsers().map(u =>
+            (u.name === user.name && (u.class || u.studentClass) === user.class) ? user : u
+        );
+        this.saveUsers(users);
+        this.setCurrentUser(user);
+        return user;
+    },
+
+    spendCoins(amount) {
+        const user = this.getCurrentUser();
+        if (!user) return false;
+        const current = Number(user.coins || 0);
+        if (current < Number(amount)) return false;
+        user.coins = current - Number(amount);
+        const users = this.getUsers().map(u =>
+            (u.name === user.name && (u.class || u.studentClass) === user.class) ? user : u
+        );
+        this.saveUsers(users);
+        this.setCurrentUser(user);
+        return true;
+    },
+
+    levelRewardCoins(nextLevel) {
+        return Math.round(75 * nextLevel);
+    },
+
+    featureUnlocksForLevel(level) {
+        const unlocks = [];
+        if (level >= 2) unlocks.push({ id: "custom_themes", title: "Custom Themes", body: "Unlock rose, ocean, fire, forest, neon and dark accents." });
+        if (level >= 3) unlocks.push({ id: "avatar_accessories", title: "Avatar Accessories", body: "Equip frames and badges on your profile avatar." });
+        if (level >= 5) unlocks.push({ id: "exclusive_quizzes", title: "Exclusive Quizzes", body: "Championship rounds and boss-level question packs." });
+        if (level >= 10) unlocks.push({ id: "gold_profile", title: "Gold Profile", body: "Ultimate theme + custom profile photo unlocked." });
+        if (level >= 15) unlocks.push({ id: "legend_badge", title: "Legend Badge", body: "Permanent hall-of-fame badge and crown avatar." });
+        return unlocks;
+    },
+
+    recordLevelCompletion(fromLevel, toLevel, coins) {
+        try {
+            const log = JSON.parse(localStorage.getItem("tm_levelLog") || "[]");
+            log.push({ from: fromLevel, to: toLevel, coins, at: Date.now() });
+            localStorage.setItem("tm_levelLog", JSON.stringify(log.slice(-50)));
+        } catch (_) {}
     }
 };

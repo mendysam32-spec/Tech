@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <title>Dashboard | Tech Monster</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#2563eb">
+    <link rel="manifest" href="/manifest.json">
+    <link rel="stylesheet" href="css/levelup.css">
 
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/theme.css">
@@ -116,6 +119,18 @@
 <script src="js/dashboard.js"></script>
 
 <script src="js/nav.js"></script>
+<script src="js/sync.js"></script>
+<script src="js/sw-register.js"></script>
+<script src="js/levelup.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded", async () => {
+    const pending = LevelUp.pending();
+    if (pending) {
+        await LevelUp.show(pending);
+        LevelUp.clearPending();
+    }
+});
+</script>
 </body>
 </html>
 

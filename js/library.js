@@ -794,7 +794,18 @@ function renderEnglishCloset(query = null) {
     }
     if (englishView === "topic" && englishTopicId) {
         const found = englishFindTopic(englishTopicId);
-        if (found) { container.innerHTML = englishTopicView(found); return; }
+        if (found) {
+            container.innerHTML = englishTopicView(found);
+            // Letter masterclass: mount guide + word-card game after render.
+            try {
+                if ((found.topic && (found.topic.letterMasterclass || /informal letter/i.test(found.topic.title || ""))) && window.renderLetterGuide && window.openLetterGame) {
+                    window.renderLetterGuide("letterGuideMount");
+                    const firstEx = (window.englishLetterExercises || [])[0];
+                    if (firstEx) window.openLetterGame(firstEx.id, "letterGameMount");
+                }
+            } catch (_) {}
+            return;
+        }
         englishView = "shelf"; englishTopicId = null;
     }
     if (englishView === "grade" && englishGradeId) {
@@ -913,6 +924,23 @@ function englishHowToCard(title) {
             </div>
         </div>`;
     }
+    if (title === "Informal Letter Writing — Perfect Letter Masterclass" || /informal letter/i.test(title || "")) {
+        return `
+        <div class="study-card howto-card">
+            <div class="study-content">
+                <p class="mini-label">✉️ WAEC / GABECE method • Informal letters first</p>
+                <h4>How to score full marks in an informal letter</h4>
+                <ol class="howto-steps">
+                    <li><strong>Length first — minimum 300 words:</strong> short letters lose content marks. Plan P1 ~40, P2 ~80, P3 ~80, P4 ~60, conclusion ~40 (about 30 body lines).</li>
+                    <li><strong>Layout first:</strong> writer's address (right) → date → <em>Dear + first name,</em> → paragraphs → <em>Your loving friend,</em> + first name. Format alone is ~10 marks.</li>
+                    <li><strong>One paragraph = one idea:</strong> P1 reason for writing, P2 details, P3 an example, P4 feelings/plan, last paragraph greet + ask for reply.</li>
+                    <li><strong>Show the relationship:</strong> ask after health, use a memory, a question, a feeling addressed TO the person — not only about yourself.</li>
+                    <li><strong>Link every paragraph:</strong> Firstly, Moreover, For example, Because of this, Finally, I look forward to.</li>
+                    <li><strong>Game rule:</strong> below you build the letter from word cards. You are marked /100 and review shows <strong>mistakes only</strong> — the full correct letter is never displayed.</li>
+                </ol>
+            </div>
+        </div>`;
+    }
     if (title === "Summary Writing") {
         return `
         <div class="study-card howto-card">
@@ -948,6 +976,24 @@ function englishPassagePickerCard(title, topicId) {
         </div>
     </div>`;
 }
+function englishLetterBlocks(topic) {
+    if (!topic || !(topic.letterMasterclass || /informal letter/i.test(topic.title || ""))) return "";
+    return `
+    <div class="study-card monster-note letter-full">
+        <div class="study-content">
+            <p class="mini-label">✉️ Masterclass • 7 steps • 5 letter types • linking words</p>
+            <h4>Perfect informal letter — study guide</h4>
+            <div id="letterGuideMount"><p class="small opacity-75">Loading letter steps…</p></div>
+        </div>
+    </div>
+    <div class="study-card monster-note letter-full">
+        <div class="study-content">
+            <p class="mini-label">🎮 Practice game • word cards • marked /100</p>
+            <h4>Build the letter — word-card game</h4>
+            <div id="letterGameMount"><p class="small opacity-75">Loading game…</p></div>
+        </div>
+    </div>`;
+}
 function englishTopicView(found) {
     const { grade, theme, topic } = found;
     const n = englishQuestionCount(topic.title);
@@ -973,6 +1019,7 @@ function englishTopicView(found) {
         ${nav}
         ${englishHowToCard(topic.title)}
         ${englishPassagePickerCard(topic.title, topic.id)}
+        ${englishLetterBlocks(topic)}
         <article class="study-card monster-note">
             <div class="study-art">
                 ${topic.image ? `<img class="study-image" src="${escapeHTML(topic.image)}" alt="${escapeHTML(topic.title)}">` : `<div class="study-placeholder"><span>${escapeHTML(topic.icon || "📘")}</span><p>${escapeHTML(grade.label)}<br>${escapeHTML(theme.title)}</p></div>`}

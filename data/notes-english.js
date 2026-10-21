@@ -758,37 +758,44 @@ window.englishNotes = [
     image: "",
     imageNote: "Insert image: Format of a formal letter showing address, date, salutation and body.",
     explanation:
-      "Essay and letter writing tests the ability to express ideas clearly and correctly in written English. Formal and informal letters have different formats.",
+      "Essay and letter writing tests the ability to express ideas clearly and correctly in written English. WAEC / GABECE Paper 2 usually sets an INFORMAL letter — open the full 'Informal Letter Writing — Perfect Letter Masterclass' chapter in the Library English Book (Grade 9) for the 7 steps from address to conclusion, five exam letter types, paragraph method and the word-card game (marked /100).",
     points: [
       "A narrative essay tells a story.",
       "A descriptive essay describes a person, place or thing.",
       "An argumentative essay presents arguments for or against an issue.",
+      "EXAM RULE: minimum 300 words — expand every paragraph with detail (P1 ~40, P2 ~80, P3 ~80, P4 ~60, conclusion ~40).",
+      "Informal layout (exam focus): writer's address top right → date → Dear + first name → introduction (reason) → body (one idea per paragraph) → conclusion (greet + reply) → Your loving friend + first name.",
       "A formal letter uses 'Dear Sir/Madam' and 'Yours faithfully'.",
-      "An informal letter uses 'Dear' + first name and 'Yours sincerely' or 'Love'.",
+      "An informal letter uses 'Dear' + first name and 'Yours sincerely' or 'Your loving friend'.",
       "A formal letter has the sender's address at the top followed by the date.",
-      "The heading of a formal letter is written before the salutation."
+      "The heading of a formal letter is written before the salutation.",
+      "One paragraph = one central idea, supported with ONE example; link with Firstly, Moreover, For example, Finally."
     ],
     rules: [
+      "Informal order: writer's address only (right), date, Dear + first name, body, informal closing, first name.",
       "Formal letter order: sender's address, date, heading, salutation, body, subscription, signature and name.",
       "Use 'Yours faithfully' with 'Dear Sir/Madam'.",
       "Use 'Yours sincerely' when the recipient is named.",
+      "Never use 'Yours faithfully' in an informal letter; never use 'Your loving friend' in a formal letter.",
       "Begin the body with a polite introduction of your purpose.",
       "End with a suitable closing and your full name."
     ],
     examples: [
       "Formal: Dear Sir, ... Yours faithfully, ... (signature) Adwoa Mensah.",
       "Informal: Dear Kofi, ... Your friend, Kwame.",
+      "Informal full mini-model: No. 12 Kairaba Avenue, Serrekunda. / 14th March, 2026. / Dear Fatou, / I am writing to invite you... / Firstly... / Moreover... / Your loving friend, Musa.",
       "Salutation for formal letter: Dear Sir / Dear Madam.",
       "Inappropriate closing for formal: Your loving friend."
     ],
     waecFocus: [
+      "Informal letters go to friends/family; formal letters go to officials — salutation + closing must match.",
       "Format of a formal letter: address, date, heading, salutation, body, subscription.",
       "'Yours faithfully' after 'Dear Sir/Madam'.",
-      "'Your loving friend' is not appropriate for a formal letter.",
-      "The body carries the main message of the letter."
+      "'Your loving friend' is not appropriate for a formal letter (and 'Yours faithfully' is wrong for informal).",
+      "The body carries the main message of the letter — one idea per paragraph with linking words."
     ],
     memoryTip:
-      "Formal letter = Dear Sir/Madam + Yours faithfully. Keep the address and date at the top and the signature and full name at the bottom."
+      "Informal = Dear Fatou + Your loving friend. Formal = Dear Sir/Madam + Yours faithfully. Full steps + game live in the Library English Book Grade 9 masterclass chapter."
   },
 
   {

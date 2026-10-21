@@ -1,0 +1,22 @@
+{
+  "name": "Tech Monster",
+  "short_name": "Tech Monster",
+  "description": "Study notes, quizzes and past papers — works offline, syncs when online.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0f172a",
+  "theme_color": "#2563eb",
+  "lang": "en",
+  "dir": "ltr",
+  "icons": [
+    { "src": "images/avatars/avatar1.svg", "sizes": "48x48 72x72 96x96 128x128 192x192 512x512", "type": "image/svg+xml", "purpose": "any maskable" }
+  ],
+  "categories": ["education", "reference", "student"],
+  "shortcuts": [
+    { "name": "Dashboard", "url": "./dashboard.html", "icons": [{ "src": "images/avatars/avatar1.svg", "sizes": "192x192" }] },
+    { "name": "Library", "url": "./library.html", "icons": [{ "src": "images/avatars/avatar1.svg", "sizes": "192x192" }] },
+    { "name": "Start Quiz", "url": "./quiz.html", "icons": [{ "src": "images/avatars/avatar1.svg", "sizes": "192x192" }] }
+  ]
+}

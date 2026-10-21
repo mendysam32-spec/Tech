@@ -20,11 +20,28 @@ const API = {
         const cleanOptions = { ...options };
         delete cleanOptions.staff;
 
-        const response = await fetch(this.base + path, { ...cleanOptions, headers });
-        let data = {};
-        try { data = await response.json(); } catch (_) {}
-        if (!response.ok) throw new Error(data.error || "Cloud request failed");
-        return data;
+        try {
+            const response = await fetch(this.base + path, { ...cleanOptions, headers });
+            let data = {};
+            try { data = await response.json(); } catch (_) {}
+            if (!response.ok) throw new Error(data.error || "Cloud request failed");
+            return data;
+        } catch (err) {
+            const isNetworkError = err instanceof TypeError || /network|failed to fetch|Failed to fetch/i.test(String(err));
+            if (isNetworkError && (cleanOptions.method === "POST" || cleanOptions.method === "PUT" || cleanOptions.method === "DELETE")) {
+                try {
+                    if (window.Sync) {
+                        window.Sync.enqueue({
+                            path,
+                            method: cleanOptions.method || "POST",
+                            body: cleanOptions.body,
+                            headers: { "Content-Type": "application/json", ...(options.headers || {}) }
+                        });
+                    }
+                } catch (_) {}
+            }
+            throw err;
+        }
     },
 
     async unifiedLogin(username, password) {

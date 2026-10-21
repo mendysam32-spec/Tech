@@ -926,6 +926,49 @@ window.englishBook = [
           "Use your own words where possible."
 ],
             memoryTip: "Summary = pick the key points, write them briefly in your own words, and obey the word limit."
+          },
+          {
+            id: "eng-g9-t1-4",
+            unit: "4.0",
+            page: "4",
+            title: "Informal Letter Writing — Perfect Letter Masterclass",
+            icon: "✉️",
+            letterMasterclass: true,
+            imageNote: "Insert image: An informal letter showing writer's address top right, date, Dear + first name, paragraphs, and Your loving friend closing.",
+            explanation: "WAEC / GABECE Paper 2 always sets an informal letter to a friend, cousin, brother, sister, uncle or parent. It is marked roughly 10 for format + 10 for content + 10 for expression. EXAM RULE: write a MINIMUM of 300 words — short letters lose content marks. This masterclass teaches the full journey from address to conclusion, the 300-word plan, one central idea per paragraph, linking words, and five exam letter types — then you practise with the word-card game below (marked /100, mistakes only).",
+            points: [
+              "EXAM RULE: minimum 300 words — about 30 body lines at ~10 words per line. Plan: P1 ~40, P2 ~80, P3 ~80, P4 ~60, conclusion ~40.",
+              "Informal letter layout: writer's address (top right) → date → Dear + first name → introduction → body paragraphs → conclusion → informal closing + first name.",
+              "Writer's address only — never add the receiver's address in an informal letter.",
+              "Date in full: 14th March, 2026 (never 14/03/26).",
+              "Greeting: Dear Fatou, (never Dear Sir/Madam here). Closing: Your loving friend, / Yours sincerely, / Kind regards, (never Yours faithfully here). Model in this chapter: Mary → Alice letter with address top right.",
+              "One paragraph = one central idea: P1 reason for writing, P2 first point, P3 example/detail, P4 feelings or plan, final paragraph warm close + reply.",
+              "Show the relationship: ask after health, use memories and feelings ('I miss you', 'Do you remember when we...?').",
+              "Link paragraphs: Firstly, Moreover, For example, Because of this, Finally, I look forward to."
+            ],
+            rules: [
+              "P1 states ONLY why you write; details wait for P2.",
+              "Support every point with ONE example: a date, a name, food, a match, a result.",
+              "Conclusion closes only: greet family + ask for reply. No new story in the last paragraph.",
+              "Informal tone: contractions (I'm, you'll), warm questions, short sentences.",
+              "Five exam types: invitation, thank-you + recount, advice/congratulation, describing + inviting to visit, apology/request to an elder."
+            ],
+            examples: [
+              "Address: No. 12 Kairaba Avenue, Serrekunda, The Gambia.",
+              "Date: 14th March, 2026.",
+              "Greeting: Dear Fatou, — Closing: Your loving friend, Musa.",
+              "P1: I am writing to invite you to my birthday party. — P2: Firstly, the party will come off on Saturday at our house. — P3: Moreover, my cousins from Banjul are coming.",
+              "WAEC trap: 'Yours faithfully' after 'Dear Fatou' loses format marks; 'Your loving friend' in a formal letter is equally wrong."
+            ],
+            waecFocus: [
+              "Minimum 300 words is a content rule — short letters cannot score full marks even with perfect format.",
+              "Format order from address to conclusion is directly marked — learn it as a chant.",
+              "One central idea per paragraph is an expression mark; mixing ideas loses it.",
+              "Linking words (Firstly, Moreover, For example, Finally) raise coherence marks.",
+              "Personal relationship sentences ('I know you love dancing...') separate A grades from C grades.",
+              "Practice game below mirrors the exam: build the letter from word cards, score /100, review mistakes ONLY — the full correct letter is never shown."
+            ],
+            memoryTip: "Address → Date → Dear + name → Why I write → Points + example → Feelings → Reply + Loving friend. One idea per paragraph, one example per point, MINIMUM 300 words."
           }
         ]
       },
