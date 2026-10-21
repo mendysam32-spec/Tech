@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Offline | Tech Monster</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#2563eb">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/theme.css">
+</head>
+<body>
+<nav class="navbar navbar-dark shadow-sm">
+    <div class="container">
+        <span class="app-logo">Tech Monster</span>
+        <span class="small">Created by S&amp;P Group</span>
+    </div>
+</nav>
+
+<div class="container py-5 text-center">
+    <div class="glass-card p-5 mx-auto" style="max-width: 560px;">
+        <h2>📡 You are offline</h2>
+        <p class="lead">We could not reach Tech Monster. This usually means your internet connection dropped, or the site is temporarily unreachable.</p>
+        <p class="small text-muted">Any quiz you already started is still saved on this device.</p>
+        <div class="d-flex justify-content-center gap-2 flex-wrap mt-3">
+            <button class="glass-btn" onclick="window.location.reload()">🔄 Try Again</button>
+            <a href="/index.html" class="glass-btn">🏠 Go to Login</a>
+        </div>
+        <p class="small text-muted mt-4 mb-0" id="offlineStatus">Checking connection…</p>
+    </div>
+</div>
+
+<script>
+    function checkConnection() {
+        fetch("/api/config", { cache: "no-store" })
+            .then(() => { document.getElementById("offlineStatus").textContent = "Connection restored — reloading…"; setTimeout(() => window.location.reload(), 600); })
+            .catch(() => { document.getElementById("offlineStatus").textContent = "Still offline. Retrying in 10 seconds…"; setTimeout(checkConnection, 10000); });
+    }
+    checkConnection();
+</script>
+</body>
+</html>

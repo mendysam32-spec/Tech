@@ -219,7 +219,6 @@ window.LevelUp = (function () {
             const avatar = document.getElementById("tmLuAvatar");
             const title = document.getElementById("tmLuTitle");
             const sub = document.getElementById("tmLuSub");
-            const counter = document.getElementById("tmLuCounter");
             const badge = ensureCoinBadge();
             updateCoinBadge(badge, Storage.getCoins ? Storage.getCoins() : 0);
             const counter = document.getElementById("tmLuCoinCounter");
@@ -229,10 +228,10 @@ window.LevelUp = (function () {
             const counterTimer = setInterval(() => {
                 t++;
                 const v = Math.floor((coins / total) * t);
-                counter.textContent = "+" + v;
+                if (counter) counter.textContent = "+" + v;
                 playCoin();
                 if (t >= total) {
-                    counter.textContent = "+" + coins;
+                    if (counter) counter.textContent = "+" + coins;
                     clearInterval(counterTimer);
                 }
             }, 32);
