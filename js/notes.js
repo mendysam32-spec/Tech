@@ -17,6 +17,21 @@ function renderList(title, items) {
     if (!Array.isArray(items) || !items.length) return "";
     return `<div class="study-section"><h6>${escapeHTML(title)}</h6><ul>${items.map(x => `<li>${escapeHTML(x)}</li>`).join("")}</ul></div>`;
 }
+// Render a "Term: definition" list item with the term bold + theme colour.
+function renderDefItem(text) {
+    const raw = escapeHTML(String(text ?? "").trim());
+    const colon = raw.indexOf(":");
+    if (colon > 0) {
+        const term = raw.slice(0, colon).trim();
+        const rest = raw.slice(colon).trim();
+        return `<li><span class="term-def">${term}:</span> ${rest}</li>`;
+    }
+    return `<li>${raw}</li>`;
+}
+function renderDefList(title, items) {
+    if (!Array.isArray(items) || !items.length) return "";
+    return `<div class="study-section"><h6>${escapeHTML(title)}</h6><ul>${items.map(renderDefItem).join("")}</ul></div>`;
+}
 // English syllabus detail overlay (data/english-notes-detail.js).
 function englishDetail(source) {
     const map = (typeof window !== "undefined" && window.englishNotesDetail) || {};
@@ -103,7 +118,7 @@ function renderEnglishNote(note) {
             <p class="mini-label">${escapeHTML(note.grade)} • Topic ${escapeHTML(note.topicNumber)} • Aki Ola / WAEC Focus</p>
             <h4>${escapeHTML(note.title)}</h4>
             <p>${escapeHTML(view.explanation)}</p>
-            ${renderList("Key Points", view.points)}${renderList("Definitions", view.definitions)}${renderList("Rules to Remember", view.rules)}${renderExampleList("Worked Examples", view.examples)}${renderList("WAEC Focus", view.waecFocus)}
+            ${renderList("Key Points", view.points)}${renderDefList("Definitions", view.definitions)}${renderList("Rules to Remember", view.rules)}${renderExampleList("Worked Examples", view.examples)}${renderList("WAEC Focus", view.waecFocus)}
             <div class="memory-tip">💡 ${escapeHTML(view.memoryTip || "Revise this before quiz time.")}</div>
         </div>
     </article>`;
@@ -133,7 +148,7 @@ function renderMathsNote(note) {
             <div class="d-flex flex-wrap gap-2 mb-2">
                 <a class="glass-btn" href="${practiceUrl}">🎯 Practice ${escapeHTML(quizTopic)}${n ? ` (${n} questions)` : ""}</a>
             </div>
-            ${renderList("Key Points", note.points)}${renderList("Definitions", note.definitions)}${renderList("Formulas", note.formulas)}${renderList("Rules to Remember", note.rules)}${renderList("Examples", note.examples)}${renderList("WAEC Focus", note.waecFocus)}
+            ${renderList("Key Points", note.points)}${renderDefList("Definitions", note.definitions)}${renderList("Formulas", note.formulas)}${renderList("Rules to Remember", note.rules)}${renderList("Examples", note.examples)}${renderList("WAEC Focus", note.waecFocus)}
             <div class="memory-tip">💡 ${escapeHTML(note.memoryTip || "Revise this before quiz time.")}</div>
             ${n ? `<div class="topic-quiz-cta"><strong>${n} questions</strong> in the quiz bank for <strong>${escapeHTML(quizTopic)}</strong> (minimum 10 guaranteed).<a class="glass-btn mt-2" href="${practiceUrl}">🎯 Practice now</a></div>` : ""}
         </div>
@@ -153,7 +168,7 @@ function renderScienceNote(note, subject) {
             <div class="d-flex flex-wrap gap-2 mb-2">
                 <a class="glass-btn" href="${practiceUrl}">🎯 Practice ${escapeHTML(quizTopic)}${n ? ` (${n} questions)` : ""}</a>
             </div>
-            ${renderList("Key Points", note.points)}${renderList("Definitions", note.definitions)}${renderList("Formulas", note.formulas)}${renderList("Rules to Remember", note.rules)}${renderList("Examples", note.examples)}${renderList("WAEC Focus", note.waecFocus)}
+            ${renderList("Key Points", note.points)}${renderDefList("Definitions", note.definitions)}${renderList("Formulas", note.formulas)}${renderList("Rules to Remember", note.rules)}${renderList("Examples", note.examples)}${renderList("WAEC Focus", note.waecFocus)}
             <div class="memory-tip">💡 ${escapeHTML(note.memoryTip || "Revise this before quiz time.")}</div>
             ${n ? `<div class="topic-quiz-cta"><strong>${n} questions</strong> in the quiz bank for <strong>${escapeHTML(quizTopic)}</strong>.<a class="glass-btn mt-2" href="${practiceUrl}">🎯 Practice now</a></div>` : ""}
         </div>
@@ -189,7 +204,7 @@ async function renderNotes() {
         container.innerHTML = `<div class="alert mb-3" style="background:rgba(37,99,235,.08);border:1px solid rgba(37,99,235,.15);border-radius:14px;">📝 English notes live in the <strong>Library bookshelf</strong> — <a href="library.html">open the English Book</a> for Grades 7–9 shelves, each chapter with 10+ practice questions.</div>`
               + topics.slice(0, 60).map(t => {
                     const view = englishMergedTopic(t);
-                    return `<article class="study-card monster-note"><div class="study-art">${topicArt("English", t.id, t.title)}</div><div class="study-content"><p class="mini-label">${escapeHTML(t.grade)} • ${escapeHTML(t.theme)}</p><h4>${escapeHTML(t.title)}</h4><p>${escapeHTML(view.explanation)}</p>${renderList("Key Points", view.points)}${renderList("Definitions", view.definitions)}${renderList("Rules to Remember", view.rules)}${renderExampleList("Worked Examples", view.examples)}${renderList("Exam Focus", view.waecFocus)}<div class="memory-tip">💡 ${escapeHTML(view.memoryTip || "")}</div><a class="glass-btn mt-2" href="library.html?note=${encodeURIComponent(t.id)}">📖 Open in English Book</a></div></article>`;
+                    return `<article class="study-card monster-note"><div class="study-art">${topicArt("English", t.id, t.title)}</div><div class="study-content"><p class="mini-label">${escapeHTML(t.grade)} • ${escapeHTML(t.theme)}</p><h4>${escapeHTML(t.title)}</h4><p>${escapeHTML(view.explanation)}</p>${renderList("Key Points", view.points)}${renderDefList("Definitions", view.definitions)}${renderList("Rules to Remember", view.rules)}${renderExampleList("Worked Examples", view.examples)}${renderList("Exam Focus", view.waecFocus)}<div class="memory-tip">💡 ${escapeHTML(view.memoryTip || "")}</div><a class="glass-btn mt-2" href="library.html?note=${encodeURIComponent(t.id)}">📖 Open in English Book</a></div></article>`;
                 }).join("");
         return;
     }

@@ -4893,5 +4893,1719 @@ const ScienceQuestions = [
     ],
     "correct": 2,
     "explanation": "The independent variable is the one changed by the investigator."
+  },
+  {
+    "topic": "Structure and Functions of the Human Tongue",
+    "question": "Which structures on the tongue detect taste?",
+    "image": "",
+    "options": ["Taste buds", "Salivary glands", "Papillae only", "Tongue muscles"],
+    "correct": 0,
+    "explanation": "Taste buds contain receptor cells that detect sweet, sour, salty, bitter and umami tastes."
+  },
+  {
+    "topic": "Structure and Functions of the Human Tongue",
+    "question": "Besides taste, the tongue helps with",
+    "image": "",
+    "options": ["Breathing only", "Chewing, swallowing and speech", "Hearing only", "Vision"],
+    "correct": 1,
+    "explanation": "The tongue helps manipulate food during chewing, aids swallowing and assists in forming speech sounds."
+  },
+  {
+    "topic": "Structure and Functions of the Human Nose",
+    "question": "The nose is the sense organ for which of the following?",
+    "image": "",
+    "options": ["Taste", "Smell", "Touch", "Hearing"],
+    "correct": 1,
+    "explanation": "Olfactory cells in the nose detect smell; the nose also warms, filters and moistens inhaled air."
+  },
+  {
+    "topic": "Structure and Functions of the Human Nose",
+    "question": "Hairs and mucus in the nose trap",
+    "image": "",
+    "options": ["Oxygen only", "Dust and microbes from inhaled air", "Carbon dioxide only", "Water vapour only"],
+    "correct": 1,
+    "explanation": "Nose hairs and mucus trap dust, microbes and other particles before air reaches the lungs."
+  },
+  {
+    "topic": "Unicellular Organisms (Bacterium, Euglena)",
+    "question": "A unicellular organism carries out all life processes within",
+    "image": "",
+    "options": ["Many cells", "One cell", "Tissues only", "Organs only"],
+    "correct": 1,
+    "explanation": "A unicellular organism is made of a single cell that performs nutrition, respiration, excretion, reproduction and response."
+  },
+  {
+    "topic": "Unicellular Organisms (Bacterium, Euglena)",
+    "question": "Which of the following is a prokaryote with no true nucleus?",
+    "image": "",
+    "options": ["Amoeba", "Euglena", "Bacterium", "Paramecium"],
+    "correct": 2,
+    "explanation": "Bacteria are prokaryotes: they lack a membrane-bound nucleus and other membrane-bound organelles."
+  },
+  {
+    "topic": "Technological Processes (e.g. Recycling)",
+    "question": "Recycling is best described as",
+    "image": "",
+    "options": ["Burning waste", "Collecting and processing waste into new materials", "Burying waste in landfills", "Leaving waste to rot"],
+    "correct": 1,
+    "explanation": "Recycling collects used materials such as paper, plastics, metals and glass and processes them into new products."
+  },
+  {
+    "topic": "Technological Processes (e.g. Recycling)",
+    "question": "Which of the following is NOT usually recyclable?",
+    "image": "",
+    "options": ["Drink cans", "Paper", "Plastics", "Food scraps and used nappies"],
+    "correct": 3,
+    "explanation": "Food scraps and used nappies are generally not recycled with paper, plastics, cans and glass."
+  },
+  {
+    "topic": "Structure and Functions of the Human Ear",
+    "question": "Which part of the ear collects sound waves?",
+    "image": "",
+    "options": ["Cochlea", "Pinna", "Ossicles", "Auditory nerve"],
+    "correct": 1,
+    "explanation": "The pinna (outer ear) collects and funnels sound waves into the ear canal."
+  },
+  {
+    "topic": "Structure and Functions of the Human Ear",
+    "question": "Sound vibrations are converted into nerve impulses in the",
+    "image": "",
+    "options": ["Eardrum", "Ossicles", "Cochlea", "Pinna"],
+    "correct": 2,
+    "explanation": "The cochlea contains sensory cells that turn sound vibrations into electrical nerve impulses carried by the auditory nerve."
+  },
+  {
+    "topic": "Structure of the Sensory Cells of the Human Skin",
+    "question": "The skin contains receptors for all of the following EXCEPT",
+    "image": "",
+    "options": ["Touch", "Pressure", "Smell", "Pain"],
+    "correct": 2,
+    "explanation": "The skin senses touch, pressure, pain, heat and cold; smell is detected by the nose."
+  },
+  {
+    "topic": "Structure of the Sensory Cells of the Human Skin",
+    "question": "Sweat glands in the skin help to",
+    "image": "",
+    "options": ["Increase body temperature", "Cool the body", "Store fat only", "Produce hair only"],
+    "correct": 1,
+    "explanation": "Sweat glands release sweat that evaporates from the skin surface, helping to cool the body."
+  },
+  {
+    "topic": "The Hand Lens",
+    "question": "A hand lens is used to",
+    "image": "",
+    "options": ["Measure temperature", "Magnify small objects", "Measure mass", "Test pH"],
+    "correct": 1,
+    "explanation": "A hand lens (magnifying glass) uses a convex lens to enlarge the image of small objects such as insects, leaves and crystals."
+  },
+  {
+    "topic": "Simple Machines (Levers)",
+    "question": "A lever is a simple machine consisting of a",
+    "image": "",
+    "options": ["Rigid bar pivoted at a fulcrum", "Stretched rubber band", "Heated metal rod", "Spinning wheel only"],
+    "correct": 0,
+    "explanation": "A lever is a rigid bar that turns around a fixed point called the fulcrum to lift or move loads."
+  },
+  {
+    "topic": "Simple Machines (Levers)",
+    "question": "Which class of lever has the fulcrum between the effort and the load?",
+    "image": "",
+    "options": ["First class", "Second class", "Third class", "Fourth class"],
+    "correct": 0,
+    "explanation": "In a first-class lever, the fulcrum lies between the effort and the load (e.g. seesaw, scissors, crowbar)."
+  },
+  {
+    "topic": "Rusting",
+    "question": "Rusting of iron requires both",
+    "image": "",
+    "options": ["Oxygen and water", "Oil and heat", "Salt only", "Light only"],
+    "correct": 0,
+    "explanation": "Iron rusts when it reacts with oxygen in the presence of water (moisture); both are needed."
+  },
+  {
+    "topic": "Rusting",
+    "question": "Which method helps prevent rusting of iron?",
+    "image": "",
+    "options": ["Painting or greasing the surface", "Leaving it outdoors in the rain", "Heating it strongly", "Burying it in wet soil"],
+    "correct": 0,
+    "explanation": "Painting, greasing, oiling or galvanising iron keeps oxygen and water away from the surface, preventing rust."
+  },
+  {
+    "topic": "Water and Air Pressure",
+    "question": "Air pressure decreases as altitude",
+    "image": "",
+    "options": ["Increases", "Decreases", "Stays the same", "Doubles"],
+    "correct": 1,
+    "explanation": "The higher you go above sea level, the less air presses down, so air pressure decreases with altitude."
+  },
+  {
+    "topic": "Water and Air Pressure",
+    "question": "Pressure in a liquid increases with",
+    "image": "",
+    "options": ["Depth only", "Depth and density", "Temperature only", "Colour of the liquid"],
+    "correct": 1,
+    "explanation": "Liquid pressure increases with depth and with the density of the liquid."
+  },
+  {
+    "topic": "Experiments on Pressure",
+    "question": "In a pressure experiment, force acting per unit area is called",
+    "image": "",
+    "options": ["Pressure", "Volume", "Mass", "Temperature"],
+    "correct": 0,
+    "explanation": "Pressure is defined as force per unit area: Pressure = Force ÷ Area."
+  },
+  {
+    "topic": "Experiments on Pressure",
+    "question": "If the same force is applied over a smaller area, the pressure",
+    "image": "",
+    "options": ["Increases", "Decreases", "Stays the same", "Becomes zero"],
+    "correct": 0,
+    "explanation": "Pressure = Force ÷ Area, so a smaller area gives a larger pressure for the same force."
+  },
+  {
+    "topic": "The Excretory System",
+    "question": "The functional filtering unit of the kidney is the",
+    "image": "",
+    "options": ["Ureter", "Nephron", "Bladder", "Urethra"],
+    "correct": 1,
+    "explanation": "Each kidney contains about one million nephrons, which filter blood and form urine."
+  },
+  {
+    "topic": "The Excretory System",
+    "question": "Urine leaves the kidney through the",
+    "image": "",
+    "options": ["Ureter", "Urethra", "Blood vessel", "Nerve"],
+    "correct": 0,
+    "explanation": "The ureter carries urine from each kidney to the urinary bladder for storage."
+  },
+  {
+    "topic": "The Human Reproductive System",
+    "question": "In humans, fertilisation usually occurs in the",
+    "image": "",
+    "options": ["Uterus", "Fallopian tube (oviduct)", "Ovary", "Vagina"],
+    "correct": 1,
+    "explanation": "Fertilisation (sperm meeting egg) usually takes place in the fallopian tube."
+  },
+  {
+    "topic": "The Human Reproductive System",
+    "question": "The male gamete is called the",
+    "image": "",
+    "options": ["Egg", "Ovum", "Sperm", "Zygote"],
+    "correct": 2,
+    "explanation": "Sperm is the male gamete; the egg (ovum) is the female gamete."
+  },
+  {
+    "topic": "Treatment and Control Methods of Diseases",
+    "question": "Immunisation protects against diseases such as",
+    "image": "",
+    "options": ["Measles and polio", "Broken bones only", "Sunburn only", "Tooth decay only"],
+    "correct": 0,
+    "explanation": "Vaccines stimulate the body to produce antibodies against specific diseases such as measles, polio and tuberculosis."
+  },
+  {
+    "topic": "Treatment and Control Methods of Diseases",
+    "question": "Draining stagnant water helps control",
+    "image": "",
+    "options": ["Malaria", "Tooth decay", "Broken bones", "Sunburn"],
+    "correct": 0,
+    "explanation": "Stagnant water is a breeding site for mosquitoes; draining it reduces mosquito numbers and helps prevent malaria."
+  },
+  /* ===== Bring every Foundation Science topic to 10+ practice questions ===== */
+  {
+    "topic": "Meaning of Adaptation",
+    "question": "Adaptation in living things means",
+    "image": "",
+    "options": ["Special features that help an organism survive in its environment", "Changing colour every day", "Moving to a new country", "Eating more food"],
+    "correct": 0,
+    "explanation": "Adaptation is any feature or behaviour that helps an organism survive and reproduce in its habitat."
+  },
+  {
+    "topic": "Meaning of Adaptation",
+    "question": "A camel's hump is an adaptation for",
+    "image": "",
+    "options": ["Storing fat for energy and water", "Running fast", "Attracting mates", "Keeping cool only"],
+    "correct": 0,
+    "explanation": "A camel's hump stores fat, which can be converted to energy and water when food and water are scarce."
+  },
+  {
+    "topic": "Meaning of Adaptation",
+    "question": "A fish's streamlined body is an adaptation for",
+    "image": "",
+    "options": ["Flying", "Swimming efficiently through water", "Climbing trees", "Burrowing in soil"],
+    "correct": 1,
+    "explanation": "A streamlined body reduces water resistance, helping fish swim faster and with less effort."
+  },
+  {
+    "topic": "Meaning of Adaptation",
+    "question": "Plants in dry deserts often have adaptations such as",
+    "image": "",
+    "options": ["Large thin leaves", "Thick waxy cuticle and spines instead of leaves", "Very tall trunks only", "Bright flowers only"],
+    "correct": 1,
+    "explanation": "Desert plants reduce water loss through thick waxy cuticles, spines, and reduced leaf surface area."
+  },
+  {
+    "topic": "Meaning and Uses of Technology",
+    "question": "Technology is best defined as",
+    "image": "",
+    "options": ["The application of scientific knowledge to solve practical problems", "Only computers and phones", "Playing video games", "Watching television"],
+    "correct": 0,
+    "explanation": "Technology applies scientific knowledge to create tools, machines, materials and systems that meet human needs."
+  },
+  {
+    "topic": "Meaning and Uses of Technology",
+    "question": "Which of the following is an example of technology in agriculture?",
+    "image": "",
+    "options": ["Using a tractor to plough a farm", "Eating harvested crops only", "Sleeping in the field", "Singing to plants"],
+    "correct": 0,
+    "explanation": "Farm machinery such as tractors, planters and harvesters are technological tools that improve food production."
+  },
+  {
+    "topic": "Meaning and Uses of Technology",
+    "question": "Technology improves communication by",
+    "image": "",
+    "options": ["Making it slower", "Enabling phones, internet and radio to send messages quickly", "Stopping messages entirely", "Using only letters"],
+    "correct": 1,
+    "explanation": "Communication technology such as mobile phones, radio, television and the internet allows fast exchange of information."
+  },
+  {
+    "topic": "Meaning and Uses of Technology",
+    "question": "A disadvantage of technology can be",
+    "image": "",
+    "options": ["Increased pollution and waste from factories", "Solving more problems", "Improving health care only", "Creating more jobs only"],
+    "correct": 0,
+    "explanation": "Technology can cause pollution, electronic waste and job displacement if not managed responsibly."
+  },
+  {
+    "topic": "Meaning and Uses of Technology",
+    "question": "Science and technology are related because",
+    "image": "",
+    "options": ["Technology applies discoveries from science to practical uses", "They are completely unrelated", "Science uses only technology", "Technology replaces science entirely"],
+    "correct": 0,
+    "explanation": "Science discovers how nature works; technology uses those discoveries to build useful tools and solutions."
+  },
+  {
+    "topic": "Technological Processes (e.g. Recycling)",
+    "question": "The main aim of recycling is to",
+    "image": "",
+    "options": ["Reduce waste and conserve natural resources", "Create more landfill sites", "Burn more rubbish", "Use more raw materials"],
+    "correct": 0,
+    "explanation": "Recycling reprocesses used materials into new products, reducing the need for raw materials and cutting landfill waste."
+  },
+  {
+    "topic": "Technological Processes (e.g. Recycling)",
+    "question": "Which material can be recycled?",
+    "image": "",
+    "options": ["Glass bottles", "Only food scraps", "Only broken ceramics", "Only used tissues"],
+    "correct": 0,
+    "explanation": "Glass, paper, metals and many plastics can be collected and recycled into new items."
+  },
+  {
+    "topic": "Technological Processes (e.g. Recycling)",
+    "question": "Recycling paper helps save",
+    "image": "",
+    "options": ["Trees and forests", "Oil only", "Sand only", "Gold only"],
+    "correct": 0,
+    "explanation": "Recycling paper reduces the number of trees cut down to make new paper, protecting forests."
+  },
+  {
+    "topic": "Technological Processes (e.g. Recycling)",
+    "question": "Composting is a way of recycling",
+    "image": "",
+    "options": ["Organic waste such as food scraps and leaves", "Plastic bags only", "Glass bottles only", "Metal cans only"],
+    "correct": 0,
+    "explanation": "Composting breaks down organic waste into nutrient-rich manure for farming and gardening."
+  },
+  {
+    "topic": "Technological Processes (e.g. Recycling)",
+    "question": "Reusing means",
+    "image": "",
+    "options": ["Using an item again for the same or a new purpose", "Throwing it away after one use", "Burning it immediately", "Burying it deep underground"],
+    "correct": 0,
+    "explanation": "Reusing extends the life of products such as bags, bottles and containers before they are recycled or discarded."
+  },
+  {
+    "topic": "Structure and Functions of the Human Eye",
+    "question": "The transparent front part of the eye that lets light in is the",
+    "image": "",
+    "options": ["Cornea", "Retina", "Iris", "Optic nerve"],
+    "correct": 0,
+    "explanation": "The cornea is the clear front layer of the eye through which light enters."
+  },
+  {
+    "topic": "Structure and Functions of the Human Eye",
+    "question": "Long-sightedness (hypermetropia) makes it hard to see",
+    "image": "",
+    "options": ["Near objects clearly", "Distant objects clearly", "Colours clearly", "In the dark only"],
+    "correct": 0,
+    "explanation": "A long-sighted person can see distant objects well but struggles to focus on near objects; convex lenses help correct it."
+  },
+  {
+    "topic": "Structure and Functions of the Human Eye",
+    "question": "Short-sightedness (myopia) makes it hard to see",
+    "image": "",
+    "options": ["Distant objects clearly", "Near objects clearly", "Colours clearly", "In bright light only"],
+    "correct": 0,
+    "explanation": "A short-sighted person can see near objects well but struggles with distant objects; concave lenses help correct it."
+  },
+  {
+    "topic": "Structure and Functions of the Human Ear",
+    "question": "The eardrum",
+    "image": "",
+    "options": ["Vibrates when sound waves hit it", "Produces sound only", "Filters air only", "Sees images"],
+    "correct": 0,
+    "explanation": "Sound waves make the eardrum vibrate, passing the vibrations to the ossicles in the middle ear."
+  },
+  {
+    "topic": "Structure and Functions of the Human Ear",
+    "question": "The three tiny bones in the middle ear are called",
+    "image": "",
+    "options": ["Ossicles (malleus, incus, stapes)", "Taste buds", "Neurons", "Rods and cones"],
+    "correct": 0,
+    "explanation": "The malleus, incus and stapes amplify vibrations from the eardrum to the inner ear."
+  },
+  {
+    "topic": "Structure and Functions of the Human Ear",
+    "question": "The auditory nerve carries impulses from the ear to the",
+    "image": "",
+    "options": ["Brain", "Stomach", "Liver", "Lungs"],
+    "correct": 0,
+    "explanation": "The auditory nerve sends electrical signals from the cochlea to the brain for interpretation as sound."
+  },
+  {
+    "topic": "Structure and Functions of the Human Ear",
+    "question": "The part of the ear that helps maintain balance is the",
+    "image": "",
+    "options": ["Inner ear (semicircular canals)", "Outer ear only", "Eardrum only", "Ear wax"],
+    "correct": 0,
+    "explanation": "The semicircular canals in the inner ear detect head movement and help maintain balance."
+  },
+  {
+    "topic": "Structure and Functions of the Human Tongue",
+    "question": "The five basic tastes detected by taste buds are",
+    "image": "",
+    "options": ["Sweet, sour, salty, bitter and umami", "Hot, cold, wet, dry, rough", "Loud, soft, high, low, silent", "Red, blue, green, yellow, black"],
+    "correct": 0,
+    "explanation": "Taste buds detect sweet, sour, salty, bitter and umami (savoury) tastes."
+  },
+  {
+    "topic": "Structure and Functions of the Human Tongue",
+    "question": "Papillae on the tongue are",
+    "image": "",
+    "options": ["Small bumps that contain taste buds", "Salivary glands only", "Taste nerves only", "Teeth-like structures"],
+    "correct": 0,
+    "explanation": "Papillae are the tiny bumps on the tongue's surface; many contain taste buds."
+  },
+  {
+    "topic": "Structure and Functions of the Human Tongue",
+    "question": "Saliva helps digestion by",
+    "image": "",
+    "options": ["Containing amylase that begins starch digestion", "Killing all bacteria", "Cooling food only", "Hardening food"],
+    "correct": 0,
+    "explanation": "Saliva contains the enzyme amylase (ptyalin), which begins breaking down starch into maltose."
+  },
+  {
+    "topic": "Structure of the Sensory Cells of the Human Skin",
+    "question": "Receptors in the skin detect",
+    "image": "",
+    "options": ["Touch, pressure, pain, heat and cold", "Light and sound only", "Taste and smell only", "Only gravity"],
+    "correct": 0,
+    "explanation": "The skin has sensory receptors for touch, pressure, pain, heat (warmth) and cold."
+  },
+  {
+    "topic": "Structure of the Sensory Cells of the Human Skin",
+    "question": "Which layer of the skin contains sensory receptors?",
+    "image": "",
+    "options": ["The dermis", "Only the surface cells", "Fat only", "Hair only"],
+    "correct": 0,
+    "explanation": "Sensory receptors are located mainly in the dermis, the inner layer of the skin."
+  },
+  {
+    "topic": "Structure of the Sensory Cells of the Human Skin",
+    "question": "Hair and nails are protective structures of the skin",
+    "image": "",
+    "options": ["True", "False"],
+    "correct": 0,
+    "explanation": "Hair helps protect against heat loss and UV radiation; nails protect the tips of fingers and toes."
+  },
+  {
+    "topic": "Structure of the Sensory Cells of the Human Skin",
+    "question": "Sweat helps regulate body temperature by",
+    "image": "",
+    "options": ["Evaporating from the skin and cooling the body", "Increasing body heat only", "Producing oil only", "Growing hair"],
+    "correct": 0,
+    "explanation": "When sweat evaporates from the skin surface, it removes heat and cools the body."
+  },
+  {
+    "topic": "Structure and Functions of the Nose",
+    "question": "Olfactory cells detect",
+    "image": "",
+    "options": ["Smells", "Tastes only", "Sounds only", "Touches only"],
+    "correct": 0,
+    "explanation": "Olfactory cells in the nasal cavity detect thousands of different smells."
+  },
+  {
+    "topic": "Structure and Functions of the Nose",
+    "question": "The nose warms and moistens air before it reaches the",
+    "image": "",
+    "options": ["Lungs", "Stomach", "Brain", "Kidneys"],
+    "correct": 0,
+    "explanation": "Nasal passages warm, moisten and filter inhaled air to protect the delicate lung tissues."
+  },
+  {
+    "topic": "Structure and Functions of the Nose",
+    "question": "Mucus in the nose traps",
+    "image": "",
+    "options": ["Dust and microbes", "Oxygen only", "Carbon dioxide only", "Water only"],
+    "correct": 0,
+    "explanation": "Mucus traps dust, pollen and microbes so they do not enter the lungs."
+  },
+  {
+    "topic": "Structure and Functions of the Nose",
+    "question": "The entry point of the respiratory system is the",
+    "image": "",
+    "options": ["Nose", "Stomach", "Skin", "Ear"],
+    "correct": 0,
+    "explanation": "Air normally enters the respiratory system through the nose (or mouth)."
+  },
+  {
+    "topic": "Personal Cleanliness and Health",
+    "question": "Brushing teeth twice a day helps prevent",
+    "image": "",
+    "options": ["Tooth decay and gum disease", "Broken bones only", "Hair loss only", "Eye problems only"],
+    "correct": 0,
+    "explanation": "Brushing removes plaque and food particles, reducing the risk of tooth decay and gum disease."
+  },
+  {
+    "topic": "Personal Cleanliness and Health",
+    "question": "Washing hands after using the toilet prevents the spread of",
+    "image": "",
+    "options": ["Germs that cause diseases", "Oxygen only", "Carbon dioxide only", "Sunlight"],
+    "correct": 0,
+    "explanation": "Hand washing with soap removes germs that can cause diarrhoea, cholera and other illnesses."
+  },
+  {
+    "topic": "Personal Cleanliness and Health",
+    "question": "Not sharing towels and combs helps prevent",
+    "image": "",
+    "options": ["Skin infections such as ringworm", "Broken bones only", "Poor eyesight only", "Tooth decay only"],
+    "correct": 0,
+    "explanation": "Sharing personal items can spread fungi, bacteria and parasites that cause skin diseases."
+  },
+  {
+    "topic": "The Hand Lens",
+    "question": "A hand lens uses a",
+    "image": "",
+    "options": ["Convex lens", "Concave lens only", "Plane mirror only", "Coloured filter only"],
+    "correct": 0,
+    "explanation": "A hand lens uses a convex (converging) lens to produce a magnified virtual image."
+  },
+  {
+    "topic": "The Hand Lens",
+    "question": "A hand lens is useful for observing",
+    "image": "",
+    "options": ["Small objects such as insects, leaves and crystals", "Only very distant stars", "Only underwater objects", "Only X-ray images"],
+    "correct": 0,
+    "explanation": "A magnifying glass enlarges tiny details of small objects for closer study."
+  },
+  {
+    "topic": "The Hand Lens",
+    "question": "To focus an image with a hand lens, you",
+    "image": "",
+    "options": ["Move the lens closer or farther from the object until it is clear", "Shake the lens", "Paint the lens", "Freeze the lens"],
+    "correct": 0,
+    "explanation": "Changing the distance between the lens and the object brings the magnified image into focus."
+  },
+  {
+    "topic": "Simple Machines (Levers)",
+    "question": "The fixed point around which a lever turns is the",
+    "image": "",
+    "options": ["Fulcrum", "Load only", "Effort only", "Fulcrum plus load"],
+    "correct": 0,
+    "explanation": "The fulcrum is the pivot or support on which a lever rests and turns."
+  },
+  {
+    "topic": "Simple Machines (Levers)",
+    "question": "In a second-class lever, the",
+    "image": "",
+    "options": ["Load is between the fulcrum and the effort", "Effort is between the fulcrum and the load", "Fulcrum is between effort and load", "Load and effort are the same point"],
+    "correct": 0,
+    "explanation": "Examples of second-class levers include wheelbarrows and nutcrackers."
+  },
+  {
+    "topic": "Simple Machines (Levers)",
+    "question": "In a third-class lever, the",
+    "image": "",
+    "options": ["Effort is between the fulcrum and the load", "Load is between fulcrum and effort", "Fulcrum is between effort and load", "None of the above"],
+    "correct": 0,
+    "explanation": "Examples of third-class levers include tweezers and the human arm."
+  },
+  {
+    "topic": "Simple Machines (Levers)",
+    "question": "Machines make work easier by",
+    "image": "",
+    "options": ["Changing the size or direction of a force", "Creating energy from nothing", "Destroying energy", "Only making work harder"],
+    "correct": 0,
+    "explanation": "Machines do not create energy; they help apply force more conveniently or efficiently."
+  },
+  {
+    "topic": "Simple Machines (Levers)",
+    "question": "The effort applied to a lever is the",
+    "image": "",
+    "options": ["Force applied to move the load", "The load itself", "The fulcrum only", "The weight of the lever"],
+    "correct": 0,
+    "explanation": "Effort is the force a person applies to a lever to overcome the load."
+  },
+  {
+    "topic": "Other Types of Machines",
+    "question": "A pulley is used to",
+    "image": "",
+    "options": ["Lift heavy loads with less effort", "Measure time only", "Cut wood only", "Heat water only"],
+    "correct": 0,
+    "explanation": "A pulley changes the direction of a force and can reduce the effort needed to lift a load."
+  },
+  {
+    "topic": "Other Types of Machines",
+    "question": "An inclined plane is a",
+    "image": "",
+    "options": ["Sloping surface that reduces the effort needed to raise a load", "Vertical wall only", "Spinning wheel", "Electric motor"],
+    "correct": 0,
+    "explanation": "Ramps are inclined planes: they let you push a load up gradually with less force than lifting straight up."
+  },
+  {
+    "topic": "Other Types of Machines",
+    "question": "A wheel and axle makes work easier by",
+    "image": "",
+    "options": ["Reducing friction when moving objects", "Increasing weight only", "Producing heat only", "Changing colour"],
+    "correct": 0,
+    "explanation": "Wheels roll with much less friction than dragging, making it easier to move heavy objects."
+  },
+  {
+    "topic": "Other Types of Machines",
+    "question": "A screw is an inclined plane wrapped around a",
+    "image": "",
+    "options": ["Cylinder", "Flat sheet only", "Ball only", "Cone only"],
+    "correct": 0,
+    "explanation": "The threads of a screw are an inclined plane coiled around a central cylinder."
+  },
+  {
+    "topic": "Unicellular Organisms (Bacterium, Euglena)",
+    "question": "Amoeba moves and feeds using",
+    "image": "",
+    "options": ["Pseudopodia", "Wings only", "Fins only", "Roots only"],
+    "correct": 0,
+    "explanation": "Pseudopodia are temporary projections of the cell used for movement and engulfing food."
+  },
+  {
+    "topic": "Unicellular Organisms (Bacterium, Euglena)",
+    "question": "Paramecium moves using",
+    "image": "",
+    "options": ["Cilia", "Legs only", "Wings only", "Roots only"],
+    "correct": 0,
+    "explanation": "Paramecium is covered in tiny hair-like cilia that beat to propel it through water."
+  },
+  {
+    "topic": "Unicellular Organisms (Bacterium, Euglena)",
+    "question": "Euglena can make its own food because it has",
+    "image": "",
+    "options": ["Chloroplasts", "Only a nucleus", "Only a flagellum", "Only a cell wall"],
+    "correct": 0,
+    "explanation": "Chloroplasts contain chlorophyll, allowing Euglena to carry out photosynthesis like a plant."
+  },
+  {
+    "topic": "Unicellular Organisms (Bacterium, Euglena)",
+    "question": "Binary fission is a form of",
+    "image": "",
+    "options": ["Asexual reproduction in one-celled organisms", "Sexual reproduction only", "Growth in plants only", "A disease"],
+    "correct": 0,
+    "explanation": "Binary fission splits one parent cell into two identical daughter cells, common in bacteria and amoeba."
+  },
+  {
+    "topic": "Unicellular Organisms (Bacterium, Euglena)",
+    "question": "Bacteria reproduce by",
+    "image": "",
+    "options": ["Binary fission", "Laying eggs only", "Growing leaves only", "Budding only in animals"],
+    "correct": 0,
+    "explanation": "Most bacteria reproduce asexually by binary fission, dividing into two cells."
+  },
+  {
+    "topic": "Unicellular Organisms (Bacterium, Euglena)",
+    "question": "Euglena is considered a borderline organism because",
+    "image": "",
+    "options": ["It has both plant-like and animal-like features", "It is only a plant", "It is only an animal", "It has no cell parts"],
+    "correct": 0,
+    "explanation": "Euglena has chloroplasts (plant-like) but can also move with a flagellum and lacks a cell wall (animal-like)."
+  },
+  {
+    "topic": "The Plant Kingdom",
+    "question": "Non-flowering plants reproduce using",
+    "image": "",
+    "options": ["Spores", "Seeds only", "Flowers only", "Fruits only"],
+    "correct": 0,
+    "explanation": "Mosses and ferns are non-flowering plants that reproduce by spores rather than seeds."
+  },
+  {
+    "topic": "The Plant Kingdom",
+    "question": "Flowering plants are also called",
+    "image": "",
+    "options": ["Angiosperms", "Gymnosperms only", "Fungi only", "Bryophytes only"],
+    "correct": 0,
+    "explanation": "Angiosperms are flowering plants that produce seeds enclosed in fruits."
+  },
+  {
+    "topic": "The Plant Kingdom",
+    "question": "Monocots have",
+    "image": "",
+    "options": ["One seed leaf (cotyledon)", "Two seed leaves", "No seed leaves", "Ten seed leaves"],
+    "correct": 0,
+    "explanation": "Monocotyledons have a single cotyledon in their seeds (e.g. maize, rice, grass)."
+  },
+  {
+    "topic": "The Plant Kingdom",
+    "question": "Dicots have",
+    "image": "",
+    "options": ["Two seed leaves (cotyledons)", "One seed leaf", "No seed leaves", "Three seed leaves"],
+    "correct": 0,
+    "explanation": "Dicotyledons have two cotyledons in their seeds (e.g. beans, mango, orange)."
+  },
+  {
+    "topic": "The Plant Kingdom",
+    "question": "Cellulose cell walls are found in",
+    "image": "",
+    "options": ["Plant cells", "Animal cells only", "Bacteria only", "Viruses"],
+    "correct": 0,
+    "explanation": "Plant cells have rigid cellulose cell walls that give them shape and protection."
+  },
+  {
+    "topic": "Rusting",
+    "question": "Rust is mainly hydrated",
+    "image": "",
+    "options": ["Iron(III) oxide", "Sodium chloride", "Calcium carbonate", "Copper sulphate"],
+    "correct": 0,
+    "explanation": "Rust is hydrated iron(III) oxide, formed when iron reacts with oxygen and water."
+  },
+  {
+    "topic": "Rusting",
+    "question": "Galvanising protects iron by",
+    "image": "",
+    "options": ["Coating it with a layer of zinc", "Painting it black only", "Leaving it in the rain", "Heating it strongly"],
+    "correct": 0,
+    "explanation": "Zinc coating shields iron from oxygen and water and corrodes preferentially if scratched."
+  },
+  {
+    "topic": "Rusting",
+    "question": "Rusting is faster in",
+    "image": "",
+    "options": ["Moist salty air", "Dry air only", "Vacuum only", "Boiling oil only"],
+    "correct": 0,
+    "explanation": "Salt and moisture both speed up the rusting of iron."
+  },
+  {
+    "topic": "Rusting",
+    "question": "Alloying iron with chromium produces",
+    "image": "",
+    "options": ["Stainless steel, which resists rust", "Pure copper only", "Aluminium foil only", "Glass"],
+    "correct": 0,
+    "explanation": "Stainless steel contains chromium, which forms a protective oxide layer that resists rust."
+  },
+  {
+    "topic": "Rusting",
+    "question": "Oil or grease prevents rusting by",
+    "image": "",
+    "options": ["Keeping oxygen and water away from the iron surface", "Adding oxygen to the surface", "Heating the iron", "Making iron heavier"],
+    "correct": 0,
+    "explanation": "A layer of oil or grease blocks contact between iron, oxygen and moisture."
+  },
+  {
+    "topic": "Water and Air Pressure",
+    "question": "At sea level, air pressure is",
+    "image": "",
+    "options": ["Highest", "Lowest", "Zero", "Negative"],
+    "correct": 0,
+    "explanation": "Air pressure is greatest at sea level because the whole atmosphere presses down from above."
+  },
+  {
+    "topic": "Water and Air Pressure",
+    "question": "Drinking through a straw works because",
+    "image": "",
+    "options": ["Reducing pressure inside the straw lets atmospheric pressure push the liquid up", "Gravity pulls liquid up only", "The straw heats the liquid", "The straw creates vacuum only"],
+    "correct": 0,
+    "explanation": "Sucking reduces air pressure inside the straw; outside atmospheric pressure pushes the drink upward."
+  },
+  {
+    "topic": "Water and Air Pressure",
+    "question": "A barometer measures",
+    "image": "",
+    "options": ["Atmospheric pressure", "Temperature only", "Rainfall only", "Wind speed only"],
+    "correct": 0,
+    "explanation": "A barometer is used to measure atmospheric pressure, helpful in weather forecasting."
+  },
+  {
+    "topic": "Water and Air Pressure",
+    "question": "Water pressure at the bottom of a deep lake is",
+    "image": "",
+    "options": ["Greater than at the surface", "Less than at the surface", "The same everywhere", "Zero"],
+    "correct": 0,
+    "explanation": "Pressure in a liquid increases with depth, so it is greatest at the bottom."
+  },
+  {
+    "topic": "Water and Air Pressure",
+    "question": "Pascal's principle states that pressure applied to an enclosed liquid is",
+    "image": "",
+    "options": ["Transmitted equally to all parts of the liquid", "Lost completely", "Changed randomly", "Only at the surface"],
+    "correct": 0,
+    "explanation": "Pascal's principle is the basis of hydraulic presses and brakes."
+  },
+  {
+    "topic": "Experiments on Pressure",
+    "question": "The SI unit of pressure is the",
+    "image": "",
+    "options": ["Pascal (Pa)", "Newton only", "Metre only", "Second only"],
+    "correct": 0,
+    "explanation": "One pascal equals one newton per square metre (N/m²)."
+  },
+  {
+    "topic": "Experiments on Pressure",
+    "question": "A sharp knife cuts better than a blunt one because",
+    "image": "",
+    "options": ["Its edge has a smaller area, producing greater pressure for the same force", "It is heavier only", "It is colder only", "It is longer only"],
+    "correct": 0,
+    "explanation": "Pressure = Force ÷ Area, so a smaller cutting area exerts higher pressure."
+  },
+  {
+    "topic": "Experiments on Pressure",
+    "question": "Wide tyres on heavy vehicles reduce pressure on the ground because they",
+    "image": "",
+    "options": ["Spread the vehicle's weight over a larger area", "Increase the weight only", "Make the vehicle lighter", "Only look better"],
+    "correct": 0,
+    "explanation": "A larger contact area reduces pressure, preventing the vehicle from sinking into soft ground."
+  },
+  {
+    "topic": "Experiments on Pressure",
+    "question": "A hydraulic press works using",
+    "image": "",
+    "options": ["Pascal's principle of liquid pressure", "Only gravity", "Only magnetism", "Only sound"],
+    "correct": 0,
+    "explanation": "A small force on a narrow piston creates pressure transmitted through liquid to a larger piston, producing a large force."
+  },
+  {
+    "topic": "Modern Atomic Theory",
+    "question": "Protons are located in the",
+    "image": "",
+    "options": ["Nucleus", "Electron shells only", "Outside the atom", "Orbitals only"],
+    "correct": 0,
+    "explanation": "Protons and neutrons are packed together in the nucleus at the centre of the atom."
+  },
+  {
+    "topic": "Modern Atomic Theory",
+    "question": "Electrons are found",
+    "image": "",
+    "options": ["In shells around the nucleus", "Only in the nucleus", "Only inside protons", "Only inside neutrons"],
+    "correct": 0,
+    "explanation": "Negatively charged electrons occupy energy levels or shells surrounding the nucleus."
+  },
+  {
+    "topic": "Modern Atomic Theory",
+    "question": "Neutrons have",
+    "image": "",
+    "options": ["No electric charge", "Positive charge only", "Negative charge only", "Both positive and negative"],
+    "correct": 0,
+    "explanation": "Neutrons are neutral particles found in the nucleus."
+  },
+  {
+    "topic": "Modern Atomic Theory",
+    "question": "The nucleus of an atom is",
+    "image": "",
+    "options": ["Positively charged", "Negatively charged", "Neutral", "Empty"],
+    "correct": 0,
+    "explanation": "Protons are positive and neutrons are neutral, so the nucleus has a net positive charge."
+  },
+  {
+    "topic": "Modern Atomic Theory",
+    "question": "Atoms of the same element have the same number of",
+    "image": "",
+    "options": ["Protons", "Only neutrons", "Only electrons", "Neither protons nor neutrons"],
+    "correct": 0,
+    "explanation": "The number of protons (atomic number) identifies the element."
+  },
+  {
+    "topic": "The Simplified Periodic Table of Elements",
+    "question": "Elements in the same group have similar",
+    "image": "",
+    "options": ["Chemical properties", "Only atomic masses", "Only colours", "Only densities"],
+    "correct": 0,
+    "explanation": "Elements in a vertical group have the same number of outer electrons and similar chemical behaviour."
+  },
+  {
+    "topic": "The Simplified Periodic Table of Elements",
+    "question": "Metals are mostly found on the",
+    "image": "",
+    "options": ["Left side of the periodic table", "Right side only", "Bottom row only", "Top row only"],
+    "correct": 0,
+    "explanation": "Metals occupy the left and centre; non-metals are on the right."
+  },
+  {
+    "topic": "The Simplified Periodic Table of Elements",
+    "question": "Group 18 elements are called",
+    "image": "",
+    "options": ["Noble gases", "Alkali metals only", "Halogens only", "Transition metals only"],
+    "correct": 0,
+    "explanation": "Group 18 elements (helium, neon, argon, etc.) are unreactive noble gases with full outer shells."
+  },
+  {
+    "topic": "The Simplified Periodic Table of Elements",
+    "question": "Group 17 elements are called",
+    "image": "",
+    "options": ["Halogens", "Alkali metals only", "Noble gases only", "Transition metals only"],
+    "correct": 0,
+    "explanation": "Group 17 elements (fluorine, chlorine, bromine, iodine) are reactive non-metals called halogens."
+  },
+  {
+    "topic": "The Simplified Periodic Table of Elements",
+    "question": "Group 1 elements are called",
+    "image": "",
+    "options": ["Alkali metals", "Noble gases only", "Halogens only", "Transition metals only"],
+    "correct": 0,
+    "explanation": "Group 1 metals (lithium, sodium, potassium, etc.) are very reactive and called alkali metals."
+  },
+  {
+    "topic": "Arrangement of Electrons",
+    "question": "The first electron shell holds a maximum of",
+    "image": "",
+    "options": ["2 electrons", "8 electrons", "18 electrons", "32 electrons"],
+    "correct": 0,
+    "explanation": "The innermost shell (n=1) can hold up to 2 electrons."
+  },
+  {
+    "topic": "Arrangement of Electrons",
+    "question": "The second electron shell holds a maximum of",
+    "image": "",
+    "options": ["8 electrons", "2 electrons", "18 electrons", "32 electrons"],
+    "correct": 0,
+    "explanation": "The second shell (n=2) can hold up to 8 electrons."
+  },
+  {
+    "topic": "Arrangement of Electrons",
+    "question": "For the first 20 elements, the third shell holds up to",
+    "image": "",
+    "options": ["8 electrons before the fourth shell starts filling", "2 electrons", "18 electrons only", "32 electrons"],
+    "correct": 0,
+    "explanation": "In the first 20 elements, the third shell is filled to 8 before electrons enter the fourth shell."
+  },
+  {
+    "topic": "Arrangement of Electrons",
+    "question": "Atoms with full outer shells are",
+    "image": "",
+    "options": ["Unreactive (noble gases)", "Very reactive only", "Always radioactive", "Always metals"],
+    "correct": 0,
+    "explanation": "Full outer shells make atoms stable and chemically unreactive."
+  },
+  {
+    "topic": "Arrangement of Electrons",
+    "question": "Outer-shell electrons determine an atom's",
+    "image": "",
+    "options": ["Chemical behaviour and bonding", "Only colour", "Only mass", "Only size"],
+    "correct": 0,
+    "explanation": "Valence electrons (outer-shell electrons) are involved in chemical reactions and bonding."
+  },
+  {
+    "topic": "Atomic Mass and Atomic Numbers",
+    "question": "Atomic number equals the number of",
+    "image": "",
+    "options": ["Protons", "Only neutrons", "Only electrons", "Protons plus neutrons"],
+    "correct": 0,
+    "explanation": "The atomic number (Z) identifies an element by its proton count."
+  },
+  {
+    "topic": "Atomic Mass and Atomic Numbers",
+    "question": "Mass number equals",
+    "image": "",
+    "options": ["Protons plus neutrons", "Only protons", "Only electrons", "Protons minus electrons"],
+    "correct": 0,
+    "explanation": "Mass number (A) = protons + neutrons in the nucleus."
+  },
+  {
+    "topic": "Atomic Mass and Atomic Numbers",
+    "question": "Number of neutrons =",
+    "image": "",
+    "options": ["Mass number − atomic number", "Atomic number − mass number", "Mass number + atomic number", "Electrons − protons"],
+    "correct": 0,
+    "explanation": "Subtract the proton count (atomic number) from the mass number to get neutrons."
+  },
+  {
+    "topic": "Atomic Mass and Atomic Numbers",
+    "question": "In a neutral atom, electrons equal",
+    "image": "",
+    "options": ["Protons", "Neutrons only", "Mass number only", "Zero"],
+    "correct": 0,
+    "explanation": "A neutral atom has equal numbers of protons (positive) and electrons (negative)."
+  },
+  {
+    "topic": "Isotopes",
+    "question": "Isotopes are atoms of the same element with different",
+    "image": "",
+    "options": ["Numbers of neutrons", "Numbers of protons", "Only colours", "Only masses without neutrons"],
+    "correct": 0,
+    "explanation": "Isotopes have the same protons (same element) but different neutrons, giving different mass numbers."
+  },
+  {
+    "topic": "Isotopes",
+    "question": "Carbon-12 and Carbon-14 are",
+    "image": "",
+    "options": ["Isotopes of carbon", "Different elements", "Molecules only", "Ions only"],
+    "correct": 0,
+    "explanation": "Both have 6 protons but different neutrons (6 vs 8), so they are isotopes of carbon."
+  },
+  {
+    "topic": "Isotopes",
+    "question": "Isotopes of an element have the same",
+    "image": "",
+    "options": ["Chemical properties", "Only mass numbers", "Only neutron counts", "Different proton counts"],
+    "correct": 0,
+    "explanation": "Chemical behaviour depends on electrons/protons, so isotopes of an element react similarly."
+  },
+  {
+    "topic": "Isotopes",
+    "question": "One medical use of isotopes is",
+    "image": "",
+    "options": ["Using radioactive tracers for diagnosis", "Only causing illness", "Only colouring medicine", "Only storing data"],
+    "correct": 0,
+    "explanation": "Radioisotopes such as technetium-99m are used as tracers in medical imaging."
+  },
+  {
+    "topic": "Metals and Non-Metals",
+    "question": "Metals usually form",
+    "image": "",
+    "options": ["Basic oxides", "Only acidic oxides", "Only neutral oxides", "No oxides"],
+    "correct": 0,
+    "explanation": "Most metal oxides are basic (some, like aluminium oxide, are amphoteric)."
+  },
+  {
+    "topic": "Metals and Non-Metals",
+    "question": "Non-metals usually form",
+    "image": "",
+    "options": ["Acidic oxides", "Only basic oxides", "Only neutral oxides", "No oxides"],
+    "correct": 0,
+    "explanation": "Most non-metal oxides are acidic (some, like carbon monoxide and water, are neutral)."
+  },
+  {
+    "topic": "Metals and Non-Metals",
+    "question": "A metal that is liquid at room temperature is",
+    "image": "",
+    "options": ["Mercury", "Iron only", "Copper only", "Aluminium only"],
+    "correct": 0,
+    "explanation": "Mercury is the only common metal that is liquid at room temperature."
+  },
+  {
+    "topic": "Metals and Non-Metals",
+    "question": "Graphite is a non-metal that",
+    "image": "",
+    "options": ["Conducts electricity", "Does not conduct at all", "Is magnetic only", "Is a liquid"],
+    "correct": 0,
+    "explanation": "Graphite (a form of carbon) conducts electricity despite being a non-metal."
+  },
+  {
+    "topic": "Metals and Non-Metals",
+    "question": "A dull, brittle, poor conductor is likely a",
+    "image": "",
+    "options": ["Non-metal", "Metal only", "Only a liquid metal", "Only a magnet"],
+    "correct": 0,
+    "explanation": "Dull appearance, brittleness and poor conductivity are typical non-metal properties."
+  },
+  {
+    "topic": "Compounds and Naming Compounds",
+    "question": "A compound made of two elements often ends in",
+    "image": "",
+    "options": ["-ide", "-ate only", "-ite only", "-ium only"],
+    "correct": 0,
+    "explanation": "Binary compounds such as sodium chloride and magnesium oxide use the -ide ending."
+  },
+  {
+    "topic": "Compounds and Naming Compounds",
+    "question": "Compounds containing oxygen with another element often end in",
+    "image": "",
+    "options": ["-ate or -ite", "-ide only", "-ium only", "-ic only"],
+    "correct": 0,
+    "explanation": "Examples include calcium carbonate and sodium sulphate."
+  },
+  {
+    "topic": "Compounds and Naming Compounds",
+    "question": "Water has the formula",
+    "image": "",
+    "options": ["H₂O", "CO₂", "NaCl", "O₂"],
+    "correct": 0,
+    "explanation": "One water molecule contains two hydrogen atoms and one oxygen atom."
+  },
+  {
+    "topic": "Compounds and Naming Compounds",
+    "question": "A pure substance made of two or more elements chemically combined is a",
+    "image": "",
+    "options": ["Compound", "Mixture only", "Element only", "Alloy only"],
+    "correct": 0,
+    "explanation": "A compound has elements chemically bonded in fixed proportions."
+  },
+  {
+    "topic": "Chemical Formulae of Compounds",
+    "question": "The formula of magnesium oxide is",
+    "image": "",
+    "options": ["MgO", "Mg₂O", "MgO₂", "M₂O"],
+    "correct": 0,
+    "explanation": "Mg²⁺ and O²⁻ combine in a 1:1 ratio to form MgO."
+  },
+  {
+    "topic": "Chemical Formulae of Compounds",
+    "question": "The formula of aluminium oxide is",
+    "image": "",
+    "options": ["Al₂O₃", "AlO", "AlO₃", "Al₃O₂"],
+    "correct": 0,
+    "explanation": "Al³⁺ and O²⁻ combine in a 2:3 ratio to balance charges, giving Al₂O₃."
+  },
+  {
+    "topic": "Chemical Formulae of Compounds",
+    "question": "Valency is used to",
+    "image": "",
+    "options": ["Balance charges when writing formulae", "Measure temperature only", "Count only neutrons", "Only name elements"],
+    "correct": 0,
+    "explanation": "Swapping valencies of ions gives the correct ratio in a neutral compound formula."
+  },
+  {
+    "topic": "Chemical Formulae of Compounds",
+    "question": "The formula of sodium chloride is",
+    "image": "",
+    "options": ["NaCl", "NaCl₂", "Na₂Cl", "Na₂Cl₂"],
+    "correct": 0,
+    "explanation": "Na⁺ and Cl⁻ combine in a 1:1 ratio to form sodium chloride, NaCl."
+  },
+  {
+    "topic": "Chemical Equations",
+    "question": "A balanced chemical equation has equal numbers of",
+    "image": "",
+    "options": ["Each type of atom on both sides", "Only reactants", "Only products", "Only energy"],
+    "correct": 0,
+    "explanation": "The law of conservation of mass requires the same atoms on both sides of the arrow."
+  },
+  {
+    "topic": "Chemical Equations",
+    "question": "Reactants are written",
+    "image": "",
+    "options": ["On the left of the arrow", "On the right only", "Above the arrow only", "Below the arrow only"],
+    "correct": 0,
+    "explanation": "Reactants go on the left; products go on the right: reactants → products."
+  },
+  {
+    "topic": "Chemical Equations",
+    "question": "State symbol (g) means",
+    "image": "",
+    "options": ["Gaseous state", "Liquid only", "Solid only", "Aqueous solution only"],
+    "correct": 0,
+    "explanation": "(g) = gas, (l) = liquid, (s) = solid, (aq) = dissolved in water."
+  },
+  {
+    "topic": "Chemical Equations",
+    "question": "Balancing is done by changing",
+    "image": "",
+    "options": ["Coefficients only, never subscripts in formulas", "Only subscripts", "Only the arrow", "Only state symbols"],
+    "correct": 0,
+    "explanation": "Change the numbers in front of formulas (coefficients) to balance atoms; do not alter formulas themselves."
+  },
+  {
+    "topic": "Ionic and Covalent Bonding",
+    "question": "Ionic bonding involves",
+    "image": "",
+    "options": ["Transfer of electrons between atoms", "Only sharing electrons", "Only losing protons", "Only gaining neutrons"],
+    "correct": 0,
+    "explanation": "In ionic bonding, one atom transfers electrons to another, forming oppositely charged ions."
+  },
+  {
+    "topic": "Ionic and Covalent Bonding",
+    "question": "Covalent bonding involves",
+    "image": "",
+    "options": ["Sharing electron pairs between non-metal atoms", "Only transferring electrons", "Only losing protons", "Only gaining neutrons"],
+    "correct": 0,
+    "explanation": "Non-metal atoms share electrons to complete their outer shells."
+  },
+  {
+    "topic": "Ionic and Covalent Bonding",
+    "question": "Sodium chloride (NaCl) is held together by",
+    "image": "",
+    "options": ["Electrostatic attraction between Na⁺ and Cl⁻ ions", "Only sharing electrons", "Only gravity", "Only magnetism"],
+    "correct": 0,
+    "explanation": "Sodium donates an electron to chlorine, forming Na⁺ and Cl⁻ ions that attract each other."
+  },
+  {
+    "topic": "Ionic and Covalent Bonding",
+    "question": "Water (H₂O) is a",
+    "image": "",
+    "options": ["Covalent compound", "Ionic compound only", "Metal only", "Element only"],
+    "correct": 0,
+    "explanation": "Hydrogen and oxygen share electrons in water, a covalent compound."
+  },
+  {
+    "topic": "Ionic and Covalent Bonding",
+    "question": "Ionic compounds usually have",
+    "image": "",
+    "options": ["High melting and boiling points", "Very low melting points only", "Only liquid states", "Only gaseous states"],
+    "correct": 0,
+    "explanation": "Strong ionic bonds require lots of energy to break, giving high melting and boiling points."
+  },
+  {
+    "topic": "Sound Energy",
+    "question": "Sound cannot travel through",
+    "image": "",
+    "options": ["A vacuum", "Solids only", "Liquids only", "Gases only"],
+    "correct": 0,
+    "explanation": "Sound needs particles to vibrate, so it cannot travel through empty space (a vacuum)."
+  },
+  {
+    "topic": "The Human Digestive System",
+    "question": "Amylase is produced in the",
+    "image": "",
+    "options": ["Salivary glands and pancreas", "Only the stomach", "Only the liver", "Only the heart"],
+    "correct": 0,
+    "explanation": "Salivary amylase begins starch digestion in the mouth; pancreatic amylase continues it in the small intestine."
+  },
+  {
+    "topic": "The Human Digestive System",
+    "question": "Pepsin digests",
+    "image": "",
+    "options": ["Protein", "Only fats", "Only carbohydrates", "Only vitamins"],
+    "correct": 0,
+    "explanation": "Pepsin, secreted in the stomach, breaks proteins into smaller peptides."
+  },
+  {
+    "topic": "The Human Digestive System",
+    "question": "Most nutrient absorption occurs in the",
+    "image": "",
+    "options": ["Small intestine", "Stomach only", "Large intestine only", "Mouth only"],
+    "correct": 0,
+    "explanation": "The small intestine, with its villi, is the main site of digestion and absorption."
+  },
+  {
+    "topic": "The Human Digestive System",
+    "question": "The large intestine mainly absorbs",
+    "image": "",
+    "options": ["Water", "Only oxygen", "Only food", "Only enzymes"],
+    "correct": 0,
+    "explanation": "Water and mineral salts are absorbed from undigested residue in the large intestine."
+  },
+  {
+    "topic": "The Human Respiratory System",
+    "question": "Breathing in is called",
+    "image": "",
+    "options": ["Inhalation (inspiration)", "Exhalation only", "Digestion only", "Circulation only"],
+    "correct": 0,
+    "explanation": "Inhalation brings air into the lungs as the diaphragm contracts and flattens."
+  },
+  {
+    "topic": "The Human Respiratory System",
+    "question": "Gas exchange occurs in the",
+    "image": "",
+    "options": ["Alveoli", "Trachea only", "Bronchus only", "Diaphragm only"],
+    "correct": 0,
+    "explanation": "Oxygen and carbon dioxide diffuse across the thin walls of the alveoli and capillaries."
+  },
+  {
+    "topic": "The Human Respiratory System",
+    "question": "During exhalation, the diaphragm",
+    "image": "",
+    "options": ["Relaxes and moves upward", "Contracts only", "Disappears only", "Stays still only"],
+    "correct": 0,
+    "explanation": "The relaxed diaphragm moves up, reducing chest volume and pushing air out."
+  },
+  {
+    "topic": "The Human Respiratory System",
+    "question": "Breathing is different from respiration because",
+    "image": "",
+    "options": ["Respiration releases energy from food in cells", "Breathing releases energy only", "Respiration moves air only", "They are exactly the same"],
+    "correct": 0,
+    "explanation": "Breathing is ventilation (air movement); respiration is the chemical release of energy from glucose in cells."
+  },
+  {
+    "topic": "The Excretory System",
+    "question": "Urea is a waste product of",
+    "image": "",
+    "options": ["Protein metabolism", "Only fat metabolism", "Only vitamin metabolism", "Only carbohydrate metabolism"],
+    "correct": 0,
+    "explanation": "The liver produces urea when excess amino acids from proteins are broken down (deamination)."
+  },
+  {
+    "topic": "The Excretory System",
+    "question": "Urine is stored in the",
+    "image": "",
+    "options": ["Bladder", "Kidney only", "Ureter only", "Urethra only"],
+    "correct": 0,
+    "explanation": "The urinary bladder stores urine until it is released through the urethra."
+  },
+  {
+    "topic": "The Excretory System",
+    "question": "The skin excretes",
+    "image": "",
+    "options": ["Sweat containing water, salts and some urea", "Only oxygen", "Only food", "Only carbon dioxide"],
+    "correct": 0,
+    "explanation": "Sweat glands release water, mineral salts and small amounts of urea through the skin."
+  },
+  {
+    "topic": "The Excretory System",
+    "question": "The lungs excrete",
+    "image": "",
+    "options": ["Carbon dioxide and water vapour", "Only oxygen", "Only food", "Only urine"],
+    "correct": 0,
+    "explanation": "Cells release carbon dioxide during respiration; it is carried to the lungs and exhaled."
+  },
+  {
+    "topic": "The Blood Circulatory System",
+    "question": "Capillaries are the site of",
+    "image": "",
+    "options": ["Exchange of materials between blood and body cells", "Only pumping blood", "Only clotting", "Only producing cells"],
+    "correct": 0,
+    "explanation": "Oxygen, food, wastes and hormones diffuse across thin capillary walls."
+  },
+  {
+    "topic": "The Blood Circulatory System",
+    "question": "Platelets help the blood to",
+    "image": "",
+    "options": ["Clot at a wound", "Only carry oxygen", "Only fight disease", "Only flow faster"],
+    "correct": 0,
+    "explanation": "Platelets are cell fragments involved in blood clotting to stop bleeding."
+  },
+  {
+    "topic": "The Human Reproductive System",
+    "question": "The female gamete is called the",
+    "image": "",
+    "options": ["Egg (ovum)", "Sperm only", "Zygote only", "Foetus only"],
+    "correct": 0,
+    "explanation": "The ovum is the female sex cell; sperm is the male sex cell."
+  },
+  {
+    "topic": "The Human Reproductive System",
+    "question": "The foetus develops in the",
+    "image": "",
+    "options": ["Uterus (womb)", "Fallopian tube only", "Ovary only", "Vagina only"],
+    "correct": 0,
+    "explanation": "After fertilisation, the embryo implants and grows in the uterus."
+  },
+  {
+    "topic": "The Human Reproductive System",
+    "question": "Ovaries produce",
+    "image": "",
+    "options": ["Eggs (ova) and female hormones", "Sperm only", "Urine only", "Bile only"],
+    "correct": 0,
+    "explanation": "The ovaries release ova and produce hormones such as oestrogen and progesterone."
+  },
+  {
+    "topic": "The Skeletal System of Man",
+    "question": "The skull protects the",
+    "image": "",
+    "options": ["Brain", "Stomach only", "Lungs only", "Kidneys only"],
+    "correct": 0,
+    "explanation": "The cranium (skull) encloses and protects the brain."
+  },
+  {
+    "topic": "The Skeletal System of Man",
+    "question": "The backbone (vertebral column) protects the",
+    "image": "",
+    "options": ["Spinal cord", "Heart only", "Liver only", "Stomach only"],
+    "correct": 0,
+    "explanation": "Vertebrae surround and shield the delicate spinal cord."
+  },
+  {
+    "topic": "The Skeletal System of Man",
+    "question": "Blood cells are produced in the",
+    "image": "",
+    "options": ["Bone marrow", "Only muscles", "Only skin", "Only nerves"],
+    "correct": 0,
+    "explanation": "Red and white blood cells and platelets are formed in the marrow of certain bones."
+  },
+  {
+    "topic": "The Skeletal System of Man",
+    "question": "Joints are where",
+    "image": "",
+    "options": ["Two or more bones meet", "Only muscles end", "Only nerves begin", "Only blood starts"],
+    "correct": 0,
+    "explanation": "Joints allow movement by connecting bones (e.g. knee, elbow, shoulder)."
+  },
+  {
+    "topic": "The Skeletal System of Man",
+    "question": "Muscles move bones by",
+    "image": "",
+    "options": ["Contracting and pulling on bones", "Only pushing bones", "Only melting bones", "Only dissolving bones"],
+    "correct": 0,
+    "explanation": "Muscles work in pairs; when one contracts, it pulls a bone to create movement."
+  },
+  {
+    "topic": "The Endocrine System",
+    "question": "Hormones are",
+    "image": "",
+    "options": ["Chemical messengers carried in the blood", "Only nerves", "Only muscles", "Only bones"],
+    "correct": 0,
+    "explanation": "Endocrine glands secrete hormones directly into the bloodstream to regulate body processes."
+  },
+  {
+    "topic": "The Endocrine System",
+    "question": "Insulin is produced by the",
+    "image": "",
+    "options": ["Pancreas", "Thyroid only", "Adrenal only", "Kidney only"],
+    "correct": 0,
+    "explanation": "Insulin lowers blood sugar by helping cells absorb glucose."
+  },
+  {
+    "topic": "The Endocrine System",
+    "question": "Thyroxine controls",
+    "image": "",
+    "options": ["Metabolic rate", "Only growth of nails", "Only skin colour", "Only hair length"],
+    "correct": 0,
+    "explanation": "Thyroxine from the thyroid gland regulates how quickly the body uses energy."
+  },
+  {
+    "topic": "The Endocrine System",
+    "question": "Adrenaline prepares the body for",
+    "image": "",
+    "options": ["'Fight or flight' action", "Only sleeping", "Only digestion", "Only growth"],
+    "correct": 0,
+    "explanation": "Adrenaline increases heart rate, breathing and energy availability during stress or danger."
+  },
+  {
+    "topic": "The Endocrine System",
+    "question": "The pituitary gland is called the",
+    "image": "",
+    "options": ["Master gland", "Only salivary gland", "Only sweat gland", "Only oil gland"],
+    "correct": 0,
+    "explanation": "The pituitary secretes hormones that control many other endocrine glands."
+  },
+  {
+    "topic": "Communicable and Non-Communicable Diseases",
+    "question": "Malaria is spread by",
+    "image": "",
+    "options": ["Female Anopheles mosquitoes", "Only drinking water", "Only shaking hands", "Only eating food"],
+    "correct": 0,
+    "explanation": "Infected female Anopheles mosquitoes transmit the malaria parasite to people."
+  },
+  {
+    "topic": "Communicable and Non-Communicable Diseases",
+    "question": "Diabetes is a",
+    "image": "",
+    "options": ["Non-communicable disease", "Only communicable disease", "Only insect bite", "Only injury"],
+    "correct": 0,
+    "explanation": "Diabetes does not spread from person to person; it is a non-communicable disease."
+  },
+  {
+    "topic": "Project Work",
+    "question": "A hypothesis should be",
+    "image": "",
+    "options": ["Testable through experiment", "Only a guess with no test", "Only a fact", "Only a story"],
+    "correct": 0,
+    "explanation": "A good scientific hypothesis can be supported or rejected by evidence from an experiment."
+  },
+  {
+    "topic": "Project Work",
+    "question": "Controlling variables means",
+    "image": "",
+    "options": ["Keeping all factors constant except the one being tested", "Changing everything at once", "Ignoring all factors", "Only changing the result"],
+    "correct": 0,
+    "explanation": "A fair test changes only the independent variable and measures its effect on the dependent variable."
+  },
+  {
+    "topic": "Project Work",
+    "question": "The scientific method ends with",
+    "image": "",
+    "options": ["Drawing a conclusion", "Only asking a question", "Only guessing", "Only stopping"],
+    "correct": 0,
+    "explanation": "After observing and analysing results, the investigator draws a conclusion about the hypothesis."
+  },
+  {
+    "topic": "Project Work",
+    "question": "The aim of an experiment states",
+    "image": "",
+    "options": ["What the investigator intends to find out", "Only the result", "Only the conclusion", "Only the apparatus"],
+    "correct": 0,
+    "explanation": "The aim defines the purpose or question the experiment is designed to answer."
+  },
+  {
+    "topic": "Project Work",
+    "question": "Results should be",
+    "image": "",
+    "options": ["Recorded accurately and honestly", "Only guessed", "Only invented", "Only hidden"],
+    "correct": 0,
+    "explanation": "Accurate records allow others to check and repeat the investigation."
+  },
+  /* ===== Additional questions to bring Foundation Science topics to 10+ ===== */
+  {
+    "topic": "Structure and Functions of the Human Tongue",
+    "question": "The tongue is kept moist by",
+    "image": "",
+    "options": ["Saliva", "Only blood", "Only air", "Only mucus from the nose"],
+    "correct": 0,
+    "explanation": "Salivary glands release saliva that keeps the tongue and mouth moist."
+  },
+  {
+    "topic": "Structure and Functions of the Human Tongue",
+    "question": "Taste signals are sent to the brain by the",
+    "image": "",
+    "options": ["Facial and glossopharyngeal nerves", "Only the optic nerve", "Only the auditory nerve", "Only the spinal cord"],
+    "correct": 0,
+    "explanation": "Taste receptor cells send signals through cranial nerves to the brain."
+  },
+  {
+    "topic": "Structure and Functions of the Human Tongue",
+    "question": "Umami is the taste of",
+    "image": "",
+    "options": ["Savoury or meaty foods", "Only sweet foods", "Only sour foods", "Only bitter foods"],
+    "correct": 0,
+    "explanation": "Umami is the fifth basic taste, often described as savoury or meaty."
+  },
+  {
+    "topic": "Structure of the Sensory Cells of the Human Skin",
+    "question": "The epidermis is the",
+    "image": "",
+    "options": ["Outer layer of the skin", "Inner layer only", "Fatty layer only", "Muscle layer only"],
+    "correct": 0,
+    "explanation": "The epidermis is the thin outer layer of the skin."
+  },
+  {
+    "topic": "Structure and Functions of the Nose",
+    "question": "Sinuses are air-filled spaces in the",
+    "image": "",
+    "options": ["Skull bones around the nose", "Lungs only", "Stomach only", "Heart only"],
+    "correct": 0,
+    "explanation": "Sinuses lighten the skull, produce mucus, and help warm and moisten air."
+  },
+  {
+    "topic": "Structure and Functions of the Nose",
+    "question": "The nasal septum separates the",
+    "image": "",
+    "options": ["Two nostrils", "Mouth from nose only", "Eyes from ears only", "Brain from skull only"],
+    "correct": 0,
+    "explanation": "The septum is the wall of cartilage dividing the left and right nasal cavities."
+  },
+  {
+    "topic": "Structure and Functions of the Nose",
+    "question": "Sneezing helps to",
+    "image": "",
+    "options": ["Expel irritants from the nasal passages", "Only swallow food", "Only digest food", "Only hear better"],
+    "correct": 0,
+    "explanation": "Sneezing forcefully expels dust, germs and irritants from the nose."
+  },
+  {
+    "topic": "Structure and Functions of the Nose",
+    "question": "Pharyngitis is inflammation of the",
+    "image": "",
+    "options": ["Throat (pharynx)", "Nose only", "Ear only", "Lung only"],
+    "correct": 0,
+    "explanation": "Pharyngitis is a sore throat caused by inflammation of the pharynx."
+  },
+  {
+    "topic": "The Hand Lens",
+    "question": "A hand lens forms a",
+    "image": "",
+    "options": ["Virtual, upright and magnified image", "Only real inverted image", "Only coloured image", "Only X-ray image"],
+    "correct": 0,
+    "explanation": "When the object is within the focal length, a convex lens forms a virtual upright magnified image."
+  },
+  {
+    "topic": "The Hand Lens",
+    "question": "The magnification of a hand lens depends on its",
+    "image": "",
+    "options": ["Focal length and lens curvature", "Only colour", "Only weight", "Only price"],
+    "correct": 0,
+    "explanation": "A shorter focal length and greater curvature give higher magnification."
+  },
+  {
+    "topic": "Other Types of Machines",
+    "question": "A gear system is used to",
+    "image": "",
+    "options": ["Change speed and force between rotating shafts", "Only tell time", "Only measure length", "Only produce light"],
+    "correct": 0,
+    "explanation": "Gears transmit motion and can increase force or speed depending on their sizes."
+  },
+  {
+    "topic": "Other Types of Machines",
+    "question": "A hydraulic jack lifts a car using",
+    "image": "",
+    "options": ["Liquid pressure (Pascal's principle)", "Only air only", "Only magnetism", "Only sound"],
+    "correct": 0,
+    "explanation": "Pressure applied to oil in a small cylinder is transmitted to a larger cylinder, lifting the car."
+  },
+  {
+    "topic": "The Plant Kingdom",
+    "question": "Bryophytes include",
+    "image": "",
+    "options": ["Mosses", "Only flowering plants", "Only conifers", "Only fungi"],
+    "correct": 0,
+    "explanation": "Mosses are non-flowering bryophytes that reproduce by spores and need moist habitats."
+  },
+  {
+    "topic": "Experiments on Pressure",
+    "question": "Snowshoes reduce sinking into snow because they",
+    "image": "",
+    "options": ["Increase area and reduce pressure", "Increase weight only", "Decrease area only", "Only look different"],
+    "correct": 0,
+    "explanation": "A larger area spreads body weight, reducing pressure on the snow."
+  },
+  {
+    "topic": "The Simplified Periodic Table of Elements",
+    "question": "Horizontal rows in the periodic table are called",
+    "image": "",
+    "options": ["Periods", "Only groups", "Only families", "Only shells"],
+    "correct": 0,
+    "explanation": "Each period represents a new electron shell being filled."
+  },
+  {
+    "topic": "Arrangement of Electrons",
+    "question": "Sodium (Na) has atomic number 11, so its electron arrangement is",
+    "image": "",
+    "options": ["2,8,1", "2,8,11", "11", "2,9"],
+    "correct": 0,
+    "explanation": "11 electrons fill the shells as 2 (first), 8 (second), 1 (third)."
+  },
+  {
+    "topic": "Atomic Mass and Atomic Numbers",
+    "question": "Carbon-12 has 6 protons and",
+    "image": "",
+    "options": ["6 neutrons", "12 neutrons", "6 electrons only", "0 neutrons"],
+    "correct": 0,
+    "explanation": "Mass number 12 − 6 protons = 6 neutrons."
+  },
+  {
+    "topic": "Isotopes",
+    "question": "Hydrogen has isotopes called",
+    "image": "",
+    "options": ["Protium, deuterium and tritium", "Only helium", "Only oxygen", "Only carbon"],
+    "correct": 0,
+    "explanation": "Hydrogen-1 (protium), hydrogen-2 (deuterium) and hydrogen-3 (tritium) are isotopes."
+  },
+  {
+    "topic": "Metals and Non-Metals",
+    "question": "A metal that is a poor conductor of electricity is",
+    "image": "",
+    "options": ["Stainless steel (relative to copper)", "Only copper", "Only silver", "Only gold"],
+    "correct": 0,
+    "explanation": "Most metals conduct well, but alloys like stainless steel conduct less than pure copper."
+  },
+  {
+    "topic": "Compounds and Naming Compounds",
+    "question": "Magnesium oxide contains",
+    "image": "",
+    "options": ["Magnesium and oxygen", "Only magnesium", "Only oxygen", "Magnesium and hydrogen"],
+    "correct": 0,
+    "explanation": "The name shows the two elements: magnesium + oxygen → magnesium oxide."
+  },
+  {
+    "topic": "Chemical Formulae of Compounds",
+    "question": "The formula of calcium carbonate is",
+    "image": "",
+    "options": ["CaCO₃", "CaCO₂", "Ca₂CO₃", "CaC"],
+    "correct": 0,
+    "explanation": "Ca²⁺ combines with carbonate (CO₃²⁻) in a 1:1 ratio."
+  },
+  {
+    "topic": "Chemical Equations",
+    "question": "The arrow (→) in a chemical equation means",
+    "image": "",
+    "options": ["Yields or produces", "Only equals", "Only plus", "Only minus"],
+    "correct": 0,
+    "explanation": "The arrow separates reactants from products and means 'yields' or 'produces'."
+  },
+  {
+    "topic": "The Human Reproductive System",
+    "question": "Testes produce",
+    "image": "",
+    "options": ["Sperm and male hormones", "Eggs only", "Urine only", "Milk only"],
+    "correct": 0,
+    "explanation": "Testes produce sperm and the hormone testosterone."
+  },
+  {
+    "topic": "Treatment and Control Methods of Diseases",
+    "question": "Washing hands with soap helps prevent",
+    "image": "",
+    "options": ["Diarrhoea and respiratory infections", "Only broken bones", "Only sunburn", "Only tooth decay"],
+    "correct": 0,
+    "explanation": "Soap removes germs from hands, stopping the spread of many infectious diseases."
+  },
+  {
+    "topic": "Treatment and Control Methods of Diseases",
+    "question": "Using mosquito nets helps prevent",
+    "image": "",
+    "options": ["Malaria", "Only tooth decay", "Only broken bones", "Only sunburn"],
+    "correct": 0,
+    "explanation": "Insecticide-treated nets protect people from mosquito bites while sleeping."
+  },
+  {
+    "topic": "Treatment and Control Methods of Diseases",
+    "question": "Boiling water kills",
+    "image": "",
+    "options": ["Disease-causing microbes", "Only oxygen", "Only minerals", "Only taste"],
+    "correct": 0,
+    "explanation": "Boiling water destroys bacteria, viruses and parasites that cause waterborne diseases."
+  },
+  {
+    "topic": "Treatment and Control Methods of Diseases",
+    "question": "Covering food protects it from",
+    "image": "",
+    "options": ["Flies and dust that carry germs", "Only light", "Only heat", "Only sound"],
+    "correct": 0,
+    "explanation": "Uncovered food can be contaminated by flies, dust and microbes."
+  },
+  {
+    "topic": "Treatment and Control Methods of Diseases",
+    "question": "A balanced diet helps prevent",
+    "image": "",
+    "options": ["Deficiency diseases such as scurvy and rickets", "Only broken bones", "Only sunburn", "Only tooth decay"],
+    "correct": 0,
+    "explanation": "Eating a variety of foods supplies vitamins and minerals that prevent deficiency diseases."
+  },
+  {
+    "topic": "The Hand Lens",
+    "question": "A hand lens is also called a",
+    "image": "",
+    "options": ["Magnifying glass", "Microscope only", "Telescope only", "Mirror only"],
+    "correct": 0,
+    "explanation": "A hand lens is a simple magnifying glass used to enlarge small objects."
+  },
+  {
+    "topic": "Atomic Mass and Atomic Numbers",
+    "question": "The atomic number of oxygen is 8, so oxygen has",
+    "image": "",
+    "options": ["8 protons", "8 neutrons only", "8 electrons only", "0 protons"],
+    "correct": 0,
+    "explanation": "Atomic number equals the number of protons, which identifies the element."
+  },
+  {
+    "topic": "Isotopes",
+    "question": "Isotopes have different",
+    "image": "",
+    "options": ["Mass numbers", "Only proton numbers", "Only element names", "Only colours"],
+    "correct": 0,
+    "explanation": "Isotopes differ in neutron count, so they have different mass numbers."
+  },
+  {
+    "topic": "Compounds and Naming Compounds",
+    "question": "Sodium chloride contains",
+    "image": "",
+    "options": ["Sodium and chlorine", "Only sodium", "Only chlorine", "Sodium and oxygen"],
+    "correct": 0,
+    "explanation": "The name sodium chloride shows it is made of sodium and chlorine (chloride)."
+  },
+  {
+    "topic": "Chemical Formulae of Compounds",
+    "question": "The formula of water is H₂O because",
+    "image": "",
+    "options": ["It has 2 hydrogen atoms and 1 oxygen atom", "It has 2 oxygen atoms only", "It has 2 helium atoms", "It has 20 atoms"],
+    "correct": 0,
+    "explanation": "The subscript 2 after H means two hydrogen atoms; O with no subscript means one oxygen atom."
+  },
+  {
+    "topic": "Chemical Equations",
+    "question": "In 2H₂ + O₂ → 2H₂O, the coefficient 2 before H₂ means",
+    "image": "",
+    "options": ["Two molecules of hydrogen", "Two atoms only", "Two elements only", "Two reactions"],
+    "correct": 0,
+    "explanation": "Coefficients in an equation indicate the number of molecules (or moles) of each substance."
+  },
+  {
+    "topic": "The Human Reproductive System",
+    "question": "Puberty is the stage when",
+    "image": "",
+    "options": ["The body becomes capable of reproduction", "Only hair falls out", "Only teeth grow", "Only height stops"],
+    "correct": 0,
+    "explanation": "Puberty is when the reproductive organs mature and the body becomes capable of reproduction."
   }
 ];

@@ -217,7 +217,7 @@ window.scienceNotes = [
       "Deficiency = a disease caused by the lack of a nutrient."
     ],
     examples: [
-      "Lack of Vitamin C causes scurvy (palm oil, oranges prevent it).",
+      "Lack of Vitamin C causes scurvy (citrus fruits, guava, oranges prevent it).",
       "Lack of iron causes anaemia (eating liver and green vegetables helps).",
       "Lack of iodine causes goitre (use iodised salt).",
       "Lack of Vitamin D causes rickets (weak bones); sunlight helps the body make it."

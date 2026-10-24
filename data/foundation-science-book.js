@@ -105,15 +105,15 @@ window.foundationScienceBook = [
          },
          {
           "t": "p",
-          "x": "Science is a very broad area of study, but it can be divided into three main branches: deal with study of living things"
+           "x": "Science is a very broad area of study, but it can be divided into three main branches: biological sciences, physical sciences and social sciences."
          },
          {
           "t": "ol",
-          "items": [
-           "Biological sciences: deal with the study of non-living things",
-           "Physical sciences: deal with the study of non-living things deal with the study of man and his enviro",
-           "Physical sciences: deal with the study of man and his environment) 3. Social Sciences: deal with the study of man and his environment)"
-          ]
+           "items": [
+            "Biological sciences: deal with the study of living things",
+            "Physical sciences: deal with the study of non-living things (matter, energy, forces).",
+            "Social Sciences: deal with the study of man and his environment."
+           ]
          },
          {
           "t": "p",

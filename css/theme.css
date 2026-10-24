@@ -462,6 +462,12 @@ body[data-accent="gold"] {
     font-weight: 800;
 }
 
+/* Defined terms — bold, theme colour (applies to "Term: definition" list items). */
+.term-def {
+    color: var(--tm-accent);
+    font-weight: 800;
+}
+
 .passage-label {
     font-size: 0.72rem;
     font-weight: 800;

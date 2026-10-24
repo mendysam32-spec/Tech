@@ -239,8 +239,8 @@ Object.assign(window.foundationScienceNotes, {
      ]}
    ]
  },
- "g8-t3-0": {
-   title: "Unicellular Organisms",
+  "g8-t1-6": {
+    title: "Unicellular Organisms",
    notes: "Unicellular organisms are made of one cell that carries out all life processes. Examples: Amoeba, Paramecium, Euglena, Bacterium.",
    memoryTip: "One cell = whole organism.",
    sections: [
@@ -254,8 +254,8 @@ Object.assign(window.foundationScienceNotes, {
      ]}
    ]
  },
- "g8-t4-0": {
-   title: "The Plant Kingdom",
+  "g8-t1-7": {
+    title: "The Plant Kingdom",
    notes: "Plants are multicellular, autotrophic organisms with cellulose cell walls. They are divided into non-flowering and flowering plants.",
    memoryTip: "Non-flowering (spores) vs flowering (seeds).",
    sections: [
@@ -352,7 +352,7 @@ Object.assign(window.foundationScienceNotes, {
        { t: "ul", items: [
          "First shell holds max 2 electrons.",
          "Second shell holds max 8 electrons.",
-         "Third shell holds max 8 electrons (for elements up to calcium).",
+          "Third shell holds up to 8 electrons for the first 20 elements (before the 4th shell fills); it can hold up to 18 overall.",
          "Atoms with full outer shells (noble gases) are unreactive."
        ]}
      ]}
@@ -396,7 +396,7 @@ Object.assign(window.foundationScienceNotes, {
          ["Appearance", "Shiny", "Dull"],
          ["Conducts electricity", "Yes", "No (except graphite)"],
          ["Malleable/ductile", "Yes", "No (brittle)"],
-         ["Oxide type", "Basic", "Acidic"]
+          ["Oxide type", "Usually basic (some amphoteric, e.g. Al₂O₃)", "Usually acidic (some neutral, e.g. CO, H₂O)"]
        ]}
      ]}
    ]
@@ -521,7 +521,7 @@ Object.assign(window.foundationScienceNotes, {
        { t: "ul", items: [
          "Mouth: starch digestion begins (saliva/amylase).",
          "Stomach: churns food with digestive juices.",
-         "Liver: produces bile for fat digestion.",
+          "Liver: produces bile which emulsifies fats (breaks into droplets); lipase enzymes chemically digest fats.",
          "Pancreas: produces enzymes and insulin.",
          "Small intestine: most digestion and absorption.",
          "Large intestine: absorbs water; removes undigested waste."

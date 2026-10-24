@@ -130,6 +130,21 @@ function renderList(title, items) {
     if (!Array.isArray(items) || !items.length) return "";
     return `<div class="study-section"><h6>${escapeHTML(title)}</h6><ul>${items.map(x => `<li>${escapeHTML(x)}</li>`).join("")}</ul></div>`;
 }
+// Render a "Term: definition" list item with the term bold + theme colour.
+function renderDefItem(text) {
+    const raw = escapeHTML(String(text ?? "").trim());
+    const colon = raw.indexOf(":");
+    if (colon > 0) {
+        const term = raw.slice(0, colon).trim();
+        const rest = raw.slice(colon).trim();
+        return `<li><span class="term-def">${term}:</span> ${rest}</li>`;
+    }
+    return `<li>${raw}</li>`;
+}
+function renderDefList(title, items) {
+    if (!Array.isArray(items) || !items.length) return "";
+    return `<div class="study-section"><h6>${escapeHTML(title)}</h6><ul>${items.map(renderDefItem).join("")}</ul></div>`;
+}
 // English syllabus detail overlay (data/english-notes-detail.js): the deep
 // syllabus framing, the rules the examiner tests and the worked examples.
 function englishDetail(source) {
@@ -226,7 +241,7 @@ function renderEnglishNote(note) {
             <p class="mini-label">${escapeHTML(note.grade)} • Topic ${escapeHTML(note.topicNumber)} • Aki Ola / WAEC Focus</p>
             <h4>${escapeHTML(note.title)}</h4>
             <p>${escapeHTML(view.explanation)}</p>
-            ${renderList("Key Points", view.points)}${renderList("Definitions", view.definitions)}${renderList("Rules to Remember", view.rules)}${renderExampleList("Worked Examples", view.examples)}${renderList("WAEC Focus", view.waecFocus)}
+            ${renderList("Key Points", view.points)}${renderDefList("Definitions", view.definitions)}${renderList("Rules to Remember", view.rules)}${renderExampleList("Worked Examples", view.examples)}${renderList("WAEC Focus", view.waecFocus)}
             <div class="memory-tip">💡 ${escapeHTML(view.memoryTip || "Revise this before quiz time.")}</div>
         </div>
     </article>`;
@@ -250,7 +265,7 @@ function renderMathsNote(note) {
             <div class="d-flex flex-wrap gap-2 mb-2">
                 <a class="glass-btn" href="${practiceUrl}">🎯 Practice ${escapeHTML(quizTopic)}${n ? ` (${n} questions)` : ""}</a>
             </div>
-            ${renderList("Key Points", note.points)}${renderList("Definitions", note.definitions)}${renderList("Formulas", note.formulas)}${renderList("Rules to Remember", note.rules)}${renderList("Examples", note.examples)}${renderList("WAEC Focus", note.waecFocus)}
+            ${renderList("Key Points", note.points)}${renderDefList("Definitions", note.definitions)}${renderList("Formulas", note.formulas)}${renderList("Rules to Remember", note.rules)}${renderList("Examples", note.examples)}${renderList("WAEC Focus", note.waecFocus)}
             <div class="memory-tip">💡 ${escapeHTML(note.memoryTip || "Revise this before quiz time.")}</div>
             ${n ? `<div class="topic-quiz-cta"><strong>${n} questions</strong> in the quiz bank for <strong>${escapeHTML(quizTopic)}</strong> (minimum 10 guaranteed).<a class="glass-btn mt-2" href="${practiceUrl}">🎯 Practice now</a></div>` : ""}
         </div>
@@ -264,7 +279,7 @@ function renderScienceNote(note) {
             <p class="mini-label">${escapeHTML(note.grade)} • Topic ${escapeHTML(note.topicNumber)} • Aki Ola Science / BECE Focus</p>
             <h4>${escapeHTML(note.title)}</h4>
             <p>${escapeHTML(note.explanation)}</p>
-            ${renderList("Key Points", note.points)}${renderList("Definitions", note.definitions)}${renderList("Formulas", note.formulas)}${renderList("Rules to Remember", note.rules)}${renderList("Examples", note.examples)}${renderList("WAEC Focus", note.waecFocus)}
+            ${renderList("Key Points", note.points)}${renderDefList("Definitions", note.definitions)}${renderList("Formulas", note.formulas)}${renderList("Rules to Remember", note.rules)}${renderList("Examples", note.examples)}${renderList("WAEC Focus", note.waecFocus)}
             <div class="memory-tip">💡 ${escapeHTML(note.memoryTip || "Revise this before quiz time.")}</div>
         </div>
     </article>`;
@@ -520,10 +535,26 @@ function foundationTopicData(topic) {
     };
 }
 
+// Wrap "Term: definition" items so the term is bold + theme colour.
+function renderTermDef(text) {
+    const raw = escapeHTML(String(text ?? "").trim());
+    const colon = raw.indexOf(":");
+    if (colon > 0) {
+        const term = raw.slice(0, colon).trim();
+        const rest = raw.slice(colon).trim();
+        return `<span class="term-def">${term}:</span> ${rest}`;
+    }
+    return raw;
+}
+// Wrap inline "Term:" patterns inside paragraph text so terms stand out.
+function renderInlineTermDefs(text) {
+    const raw = escapeHTML(String(text ?? ""));
+    return raw.replace(/\b([A-Z][a-z]+):\s/g, '<span class="term-def">$1:</span> ');
+}
 function foundationBlock(b) {
     if (!b) return "";
-    if (b.t === "ul") return `<ul>${(b.items || []).map(x => `<li>${escapeHTML(x)}</li>`).join("")}</ul>`;
-    if (b.t === "ol") return `<ol>${(b.items || []).map(x => `<li>${escapeHTML(x)}</li>`).join("")}</ol>`;
+    if (b.t === "ul") return `<ul>${(b.items || []).map(x => `<li>${renderTermDef(x)}</li>`).join("")}</ul>`;
+    if (b.t === "ol") return `<ol>${(b.items || []).map(x => `<li>${renderTermDef(x)}</li>`).join("")}</ol>`;
     if (b.t === "table") {
         const rows = b.rows || [];
         if (!rows.length) return "";
@@ -557,7 +588,7 @@ function foundationTopicBody(topic, grade, theme) {
         ${toc}
         ${secs}
         ${figs}
-        ${data.notes ? `<div class="memory-tip">📌 ${escapeHTML(data.notes)}</div>` : ""}
+        ${data.notes ? `<div class="memory-tip">📌 ${renderInlineTermDefs(data.notes)}</div>` : ""}
         ${data.memoryTip ? `<div class="memory-tip">💡 ${escapeHTML(data.memoryTip)}</div>` : ""}`;
 }
 
@@ -575,7 +606,7 @@ function scienceTopicView(found) {
                 <h4>${escapeHTML(topic.title)}</h4>
                 <p>${escapeHTML(topic.explanation)}</p>
                 ${renderList("Key Points", topic.points)}
-                ${renderList("Definitions", topic.definitions)}
+                ${renderDefList("Definitions", topic.definitions)}
                 ${renderList("Formulas", topic.formulas)}
                 ${renderList("Rules to Remember", topic.rules)}
                 ${renderList("Examples", topic.examples)}
@@ -877,7 +908,7 @@ function sesTopicView(found) {
                 ${sesFullContent(topic)}
                 ${hasFull ? `<p class="mini-label mt-3">⚡ Quick revision — the essentials</p>` : ""}
                 ${renderList("Key Points", topic.points)}
-                ${renderList("Definitions", topic.definitions)}
+                ${renderDefList("Definitions", topic.definitions)}
                 ${renderList("Formulas", topic.formulas)}
                 ${renderList("Rules to Remember", topic.rules)}
                 ${renderList("Examples", topic.examples)}
@@ -1241,7 +1272,7 @@ function englishTopicView(found) {
                 <h4>${escapeHTML(topic.title)}</h4>
                 <p>${escapeHTML(view.explanation)}</p>
                 ${renderList("Key Points", view.points)}
-                ${renderList("Definitions", view.definitions)}
+                ${renderDefList("Definitions", view.definitions)}
                 ${renderList("Rules to Remember", view.rules)}
                 ${renderExampleList("Worked Examples", view.examples)}
                 ${renderList("Exam Focus", view.waecFocus)}

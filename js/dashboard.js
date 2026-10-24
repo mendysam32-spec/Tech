@@ -38,14 +38,13 @@ async function loadSubjects() {
 
     function isOffline() { return navigator.onLine === false; }
 
-    // SCIENCE SUBJECT: development stage — available in offline mode only.
+    // SCIENCE SUBJECT: available in both online and offline mode.
     let subjects = LOCAL_SUBJECTS.map(name => ({ name }));
-    if (!isOffline()) subjects = subjects.filter(s => s.name !== "Science");
     try {
         const data = await API.subjects();
         const cloudRaw = data.subjects?.length ? data.subjects : [];
-        // SCIENCE SUBJECT: development stage — available in offline mode only.
-        const cloud = !isOffline() ? cloudRaw.filter(s => String(s.name).toLowerCase() !== "science") : cloudRaw;
+        // SCIENCE SUBJECT: available in both online and offline mode.
+        const cloud = cloudRaw;
         for (const s of cloud) {
             if (!subjects.some(x => x.name.toLowerCase() === String(s.name).toLowerCase())) subjects.push(s);
         }
