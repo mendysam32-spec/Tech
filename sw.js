@@ -1,4 +1,4 @@
-const CACHE_VERSION = "v3";
+const CACHE_VERSION = "v5";
 const CACHE_NAME = `tech-monster-shell-${CACHE_VERSION}`;
 const DATA_CACHE_NAME = `tech-monster-data-${CACHE_VERSION}`;
 const API_PREFIX = "/api/";
@@ -40,6 +40,7 @@ const SHELL_URLS = [
   "./js/motivational.js",
   "./js/nav.js",
   "./js/notes.js",
+  "./js/note-images.js",
   "./js/result.js",
   "./js/review.js",
   "./js/settings.js",
@@ -54,13 +55,17 @@ const SHELL_URLS = [
   "./data/2026.js",
   "./data/english-2026.js",
   "./data/english-book.js",
+  "./data/english-notes-detail.js",
   "./data/english-letter-writing.js",
   "./data/english-passages-comp2.js",
   "./data/english-passages-sum2.js",
   "./data/english-passages.js",
+  "./data/foundation-science-book.js",
+  "./data/foundation-science-notes.js",
   "./data/notes-english.js",
   "./data/notes-maths.js",
   "./data/notes-science.js",
+  "./data/note-images.js",
   "./data/notesData.js",
   "./data/papers.js",
   "./data/questions-english-g7.js",

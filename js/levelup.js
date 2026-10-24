@@ -2,6 +2,11 @@
 window.LevelUp = (function () {
     const LEVEL_EMOJI = ["👾", "🐉", "🦁", "🐯", "🦊", "🐺", "🐻", "🐘", "🦄", "👑"];
     const METALLIC = ["#ffd700", "#c0c0c0", "#e5e4e2", "#b87333", "#ffd700"];
+    // Safety net: the celebration must never trap the user on a locked screen.
+    const AUTO_DISMISS_MS = 20000;
+
+    let audioCtx = null;
+    let confettiStop = null;
 
     function levelColor(level) {
         const hue = ((level - 1) * 47) % 360;
@@ -12,11 +17,22 @@ window.LevelUp = (function () {
         return [p, levelColor(level + 2), ...METALLIC];
     }
 
-    function playChime() {
+    // One shared AudioContext: the old code opened (and closed) a new one for
+    // every coin tick, which browsers throttle and can leave silent.
+    function audioContext() {
         try {
             const AC = window.AudioContext || window.webkitAudioContext;
-            if (!AC) return;
-            const ctx = new AC();
+            if (!AC) return null;
+            if (!audioCtx || audioCtx.state === "closed") audioCtx = new AC();
+            if (audioCtx.state === "suspended") audioCtx.resume().catch(() => {});
+            return audioCtx;
+        } catch (_) { return null; }
+    }
+
+    function playChime() {
+        try {
+            const ctx = audioContext();
+            if (!ctx) return;
             const now = ctx.currentTime;
             const notes = [523.25, 659.25, 783.99, 1046.50];
             notes.forEach((f, i) => {
@@ -32,14 +48,13 @@ window.LevelUp = (function () {
                 o.start(now + i * 0.07);
                 o.stop(now + i * 0.07 + 0.5);
             });
-            ctx.close();
         } catch (_) {}
     }
+
     function playCoin() {
         try {
-            const AC = window.AudioContext || window.webkitAudioContext;
-            if (!AC) return;
-            const ctx = new AC();
+            const ctx = audioContext();
+            if (!ctx) return;
             const now = ctx.currentTime;
             const o = ctx.createOscillator();
             const g = ctx.createGain();
@@ -52,21 +67,32 @@ window.LevelUp = (function () {
             g.connect(ctx.destination);
             o.start(now);
             o.stop(now + 0.15);
-            ctx.close();
         } catch (_) {}
     }
 
-    function runConfetti(durationMs) {
-        const canvas = document.createElement("canvas");
-        canvas.id = "tmLuConfetti";
-        document.body.appendChild(canvas);
+    function stopConfetti() {
+        if (typeof confettiStop === "function") {
+            try { confettiStop(); } catch (_) {}
+        }
+        confettiStop = null;
+    }
+
+    // Draws on the canvas that already lives inside the overlay. Creating a
+    // second canvas here used to duplicate the #tmLuConfetti id, so the visible
+    // canvas was never the one being painted on (no confetti) and the level
+    // palette was lost.
+    function runConfetti(canvas, durationMs, level) {
+        if (!canvas) return;
+        canvas.dataset.level = level || 1;
+        canvas.classList.add("tm-show");
         const ctx = canvas.getContext("2d");
+        if (!ctx) return;
         let w, h;
         function resize() { w = canvas.width = window.innerWidth; h = canvas.height = window.innerHeight; }
         resize();
         window.addEventListener("resize", resize);
 
-        const palette = confettiPalette(parseInt(canvas.dataset.level || "1", 10) || 1);
+        const palette = confettiPalette(parseInt(canvas.dataset.level, 10) || 1);
         const particles = [];
         const particleCount = 140;
 
@@ -89,7 +115,19 @@ window.LevelUp = (function () {
         }
 
         let stopped = false;
-        setTimeout(() => { stopped = true; }, durationMs);
+        let cleaned = false;
+        const stopTimer = setTimeout(() => { stopped = true; }, durationMs);
+
+        function cleanup() {
+            if (cleaned) return;
+            cleaned = true;
+            clearTimeout(stopTimer);
+            window.removeEventListener("resize", resize);
+            canvas.classList.remove("tm-show");
+            if (canvas.parentNode) canvas.parentNode.removeChild(canvas);
+        }
+
+        confettiStop = () => { stopped = true; cleanup(); };
 
         function draw() {
             ctx.clearRect(0, 0, w, h);
@@ -111,18 +149,14 @@ window.LevelUp = (function () {
                 ctx.restore();
             }
             if (alive > 0 && !stopped) requestAnimationFrame(draw);
-            else {
-                ctx.clearRect(0, 0, w, h);
-                canvas.remove();
-                window.removeEventListener("resize", resize);
-            }
+            else cleanup();
         }
         requestAnimationFrame(draw);
     }
 
     function flyCoins(targetBadge, count) {
         const card = document.getElementById("tmLuCard");
-        if (!card) return;
+        if (!card || !targetBadge || !count) return;
         const rect = card.getBoundingClientRect();
         const cx = rect.left + rect.width / 2;
         const cy = rect.top + rect.height / 2;
@@ -191,8 +225,8 @@ window.LevelUp = (function () {
             const toEmoji = LEVEL_EMOJI[Math.min(Math.max(to - 1, 0), 9)];
 
             overlay.innerHTML = `
-                <canvas id="tmLuConfetti" style="display:none"></canvas>
-                <div id="tmLuCard">
+                <canvas id="tmLuConfetti"></canvas>
+                <div id="tmLuCard" role="dialog" aria-modal="true" aria-labelledby="tmLuTitle">
                     <div id="tmLuStage">
                         <div id="tmLuAvatar">${fromEmoji}</div>
                         <div id="tmLuGlow"></div>
@@ -201,24 +235,20 @@ window.LevelUp = (function () {
                     <div id="tmLuSub">Unlocked Level ${to}!</div>
                     <div id="tmLuCoins">+${coins} Tech Coins</div>
                     <div id="tmLuCoinCounter">0</div>
-                    <ul id="tmLuUnlocks">
-                        <h6>Newly Unlocked</h6>
+                    <h6 id="tmLuUnlocksTitle">Newly Unlocked</h6>
+                    <ul id="tmLuUnlockList">
                         ${unlocksHTML(to)}
                     </ul>
-                    <button id="tmLuClaim" class="tm-glowing">CLAIM &amp; CONTINUE</button>
+                    <button id="tmLuClaim" class="tm-glowing" type="button">CLAIM &amp; CONTINUE</button>
                 </div>
             `;
             document.body.appendChild(overlay);
 
             const confettiCanvas = document.getElementById("tmLuConfetti");
-            confettiCanvas.style.display = "block";
-            confettiCanvas.className = "tm-show";
-            confettiCanvas.dataset.level = to;
-            runConfetti(3500);
+            runConfetti(confettiCanvas, 3500, to);
 
             const avatar = document.getElementById("tmLuAvatar");
             const title = document.getElementById("tmLuTitle");
-            const sub = document.getElementById("tmLuSub");
             const badge = ensureCoinBadge();
             updateCoinBadge(badge, Storage.getCoins ? Storage.getCoins() : 0);
             const counter = document.getElementById("tmLuCoinCounter");
@@ -241,6 +271,7 @@ window.LevelUp = (function () {
             }, 500);
 
             setTimeout(() => {
+                if (!avatar) return;
                 avatar.classList.add("tm-pulse");
                 setTimeout(() => {
                     avatar.classList.remove("tm-pulse");
@@ -255,12 +286,34 @@ window.LevelUp = (function () {
                 }, 1100);
             }, 900);
 
-            document.getElementById("tmLuClaim").addEventListener("click", () => {
+            // Dismissal: the claim button, the Escape key, a click on the
+            // backdrop, or the auto-dismiss timer. Whichever fires first
+            // removes the overlay and resolves, so the page is never locked.
+            let settled = false;
+            let autoTimer = null;
+            function finish() {
+                if (settled) return;
+                settled = true;
+                clearInterval(counterTimer);
+                if (autoTimer) clearTimeout(autoTimer);
+                document.removeEventListener("keydown", onKey);
+                stopConfetti();
                 try { overlay.remove(); } catch (_) {}
-                const conf = document.getElementById("tmLuConfetti");
-                if (conf) conf.remove();
                 resolve();
+            }
+            function onKey(e) {
+                if (e.key === "Escape" || e.key === "Enter") finish();
+            }
+            autoTimer = setTimeout(finish, AUTO_DISMISS_MS);
+            document.addEventListener("keydown", onKey);
+            overlay.addEventListener("click", (e) => {
+                if (e.target === overlay) finish();
             });
+            const claim = document.getElementById("tmLuClaim");
+            if (claim) {
+                claim.addEventListener("click", finish);
+                try { claim.focus({ preventScroll: true }); } catch (_) { claim.focus(); }
+            }
         });
     }
 

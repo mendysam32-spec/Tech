@@ -872,5 +872,72 @@ window.scienceNotes = [
     ],
     memoryTip:
       "Sand drains fast, clay holds too much, loam is just right. Add humus/compost to keep soil fertile."
+  },
+
+  {
+    grade: "JSS 1",
+    topicNumber: 21,
+    title: "Technology and Recycling",
+    icon: "⚙️",
+    explanation:
+      "Technology is the application of scientific knowledge to solve practical problems and meet human needs. Recycling processes waste materials into new materials to protect the environment.",
+    points: [
+      "Science investigates nature; technology applies scientific knowledge to practical use.",
+      "Technology improves transport, communication, agriculture, medicine and construction.",
+      "Recycling collects and processes waste (metals, paper, plastics, glass) into new materials.",
+      "Recycling saves natural resources, uses less energy and reduces landfill waste.",
+      "Recycling can be costly to sort and some recycled paper is lower quality."
+    ],
+    definitions: [
+      "Technology: the application of science to meet human needs.",
+      "Recycling: turning waste materials into new products.",
+      "Natural resources: materials from nature such as wood, metals and oil."
+    ],
+    examples: [
+      "Recycling paper means fewer trees are cut down.",
+      "Recycling metals uses less energy than extracting new metal from ore.",
+      "Cars, phones and medicines are products of technology."
+    ],
+    waecFocus: [
+      "Define technology and give its uses.",
+      "State advantages and problems of recycling.",
+      "Name materials that can be recycled."
+    ],
+    memoryTip:
+      "Science discovers, technology applies. Recycle = save resources, energy and reduce waste."
+  },
+
+  {
+    grade: "JSS 2",
+    topicNumber: 21,
+    title: "The Plant Kingdom",
+    icon: "🌿",
+    explanation:
+      "Plants are multicellular, autotrophic organisms with cellulose cell walls. They are divided into non-flowering plants (mosses, ferns, conifers) and flowering plants (monocots and dicots).",
+    points: [
+      "Plants make their own food by photosynthesis.",
+      "Non-flowering plants reproduce by spores (mosses, ferns, conifers).",
+      "Flowering plants reproduce by flowers and seeds.",
+      "Monocots have one seed leaf (e.g. maize); dicots have two (e.g. beans, mango).",
+      "The flower is the reproductive part producing seeds and fruit."
+    ],
+    definitions: [
+      "Autotrophic nutrition: making their own food by photosynthesis.",
+      "Monocot: a flowering plant with one seed leaf.",
+      "Dicot: a flowering plant with two seed leaves.",
+      "Pollination: transfer of pollen from anther to stigma."
+    ],
+    examples: [
+      "Maize and palm are monocots.",
+      "Mango, beans and hibiscus are dicots.",
+      "Ferns and mosses are non-flowering plants."
+    ],
+    waecFocus: [
+      "Distinguish non-flowering from flowering plants.",
+      "Distinguish monocots from dicots.",
+      "State the role of the flower in reproduction."
+    ],
+    memoryTip:
+      "Non-flowering = spores; flowering = seeds. Monocot = one seed leaf; dicot = two."
   }
 ];

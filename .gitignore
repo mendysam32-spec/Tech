@@ -1,2 +1,6 @@
 .wrangler/ 
 .wrangler/ 
+
+# Local source textbook (15MB ODT) - regenerate data/foundation-science-book.js
+# with: node build_foundation_science.cjs
+data/Foundation SCIENCE/

@@ -11,6 +11,8 @@ let isTopicMode = false;
 let topicFilter = null;
 let passageFilter = null;
 let noteFilter = null;
+let urlUnit = null;
+let urlUnitGrade = null;
 let activePassageTitle = null;
 let activePassageTitles = [];
 
@@ -18,7 +20,7 @@ function shuffle(array) { return array.sort(() => Math.random() - 0.5); }
 
 // English rule: every quiz attempt must contain at least this many DIFFERENT
 // passages, so a learner always practises on varied reading material.
-const MIN_ENGLISH_PASSAGES = 3;
+const MIN_ENGLISH_PASSAGES = 1;
 
 // WASSCE passage rotation: group questions by passageId so each practice
 // attempt serves full static passage sets.
@@ -143,6 +145,8 @@ document.addEventListener("DOMContentLoaded", async () => {
     topicFilter = urlParams.get("topic");
     passageFilter = urlParams.get("passage");
     noteFilter = urlParams.get("note");
+    urlUnit = urlParams.get("unit");
+    urlUnitGrade = urlParams.get("grade");
     const urlSubject = urlParams.get("subject");
 
     // Library past-paper / topic-practice mode: subject/year from URL takes priority
@@ -157,6 +161,17 @@ document.addEventListener("DOMContentLoaded", async () => {
     if (isTopicMode && topicFilter) {
         const moodEl = document.getElementById("quizMood");
         if (moodEl) moodEl.textContent = `${topicFilter} • Practice • Untimed`;
+    }
+    if (isTopicMode && urlUnit) {
+        const unit = (typeof scienceUnitTopics !== "undefined" && scienceUnitTopics[urlUnit]) || null;
+        const moodEl = document.getElementById("quizMood");
+        if (moodEl) moodEl.textContent = unit ? `Unit ${unit.label} • ${unit.theme} • Practice • Untimed` : "Unit Practice • Untimed";
+    }
+    if (isTopicMode && urlUnitGrade) {
+        const units = (typeof scienceUnitTopics !== "undefined") ? Object.values(scienceUnitTopics).filter(u => u.grade === urlUnitGrade) : [];
+        const topicCount = units.reduce((n, u) => n + u.topics.length, 0);
+        const moodEl = document.getElementById("quizMood");
+        if (moodEl) moodEl.textContent = `All Units • ${escapeHtml(String(urlUnitGrade))} • ${topicCount} topics • Untimed`;
     }
     if (isPaperMode && paperYear) {
         const moodEl = document.getElementById("quizMood");
@@ -243,6 +258,22 @@ document.addEventListener("DOMContentLoaded", async () => {
         if (isTopicMode && topicFilter) {
             questionBank = questionBank.filter(q => topicForQuestion(q) === topicFilter);
         }
+        // Unit-level practice (Foundation Science): cover every topic in the unit
+        if (isTopicMode && urlUnit) {
+            const unit = (typeof scienceUnitTopics !== "undefined" && scienceUnitTopics[urlUnit]) || null;
+            const unitTopics = unit ? unit.topics.map(t => t.quizTopic).filter(Boolean) : [];
+            if (unitTopics.length) {
+                questionBank = questionBank.filter(q => unitTopics.indexOf(q.topic) !== -1);
+            }
+        }
+        // Grade-level all-units practice: one quiz covering every unit/topic in the grade
+        if (isTopicMode && urlUnitGrade) {
+            const gradeData = (typeof scienceUnitTopics !== "undefined") ? Object.values(scienceUnitTopics).filter(u => u.gradeId === urlUnitGrade || u.grade === urlUnitGrade) : [];
+            const gradeTopics = gradeData.reduce((acc, u) => acc.concat(u.topics.map(t => t.quizTopic).filter(Boolean)), []);
+            if (gradeTopics.length) {
+                questionBank = questionBank.filter(q => gradeTopics.indexOf(q.topic) !== -1);
+            }
+        }
     }
 
     // ---- EXAM PREP MODE: full-length timed simulation ----
@@ -269,6 +300,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         selectedQuestions = selectedSubject === "English"
             ? selectEnglishQuestions(questionBank, 60, "tm_lastPassages_exam_prep")
             : shuffle([...questionBank]).slice(0, 60);
+        markPassageFirsts(selectedQuestions);
         userAnswers = new Array(selectedQuestions.length).fill(null);
         // 90 seconds per question (WAEC-style objective pacing)
         timeLeft = selectedQuestions.length * 90;
@@ -356,6 +388,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         if (timeLeft > 0) startTimer();
     }
 
+    markPassageFirsts(selectedQuestions);
     loadQuestion();
     document.getElementById("nextBtn").onclick = nextQuestion;
     document.getElementById("prevBtn").onclick = prevQuestion;
@@ -416,6 +449,33 @@ function escapeRegex(str) {
 
 function isOffline() { return navigator.onLine === false; }
 
+function subjectSlug(subject) {
+    return String(subject || "").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "") || "general";
+}
+
+// Diagrams are shown in the quiz above the question text. Questions without a
+// diagram hide the area completely; a diagram that fails to load shows the
+// expected path so the missing file can be spotted and added.
+function renderQuestionImage(imageUrl, suggestedPath) {
+    const container = document.getElementById("questionImage");
+    if (!container) return;
+    container.innerHTML = "";
+    if (!imageUrl || String(imageUrl).trim() === "") {
+        container.style.display = "none";
+        return;
+    }
+    container.style.display = "block";
+    const img = document.createElement("img");
+    img.className = "img-fluid rounded shadow";
+    img.style.maxHeight = "300px";
+    img.alt = "Question diagram";
+    img.src = imageUrl;
+    img.onerror = () => {
+        container.innerHTML = `<div class="tm-sci-placeholder"><div class="tm-sci-emoji">🖼️</div><div class="tm-sci-path">${escapeHtml(suggestedPath || imageUrl)}</div><div class="tm-sci-hint">Diagram not found — add the image at this path.</div></div>`;
+    };
+    container.appendChild(img);
+}
+
 function partLabelHtml(text, keywords) {
     if (!keywords || !keywords.length) return text;
     let html = text;
@@ -459,6 +519,19 @@ function highlightPassageText(passage, words) {
     return html;
 }
 
+// Each passage is printed ONCE per attempt: the first question of a passage
+// shows the full text, the remaining questions of that same passage show a
+// collapsed "tap to re-read" box instead of repeating the whole passage.
+function markPassageFirsts(questions) {
+    const seen = new Set();
+    (questions || []).forEach(q => {
+        if (!q) return;
+        const pid = q.passageId ? q.passageId : null;
+        q.__passageFirst = pid ? !seen.has(pid) : true;
+        if (pid) seen.add(pid);
+    });
+}
+
 function renderPassage(question) {
     const box = document.getElementById("questionPassage");
     if (!box) return;
@@ -468,7 +541,14 @@ function renderPassage(question) {
         return;
     }
     const words = passageVocabWords(question.passageId, question.targetWord);
-    box.innerHTML = `<div class="passage-label">Passage</div><div class="passage-text">${highlightPassageText(question.passage, words)}</div>`;
+    const text = `<div class="passage-text">${highlightPassageText(question.passage, words)}</div>`;
+    if (question.__passageFirst) {
+        box.innerHTML = `<div class="passage-label">Passage</div>${text}`;
+        box.style.display = "block";
+        return;
+    }
+    const title = question.passageTitle || "Passage";
+    box.innerHTML = `<details class="paper-passage"><summary>\u{1F4D6} ${escapeHtml(title)} (shown above - tap to re-read)</summary>${text}</details>`;
     box.style.display = "block";
 }
 
@@ -527,13 +607,9 @@ function loadQuestion() {
     renderQuestionText(q);
     updateQuizProgress();
 
-    // Question diagrams live in the Notes/Library area only, so the quiz
-    // shows no image container at all.
-    const imageContainer = document.getElementById("questionImage");
-    if (imageContainer) {
-        imageContainer.innerHTML = "";
-        imageContainer.style.display = "none";
-    }
+    // Question diagrams are shown above the question text in the quiz.
+    const suggestedPath = `images/${subjectSlug(selectedSubject)}/${subjectSlug(topic)}/q${currentIndex + 1}.png`;
+    renderQuestionImage(q.image, suggestedPath);
 
     const feedback = document.getElementById("instantFeedback");
     feedback.textContent = "";

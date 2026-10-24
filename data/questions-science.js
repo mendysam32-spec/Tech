@@ -4088,5 +4088,810 @@ const ScienceQuestions = [
     "options": ["photographs only", "a list of classmates", "aim, method, results, conclusion and references", "only the final answer"],
     "correct": 2,
     "explanation": "A good report states the aim, apparatus, method, observations, results, conclusion and sources of information."
+  },
+  /* ============ GRADE 7: TECHNOLOGY ============ */
+  {
+    "topic": "Meaning and Uses of Technology",
+    "question": "Technology is best defined as",
+    "image": "",
+    "options": [
+      "The study of living things only",
+      "The application of scientific knowledge to solve practical problems",
+      "The study of stars and planets",
+      "The classification of plants and animals"
+    ],
+    "correct": 1,
+    "explanation": "Technology applies scientific ideas to improve lives and meet human needs."
+  },
+  {
+    "topic": "Meaning and Uses of Technology",
+    "question": "Which of the following is a use of technology?",
+    "image": "",
+    "options": [
+      "Destroying farmland",
+      "Improving transport and communication systems",
+      "Spreading disease",
+      "Wasting natural resources"
+    ],
+    "correct": 1,
+    "explanation": "Technology improves transport, communication, agriculture and construction."
+  },
+  {
+    "topic": "Technological Processes - Recycling",
+    "question": "Recycling is the process of",
+    "image": "",
+    "options": [
+      "Burning all waste",
+      "Collecting and processing waste into new materials",
+      "Burying waste in rivers",
+      "Leaving waste to rot"
+    ],
+    "correct": 1,
+    "explanation": "Recycling collects waste materials and turns them into new materials."
+  },
+  {
+    "topic": "Technological Processes - Recycling",
+    "question": "Which of these is NOT an advantage of recycling?",
+    "image": "",
+    "options": [
+      "Uses less energy",
+      "Creates more pollution than making new products",
+      "Reduces landfill sites",
+      "Conserves natural resources"
+    ],
+    "correct": 1,
+    "explanation": "Recycling creates less pollution than manufacturing new products."
+  },
+  /* ============ GRADE 7: SENSE ORGANS ============ */
+  {
+    "topic": "Structure and Functions of the Human Eye",
+    "question": "Which part of the eye controls the amount of light entering?",
+    "image": "",
+    "options": [
+      "Retina",
+      "Iris",
+      "Optic nerve",
+      "Cornea"
+    ],
+    "correct": 1,
+    "explanation": "The iris controls the size of the pupil and the amount of light entering the eye."
+  },
+  {
+    "topic": "Structure and Functions of the Human Eye",
+    "question": "The image is formed on the",
+    "image": "",
+    "options": [
+      "Cornea",
+      "Iris",
+      "Retina",
+      "Lens"
+    ],
+    "correct": 2,
+    "explanation": "The retina is the light-sensitive layer where the image is formed."
+  },
+  {
+    "topic": "Structure and Functions of the Human Eye",
+    "question": "Long-sightedness is corrected using",
+    "image": "",
+    "options": [
+      "Concave lenses",
+      "Convex lenses",
+      "Cylindrical lenses",
+      "No lenses"
+    ],
+    "correct": 1,
+    "explanation": "Long-sightedness (hypermetropia) is corrected with convex (converging) lenses."
+  },
+  {
+    "topic": "Structure and Functions of the Human Ear",
+    "question": "Which part of the ear converts sound vibrations into nerve impulses?",
+    "image": "",
+    "options": [
+      "Pinna",
+      "Eardrum",
+      "Cochlea",
+      "Auditory nerve"
+    ],
+    "correct": 2,
+    "explanation": "The cochlea converts vibrations into nerve impulses sent to the brain."
+  },
+  {
+    "topic": "Structure and Functions of the Human Ear",
+    "question": "The part of the ear that collects sound waves is the",
+    "image": "",
+    "options": [
+      "Cochlea",
+      "Pinna",
+      "Eardrum",
+      "Ossicles"
+    ],
+    "correct": 1,
+    "explanation": "The pinna (outer ear) collects sound waves."
+  },
+  {
+    "topic": "Structure and Functions of the Human Tongue",
+    "question": "The sense organ for taste is the",
+    "image": "",
+    "options": [
+      "Nose",
+      "Tongue",
+      "Skin",
+      "Ear"
+    ],
+    "correct": 1,
+    "explanation": "The tongue contains taste buds that detect taste."
+  },
+  {
+    "topic": "Structure of the Sensory Cells of the Human Skin",
+    "question": "The skin contains receptors for all EXCEPT",
+    "image": "",
+    "options": [
+      "Touch",
+      "Pressure",
+      "Sound",
+      "Pain"
+    ],
+    "correct": 2,
+    "explanation": "The skin senses touch, pressure, pain, heat and cold — not sound (that is the ear)."
+  },
+  {
+    "topic": "Structure and Functions of the Nose",
+    "question": "The sense organ for smell is the",
+    "image": "",
+    "options": [
+      "Tongue",
+      "Nose",
+      "Ear",
+      "Skin"
+    ],
+    "correct": 1,
+    "explanation": "Olfactory cells in the nose detect smell."
+  },
+  /* ============ GRADE 7: HYGIENE ============ */
+  {
+    "topic": "Personal Cleanliness and Health",
+    "question": "The best hygienic practice after visiting a toilet is to wash hands with",
+    "image": "",
+    "options": [
+      "Water only",
+      "Water and soap",
+      "Tissue paper only",
+      "Soap only"
+    ],
+    "correct": 1,
+    "explanation": "Hands should be washed with water and soap to remove germs."
+  },
+  {
+    "topic": "Personal Cleanliness and Health",
+    "question": "Sharing bath towels and soap may lead to the spread of",
+    "image": "",
+    "options": [
+      "Cleanliness",
+      "Infectious skin diseases such as ringworm",
+      "Stronger skin",
+      "Better health"
+    ],
+    "correct": 1,
+    "explanation": "Sharing towels and soap can spread infectious skin diseases like ringworm."
+  },
+  /* ============ GRADE 8: MICROSCOPE ============ */
+  {
+    "topic": "The Microscope",
+    "question": "When using a microscope, you should always start with the",
+    "image": "",
+    "options": [
+      "High-power objective",
+      "Low-power objective",
+      "Fine adjustment only",
+      "Mirror removed"
+    ],
+    "correct": 1,
+    "explanation": "Always start viewing with the lowest power magnification."
+  },
+  {
+    "topic": "The Microscope",
+    "question": "Which part of the microscope holds the specimen slide?",
+    "image": "",
+    "options": [
+      "Mirror",
+      "Stage",
+      "Diaphragm",
+      "Eye-piece"
+    ],
+    "correct": 1,
+    "explanation": "The stage is the platform where the specimen slide is placed."
+  },
+  /* ============ GRADE 8: CELLS ============ */
+  {
+    "topic": "Generalised Plant and Animal Cells",
+    "question": "The control centre of the cell containing genetic material is the",
+    "image": "",
+    "options": [
+      "Cytoplasm",
+      "Nucleus",
+      "Cell membrane",
+      "Vacuole"
+    ],
+    "correct": 1,
+    "explanation": "The nucleus controls cell activities and contains DNA."
+  },
+  {
+    "topic": "Generalised Plant and Animal Cells",
+    "question": "Which structure is found in plant cells but NOT animal cells?",
+    "image": "",
+    "options": [
+      "Mitochondrion",
+      "Cell membrane",
+      "Cell wall",
+      "Cytoplasm"
+    ],
+    "correct": 2,
+    "explanation": "The rigid cellulose cell wall is found only in plant cells."
+  },
+  {
+    "topic": "Specialised Plant and Animal Cells",
+    "question": "Red blood cells contain",
+    "image": "",
+    "options": [
+      "Chlorophyll",
+      "Haemoglobin",
+      "Cell wall",
+      "Chloroplast"
+    ],
+    "correct": 1,
+    "explanation": "Red blood cells contain haemoglobin, which carries oxygen."
+  },
+  {
+    "topic": "Specialised Plant and Animal Cells",
+    "question": "A nerve cell (neuron) is adapted to",
+    "image": "",
+    "options": [
+      "Carry oxygen",
+      "Transmit nerve impulses",
+      "Absorb water from soil",
+      "Photosynthesise"
+    ],
+    "correct": 1,
+    "explanation": "Nerve cells have long axons that transmit nerve impulses around the body."
+  },
+  /* ============ GRADE 8: UNICELLULAR ============ */
+  {
+    "topic": "Unicellular Organisms",
+    "question": "Which of these is a unicellular organism?",
+    "image": "",
+    "options": [
+      "Mango tree",
+      "Amoeba",
+      "Human being",
+      "Toad"
+    ],
+    "correct": 1,
+    "explanation": "Amoeba is made of a single cell."
+  },
+  {
+    "topic": "Unicellular Organisms",
+    "question": "Bacteria are classified as",
+    "image": "",
+    "options": [
+      "Eukaryotes with a nucleus",
+      "Prokaryotes without a true nucleus",
+      "Multicellular fungi",
+      "Plants"
+    ],
+    "correct": 1,
+    "explanation": "Bacteria are prokaryotes — they have no true nucleus or membrane-bound organelles."
+  },
+  /* ============ GRADE 8: PLANT KINGDOM ============ */
+  {
+    "topic": "The Plant Kingdom",
+    "question": "Flowering plants reproduce by means of",
+    "image": "",
+    "options": [
+      "Spores only",
+      "Flowers and seeds",
+      "Budding only",
+      "Binary fission"
+    ],
+    "correct": 1,
+    "explanation": "Flowering plants (angiosperms) reproduce by means of flowers producing seeds."
+  },
+  {
+    "topic": "Flowering Plants: External and Internal Structure",
+    "question": "The part of the plant that absorbs water and mineral salts from the soil is the",
+    "image": "",
+    "options": [
+      "Leaf",
+      "Stem",
+      "Root",
+      "Flower"
+    ],
+    "correct": 2,
+    "explanation": "Roots absorb water and mineral salts from the soil."
+  },
+  {
+    "topic": "Structure and Functions of Parts of a Flower",
+    "question": "The male reproductive part of a flower is the",
+    "image": "",
+    "options": [
+      "Carpel",
+      "Stamen",
+      "Sepal",
+      "Petal"
+    ],
+    "correct": 1,
+    "explanation": "The stamen (anther + filament) is the male part producing pollen."
+  },
+  {
+    "topic": "Structure and Functions of Parts of a Flower",
+    "question": "The part of the flower that receives pollen is the",
+    "image": "",
+    "options": [
+      "Anther",
+      "Stigma",
+      "Ovary",
+      "Petal"
+    ],
+    "correct": 1,
+    "explanation": "The stigma receives pollen grains during pollination."
+  },
+  {
+    "topic": "Pollination and Germination",
+    "question": "Pollination is the transfer of pollen from the",
+    "image": "",
+    "options": [
+      "Stigma to anther",
+      "Anther to stigma",
+      "Ovary to stigma",
+      "Root to leaf"
+    ],
+    "correct": 1,
+    "explanation": "Pollination is the transfer of pollen from the anther to the stigma."
+  },
+  {
+    "topic": "Pollination and Germination",
+    "question": "Which of these is NOT a condition needed for seed germination?",
+    "image": "",
+    "options": [
+      "Water",
+      "Oxygen",
+      "Suitable warmth",
+      "Sunlight for all seeds"
+    ],
+    "correct": 3,
+    "explanation": "Most seeds need water, oxygen and warmth; sunlight is not required for all seeds to germinate."
+  },
+  /* ============ GRADE 9: MATTER ============ */
+  {
+    "topic": "Modern Atomic Theory",
+    "question": "The particle with a positive charge in the nucleus is the",
+    "image": "",
+    "options": [
+      "Electron",
+      "Neutron",
+      "Proton",
+      "Atom"
+    ],
+    "correct": 2,
+    "explanation": "Protons are positively charged particles in the nucleus."
+  },
+  {
+    "topic": "Modern Atomic Theory",
+    "question": "Electrons have",
+    "image": "",
+    "options": [
+      "A positive charge",
+      "No charge",
+      "A negative charge",
+      "No mass at all"
+    ],
+    "correct": 2,
+    "explanation": "Electrons are negatively charged particles with negligible mass."
+  },
+  {
+    "topic": "The Simplified Periodic Table of Elements",
+    "question": "Elements in the same group of the periodic table have",
+    "image": "",
+    "options": [
+      "The same number of protons",
+      "Similar chemical properties",
+      "The same mass number",
+      "No outer electrons"
+    ],
+    "correct": 1,
+    "explanation": "Elements in the same group have the same number of outer electrons and similar properties."
+  },
+  {
+    "topic": "Arrangement of Electrons",
+    "question": "The first electron shell holds a maximum of",
+    "image": "",
+    "options": [
+      "8 electrons",
+      "2 electrons",
+      "18 electrons",
+      "1 electron"
+    ],
+    "correct": 1,
+    "explanation": "The first shell holds a maximum of 2 electrons."
+  },
+  {
+    "topic": "Atomic Mass and Atomic Numbers",
+    "question": "The atomic number of an element is the number of",
+    "image": "",
+    "options": [
+      "Neutrons",
+      "Protons",
+      "Electrons only",
+      "Protons + neutrons"
+    ],
+    "correct": 1,
+    "explanation": "Atomic number = number of protons in the nucleus."
+  },
+  {
+    "topic": "Isotopes",
+    "question": "Isotopes are atoms of the same element with different numbers of",
+    "image": "",
+    "options": [
+      "Protons",
+      "Electrons",
+      "Neutrons",
+      "Shells"
+    ],
+    "correct": 2,
+    "explanation": "Isotopes have the same protons but different neutrons."
+  },
+  {
+    "topic": "Metals and Non-Metals",
+    "question": "Which of these is a property of metals?",
+    "image": "",
+    "options": [
+      "Brittle and dull",
+      "Poor conductors of electricity",
+      "Shiny and conduct electricity",
+      "Form acidic oxides only"
+    ],
+    "correct": 2,
+    "explanation": "Metals are shiny, malleable and conduct heat and electricity."
+  },
+  {
+    "topic": "Compounds and Naming Compounds",
+    "question": "A compound is",
+    "image": "",
+    "options": [
+      "A mixture of elements",
+      "Two or more elements chemically combined",
+      "A single atom",
+      "Only a metal"
+    ],
+    "correct": 1,
+    "explanation": "A compound is a pure substance made of two or more elements chemically combined."
+  },
+  {
+    "topic": "Chemical Formulae of Compounds",
+    "question": "The formula of sodium chloride is",
+    "image": "",
+    "options": [
+      "NaCl₂",
+      "NaCl",
+      "Na₂Cl",
+      "Na₂Cl₂"
+    ],
+    "correct": 1,
+    "explanation": "Sodium is Na⁺ and chloride is Cl⁻, so they combine in a 1:1 ratio: NaCl."
+  },
+  {
+    "topic": "Chemical Equations",
+    "question": "In a balanced chemical equation, the number of atoms of each element is",
+    "image": "",
+    "options": [
+      "Greater on the left",
+      "Greater on the right",
+      "Equal on both sides",
+      "Not important"
+    ],
+    "correct": 2,
+    "explanation": "A balanced equation has equal numbers of each atom on both sides."
+  },
+  {
+    "topic": "Ionic and Covalent Bonding",
+    "question": "Ionic bonding involves the",
+    "image": "",
+    "options": [
+      "Sharing of electrons",
+      "Transfer of electrons",
+      "Loss of protons",
+      "Gain of neutrons"
+    ],
+    "correct": 1,
+    "explanation": "Ionic bonding is the transfer of electrons from a metal to a non-metal."
+  },
+  {
+    "topic": "Ionic and Covalent Bonding",
+    "question": "Covalent bonding occurs between",
+    "image": "",
+    "options": [
+      "Two metals",
+      "A metal and a non-metal",
+      "Two non-metals",
+      "A metal and a noble gas"
+    ],
+    "correct": 2,
+    "explanation": "Covalent bonding is the sharing of electrons between non-metal atoms."
+  },
+  /* ============ GRADE 9: ENERGY ============ */
+  {
+    "topic": "Movement of Heat Energy",
+    "question": "Heat transfer through a solid is called",
+    "image": "",
+    "options": [
+      "Convection",
+      "Radiation",
+      "Conduction",
+      "Evaporation"
+    ],
+    "correct": 2,
+    "explanation": "Conduction is heat transfer through a solid by particle vibration."
+  },
+  {
+    "topic": "Movement of Heat Energy",
+    "question": "Heat from the sun reaches the earth by",
+    "image": "",
+    "options": [
+      "Conduction",
+      "Convection",
+      "Radiation",
+      "Insulation"
+    ],
+    "correct": 2,
+    "explanation": "Radiation transfers heat through space without a medium."
+  },
+  {
+    "topic": "Light Energy",
+    "question": "Light travels fastest in",
+    "image": "",
+    "options": [
+      "Water",
+      "Glass",
+      "A vacuum",
+      "Diamond"
+    ],
+    "correct": 2,
+    "explanation": "Light travels fastest in a vacuum at about 3×10⁸ m/s."
+  },
+  {
+    "topic": "Light Energy",
+    "question": "A plane mirror forms an image that is",
+    "image": "",
+    "options": [
+      "Real and inverted",
+      "Virtual and erect",
+      "Real and enlarged",
+      "Virtual and inverted"
+    ],
+    "correct": 1,
+    "explanation": "A plane mirror forms a virtual, erect, same-size image."
+  },
+  {
+    "topic": "Sound Energy",
+    "question": "Sound cannot travel through",
+    "image": "",
+    "options": [
+      "Air",
+      "Water",
+      "Steel",
+      "A vacuum"
+    ],
+    "correct": 3,
+    "explanation": "Sound needs a medium and cannot travel through a vacuum."
+  },
+  {
+    "topic": "Sound Energy",
+    "question": "Sound travels fastest through",
+    "image": "",
+    "options": [
+      "Air",
+      "Water",
+      "Steel",
+      "A vacuum"
+    ],
+    "correct": 2,
+    "explanation": "Sound travels fastest in solids such as steel."
+  },
+  {
+    "topic": "Electrical Energy",
+    "question": "Electric current is measured in",
+    "image": "",
+    "options": [
+      "Volts",
+      "Amperes",
+      "Ohms",
+      "Watts"
+    ],
+    "correct": 1,
+    "explanation": "Electric current is measured in amperes (amps)."
+  },
+  {
+    "topic": "Electrical Energy",
+    "question": "In a series circuit, if one bulb blows, the other bulbs will",
+    "image": "",
+    "options": [
+      "Stay on",
+      "Also go off",
+      "Become brighter",
+      "Remain unchanged"
+    ],
+    "correct": 1,
+    "explanation": "In a series circuit there is only one path, so all bulbs go off if one blows."
+  },
+  /* ============ GRADE 9: HUMAN BODY SYSTEMS ============ */
+  {
+    "topic": "The Human Digestive System",
+    "question": "Digestion of starch begins in the",
+    "image": "",
+    "options": [
+      "Stomach",
+      "Mouth",
+      "Small intestine",
+      "Large intestine"
+    ],
+    "correct": 1,
+    "explanation": "Saliva in the mouth contains amylase which begins starch digestion."
+  },
+  {
+    "topic": "The Human Digestive System",
+    "question": "Bile is produced by the",
+    "image": "",
+    "options": [
+      "Pancreas",
+      "Liver",
+      "Stomach",
+      "Gall bladder"
+    ],
+    "correct": 1,
+    "explanation": "Bile is produced by the liver and stored in the gall bladder."
+  },
+  {
+    "topic": "The Human Respiratory System",
+    "question": "Gas exchange in humans takes place in the",
+    "image": "",
+    "options": [
+      "Trachea",
+      "Bronchi",
+      "Alveoli",
+      "Diaphragm"
+    ],
+    "correct": 2,
+    "explanation": "Alveoli are tiny air sacs where oxygen and carbon dioxide are exchanged."
+  },
+  {
+    "topic": "The Excretory System",
+    "question": "The functional unit of the kidney is the",
+    "image": "",
+    "options": [
+      "Neuron",
+      "Nephron",
+      "Alveolus",
+      "Ureter"
+    ],
+    "correct": 1,
+    "explanation": "The nephron is the filtering unit of the kidney."
+  },
+  {
+    "topic": "The Blood Circulatory System",
+    "question": "Red blood cells contain",
+    "image": "",
+    "options": [
+      "Antibodies",
+      "Haemoglobin",
+      "Platelets",
+      "Glucose"
+    ],
+    "correct": 1,
+    "explanation": "Haemoglobin in red blood cells carries oxygen."
+  },
+  {
+    "topic": "The Human Reproductive System",
+    "question": "In humans, fertilisation takes place in the",
+    "image": "",
+    "options": [
+      "Uterus",
+      "Ovary",
+      "Fallopian tube",
+      "Vagina"
+    ],
+    "correct": 2,
+    "explanation": "Fertilisation of the egg by sperm occurs in the fallopian tube."
+  },
+  {
+    "topic": "The Skeletal System of Man",
+    "question": "The bone that protects the brain is the",
+    "image": "",
+    "options": [
+      "Rib",
+      "Skull",
+      "Pelvis",
+      "Backbone"
+    ],
+    "correct": 1,
+    "explanation": "The skull protects the brain from injury."
+  },
+  {
+    "topic": "The Endocrine System",
+    "question": "The hormone insulin is produced by the",
+    "image": "",
+    "options": [
+      "Liver",
+      "Pancreas",
+      "Thyroid",
+      "Kidney"
+    ],
+    "correct": 1,
+    "explanation": "The pancreas produces insulin to regulate blood sugar."
+  },
+  /* ============ GRADE 9: DISEASES ============ */
+  {
+    "topic": "Communicable and Non-Communicable Diseases",
+    "question": "Which of these is a communicable disease?",
+    "image": "",
+    "options": [
+      "Diabetes",
+      "High blood pressure",
+      "Measles",
+      "Sickle-cell anaemia"
+    ],
+    "correct": 2,
+    "explanation": "Measles is infectious and spreads from person to person."
+  },
+  {
+    "topic": "Communicable and Non-Communicable Diseases",
+    "question": "Malaria is spread by the",
+    "image": "",
+    "options": [
+      "Housefly",
+      "Female Anopheles mosquito",
+      "Contaminated water",
+      "Touching an infected person"
+    ],
+    "correct": 1,
+    "explanation": "Malaria is transmitted by the female Anopheles mosquito."
+  },
+  {
+    "topic": "Treatment and Control Methods of Diseases",
+    "question": "Immunisation helps to prevent",
+    "image": "",
+    "options": [
+      "Only malaria",
+      "Diseases such as measles and polio",
+      "Only diabetes",
+      "Only high blood pressure"
+    ],
+    "correct": 1,
+    "explanation": "Vaccination/immunisation prevents diseases like measles and polio."
+  },
+  /* ============ GRADE 9: PROJECT WORK ============ */
+  {
+    "topic": "Project Work",
+    "question": "A testable scientific guess is called a",
+    "image": "",
+    "options": [
+      "Conclusion",
+      "Hypothesis",
+      "Result",
+      "Variable"
+    ],
+    "correct": 1,
+    "explanation": "A hypothesis is a testable statement made before an experiment."
+  },
+  {
+    "topic": "Project Work",
+    "question": "The variable that is deliberately changed in an experiment is the",
+    "image": "",
+    "options": [
+      "Dependent variable",
+      "Control variable",
+      "Independent variable",
+      "Constant variable"
+    ],
+    "correct": 2,
+    "explanation": "The independent variable is the one changed by the investigator."
   }
 ];

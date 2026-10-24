@@ -17,10 +17,63 @@ function renderList(title, items) {
     if (!Array.isArray(items) || !items.length) return "";
     return `<div class="study-section"><h6>${escapeHTML(title)}</h6><ul>${items.map(x => `<li>${escapeHTML(x)}</li>`).join("")}</ul></div>`;
 }
+// English syllabus detail overlay (data/english-notes-detail.js).
+function englishDetail(source) {
+    const map = (typeof window !== "undefined" && window.englishNotesDetail) || {};
+    if (!source || !source.title) return null;
+    return map[source.title] || null;
+}
+function englishMergedTopic(topic) {
+    const detail = englishDetail(topic);
+    if (!detail) return topic || {};
+    const merged = Object.assign({}, topic || {});
+    ["explanation", "points", "definitions", "rules", "examples", "waecFocus", "memoryTip"].forEach(key => {
+        const value = detail[key];
+        if (value && (!Array.isArray(value) || value.length)) merged[key] = value;
+    });
+    return merged;
+}
+// Worked examples carry ✗ / ✓ markers - wrong form red, corrected form green.
+function renderExampleText(value) {
+    const raw = String(value ?? "").trim();
+    if (!raw) return "";
+    const parts = raw.split(/(✗|✓)/).filter(p => p !== "");
+    let html = "";
+    let cls = "";
+    parts.forEach(part => {
+        if (part === "✗" || part === "✓") {
+            cls = part === "✗" ? "ex-bad" : "ex-good";
+            html += `<span class="ex-mark ${cls}">${part}</span> `;
+        } else {
+            const text = escapeHTML(part.trim());
+            html += cls ? `<span class="${cls}">${text}</span> ` : text;
+        }
+    });
+    return html.trim();
+}
+function renderExampleList(title, items) {
+    if (!Array.isArray(items) || !items.length) return "";
+    return `<div class="study-section"><h6>${escapeHTML(title)}</h6><ul class="example-list">${items.map(x => `<li>${renderExampleText(x)}</li>`).join("")}</ul></div>`;
+}
+// Every note picture goes through the shared resolver, so replacing a file
+// in images/notes/ (or the registry in data/note-images.js) is enough.
+function noteArt(subject, note) {
+    if (typeof NoteImages === "undefined") {
+        return note.image
+            ? `<img src="${escapeHTML(note.image)}" alt="${escapeHTML(note.title)}" class="study-image">`
+            : `<div class="study-placeholder"><span>${escapeHTML(note.icon || "📘")}</span><p>${escapeHTML(note.imageNote || "Insert diagram here later.")}</p></div>`;
+    }
+    return NoteImages.html({
+        key: NoteImages.noteKey(subject, note.grade, note.topicNumber),
+        fallback: note.image,
+        alt: note.title,
+        cls: "study-image",
+        icon: note.icon,
+        imageNote: note.imageNote
+    });
+}
 function renderTDNote(note) {
-    const image = note.image
-        ? `<img src="${escapeHTML(note.image)}" alt="${escapeHTML(note.title)}" class="study-image">`
-        : `<div class="study-placeholder"><span>${escapeHTML(note.icon || "📘")}</span><p>${escapeHTML(note.imageNote || "Insert diagram here later.")}</p></div>`;
+    const image = noteArt("Technical Drawing", note);
     return `<article class="study-card monster-note">
         <div class="study-art">${image}</div>
         <div class="study-content">
@@ -32,18 +85,26 @@ function renderTDNote(note) {
         </div>
     </article>`;
 }
+// Book topics are keyed by topic id (topic:<id>) in the image registry.
+function topicArt(subject, topicId, alt) {
+    if (typeof NoteImages === "undefined") return "";
+    return NoteImages.html({
+        key: NoteImages.topicKey(topicId),
+        alt: alt || "Diagram",
+        cls: "study-image"
+    });
+}
 function renderEnglishNote(note) {
-    const image = note.image
-        ? `<img src="${escapeHTML(note.image)}" alt="${escapeHTML(note.title)}" class="study-image">`
-        : `<div class="study-placeholder"><span>${escapeHTML(note.icon || "📘")}</span><p>${escapeHTML(note.imageNote || "Insert diagram here later.")}</p></div>`;
+    const image = noteArt("English", note);
+    const view = englishMergedTopic(note);
     return `<article class="study-card monster-note">
         <div class="study-art">${image}</div>
         <div class="study-content">
             <p class="mini-label">${escapeHTML(note.grade)} • Topic ${escapeHTML(note.topicNumber)} • Aki Ola / WAEC Focus</p>
             <h4>${escapeHTML(note.title)}</h4>
-            <p>${escapeHTML(note.explanation)}</p>
-            ${renderList("Key Points", note.points)}${renderList("Definitions", note.definitions)}${renderList("Rules to Remember", note.rules)}${renderList("Examples", note.examples)}${renderList("WAEC Focus", note.waecFocus)}
-            <div class="memory-tip">💡 ${escapeHTML(note.memoryTip || "Revise this before quiz time.")}</div>
+            <p>${escapeHTML(view.explanation)}</p>
+            ${renderList("Key Points", view.points)}${renderList("Definitions", view.definitions)}${renderList("Rules to Remember", view.rules)}${renderExampleList("Worked Examples", view.examples)}${renderList("WAEC Focus", view.waecFocus)}
+            <div class="memory-tip">💡 ${escapeHTML(view.memoryTip || "Revise this before quiz time.")}</div>
         </div>
     </article>`;
 }
@@ -52,10 +113,13 @@ function mathsQuestionCount(quizTopic) {
     try { return typeof MathsQuestions === "undefined" ? 0 : MathsQuestions.filter(q => q.topic === quizTopic).length; }
     catch (_) { return 0; }
 }
+function scienceQuizTopic(note) { return note.quizTopic || note.title; }
+function scienceQuestionCount(quizTopic) {
+    try { return typeof ScienceQuestions === "undefined" ? 0 : ScienceQuestions.filter(q => q.topic === quizTopic).length; }
+    catch (_) { return 0; }
+}
 function renderMathsNote(note) {
-    const image = note.image
-        ? `<img src="${escapeHTML(note.image)}" alt="${escapeHTML(note.title)}" class="study-image">`
-        : `<div class="study-placeholder"><span>${escapeHTML(note.icon || "📘")}</span><p>${escapeHTML(note.imageNote || "Insert diagram here later.")}</p></div>`;
+    const image = noteArt("Maths", note);
     const quizTopic = mathsQuizTopic(note);
     let n = 0;
     try { n = mathsQuestionCount(quizTopic); } catch (_) {}
@@ -75,18 +139,23 @@ function renderMathsNote(note) {
         </div>
     </article>`;
 }
-function renderScienceNote(note) {
-    const image = note.image
-        ? `<img src="${escapeHTML(note.image)}" alt="${escapeHTML(note.title)}" class="study-image">`
-        : `<div class="study-placeholder"><span>${escapeHTML(note.icon || "📘")}</span><p>${escapeHTML(note.imageNote || "Insert diagram here later.")}</p></div>`;
+function renderScienceNote(note, subject) {
+    const image = noteArt(subject || "Science", note);
+    const quizTopic = scienceQuizTopic(note);
+    const n = scienceQuestionCount(quizTopic);
+    const practiceUrl = `quiz.html?mode=topic&subject=Science&topic=${encodeURIComponent(quizTopic)}`;
     return `<article class="study-card monster-note">
         <div class="study-art">${image}</div>
         <div class="study-content">
             <p class="mini-label">${escapeHTML(note.grade)} • Topic ${escapeHTML(note.topicNumber)} • Aki Ola Science / BECE Focus</p>
             <h4>${escapeHTML(note.title)}</h4>
             <p>${escapeHTML(note.explanation)}</p>
+            <div class="d-flex flex-wrap gap-2 mb-2">
+                <a class="glass-btn" href="${practiceUrl}">🎯 Practice ${escapeHTML(quizTopic)}${n ? ` (${n} questions)` : ""}</a>
+            </div>
             ${renderList("Key Points", note.points)}${renderList("Definitions", note.definitions)}${renderList("Formulas", note.formulas)}${renderList("Rules to Remember", note.rules)}${renderList("Examples", note.examples)}${renderList("WAEC Focus", note.waecFocus)}
             <div class="memory-tip">💡 ${escapeHTML(note.memoryTip || "Revise this before quiz time.")}</div>
+            ${n ? `<div class="topic-quiz-cta"><strong>${n} questions</strong> in the quiz bank for <strong>${escapeHTML(quizTopic)}</strong>.<a class="glass-btn mt-2" href="${practiceUrl}">🎯 Practice now</a></div>` : ""}
         </div>
     </article>`;
 }
@@ -118,7 +187,10 @@ async function renderNotes() {
             return;
         }
         container.innerHTML = `<div class="alert mb-3" style="background:rgba(37,99,235,.08);border:1px solid rgba(37,99,235,.15);border-radius:14px;">📝 English notes live in the <strong>Library bookshelf</strong> — <a href="library.html">open the English Book</a> for Grades 7–9 shelves, each chapter with 10+ practice questions.</div>`
-              + topics.slice(0, 60).map(t => `<article class="study-card monster-note"><div class="study-content"><p class="mini-label">${escapeHTML(t.grade)} • ${escapeHTML(t.theme)}</p><h4>${escapeHTML(t.title)}</h4><p>${escapeHTML(t.explanation)}</p>${renderList("Key Points", t.points)}${renderList("Exam Focus", t.waecFocus)}<div class="memory-tip">💡 ${escapeHTML(t.memoryTip || "")}</div><a class="glass-btn mt-2" href="library.html?note=${encodeURIComponent(t.id)}">📖 Open in English Book</a></div></article>`).join("");
+              + topics.slice(0, 60).map(t => {
+                    const view = englishMergedTopic(t);
+                    return `<article class="study-card monster-note"><div class="study-art">${topicArt("English", t.id, t.title)}</div><div class="study-content"><p class="mini-label">${escapeHTML(t.grade)} • ${escapeHTML(t.theme)}</p><h4>${escapeHTML(t.title)}</h4><p>${escapeHTML(view.explanation)}</p>${renderList("Key Points", view.points)}${renderList("Definitions", view.definitions)}${renderList("Rules to Remember", view.rules)}${renderExampleList("Worked Examples", view.examples)}${renderList("Exam Focus", view.waecFocus)}<div class="memory-tip">💡 ${escapeHTML(view.memoryTip || "")}</div><a class="glass-btn mt-2" href="library.html?note=${encodeURIComponent(t.id)}">📖 Open in English Book</a></div></article>`;
+                }).join("");
         return;
     }
     if (subject === "Maths" && (!notes || notes.length === 0)) {
@@ -133,14 +205,15 @@ async function renderNotes() {
         return;
     }
     if (subject === "Science" && (!notes || notes.length === 0)) {
-        container.innerHTML = (window.scienceNotes || []).map(renderScienceNote).join("");
+        const intro = `<div class="alert mb-3" style="background:rgba(37,99,235,.08);border:1px solid rgba(37,99,235,.15);border-radius:14px;">📗 <strong>Foundation Science textbook</strong> — the official textbook now lives in the <strong>Library bookshelf</strong>: <a href="library.html?book=foundation">open the textbook</a> for Grades 7–9, unit by unit with the real diagrams. The revision notes below are the quick-study summaries.</div>`;
+        container.innerHTML = intro + (window.scienceNotes || []).map(renderScienceNote).join("");
         return;
     }
     if (subject === "SES" && (!notes || notes.length === 0)) {
         const topics = [];
         (window.sesBook || []).forEach(g => (g.themes || []).forEach(th => (th.topics || []).forEach(t => topics.push({ grade: g.grade, theme: th.title, ...t }))));
         if (!topics.length && window.sesNotes) {
-            container.innerHTML = (window.sesNotes || []).map(renderScienceNote).join("");
+            container.innerHTML = (window.sesNotes || []).map(n => renderScienceNote(n, "SES")).join("");
             return;
         }
         container.innerHTML = topics.length

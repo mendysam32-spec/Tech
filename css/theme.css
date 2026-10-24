@@ -947,6 +947,13 @@ body[data-accent="dark"] h1, body[data-accent="dark"] h2, body[data-accent="dark
 .study-placeholder span { font-size:3rem; }
 .study-section h6 { font-weight:900; color:var(--tm-accent); margin-top:14px; }
 .memory-tip { background:#fffbeb; border:1px solid #fde68a; border-radius:14px; padding:12px; margin-top:14px; color:#78350f; font-weight:700; }
+/* Worked examples: ✗ wrong form in red, ✓ corrected form in green. */
+.example-list li { margin-bottom:8px; line-height:1.55; }
+.ex-mark { font-weight:900; }
+.ex-bad { color:#b91c1c; }
+.ex-good { color:#15803d; }
+body[data-accent="dark"] .ex-bad { color:#fca5a5; }
+body[data-accent="dark"] .ex-good { color:#86efac; }
 @media (max-width: 760px){ .study-card.monster-note { grid-template-columns:1fr; } .brand-footer{padding-bottom:34px} }
 
 
@@ -1270,6 +1277,38 @@ body[data-accent="dark"] .paper-expl { background: rgba(15,23,42,.6); border-col
 .topic-quiz-cta { margin-top: 16px; padding: 14px; border-radius: 16px; background: linear-gradient(135deg, rgba(37,99,235,.10), rgba(14,165,233,.10)); border: 1px dashed rgba(37,99,235,.35); font-size: .92rem; font-weight: 600; }
 .topic-quiz-cta.muted { background: rgba(241,245,249,.7); border-color: rgba(15,23,42,.12); color: #64748b; font-weight: 600; }
 
+/* ============ FOUNDATION SCIENCE (textbook) BOOK ============ */
+.book-chooser { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; margin: 16px 0 22px; }
+.book-choice { position: relative; display: flex; flex-direction: column; gap: 4px; text-align: left; padding: 16px 16px 14px; border: 1px solid rgba(15,23,42,.12); border-radius: 16px; background: #ffffff; cursor: pointer; box-shadow: 0 6px 16px rgba(15,23,42,.06); transition: transform .15s ease, box-shadow .15s ease, border-color .15s ease; }
+.book-choice:hover, .book-choice:focus-visible { transform: translateY(-2px); box-shadow: 0 12px 24px rgba(15,23,42,.12); border-color: #2563eb; outline: none; }
+.book-choice.is-active { border-color: #2563eb; box-shadow: 0 0 0 3px rgba(37,99,235,.15), 0 10px 22px rgba(15,23,42,.12); background: linear-gradient(160deg, #eff6ff 0%, #ffffff 62%); }
+.book-choice-icon { font-size: 1.6rem; line-height: 1.1; }
+.book-choice-title { font-weight: 900; font-size: 1rem; color: #0f172a; }
+.book-choice-sub { font-size: .78rem; color: #64748b; font-weight: 600; }
+.book-choice-meta { font-size: .72rem; font-weight: 800; color: #1d4ed8; background: rgba(37,99,235,.10); border-radius: 999px; padding: 2px 9px; align-self: flex-start; }
+.book-choice-flag { position: absolute; top: 10px; right: 12px; font-size: .66rem; font-weight: 900; letter-spacing: .06em; text-transform: uppercase; color: #166534; background: #dcfce7; border: 1px solid #86efac; border-radius: 999px; padding: 2px 8px; }
+.book-flag { font-size: .64rem; font-weight: 900; color: #047857; letter-spacing: .04em; }
+.book-flag.pending { color: #b45309; }
+.table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+.fs-table { width: 100%; border-collapse: collapse; margin: 10px 0; font-size: .86rem; }
+.fs-table th, .fs-table td { border: 1px solid rgba(15,23,42,.14); padding: 7px 9px; text-align: left; vertical-align: top; }
+.fs-table th { background: rgba(37,99,235,.10); font-weight: 800; }
+.fs-table tbody tr:nth-child(even) { background: rgba(15,23,42,.03); }
+.fs-formula { background: rgba(15,23,42,.04); border-left: 4px solid #2563eb; border-radius: 10px; padding: 9px 12px; margin: 10px 0; font-family: ui-monospace, "Cascadia Mono", Consolas, monospace; font-size: .88rem; white-space: pre-wrap; line-height: 1.55; overflow-x: auto; }
+.fs-figure { margin: 14px 0; text-align: center; }
+.fs-figure img { display: block; margin: 0 auto; max-width: 100%; max-height: 62vh; width: auto; height: auto; object-fit: contain; border-radius: 12px; border: 1px solid rgba(15,23,42,.12); background: #fff; }
+.fs-figure figcaption { font-size: .74rem; color: #64748b; font-weight: 600; margin-top: 6px; }
+.fs-figure a { display: inline-block; max-width: 100%; }
+.fs-figure a:focus-visible { outline: 3px solid rgba(37,99,235,.5); outline-offset: 3px; border-radius: 12px; }
+.fs-pending-note { margin-top: 10px; font-size: .82rem; font-weight: 700; color: #b45309; background: rgba(245,158,11,.10); border: 1px dashed rgba(245,158,11,.45); border-radius: 14px; padding: 10px 12px; }
+body[data-accent="dark"] .book-choice { background: rgba(30,41,59,.92); border-color: rgba(148,163,184,.18); }
+body[data-accent="dark"] .book-choice.is-active { background: linear-gradient(160deg, rgba(30,58,138,.55) 0%, rgba(30,41,59,.92) 62%); }
+body[data-accent="dark"] .book-choice-title { color: #e2e8f0; }
+body[data-accent="dark"] .fs-formula { background: rgba(15,23,42,.6); border-left-color: #60a5fa; }
+body[data-accent="dark"] .fs-table th { background: rgba(37,99,235,.22); }
+body[data-accent="dark"] .fs-table td, body[data-accent="dark"] .fs-table th { border-color: rgba(148,163,184,.25); }
+body[data-accent="dark"] .fs-table tbody tr:nth-child(even) { background: rgba(15,23,42,.35); }
+
 /* ============ WASSCE PASSAGE PRACTICE (English Comprehension / Summary) ============ */
 .howto-card { border-left: 4px solid #2563eb; }
 .howto-card h4 { font-size: 1rem; font-weight: 800; }
@@ -1294,7 +1333,9 @@ body[data-accent="dark"] .howto-card, body[data-accent="dark"] .passage-picker {
     .book-grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); }
     .door-hinge { display: none; }
     .closet-head { gap: 10px; }
+    .fs-figure img { max-height: 52vh; }
 }
+
 body[data-accent="dark"] .book-spine { background: linear-gradient(180deg, rgba(30,41,59,.92), rgba(15,23,42,.92)); border-color: rgba(148,163,184,.18); }
 body[data-accent="dark"] .book-title { color: #e2e8f0; }
 body[data-accent="dark"] .book-theme { color: #94a3b8; }

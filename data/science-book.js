@@ -3836,7 +3836,6 @@ window.scienceBook = [
           }
         ]
       },
-      ,
       {
         id: "g9-t4",
         number: "Theme 4",

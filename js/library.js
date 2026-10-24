@@ -64,18 +64,28 @@ document.addEventListener("DOMContentLoaded", async () => {
     // deep link ?note=<topicId> or ?grade=<gradeId> jumps straight into the Science / SES / English Book
     const deepNote = qs.get("note") || qs.get("topic");
     const deepGrade = qs.get("grade");
+    if (qs.get("book") === "foundation") { scienceBookMode = "foundation"; localStorage.setItem("tm_scienceBook", "foundation"); }
     if (deepNote || deepGrade) {
         const sel = document.getElementById("librarySubject");
         const key = String(deepNote || deepGrade || "");
         const isSes = key.startsWith("ses-");
         const isEng = key.startsWith("eng-");
+        const isFs = key.startsWith("fs-");
         const target = isSes ? "SES" : isEng ? "English" : "Science";
         if (sel.value !== target) { sel.value = target; localStorage.setItem("tm_selectedSubject", target); }
+        if (isFs) { scienceBookMode = "foundation"; localStorage.setItem("tm_scienceBook", "foundation"); }
         activate("notes");
         await renderNotes();
         renderPapers();
-        if (deepNote) { if (isSes) window.openSesTopic(deepNote); else if (isEng) window.openEnglishTopic(deepNote); else window.openScienceTopic(deepNote); }
-        else { if (isSes) window.openSesGrade(deepGrade); else if (isEng) window.openEnglishGrade(deepGrade); else window.openScienceGrade(deepGrade); }
+        if (deepNote) {
+            if (isSes) window.openSesTopic(deepNote);
+            else if (isEng) window.openEnglishTopic(deepNote);
+            else window.openScienceTopic(isFs ? deepNote.slice(3) : deepNote);
+        } else {
+            if (isSes) window.openSesGrade(deepGrade);
+            else if (isEng) window.openEnglishGrade(deepGrade);
+            else window.openScienceGrade(isFs ? deepGrade.slice(3) : deepGrade);
+        }
         return;
     }
 
@@ -120,10 +130,82 @@ function renderList(title, items) {
     if (!Array.isArray(items) || !items.length) return "";
     return `<div class="study-section"><h6>${escapeHTML(title)}</h6><ul>${items.map(x => `<li>${escapeHTML(x)}</li>`).join("")}</ul></div>`;
 }
+// English syllabus detail overlay (data/english-notes-detail.js): the deep
+// syllabus framing, the rules the examiner tests and the worked examples.
+function englishDetail(source) {
+    const map = (typeof window !== "undefined" && window.englishNotesDetail) || {};
+    if (!source || !source.title) return null;
+    return map[source.title] || null;
+}
+function englishMergedTopic(topic) {
+    const detail = englishDetail(topic);
+    if (!detail) return topic || {};
+    const merged = Object.assign({}, topic || {});
+    ["explanation", "points", "definitions", "rules", "examples", "waecFocus", "memoryTip"].forEach(key => {
+        const value = detail[key];
+        if (value && (!Array.isArray(value) || value.length)) merged[key] = value;
+    });
+    return merged;
+}
+// Worked examples carry ✗ / ✓ markers - the wrong form reads red,
+// the corrected form reads green.
+function renderExampleText(value) {
+    const raw = String(value ?? "").trim();
+    if (!raw) return "";
+    const parts = raw.split(/(✗|✓)/).filter(p => p !== "");
+    let html = "";
+    let cls = "";
+    parts.forEach(part => {
+        if (part === "✗" || part === "✓") {
+            cls = part === "✗" ? "ex-bad" : "ex-good";
+            html += `<span class="ex-mark ${cls}">${part}</span> `;
+        } else {
+            const text = escapeHTML(part.trim());
+            html += cls ? `<span class="${cls}">${text}</span> ` : text;
+        }
+    });
+    return html.trim();
+}
+function renderExampleList(title, items) {
+    if (!Array.isArray(items) || !items.length) return "";
+    return `<div class="study-section"><h6>${escapeHTML(title)}</h6><ul class="example-list">${items.map(x => `<li>${renderExampleText(x)}</li>`).join("")}</ul></div>`;
+}
+// Every note / topic picture goes through the shared resolver
+// (data/note-images.js + images/notes/<key>.png convention), so replacing a
+// file is enough - the app picks it up on the next load.
+function noteArt(subject, note) {
+    if (typeof NoteImages === "undefined") {
+        return note.image
+            ? `<img src="${escapeHTML(note.image)}" alt="${escapeHTML(note.title)}" class="study-image">`
+            : `<div class="study-placeholder"><span>${escapeHTML(note.icon || "📘")}</span><p>${escapeHTML(note.imageNote || "Insert diagram here later.")}</p></div>`;
+    }
+    return NoteImages.html({
+        key: NoteImages.noteKey(subject, note.grade, note.topicNumber),
+        fallback: note.image,
+        alt: note.title,
+        cls: "study-image",
+        icon: note.icon,
+        imageNote: note.imageNote
+    });
+}
+function topicArt(topic, extra) {
+    const resolver = (typeof window !== "undefined" && window.NoteImages) ? window.NoteImages : null;
+    if (!resolver) {
+        return topic.image
+            ? `<img class="study-image" src="${escapeHTML(topic.image)}" alt="${escapeHTML(topic.title)}">`
+            : `<div class="study-placeholder"><span>${escapeHTML(topic.icon || "📘")}</span><p>${escapeHTML((extra && extra.text) || "")}</p></div>`;
+    }
+    const opts = Object.assign({
+        key: resolver.topicKey(topic.id),
+        fallback: topic.image,
+        alt: topic.title,
+        cls: "study-image",
+        icon: topic.icon
+    }, extra || {});
+    return resolver.html(opts);
+}
 function renderTDNote(note) {
-    const image = note.image
-        ? `<img src="${escapeHTML(note.image)}" alt="${escapeHTML(note.title)}" class="study-image">`
-        : `<div class="study-placeholder"><span>${escapeHTML(note.icon || "📘")}</span><p>${escapeHTML(note.imageNote || "Insert diagram here later.")}</p></div>`;
+    const image = noteArt("Technical Drawing", note);
     return `<article class="study-card monster-note">
         <div class="study-art">${image}</div>
         <div class="study-content">
@@ -136,17 +218,16 @@ function renderTDNote(note) {
     </article>`;
 }
 function renderEnglishNote(note) {
-    const image = note.image
-        ? `<img src="${escapeHTML(note.image)}" alt="${escapeHTML(note.title)}" class="study-image">`
-        : `<div class="study-placeholder"><span>${escapeHTML(note.icon || "📘")}</span><p>${escapeHTML(note.imageNote || "Insert diagram here later.")}</p></div>`;
+    const image = noteArt("English", note);
+    const view = englishMergedTopic(note);
     return `<article class="study-card monster-note">
         <div class="study-art">${image}</div>
         <div class="study-content">
             <p class="mini-label">${escapeHTML(note.grade)} • Topic ${escapeHTML(note.topicNumber)} • Aki Ola / WAEC Focus</p>
             <h4>${escapeHTML(note.title)}</h4>
-            <p>${escapeHTML(note.explanation)}</p>
-            ${renderList("Key Points", note.points)}${renderList("Definitions", note.definitions)}${renderList("Rules to Remember", note.rules)}${renderList("Examples", note.examples)}${renderList("WAEC Focus", note.waecFocus)}
-            <div class="memory-tip">💡 ${escapeHTML(note.memoryTip || "Revise this before quiz time.")}</div>
+            <p>${escapeHTML(view.explanation)}</p>
+            ${renderList("Key Points", view.points)}${renderList("Definitions", view.definitions)}${renderList("Rules to Remember", view.rules)}${renderExampleList("Worked Examples", view.examples)}${renderList("WAEC Focus", view.waecFocus)}
+            <div class="memory-tip">💡 ${escapeHTML(view.memoryTip || "Revise this before quiz time.")}</div>
         </div>
     </article>`;
 }
@@ -156,9 +237,7 @@ function mathsQuestionCount(quizTopic) {
     catch (_) { return 0; }
 }
 function renderMathsNote(note) {
-    const image = note.image
-        ? `<img src="${escapeHTML(note.image)}" alt="${escapeHTML(note.title)}" class="study-image">`
-        : `<div class="study-placeholder"><span>${escapeHTML(note.icon || "📘")}</span><p>${escapeHTML(note.imageNote || "Insert diagram here later.")}</p></div>`;
+    const image = noteArt("Maths", note);
     const quizTopic = mathsQuizTopic(note);
     const n = mathsQuestionCount(quizTopic);
     const practiceUrl = `quiz.html?mode=topic&subject=Maths&topic=${encodeURIComponent(quizTopic)}`;
@@ -178,9 +257,7 @@ function renderMathsNote(note) {
     </article>`;
 }
 function renderScienceNote(note) {
-    const image = note.image
-        ? `<img src="${escapeHTML(note.image)}" alt="${escapeHTML(note.title)}" class="study-image">`
-        : `<div class="study-placeholder"><span>${escapeHTML(note.icon || "📘")}</span><p>${escapeHTML(note.imageNote || "Insert diagram here later.")}</p></div>`;
+    const image = noteArt("Science", note);
     return `<article class="study-card monster-note">
         <div class="study-art">${image}</div>
         <div class="study-content">
@@ -201,14 +278,23 @@ let scienceView = "shelf";      // "shelf" | "grade" | "topic"
 let scienceGradeId = null;
 let scienceTopicId = null;
 let scienceCloudNotes = [];
+// Which Science book is open: "notes" (revision notes) or "foundation" (textbook).
+let scienceBookMode = localStorage.getItem("tm_scienceBook") === "foundation" ? "foundation" : "notes";
+
+function scienceBookData() {
+    return scienceBookMode === "foundation" ? (window.foundationScienceBook || []) : (window.scienceBook || []);
+}
+function scienceBookLabel() {
+    return scienceBookMode === "foundation" ? "Foundation Science (Textbook)" : "Science Book (Revision Notes)";
+}
 
 function scienceFlatTopics() {
     const out = [];
-    (window.scienceBook || []).forEach(g => (g.themes || []).forEach(th => (th.topics || []).forEach(t => out.push({ grade: g, theme: th, topic: t }))));
+    scienceBookData().forEach(g => (g.themes || []).forEach(th => (th.topics || []).forEach(t => out.push({ grade: g, theme: th, topic: t }))));
     return out;
 }
 function scienceFindTopic(id) { return scienceFlatTopics().find(x => x.topic.id === id) || null; }
-function scienceFindGrade(id) { return (window.scienceBook || []).find(g => g.id === id) || null; }
+function scienceFindGrade(id) { return scienceBookData().find(g => g.id === id) || null; }
 function scienceGradeSequence(gradeId) {
     const g = scienceFindGrade(gradeId);
     if (!g) return [];
@@ -248,9 +334,16 @@ function scienceSearch(query) {
     const q = (query || "").trim().toLowerCase();
     if (!q) return null;
     return scienceFlatTopics().filter(({ grade, theme, topic }) =>
-        `${topic.title} ${topic.explanation} ${theme.title} ${grade.grade} ${(topic.points || []).join(" ")} ${(topic.definitions || []).join(" ")} ${(topic.waecFocus || []).join(" ")}`
-            .toLowerCase().includes(q)
+        scienceTopicHaystack(topic, theme, grade).includes(q)
     );
+}
+
+function scienceTopicHaystack(topic, theme, grade) {
+    let s = `${topic.title} ${topic.explanation || ""} ${theme.title} ${grade.grade} ${(topic.points || []).join(" ")} ${(topic.definitions || []).join(" ")} ${(topic.waecFocus || []).join(" ")}`;
+    if (topic.sections && topic.sections.length) {
+        s += " " + topic.sections.map(sec => `${sec.h || ""} ${(sec.blocks || []).map(b => b.x || (b.items || []).join(" ")).join(" ")}`).join(" ");
+    }
+    return s.toLowerCase();
 }
 
 function renderScienceCloset(query = null) {
@@ -288,17 +381,46 @@ function renderScienceCloset(query = null) {
     container.innerHTML = scienceShelfView();
 }
 
+function scienceBookCount(mode) {
+    const data = mode === "foundation" ? (window.foundationScienceBook || []) : (window.scienceBook || []);
+    return data.reduce((n, g) => n + (g.themes || []).reduce((m, th) => m + (th.topics || []).length, 0), 0);
+}
+function scienceBookWrittenCount(mode) {
+    if (mode !== "foundation") return scienceBookCount(mode);
+    return (window.foundationScienceBook || []).reduce((n, g) => n + (g.themes || []).reduce((m, th) => m + (th.topics || []).filter(t => t.source === "textbook").length, 0), 0);
+}
+
+function scienceBookChooser() {
+    const notes = scienceBookCount("notes");
+    const found = scienceBookCount("foundation");
+    const written = scienceBookWrittenCount("foundation");
+    const card = (mode, icon, title, sub, meta) => `
+        <button type="button" class="book-choice${scienceBookMode === mode ? " is-active" : ""}" onclick="setScienceBook('${mode}')">
+            <span class="book-choice-icon">${icon}</span>
+            <span class="book-choice-title">${escapeHTML(title)}</span>
+            <span class="book-choice-sub">${escapeHTML(sub)}</span>
+            <span class="book-choice-meta">${escapeHTML(meta)}</span>
+            ${scienceBookMode === mode ? `<span class="book-choice-flag">Open</span>` : ""}
+        </button>`;
+    return `
+    <div class="book-chooser">
+        ${card("notes", "📘", "Science Book", "Quick revision notes, key points and exam focus.", `${notes} topics`)}
+        ${card("foundation", "📗", "Foundation Science", "The official textbook, read topic by topic with diagrams.", `${written} of ${found} topics written`)}
+    </div>`;
+}
+
 function scienceShelfView() {
-    const grades = window.scienceBook || [];
+    const grades = scienceBookData();
     return `
     <div class="closet">
         <div class="closet-head">
-            <span class="closet-badge">📕 Foundation Science</span>
+            <span class="closet-badge">${scienceBookMode === "foundation" ? "📗" : "📕"} ${scienceBookMode === "foundation" ? "Textbook" : "Revision Notes"}</span>
             <div>
-                <h5 class="mb-0">The Science Book</h5>
+                <h5 class="mb-0">${escapeHTML(scienceBookLabel())}</h5>
                 <p class="mb-0 small opacity-75">${scienceTotalTopics()} topics • Grades 7, 8 and 9 • Open a shelf to start reading</p>
             </div>
         </div>
+        ${scienceBookChooser()}
         <div class="closet-doors">
             ${grades.map(g => {
                 const topicCount = (g.themes || []).reduce((n, th) => n + th.topics.length, 0);
@@ -322,17 +444,26 @@ function scienceShelfView() {
 
 function scienceGradeView(grade) {
     const topicCount = (grade.themes || []).reduce((n, th) => n + th.topics.length, 0);
+    const pending = scienceBookMode === "foundation"
+        ? (grade.themes || []).flatMap(th => (th.topics || []).filter(t => t.source !== "textbook").map(t => ({ theme: th, topic: t })))
+        : [];
+    const pendingBlock = pending.length ? `
+        <div class="fs-pending-note">
+            ✍️ ${pending.length} unit${pending.length === 1 ? "" : "s"} in this grade ${pending.length === 1 ? "is" : "are"} still being typed out:
+            ${pending.map(p => `<button type="button" class="secondary-btn chapter-btn ms-1" onclick="openScienceTopic('${escapeHTML(p.topic.id)}')">${escapeHTML(p.topic.title)}</button>`).join("")}
+        </div>` : "";
     return `
     <div class="closet">
         <div class="closet-head">
             <span class="closet-badge">${escapeHTML(grade.icon)} ${escapeHTML(grade.grade)}</span>
             <div class="flex-grow-1">
-                <h5 class="mb-0">${escapeHTML(grade.label)}</h5>
+                <h5 class="mb-0">${escapeHTML(grade.label || grade.grade)}</h5>
                 <p class="mb-0 small opacity-75">${(grade.themes || []).length} themes • ${topicCount} topics</p>
             </div>
             <button type="button" class="secondary-btn nav-action" onclick="backToScienceShelf()">📕 Close shelf</button>
         </div>
         <p class="small opacity-75">${escapeHTML(grade.blurb || "")}</p>
+        ${pendingBlock}
         ${(grade.themes || []).map(th => `
             <div class="shelf-row">
                 <div class="shelf-bar">
@@ -343,14 +474,20 @@ function scienceGradeView(grade) {
                     ${th.topics.map(t => scienceBookCard(t, th, grade)).join("")}
                 </div>
             </div>`).join("")}
+        <div class="unit-practice mt-3">
+            <button type="button" class="glass-btn" onclick="location='quiz.html?mode=topic&subject=Science&grade=${encodeURIComponent(grade.id)}'">🎯 Practice All Units (${escapeHTML(grade.grade)})</button>
+        </div>
         <div class="d-flex flex-wrap gap-2 mt-4">
             <button type="button" class="glass-btn" onclick="backToScienceShelf()">📕 Back to all shelves</button>
+            <button type="button" class="secondary-btn" onclick="setScienceBook('${scienceBookMode === "foundation" ? "notes" : "foundation"}')">${scienceBookMode === "foundation" ? "📘 Switch to the Science Book" : "📗 Switch to Foundation Science"}</button>
         </div>
     </div>`;
 }
 
 function scienceBookCard(topic, theme, grade) {
-    const n = scienceQuestionCount(topic.title);
+    const quizTopic = topic.quizTopic || topic.title;
+    const n = scienceQuestionCount(quizTopic);
+    const written = topic.source === "textbook";
     return `
     <button type="button" class="book-spine" onclick="openScienceTopic('${escapeHTML(topic.id)}')">
         <span class="book-band">${escapeHTML(topic.unit || "—")}</span>
@@ -360,13 +497,90 @@ function scienceBookCard(topic, theme, grade) {
             <span class="book-emoji">${escapeHTML(topic.icon || "📘")}</span>
             <span class="book-qs">${n ? n + " Qs" : "Read"}</span>
         </span>
+        ${written ? `<span class="book-flag">📖 Textbook</span>` : (topic.source === "todo" ? `<span class="book-flag pending">✍️ Coming soon</span>` : "")}
     </button>`;
+}
+
+/* ---------- Foundation Science (textbook) topic rendering ---------- */
+
+function foundationTopicData(topic) {
+    const overlay = (window.foundationScienceNotes || {})[topic.id] || null;
+    const sections = [];
+    (topic.sections || []).forEach(s => sections.push({ h: s.h || "", blocks: s.blocks || [] }));
+    if (overlay && overlay.sections) {
+        overlay.sections.forEach(s => sections.push({ h: s.h || "", blocks: s.blocks || [] }));
+    }
+    return {
+        title: (overlay && overlay.title) || topic.title,
+        sections,
+        notes: (overlay && overlay.notes) || "",
+        memoryTip: (overlay && overlay.memoryTip) || "",
+        figures: (overlay && overlay.figures) || [],
+        written: topic.source === "textbook" || sections.length > 0
+    };
+}
+
+function foundationBlock(b) {
+    if (!b) return "";
+    if (b.t === "ul") return `<ul>${(b.items || []).map(x => `<li>${escapeHTML(x)}</li>`).join("")}</ul>`;
+    if (b.t === "ol") return `<ol>${(b.items || []).map(x => `<li>${escapeHTML(x)}</li>`).join("")}</ol>`;
+    if (b.t === "table") {
+        const rows = b.rows || [];
+        if (!rows.length) return "";
+        const head = rows.length > 1 ? `<thead><tr>${rows[0].map(c => `<th>${escapeHTML(c)}</th>`).join("")}</tr></thead>` : "";
+        const body = rows.slice(head ? 1 : 0).map(r => `<tr>${r.map(c => `<td>${escapeHTML(c)}</td>`).join("")}</tr>`).join("");
+        return `<div class="table-wrap"><table class="fs-table">${head}<tbody>${body}</tbody></table></div>`;
+    }
+    if (b.t === "img") return `<figure class="fs-figure"><a href="${escapeHTML(b.src)}" target="_blank" rel="noopener"><img src="${escapeHTML(b.src)}" alt="${escapeHTML(b.alt || "")}" loading="lazy"></a><figcaption>${escapeHTML(b.alt || "Textbook diagram")} · tap to enlarge</figcaption></figure>`;
+    if (b.t === "formula") return `<div class="fs-formula">${escapeHTML(b.x || "").replace(/\n/g, "<br>")}</div>`;
+    return `<p>${escapeHTML(b.x || "")}</p>`;
+}
+
+function foundationTopicBody(topic, grade, theme) {
+    const data = foundationTopicData(topic);
+    const base = "fs-" + String(topic.id).replace(/[^a-z0-9]+/gi, "-");
+    const headed = data.sections.map((s, i) => ({ s, i })).filter(x => x.s.h);
+    const toc = headed.length >= 2
+        ? `<div class="fullnote-toc"><span class="mini-label">In this chapter</span><div>${
+            headed.map(x => `<a href="#${base}-${x.i}">${escapeHTML(x.s.h.length > 48 ? x.s.h.slice(0, 47) + "…" : x.s.h)}</a>`).join("")
+        }</div></div>`
+        : "";
+    const secs = data.sections.map((s, i) => {
+        const body = (s.blocks || []).map(foundationBlock).join("");
+        return `<div class="study-section">${s.h ? `<h6 id="${base}-${i}">${escapeHTML(s.h)}</h6>` : ""}${body}</div>`;
+    }).join("");
+    const figs = (data.figures || []).map(f => `<figure class="fs-figure"><a href="${escapeHTML(f.src || "")}" target="_blank" rel="noopener"><img src="${escapeHTML(f.src || "")}" alt="${escapeHTML(f.alt || "Diagram")}" loading="lazy"></a>${f.alt ? `<figcaption>${escapeHTML(f.alt)} · tap to enlarge</figcaption>` : ""}</figure>`).join("");
+    return `
+        <p class="mini-label">${escapeHTML(grade.grade)} • ${escapeHTML(theme.number)} • Unit ${escapeHTML(topic.unit || "—")}${topic.page ? ` • Page ${escapeHTML(topic.page)}` : ""}</p>
+        <h4>${escapeHTML(data.title)}</h4>
+        ${data.written ? "" : `<div class="topic-quiz-cta muted">✍️ <strong>Notes coming soon.</strong> This unit is being typed out from the textbook — it will appear here with diagrams once it is ready.</div>`}
+        ${toc}
+        ${secs}
+        ${figs}
+        ${data.notes ? `<div class="memory-tip">📌 ${escapeHTML(data.notes)}</div>` : ""}
+        ${data.memoryTip ? `<div class="memory-tip">💡 ${escapeHTML(data.memoryTip)}</div>` : ""}`;
 }
 
 function scienceTopicView(found) {
     const { grade, theme, topic } = found;
-    const n = scienceQuestionCount(topic.title);
+    const isFoundation = Array.isArray(topic.sections) || !!topic.source;
+    const quizTopic = topic.quizTopic || topic.title;
+    const n = scienceQuestionCount(quizTopic);
     const nav = scienceTopicNav(found);
+    const quizUrl = `quiz.html?mode=topic&subject=Science&topic=${encodeURIComponent(quizTopic)}&note=${encodeURIComponent(topic.id)}`;
+    const body = isFoundation
+        ? foundationTopicBody(topic, grade, theme)
+        : `
+                <p class="mini-label">${escapeHTML(grade.grade)} • ${escapeHTML(theme.number)} • Unit ${escapeHTML(topic.unit || "—")}${topic.page ? ` • Page ${escapeHTML(topic.page)}` : ""}</p>
+                <h4>${escapeHTML(topic.title)}</h4>
+                <p>${escapeHTML(topic.explanation)}</p>
+                ${renderList("Key Points", topic.points)}
+                ${renderList("Definitions", topic.definitions)}
+                ${renderList("Formulas", topic.formulas)}
+                ${renderList("Rules to Remember", topic.rules)}
+                ${renderList("Examples", topic.examples)}
+                ${renderList("Exam Focus", topic.waecFocus)}
+                <div class="memory-tip">💡 ${escapeHTML(topic.memoryTip || "Revise this before quiz time.")}</div>`;
     return `
     <div class="closet">
         <div class="closet-head">
@@ -379,7 +593,7 @@ function scienceTopicView(found) {
         </div>
 
         <div class="d-flex flex-wrap gap-2 mb-3">
-            <a class="glass-btn" href="quiz.html?mode=topic&subject=Science&topic=${encodeURIComponent(topic.title)}&note=${encodeURIComponent(topic.id)}">🎯 Practice this topic${n ? ` (${n} question${n === 1 ? "" : "s"})` : ""}</a>
+            <a class="glass-btn" href="${quizUrl}">🎯 Practice this topic${n ? ` (${n} question${n === 1 ? "" : "s"})` : ""}</a>
             <button type="button" class="secondary-btn" onclick="backToScienceShelf()">📕 All shelves</button>
             <button type="button" class="secondary-btn" onclick="window.print()">🖨️ Print</button>
         </div>
@@ -388,22 +602,13 @@ function scienceTopicView(found) {
 
         <article class="study-card monster-note">
             <div class="study-art">
-                ${topic.image ? `<img class="study-image" src="${escapeHTML(topic.image)}" alt="${escapeHTML(topic.title)}">` : `<div class="study-placeholder"><span>${escapeHTML(topic.icon || "📘")}</span><p>${escapeHTML(grade.label)}<br>${escapeHTML(theme.title)}</p></div>`}
+                ${topicArt(topic, { text: `${grade.label || grade.grade} - ${theme.title}`, optional: isFoundation })}
             </div>
             <div class="study-content">
-                <p class="mini-label">${escapeHTML(grade.grade)} • ${escapeHTML(theme.number)} • Unit ${escapeHTML(topic.unit || "—")}${topic.page ? ` • Page ${escapeHTML(topic.page)}` : ""}</p>
-                <h4>${escapeHTML(topic.title)}</h4>
-                <p>${escapeHTML(topic.explanation)}</p>
-                ${renderList("Key Points", topic.points)}
-                ${renderList("Definitions", topic.definitions)}
-                ${renderList("Formulas", topic.formulas)}
-                ${renderList("Rules to Remember", topic.rules)}
-                ${renderList("Examples", topic.examples)}
-                ${renderList("Exam Focus", topic.waecFocus)}
-                <div class="memory-tip">💡 ${escapeHTML(topic.memoryTip || "Revise this before quiz time.")}</div>
+                ${body}
                 ${n ? `<div class="topic-quiz-cta">
                     <strong>${n} question${n === 1 ? "" : "s"} in the quiz bank</strong> are tagged with this exact topic.
-                    <a class="glass-btn mt-2" href="quiz.html?mode=topic&subject=Science&topic=${encodeURIComponent(topic.title)}&note=${encodeURIComponent(topic.id)}">🎯 Practice now</a>
+                    <a class="glass-btn mt-2" href="${quizUrl}">🎯 Practice now</a>
                 </div>` : `<div class="topic-quiz-cta muted">New questions for this topic are being added — read on and check back soon.</div>`}
             </div>
         </article>
@@ -432,6 +637,12 @@ window.openScienceGrade = function (id) {
     scienceGradeId = id; scienceTopicId = null; scienceView = "grade";
     renderScienceCloset(getScienceQuery());
     document.getElementById("notesContainer")?.scrollIntoView({ behavior: "smooth", block: "start" });
+};
+window.setScienceBook = function (mode) {
+    scienceBookMode = mode === "foundation" ? "foundation" : "notes";
+    localStorage.setItem("tm_scienceBook", scienceBookMode);
+    scienceView = "shelf"; scienceGradeId = null; scienceTopicId = null;
+    renderScienceCloset(getScienceQuery());
 };
 window.openScienceTopic = function (id) {
     const found = scienceFindTopic(id);
@@ -657,7 +868,7 @@ function sesTopicView(found) {
         ${nav}
         <article class="study-card monster-note${hasFull ? " fullnotes-card" : ""}">
             <div class="study-art">
-                ${topic.image ? `<img class="study-image" src="${escapeHTML(topic.image)}" alt="${escapeHTML(topic.title)}">` : `<div class="study-placeholder"><span>${escapeHTML(topic.icon || "📘")}</span><p>${escapeHTML(grade.label)}<br>${escapeHTML(theme.title)}</p></div>`}
+                ${topicArt(topic, { text: `${grade.label} - ${theme.title}` })}
             </div>
             <div class="study-content">
                 <p class="mini-label">${escapeHTML(grade.grade)} • ${escapeHTML(theme.number)} • Unit ${escapeHTML(topic.unit || "—")}${topic.page ? ` • Page ${escapeHTML(topic.page)}` : ""}${hasFull ? " • 📖 Comprehensive notes" : ""}</p>
@@ -996,6 +1207,7 @@ function englishLetterBlocks(topic) {
 }
 function englishTopicView(found) {
     const { grade, theme, topic } = found;
+    const view = englishMergedTopic(topic);
     const n = englishQuestionCount(topic.title);
     const nav = englishTopicNav(found);
     const sets = englishPassageSets(topic.title);
@@ -1022,18 +1234,18 @@ function englishTopicView(found) {
         ${englishLetterBlocks(topic)}
         <article class="study-card monster-note">
             <div class="study-art">
-                ${topic.image ? `<img class="study-image" src="${escapeHTML(topic.image)}" alt="${escapeHTML(topic.title)}">` : `<div class="study-placeholder"><span>${escapeHTML(topic.icon || "📘")}</span><p>${escapeHTML(grade.label)}<br>${escapeHTML(theme.title)}</p></div>`}
+                ${topicArt(topic, { text: `${grade.label} - ${theme.title}` })}
             </div>
             <div class="study-content">
-                <p class="mini-label">${escapeHTML(grade.grade)} • ${escapeHTML(theme.number)} • Chapter ${escapeHTML(topic.unit || "—")}${topic.page ? ` • Page ${escapeHTML(topic.page)}` : ""}</p>
+                <p class="mini-label">${escapeHTML(grade.grade)} • ${escapeHTML(theme.number)} • Chapter ${escapeHTML(topic.unit || "—")}${topic.page ? ` • Page ${escapeHTML(topic.page)}` : ""} • Syllabus detail</p>
                 <h4>${escapeHTML(topic.title)}</h4>
-                <p>${escapeHTML(topic.explanation)}</p>
-                ${renderList("Key Points", topic.points)}
-                ${renderList("Definitions", topic.definitions)}
-                ${renderList("Rules to Remember", topic.rules)}
-                ${renderList("Examples", topic.examples)}
-                ${renderList("Exam Focus", topic.waecFocus)}
-                <div class="memory-tip">💡 ${escapeHTML(topic.memoryTip || "Revise this before quiz time.")}</div>
+                <p>${escapeHTML(view.explanation)}</p>
+                ${renderList("Key Points", view.points)}
+                ${renderList("Definitions", view.definitions)}
+                ${renderList("Rules to Remember", view.rules)}
+                ${renderExampleList("Worked Examples", view.examples)}
+                ${renderList("Exam Focus", view.waecFocus)}
+                <div class="memory-tip">💡 ${escapeHTML(view.memoryTip || "Revise this before quiz time.")}</div>
                 ${n ? `<div class="topic-quiz-cta">
                     <strong>${n} question${n === 1 ? "" : "s"} in the quiz bank</strong> are tagged with this exact chapter (minimum 10 guaranteed)${isPassageTopic ? `, organised into ${sets.length} full passages` : ""}.
                     <a class="glass-btn mt-2" href="${practiceUrl}">🎯 ${isPassageTopic ? "Practice now — a passage is picked for you" : "Practice now"}</a>
@@ -1117,7 +1329,7 @@ async function renderNotes(filterQuery = null) {
         if (sesCloudNotes.length && sesView === "shelf") renderSesCloset(q);
         return;
     }
-    if (subject === "Science" && window.scienceBook && window.scienceBook.length) {
+    if (subject === "Science" && scienceBookData().length) {
         renderScienceCloset(q);
         try { const data = await API.notes("Science"); scienceCloudNotes = data.notes || []; }
         catch (_) { scienceCloudNotes = []; }
