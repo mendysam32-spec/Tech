@@ -1,6 +1,8 @@
-.wrangler/ 
-.wrangler/ 
+.wrangler/
 
 # Local source textbook (15MB ODT) - regenerate data/foundation-science-book.js
 # with: node build_foundation_science.cjs
 data/Foundation SCIENCE/
+
+# Electron build artifacts - not part of the Cloudflare Pages web deploy
+release/
