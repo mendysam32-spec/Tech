@@ -83,6 +83,20 @@
 
         <div class="col-lg-4">
             <div class="glass-card p-4 h-100">
+                <h5>Badge Chest</h5>
+                <div id="badgeChest" class="badge-chest"></div>
+            </div>
+        </div>
+
+        <div class="col-lg-8">
+            <div class="glass-card p-4 h-100 progress-map-card">
+                <h5>Topic Progress Map</h5>
+                <div id="progressMap" class="progress-map"></div>
+            </div>
+        </div>
+
+        <div class="col-lg-4">
+            <div class="glass-card p-4 h-100">
                 <h5>Unlocks</h5>
                 <div id="badgeShelf" class="badge-shelf"></div>
             </div>
@@ -91,7 +105,7 @@
         <div class="col-lg-4">
             <div class="glass-card p-4 h-100 exam-prep-card">
                 <h5>Prepare for Exam <span id="examPrepLockBadge" class="badge bg-warning text-dark ms-2" style="font-size:0.75rem;">Locked</span></h5>
-                <p class="small mb-3">Unlock a full timed WAEC-style exam simulation for <span id="examPrepSubject"></span> using gold coins earned from quizzes.</p>
+                <p class="small mb-3">Unlock a full timed past-paper exam for <span id="examPrepSubject"></span> — every paper sorted by the syllabus from the first topic to the last, with a tick for each topic you complete.</p>
                 <div id="examPrepLocked" class="text-center mb-3">
                     <div class="d-flex justify-content-center gap-2 flex-wrap mb-2" id="examPrepCoinOptions"></div>
                     <p class="small text-muted mb-0">Coins: <strong id="examPrepCoins">0</strong></p>
@@ -124,7 +138,8 @@
 
 </div>
 
-<footer class="brand-footer signature-footer"><span class="signature-mark">S&amp;P Group</span><span class="signature-line">Created by S&amp;P Groups • Tech Monster Signature</span></footer>
+<div id="updateNotifier" class="d-none"></div>
+<footer class="brand-footer signature-footer"><span class="signature-mark">S&amp;P Group</span><span class="signature-line">Created by S&amp;P Groups • Tech Monster Signature</span> <span id="appVersion" class="text-muted ms-2"></span></footer>
 
 <script src="js/bootstrap.bundle.min.js"></script>
 <script src="js/api.js"></script>
@@ -137,6 +152,7 @@
 <script src="js/sync.js"></script>
 <script src="js/sw-register.js"></script>
 <script src="js/levelup.js"></script>
+<script src="js/updater.js"></script>
 <script>
 document.addEventListener("DOMContentLoaded", async () => {
     const pending = LevelUp.pending();

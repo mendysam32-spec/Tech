@@ -40,12 +40,21 @@ const TM_THEMES = [
 
 const TM_BADGES = [
     { id: "first_quiz", name: "First Battle", rule: user => Number(user.totalQuizzes || 0) >= 1 },
+    { id: "quiz_5", name: "Study Streak", rule: user => Number(user.totalQuizzes || 0) >= 5 },
+    { id: "quiz_10", name: "Quiz Collector", rule: user => Number(user.totalQuizzes || 0) >= 10 },
+    { id: "quiz_25", name: "Quiz Master", rule: user => Number(user.totalQuizzes || 0) >= 25 },
     { id: "sharp_70", name: "Sharp 70", rule: user => Number(user.bestScore || 0) >= 70 },
     { id: "elite_90", name: "Elite 90", rule: user => Number(user.bestScore || 0) >= 90 },
+    { id: "perfect_100", name: "Perfect Score", rule: user => Number(user.bestScore || 0) >= 100 },
     { id: "level_5", name: "Level 5", rule: user => Number(user.level || 1) >= 5 },
+    { id: "level_10", name: "Double Digits", rule: user => Number(user.level || 1) >= 10 },
     { id: "streak_3", name: "3 Day Streak", rule: user => Number(user.streak || 0) >= 3 },
+    { id: "streak_7", name: "Week Warrior", rule: user => Number(user.streak || 0) >= 7 },
     { id: "ultimate_gold", name: "Ultimate Gold", rule: user => Storage.canUseUltimate(user) },
-    { id: "legendary_winner", name: "Legendary Winner", rule: user => (user.badges || []).includes("legendary_winner") }
+    { id: "legendary_winner", name: "Legendary Winner", rule: user => (user.badges || []).includes("legendary_winner") },
+    { id: "td_pro", name: "TD Pro", rule: user => { const s = Storage.topicStatsForSubject(user.topicStats, "Technical Drawing"); return Object.values(s || {}).filter(v => v && v.total >= 3 && (v.correct / v.total) >= 0.8).length >= 5; } },
+    { id: "english_pro", name: "English Pro", rule: user => { const s = Storage.topicStatsForSubject(user.topicStats, "English"); return Object.values(s || {}).filter(v => v && v.total >= 3 && (v.correct / v.total) >= 0.8).length >= 5; } },
+    { id: "ses_pro", name: "SES Pro", rule: user => { const s = Storage.topicStatsForSubject(user.topicStats, "SES"); return Object.values(s || {}).filter(v => v && v.total >= 3 && (v.correct / v.total) >= 0.8).length >= 5; } }
 ];
 
 // Coin cost -> unlock duration (in months) for purchasable features.
@@ -358,6 +367,28 @@ const Storage = {
         return {};
     },
 
+    examPrepDoneKey(subject) {
+        const user = this.getCurrentUser();
+        return `tm_examPrepDone_${user?.name || "guest"}_${subject || "Technical Drawing"}`;
+    },
+
+    examPrepDone(subject) {
+        try {
+            return JSON.parse(localStorage.getItem(this.examPrepDoneKey(subject))) || [];
+        } catch (_) {
+            return [];
+        }
+    },
+
+    markExamPrepTopicDone(subject, topic) {
+        if (!topic) return;
+        const list = this.examPrepDone(subject);
+        if (list.indexOf(topic) === -1) {
+            list.push(topic);
+            try { localStorage.setItem(this.examPrepDoneKey(subject), JSON.stringify(list)); } catch (_) {}
+        }
+    },
+
     mergeTopicStats(existing, topicResults, defaultSubject = "") {
         const stats = { ...(existing || {}) };
         const perSubject = this.isPerSubjectStats(stats);
@@ -509,6 +540,21 @@ const Storage = {
             log.push({ from: fromLevel, to: toLevel, coins, at: Date.now() });
             localStorage.setItem("tm_levelLog", JSON.stringify(log.slice(-50)));
         } catch (_) {}
+    },
+
+    // Returns { leveledUp: boolean, from, to, coins } when the just-saved user
+    // reached a new level since the last recorded level-up.
+    pendingLevelUp(user) {
+        const u = user || this.getCurrentUser();
+        if (!u) return null;
+        const level = Number(u.level || 1);
+        const log = JSON.parse(localStorage.getItem("tm_levelLog") || "[]");
+        const already = log.some(entry => Number(entry.to) === level);
+        if (already || level < 2) return null;
+        const prev = log[log.length - 1];
+        const from = prev ? Number(prev.to) : level - 1;
+        const coins = u.coins ? Number(u.coins) : 0;
+        return { leveledUp: true, from, to: level, coins };
     },
 
     // --- Purchasable feature unlocks (coin-funded, time-limited) ---

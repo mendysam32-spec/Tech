@@ -55,7 +55,10 @@
         </div>
         <div class="col-md-6">
             <div class="glass-card p-4">
-                <h3 class="fw-bold mb-3">Hall of Fame</h3>
+                <div class="d-flex justify-content-between align-items-start mb-3">
+                    <h3 class="fw-bold mb-0">Hall of Fame</h3>
+                    <div id="subjectPills" class="subject-pills"></div>
+                </div>
                 <ol id="hallOfFame" class="list-group list-group-numbered hall-list">
                     <li class="list-group-item bg-transparent text-white border-0">No legends yet</li>
                 </ol>
@@ -63,7 +66,8 @@
         </div>
     </div>
 </div>
-<footer class="brand-footer signature-footer"><span class="signature-mark">S&amp;P Group</span><span class="signature-line">Created by S&amp;P Groups • Tech Monster Signature</span></footer>
+<div id="updateNotifier" class="d-none"></div>
+<footer class="brand-footer signature-footer"><span class="signature-mark">S&amp;P Group</span><span class="signature-line">Created by S&amp;P Groups • Tech Monster Signature</span> <span id="appVersion" class="text-muted ms-2"></span></footer>
 <script src="js/bootstrap.bundle.min.js"></script>
 <script src="js/api.js"></script>
 <script src="js/storage.js"></script>
@@ -71,5 +75,7 @@
 <script src="js/app.js"></script>
 <script src="js/sync.js"></script>
 <script src="js/sw-register.js"></script>
+<script src="js/updater.js"></script>
+<script>document.addEventListener("DOMContentLoaded", loadHallOfFame);</script>
 </body>
 </html>

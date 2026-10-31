@@ -8,6 +8,9 @@ let selectedSubject = "Technical Drawing";
 let isPaperMode = false;
 let paperYear = null;
 let isTopicMode = false;
+let isExamPrep = false;
+let isRetryWrong = false;
+let examTopicPlan = [];
 let topicFilter = null;
 let passageFilter = null;
 let noteFilter = null;
@@ -125,6 +128,71 @@ function topicForQuestion(question) {
     return "General";
 }
 
+// Exam prep: the syllabus topic a question belongs to, using the exact
+// syllabus titles so ticks line up with the dashboard progress map.
+function examPrepTopicFor(question) {
+    if (selectedSubject === "Technical Drawing" && typeof syllabusTopicForQuestion === "function") {
+        return syllabusTopicForQuestion(question);
+    }
+    if (selectedSubject === "English" && typeof engBucket === "function" && typeof ENG_SYLLABUS !== "undefined") {
+        return ENG_SYLLABUS[engBucket(question.topic || question.section || "")];
+    }
+    if (selectedSubject === "SES") return question.topic || "General";
+    return question.topic || topicForQuestion(question);
+}
+
+// Group consecutive questions of the same topic (questions arrive already in
+// syllabus order) so each topic can be ticked once the user finishes it.
+function buildExamTopicPlan(questions) {
+    const plan = [];
+    questions.forEach((q, index) => {
+        const topic = q.topic || examPrepTopicFor(q);
+        let segment = plan[plan.length - 1];
+        if (!segment || segment.topic !== topic) {
+            segment = { topic, total: 0, answered: 0, done: false, indexes: [] };
+            plan.push(segment);
+        }
+        segment.total++;
+        segment.indexes.push(index);
+    });
+    return plan;
+}
+
+function refreshExamTopicPlan() {
+    examTopicPlan.forEach(segment => {
+        segment.answered = segment.indexes.filter(i => userAnswers[i] !== null).length;
+        const wasDone = segment.done;
+        segment.done = segment.answered >= segment.total;
+        if (segment.done && !wasDone) Storage.markExamPrepTopicDone(selectedSubject, segment.topic);
+    });
+}
+
+function renderSyllabusTicker() {
+    if (!isExamPrep) return;
+    const box = document.getElementById("syllabusTicker");
+    if (!box) return;
+    if (!examTopicPlan.length) { box.style.display = "none"; return; }
+    refreshExamTopicPlan();
+    const previous = new Set(Storage.examPrepDone(selectedSubject));
+    const activeTopic = selectedQuestions[currentIndex] ? (selectedQuestions[currentIndex].topic || "") : "";
+    const doneCount = examTopicPlan.filter(s => s.done || previous.has(s.topic)).length;
+    const summary = document.getElementById("stSummary");
+    if (summary) summary.textContent = `${doneCount}/${examTopicPlan.length} topics ✔`;
+    const track = document.getElementById("stTrack");
+    if (!track) return;
+    track.innerHTML = examTopicPlan.map(segment => {
+        const ticked = segment.done || previous.has(segment.topic);
+        const active = segment.topic === activeTopic;
+        return `<div class="st-item ${ticked ? "done" : ""} ${active ? "active" : ""}" title="${escapeHtml(segment.topic)}">
+            <span class="st-dot">${ticked ? "✔" : segment.answered + "/" + segment.total}</span>
+            <span class="st-label">${escapeHtml(segment.topic)}</span>
+        </div>`;
+    }).join("");
+    const current = [...track.children].find(el => el.classList.contains("active"));
+    if (current) track.scrollLeft = Math.max(0, current.offsetLeft - track.clientWidth / 2 + current.clientWidth / 2);
+    box.style.display = "block";
+}
+
 function timerSeconds(mode) {
     if (mode === "relaxed") return 900;
     if (mode === "speed") return 180;
@@ -141,6 +209,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     isPaperMode = urlParams.get("mode") === "paper";
     isTopicMode = urlParams.get("mode") === "topic";
     isExamPrep = urlParams.get("mode") === "exam_prep";
+    isRetryWrong = urlParams.get("mode") === "retry_wrong";
     paperYear = urlParams.get("year");
     topicFilter = urlParams.get("topic");
     passageFilter = urlParams.get("passage");
@@ -228,6 +297,23 @@ document.addEventListener("DOMContentLoaded", async () => {
         // still empty? fallback to generic bank
     }
 
+    // ---- RETRY WRONG MODE: reload only the questions the user got wrong ----
+    if (isRetryWrong && !questionBank.length) {
+        try {
+            const stored = JSON.parse(localStorage.getItem("tm_retryWrong") || "null");
+            if (stored?.questions?.length) {
+                selectedSubject = stored.subject || selectedSubject;
+                questionBank = stored.questions.map(q => ({ subject: selectedSubject, ...q }));
+                localStorage.removeItem("tm_retryWrong");
+            }
+        } catch (_) {}
+        if (!questionBank.length) {
+            document.querySelector(".glass-card").innerHTML = `<h4>No wrong answers to retry</h4><p>Take a quiz first, then retry the ones you missed.</p><a href="dashboard.html" class="glass-btn">Back to Dashboard</a>`;
+            document.getElementById("timer").textContent = "No quiz";
+            return;
+        }
+    }
+
     // ---- NORMAL QUIZ MODE ----
     if (!questionBank.length && !isPaperMode && !isExamPrep) {
         let cloudQuestions = [];
@@ -290,16 +376,47 @@ document.addEventListener("DOMContentLoaded", async () => {
             "Science": typeof ScienceQuestions !== "undefined" ? ScienceQuestions : [],
             "SES": typeof SESQuestions !== "undefined" ? SESQuestions : []
         };
-        let baseQuestions = (localBanks[selectedSubject] || []).map(q => ({ subject: selectedSubject, ...q }));
-        questionBank = [...baseQuestions, ...cloudQuestions].filter(q => !q.subject || q.subject === selectedSubject);
+        // Build the exam pool from EVERY past paper for the subject (explicit
+        // year banks included, e.g. 2019/2021/2022/2025 for Technical Drawing),
+        // deduped by question text so older slice duplicates don't repeat.
+        questionBank = [];
+        const seenText = new Set();
+        const normText = s => String(s || "").toLowerCase().replace(/[^a-z0-9]+/g, " ").trim();
+        const addToBank = (q, year) => {
+            if (!q) return;
+            // Diagrams reuse boilerplate wording ("The figure above is...") with
+            // different images, so the image path is part of the identity.
+            const key = normText(q.question) + "|" + String(q.image || "").trim().toLowerCase();
+            if (key !== "|" && seenText.has(key)) return;
+            if (key !== "|") seenText.add(key);
+            questionBank.push({ subject: selectedSubject, ...q, year: q.year || year || 0 });
+        };
+        const catalog = (typeof window.PaperCatalog !== "undefined" ? window.PaperCatalog : [])
+            .filter(p => p.subject === selectedSubject);
+        if (selectedSubject === "Technical Drawing" && catalog.length && typeof getPaperQuestions === "function") {
+            catalog.forEach(p => {
+                (getPaperQuestions(selectedSubject, p.year) || []).forEach(q => addToBank(q, p.year));
+            });
+        } else {
+            (localBanks[selectedSubject] || []).forEach(q => addToBank(q, q.year));
+        }
+        cloudQuestions.filter(q => !q.subject || q.subject === selectedSubject).forEach(q => addToBank(q, q.year));
         if (!questionBank.length) {
             document.querySelector(".glass-card").innerHTML = `<h4>No exam questions available for ${selectedSubject}</h4><p>Ask the admin to add questions for this subject.</p><a href="dashboard.html" class="glass-btn">Back to Dashboard</a>`;
             document.getElementById("timer").textContent = "No exam";
             return;
         }
         selectedQuestions = selectedSubject === "English"
-            ? selectEnglishQuestions(questionBank, 60, "tm_lastPassages_exam_prep")
-            : shuffle([...questionBank]).slice(0, 60);
+            ? sortByEnglishSyllabus(selectEnglishQuestions(questionBank, questionBank.length, "tm_lastPassages_exam_prep"))
+            : selectedSubject === "Technical Drawing" && typeof sortBySyllabus === "function"
+              ? sortBySyllabus([...questionBank])
+              : selectedSubject === "SES" && typeof sortBySesSyllabus === "function"
+                ? sortBySesSyllabus([...questionBank])
+                : shuffle([...questionBank]);
+        // Tag every question with its syllabus topic so the per-topic ticks,
+        // topic stats and dashboard progress map all use the same names.
+        selectedQuestions = selectedQuestions.map(q => ({ ...q, topic: examPrepTopicFor(q) }));
+        examTopicPlan = buildExamTopicPlan(selectedQuestions);
         markPassageFirsts(selectedQuestions);
         userAnswers = new Array(selectedQuestions.length).fill(null);
         // 90 seconds per question (WAEC-style objective pacing)
@@ -628,6 +745,7 @@ function loadQuestion() {
             if ((quizUser.profile || {}).feedbackMode === "instant") {
                 showInstantFeedback(q, index);
                 markAnsweredOptions(container, q, index);
+                updateQuizProgress();
             } else loadQuestion();
         };
         container.appendChild(button);
@@ -673,6 +791,7 @@ function updateQuizProgress() {
         else if (isPaperMode) mood.textContent = paperYear ? `Paper ${paperYear} • ${answerPercent}% answered • Untimed` : `${answerPercent}% answered • Untimed`;
         else mood.textContent = answerPercent >= 100 ? "Ready to submit like a legend" : answered >= selectedQuestions.length / 2 ? "Keep attacking the questions" : "Monster Arena Live";
     }
+    renderSyllabusTicker();
 }
 
 function nextQuestion() { if (currentIndex < selectedQuestions.length - 1) { currentIndex++; loadQuestion(); } }
@@ -690,9 +809,12 @@ function updateTimerDisplay() {
     if (isTopicMode) { el.textContent = "Untimed"; return; }
     if (isExamPrep) {
         if (timeLeft <= 0) { el.textContent = "Time's up"; return; }
-        const minutes = Math.floor(timeLeft / 60);
+        const hours = Math.floor(timeLeft / 3600);
+        const minutes = Math.floor((timeLeft % 3600) / 60);
         const seconds = timeLeft % 60;
-        el.textContent = `${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
+        el.textContent = hours > 0
+            ? `${hours}h ${minutes}m left`
+            : `${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
         return;
     }
     if (timeLeft <= 0) { el.textContent = "Relaxed"; return; }
@@ -721,6 +843,7 @@ async function submitQuiz() {
     } else {
         localStorage.removeItem("tm_lastPaper");
     }
+    if (isExamPrep) refreshExamTopicPlan();
     await updateUserStats(percentage, topicResults);
     const attemptPassages = attemptPassageInfo();
     localStorage.setItem("tm_review", JSON.stringify({

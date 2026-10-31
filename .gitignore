@@ -6,3 +6,6 @@ data/Foundation SCIENCE/
 
 # Electron build artifacts - not part of the Cloudflare Pages web deploy
 release/
+
+# Node dependencies - excluded from commits and Pages deploy
+node_modules/

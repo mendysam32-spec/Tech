@@ -10,7 +10,10 @@ document.addEventListener("DOMContentLoaded", async () => {
     renderMission(user);
     renderPreferences(user);
     renderBadges(user);
+    renderBadgeChest(user);
     renderTopicRadar(user);
+    renderProgressMap(user);
+    showLevelUpBanner();
     showMotivation(user.profile?.motivationStyle);
     await loadSubjects();
     loadDashboardHall();
@@ -63,11 +66,13 @@ async function loadSubjects() {
     localStorage.setItem("tm_selectedSubject", select.value);
     renderTopicRadar(Storage.getCurrentUser() || user);
     renderExamPrep(Storage.getCurrentUser() || user, select.value);
+    renderProgressMap(Storage.getCurrentUser() || user);
     select.addEventListener("change", () => {
         const subj = select.value;
         localStorage.setItem("tm_selectedSubject", subj);
         renderTopicRadar(Storage.getCurrentUser());
         renderExamPrep(Storage.getCurrentUser(), subj);
+        renderProgressMap(Storage.getCurrentUser());
     });
 }
 
@@ -191,6 +196,130 @@ function renderBadges(user) {
     });
 }
 
+function renderBadgeChest(user) {
+    const chest = document.getElementById("badgeChest");
+    if (!chest) return;
+    const all = TM_BADGES || [];
+    const earned = new Set(user.badges || []);
+    chest.innerHTML = `<h6>Badge Chest</h6><div class="chest-grid"></div><div class="chest-empty"></div>`;
+    const grid = chest.querySelector(".chest-grid");
+    const empty = chest.querySelector(".chest-empty");
+    let shown = 0;
+    all.forEach(b => {
+        const isEarned = earned.has(b.id);
+        // Show earned badges + next 2 locked badges as goals
+        if (!isEarned && shown >= 2) return;
+        const badge = document.createElement("span");
+        badge.className = `tm-badge ${isEarned ? "" : "locked"} ${isEarned ? "new" : ""}`;
+        badge.textContent = b.name;
+        if (isEarned) badge.title = "Earned";
+        else badge.title = "Locked — keep playing";
+        grid.appendChild(badge);
+        shown++;
+    });
+    empty.textContent = earned.size >= all.length ? "Chest complete — you've earned them all!" : `Earned ${earned.size} of ${all.length} badges.`;
+}
+
+function renderProgressMap(user) {
+    const container = document.getElementById("progressMap");
+    if (!container) return;
+    const subject = localStorage.getItem("tm_selectedSubject") || "Technical Drawing";
+    // Ordered topic map per subject
+    const topicOrder = {
+        "Technical Drawing": [
+            "Introduction to Technical Drawing",
+            "Drawing Instruments, Equipment & Materials",
+            "Lettering & Numerals",
+            "Types of Lines & Line Work",
+            "Layout of Drawing Sheet (Border, Title Block, Paper Sizes)",
+            "Geometric Construction",
+            "Triangles & Angles",
+            "Quadrilaterals & Polygons",
+            "Circles & Tangents",
+            "Conic Sections (Ellipse, Parabola, Hyperbola)",
+            "Plane & Solid Geometry",
+            "Pictorial Drawing (Isometric, Oblique)",
+            "Orthographic Projection",
+            "Dimensioning & Measurement",
+            "Sectional Views & Hatching",
+            "Freehand Sketching & Visualization"
+        ],
+        "English": [
+            "Prepositions", "Lexis & Structure", "Grammar", "Concord / Subject-Verb Agreement",
+            "Articles: A, An, The", "Determiners", "Tenses", "Verb Forms", "Sentence Structure",
+            "Active and Passive Voice", "Direct and Reported Speech", "Question Tags",
+            "Word Order & Arrangement", "Punctuation", "Spelling", "Synonyms", "Antonyms",
+            "Lexis", "Confusable Words", "Homophones", "Idioms", "Figures of Speech",
+            "Prefixes and Suffixes", "Contractions", "Correct and Incorrect Usage",
+            "Essay and Letter Writing", "Comprehension", "Summary Writing"
+        ],
+        "SES": [
+            "What is SES?", "Importance of Studying SES", "Importance of Studying History",
+            "Sources of History", "Periods and Terms Used in History",
+            "Trans-Saharan Trade: Causes and Organisation", "Routes, Centres and Commodities",
+            "Effects of Trans-Saharan Trade", "Ghana Empire", "Mali Empire and Mansa Musa",
+            "Songhai Empire and Askia Muhammad", "Kaabu Kingdom (1537–1867)", "Fulladu Kingdom",
+            "Jollof Kingdom", "Coming and Spread of Islam", "Coming and Effects of Christianity",
+            "Mandinko and Fula", "Wollof and Jola", "Sarahuleh, Serer, Aku and Minor Groups",
+            "Mandinko, Wollof and Fula Politics", "Jola, Serer and Stateless Groups",
+            "Social Hierarchy, Kinship and Work Groups", "Acculturation, Toleration and Joking Relations",
+            "Language, Dialect and Official Language", "Taboo, Totem, Superstition and Libation",
+            "Traditional Religion and Sacred Places", "Culture, Ceremonies, Proverbs and Masquerades",
+            "Types of Families", "Marriage, Dowry and Divorce",
+            "Traditional and Modern Economy, Tax and Budget", "Vegetable Gardening and Rice Cultivation",
+            "Livestock, Cotton and Fishing", "Industry, Trade and Banking", "Population, Census and Migration",
+            "Health, Teenage Pregnancy and Drug Abuse", "Tourism in The Gambia", "Weather, Climate and Environment"
+        ],
+        "Maths": [], "Science": []
+    };
+    const order = topicOrder[subject] || [];
+    const subjectStats = Storage.topicStatsForSubject(user.topicStats, subject);
+    const examDone = new Set(Storage.examPrepDone(subject));
+    container.innerHTML = `<h6>${subject} Syllabus Map</h6><div class="map-line"><div class="map-fill" id="mapFill" style="width:0%"></div></div>`;
+    if (!order.length) {
+        container.innerHTML += `<p class="empty-state">No syllabus map available for ${subject} yet.</p>`;
+        return;
+    }
+    let done = 0, currentShown = false;
+    order.forEach((topic, i) => {
+        const stat = subjectStats[topic] || { correct: 0, total: 0 };
+        const pct = Math.round((Number(stat.correct || 0) / Math.max(1, Number(stat.total || 0))) * 100);
+        const isDone = examDone.has(topic) || (pct >= 80 && stat.total >= 3);
+        if (isDone) done++;
+        const node = document.createElement("div");
+        node.className = `map-node ${isDone ? "done" : (currentShown ? "locked" : "current")}`;
+        if (!isDone && !currentShown) currentShown = true;
+        const num = document.createElement("div");
+        num.className = "map-dot";
+        num.textContent = i + 1;
+        if (isDone) num.innerHTML = "✔";
+        const label = document.createElement("span");
+        label.className = "map-label";
+        label.textContent = topic;
+        const pctSpan = document.createElement("span");
+        pctSpan.className = "map-pct";
+        pctSpan.textContent = pct + "%";
+        node.appendChild(num);
+        node.appendChild(label);
+        node.appendChild(pctSpan);
+        if (isDone) {
+            const lock = document.createElement("span");
+            lock.className = "map-lock-icon";
+            lock.textContent = "🔓";
+            node.appendChild(lock);
+        } else if (!currentShown) {
+            const lock = document.createElement("span");
+            lock.className = "map-lock-icon";
+            lock.textContent = "🔒";
+            node.appendChild(lock);
+        }
+        container.appendChild(node);
+    });
+    const overall = Math.round((done / order.length) * 100);
+    document.getElementById("mapFill").style.width = overall + "%";
+    container.insertAdjacentHTML("beforeend", `<div class="map-node" style="margin-top:4px;justify-content:space-between;"><span class="map-label">Overall Progress</span><span class="map-pct fw-bold">${overall}%</span></div>`);
+}
+
 function renderTopicRadar(user) {
     const subject = localStorage.getItem("tm_selectedSubject") || "Technical Drawing";
     const subjectStats = Storage.topicStatsForSubject(user.topicStats, subject);
@@ -252,6 +381,27 @@ function renderDashboardHall(users) {
 function applyTheme(accent = "blue") { document.body.dataset.accent = accent; }
 function logout() { Storage.clearSession(); window.location.href = "index.html"; }
 
+function showLevelUpBanner() {
+    const pending = Storage.pendingLevelUp ? Storage.pendingLevelUp() : null;
+    if (!pending) return;
+    const banner = document.createElement("div");
+    banner.className = "level-up-banner";
+    banner.innerHTML = `
+        <div class="lu-inner">
+            <div class="lu-emoji">🎉</div>
+            <div class="lu-title">Level ${pending.to} Reached!</div>
+            <div class="lu-sub">You leveled up from ${pending.from} to ${pending.to}. Keep the momentum going.</div>
+            <div class="lu-coins">+${pending.coins || 0} Tech Coins</div>
+            <button class="lu-claim" type="button">Awesome!</button>
+        </div>
+    `;
+    document.body.appendChild(banner);
+    banner.querySelector(".lu-claim").onclick = () => {
+        banner.remove();
+        try { localStorage.removeItem("tm_levelLog"); } catch (_) {}
+    };
+    setTimeout(() => { if (banner.parentNode) banner.remove(); }, 8000);
+}
 
 async function loadLiveEventsAndAssignments(user) {
     const subject = localStorage.getItem("tm_selectedSubject") || "Technical Drawing";

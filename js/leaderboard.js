@@ -1,20 +1,51 @@
 async function loadHallOfFame() {
     const list = document.getElementById("hallOfFame");
+    const pills = document.getElementById("subjectPills");
     if (!list) return;
     list.innerHTML = `<li class="list-group-item">Loading legends...</li>`;
+    let subject = localStorage.getItem("tm_leaderboardSubject") || "All Subjects";
     try {
         const data = await API.leaderboard();
-        renderHall(list, data.users || []);
+        let users = data.users || [];
+        if (subject && subject !== "All Subjects") {
+            users = users.filter(u => {
+                const subjects = u.allowedSubjects || [];
+                return subjects.some(s => String(s).toLowerCase() === String(subject).toLowerCase());
+            });
+        }
+        renderHall(list, pills, users, subject);
     } catch (_) {
-        const users = Storage.getUsers().sort((a, b) => b.bestScore - a.bestScore).slice(0, 10);
-        renderHall(list, users);
+        let users = Storage.getUsers();
+        if (subject && subject !== "All Subjects") {
+            users = users.filter(u => {
+                const subjects = u.allowedSubjects || [];
+                return subjects.some(s => String(s).toLowerCase() === String(subject).toLowerCase());
+            });
+        }
+        users = users.sort((a, b) => b.bestScore - a.bestScore).slice(0, 10);
+        renderHall(list, pills, users, subject);
     }
 }
 
-function renderHall(list, users) {
+function renderPills(pills, activeSubject) {
+    if (!pills) return;
+    const subjects = ["All Subjects", "Technical Drawing", "English", "Maths", "Science", "SES"];
+    pills.innerHTML = subjects.map(s => `
+        <button class="subject-pill ${s === activeSubject ? "active" : ""}" data-subject="${s}">${s}</button>
+    `).join("");
+    pills.querySelectorAll(".subject-pill").forEach(pill => {
+        pill.addEventListener("click", () => {
+            localStorage.setItem("tm_leaderboardSubject", pill.dataset.subject);
+            loadHallOfFame();
+        });
+    });
+}
+
+function renderHall(list, pills, users, activeSubject) {
+    renderPills(pills, activeSubject);
     list.innerHTML = "";
     if (!users.length) {
-        list.innerHTML = `<li class="list-group-item">No legends yet</li>`;
+        list.innerHTML = `<li class="list-group-item">No legends yet in this subject.</li>`;
         return;
     }
     users.slice(0, 10).forEach((user, index) => {

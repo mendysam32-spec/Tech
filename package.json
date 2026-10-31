@@ -1,0 +1,70 @@
+{
+  "name": "tech-monster",
+  "productName": "Tech Monster",
+  "version": "1.0.0",
+  "description": "Study notes, quizzes and past papers — works offline, syncs when online.",
+  "main": "electron/main.js",
+  "author": "S&P Group",
+  "scripts": {
+    "start": "electron .",
+    "dev": "electron .",
+    "package": "electron-builder",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder",
+    "postinstall": "electron-builder install-app-deps"
+  },
+  "build": {
+    "appId": "com.spgroup.techmonster",
+    "electronDist": "node_modules/electron/dist",
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "icon": "build/icon.png",
+      "publisherName": "S&P Group"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "Tech Monster"
+    },
+    "directories": {
+      "app": ".",
+      "buildResources": "build",
+      "output": "release"
+    },
+    "files": [
+      "**/*",
+      "!release/**/*",
+      "!.git/**/*",
+      "!.wrangler/**/*",
+      "!build_foundation_science.cjs",
+      "!build_ses_fullnotes.cjs",
+      "!CLOUDFLARE_SETUP.md",
+      "!FRESH_DEPLOY_CHECKLIST.md",
+      "!cloudflare/**/*",
+      "!wrangler.toml",
+      "!.gitattributes",
+      "!.gitignore"
+    ],
+    "publish": {
+      "provider": "github",
+      "repo": "tech-monster",
+      "owner": "spgroup"
+    }
+  },
+  "devDependencies": {
+    "electron": "^29.0.0",
+    "electron-builder": "^24.0.0"
+  },
+  "dependencies": {
+    "electron-updater": "^6.0.0"
+  }
+}

@@ -51,7 +51,60 @@ document.addEventListener("DOMContentLoaded", () => {
     renderResultBadges(user);
     renderResultFocus(user);
     renderReturnToChapter();
+    setupMomentumButtons();
 });
+
+function setupMomentumButtons() {
+    const review = JSON.parse(localStorage.getItem("tm_review") || "null");
+    const playAgain = document.getElementById("playAgainBtn");
+    const retryWrong = document.getElementById("retryWrongBtn");
+    const nextPaper = document.getElementById("nextPaperBtn");
+    const score = Number(localStorage.getItem("tm_lastScore") || 0);
+
+    // Play Again: restart the same quiz mode/subject
+    if (playAgain && review?.meta) {
+        const m = review.meta;
+        let url = "quiz.html";
+        const params = [];
+        if (m.mode === "paper") params.push(`mode=paper&year=${m.year}`);
+        else if (m.mode === "exam_prep") params.push(`mode=exam_prep&subject=${encodeURIComponent(m.subject)}`);
+        else if (m.mode === "topic") {
+            params.push(`mode=topic&topic=${encodeURIComponent(m.topic || "")}`);
+            if (m.subject) params.push(`subject=${encodeURIComponent(m.subject)}`);
+            if (m.unit) params.push(`unit=${encodeURIComponent(m.unit)}`);
+            if (m.unitGrade) params.push(`grade=${encodeURIComponent(m.unitGrade)}`);
+            if (m.passage) params.push(`passage=${encodeURIComponent(m.passage)}`);
+        } else {
+            if (m.subject) params.push(`subject=${encodeURIComponent(m.subject)}`);
+        }
+        if (params.length) url += "?" + params.join("&");
+        playAgain.href = url;
+    } else if (playAgain) {
+        playAgain.href = "quiz.html";
+    }
+
+    // Retry Wrong Ones: filter review questions to wrong answers
+    if (retryWrong && review?.questions && Array.isArray(review.userAnswers)) {
+        const wrong = review.questions.filter((q, i) => review.userAnswers[i] != null && review.userAnswers[i] !== q.correct);
+        if (wrong.length) {
+            localStorage.setItem("tm_retryWrong", JSON.stringify({ questions: wrong, subject: review.meta?.subject || localStorage.getItem("tm_selectedSubject") || "Technical Drawing" }));
+            retryWrong.style.display = "";
+            retryWrong.href = "quiz.html?mode=retry_wrong";
+        } else {
+            retryWrong.style.display = "none";
+        }
+    } else if (retryWrong) {
+        retryWrong.style.display = "none";
+    }
+
+    // Next Paper: go to library papers tab
+    if (nextPaper) nextPaper.href = "library.html?tab=papers";
+
+    // Highlight primary button on great scores
+    if (score >= 80 && playAgain) {
+        playAgain.classList.add("pulse");
+    }
+}
 
 const LEGEND_PRAISE = {
     perfect: {
