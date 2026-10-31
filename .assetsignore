@@ -1,0 +1,19 @@
+.wrangler/
+node_modules/
+release/
+data/Foundation SCIENCE/
+build_foundation_science.cjs
+build_ses_fullnotes.cjs
+CLOUDFLARE_SETUP.md
+FRESH_DEPLOY_CHECKLIST.md
+WAEC_ENGLISH_NOTES.md
+cloudflare/
+wrangler.toml
+package.json
+package-lock.json
+electron/
+build/
+.assetsignore
+.gitignore
+.gitattributes
+.git/
