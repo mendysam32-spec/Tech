@@ -244,6 +244,8 @@ function extractBlocks(contentXml) {
  *
  * Each entry is [topicId, "text that opens the section"]. The text is the
  * start of the textbook paragraph, matched case- and punctuation-insensitively.
+ * An optional third element overrides the section heading shown to the
+ * reader (used when the textbook paragraph has no heading of its own).
  * Entries must be listed in the order they appear in the textbook.
  * ------------------------------------------------------------------ */
 const ANCHORS = [
@@ -260,7 +262,9 @@ const ANCHORS = [
     ['g7-t1-4', 'SCIENTIFIC INSTRUMENTS'],
     ['g7-t1-5', 'UNIT 2.0: LIVINGTHINGS AND NON-LIVING THINGS'],
     ['g7-t1-6', '1.1: CHARACTERISTICS OF LIVING ORGAINISMS'],
-    ['g7-t1-7', '1.3. DIFFERENCES BETWEEN LIVING AND NON-LIVING THINGS'],
+    ['g7-t1-7', '1.2: MAIN DIFFERENCES BETWEEN PLANTS AND ANIMALS'],
+    // the living vs non-living table belongs with the Living/Non-Living unit.
+    ['g7-t1-5', '1.3. DIFFERENCES BETWEEN LIVING AND NON-LIVING THINGS'],
     ['g7-t1-8', '2.0: CLASSIFICATION OF LIVING ORGANISMS'],
     ['g7-t1-8', '1. UNICELLULAR ORGANISMS'],
     ['g7-t1-rev', 'REVISION QUESTIONS: THEMES 1 AND 2'],
@@ -294,6 +298,7 @@ const ANCHORS = [
     ['g7-t2-3', 'IN SOLIDS'],
     ['g7-t2-3', 'IN LIQUIDS:'],
     ['g7-t2-3', 'IN GASES'],
+    ['g7-t2-3', 'COMPARISON BETWEEN SOLIDS LIQUIDS AND GASES'],
     ['g7-t2-3', '1.3. CHANGES OF STATE OF MATTER'],
     ['g7-t2-3', '6. GAS TO SOLID (DEPOSITION)'],
     ['g7-t2-4', 'DIFFERENCES BETWEEN EVAPORATION AND BOILING'],
@@ -322,9 +327,12 @@ const ANCHORS = [
     ['g7-t2-energy', '3.3: KINETIC ENERGY'],
     ['g7-t2-rev2', 'OBJECTIVE QUESTIONS'],
     // Theme 3 - Chemical Changes Part 1
+    ['g7-t3-1', 'THEME 3: CHEMICAL CHANGES PART 1'],
     ['g7-t3-1', 'CHARACTERISTICS OF PURE SUBSTANCES'],
     ['g7-t3-1', 'UNIT 1.0: ELEMENTS'],
+    ['g7-t3-1', 'SYMBOLS FOR SOME COMMON ELEMENTS'],
     ['g7-t3-2', 'UNIT 2.0: COMPOUND'],
+    ['g7-t3-2', '2.1: DIFFRENCES BETWEEN AN ELEMENT AND A COMPOUND', 'DIFFERENCES BETWEEN AN ELEMENT AND A COMPOUND'],
     ['g7-t3-2', '2.2.: PREPARATION OF SIMPLE COMPOUNDS'],
     ['g7-t3-3', '3. 0: IMPURE SUBSTANCES (OR MIXTURES)'],
     ['g7-t3-3', '3. 1: DIFFERENCES BETWEEN MIXTURES AND COMPOUNDS'],
@@ -334,6 +342,7 @@ const ANCHORS = [
     ['g7-t3-4', '4.3. Filtration'],
     ['g7-t3-4', 'Method'],
     ['g7-t3-4', 'Result'],
+    ['g7-t3-4', '4.4: Evaporation'],
     ['g7-t3-4', '4.5: Distillation:'],
     ['g7-t3-4', '4.6 Fractional distillation'],
     ['g7-t3-4', '4.7: Sublimation:'],
@@ -341,6 +350,8 @@ const ANCHORS = [
     ['g7-t3-4', 'Result:'],
     ['g7-t3-4', '4:8: USE OF SEPARATING FUNNEL'],
     ['g7-t3-4', 'Method and result'],
+    ['g7-t3-4', '4.9: MAGNETIZATION'],
+    ['g7-t3-4', '4.10: PAPER CHROMATOGRAPHY'],
     ['g7-t3-rev', 'ESSAY REVISION QUESTIONS'],
     ['g7-t3-rev', 'OBJECTIVE QUESTIONS'],
     // Theme 4 - Air and Water
@@ -382,18 +393,24 @@ const ANCHORS = [
     ['g7-t5-rev', 'ESSAY'],
     ['g7-t5-rev', 'OBJECTIVE QUESTIONS'],
     // Theme 6 - Food Part 1
+    ['g7-t6-1', 'Food is described as any substance (solid or liquid) taken into the body', 'THEME 6.0: FOOD (PART 1)'],
     ['g7-t6-1', 'UNIT 1.0: MAIN FUNCTIONS OF FOOD'],
     ['g7-t6-2', 'UNIT 1.2: THE CLASSES OF FOOD'],
     ['g7-t6-2', 'PRINCIPAL CLASSSES OF FOOD SUBSTANCES'],
+    ['g7-t6-2', '1.3: VITAMINS'],
     ['g7-t6-2', 'TYPES OF VITAMINS AND THEIR USES'],
     ['g7-t6-2', '1.4: MINERALS'],
+    ['g7-t6-2', '1.5: WATER'],
     ['g7-t6-2', '1. 6: ROUGHAGE'],
     ['g7-t6-3', '1. 7: BALANCED DIET'],
     ['g7-t6-rev', 'REVISION ESSAY QUESTIONS'],
     ['g7-t6-rev', 'OBJECTIVE QUESTIONS'],
     // Theme 7 - Human Body: Sense Organs
+    ['g7-t7-1', 'THEME 7.0: HUMAN BODY: PART 1(SENSE ORGANS)'],
     ['g7-t7-1', '7.1: THE STRUCTURE OF THE MAMMALIAN EYE'],
+    ['g7-t7-1', '7.2: STRUCTURE AND FUNCTIONS OF THE PARTS OF THE MAMMALIAN EYE'],
     ['g7-t7-1', '1.4: FORMATION OF IMAGES IN THE EYE'],
+    ['g7-t7-1', '1.5: ACCOMMODATION OF THE EYE'],
     ['g7-t7-2', 'UNIT 2.0: THE HUMAN EAR'],
     ['g7-t7-2', '2.2: HYGEINE OF THE HUMAN EAR'],
     ['g7-t7-3', 'UNIT 3: THE TONGUE'],
@@ -401,9 +418,11 @@ const ANCHORS = [
     ['g7-t7-5', 'UNIT 5: THE NOSE/OLFACTORY ORGANS'],
     ['g7-t7-rev', 'ESSAY REVISION QUESTIONS'],
     // Theme 8 - Hygiene and Health
+    ['g7-t8-1', 'THEME 8.0: HYGIENE AND HEALTH'],
     ['g7-t8-1', '8.1: PERSONAL CLEANLINESS AND HEALTH'],
     ['g7-t8-2', '8.2: EXERCISE, RECREATION AND REST'],
     // Theme 9 - Technology
+    ['g7-t9-1', 'THEME 9.0: TECHNOLOGY (PART 1)'],
     ['g7-t9-1', '9.1: MEANING OF TECHNOLOGY:'],
     ['g7-t9-1', '9.2: SIMPLE, APPROPRIATE AND ADVANCED TECHNOLOGY'],
     ['g7-t9-2', '9.3: TECHNOLOGICAL PROCESSES'],
@@ -415,10 +434,17 @@ const ANCHORS = [
 
     /* ---------------- Grade 8 ---------------- */
     ['g8-t1-1', 'THEME 1.0: MAGNIFYING INSTRUMENTS'],
+    // unit 1.1 starts right after the theme heading with no heading of its own;
+    // the third element supplies the display heading for the section.
+    ['g8-t1-2', 'This is a convex lens generally mounted in a frame', 'THE HAND LENS'],
+    ['g8-t1-2', 'HOW TO USE THE HAND LENS'],
     ['g8-t1-2', 'Figure 2.1: The Hand lens'],
+    ['g8-t1-3', '1.2: THE LIGHT MICROSCOPE'],
     ['g8-t1-3', 'Figure1.2: Parts of the Microscope'],
+    ['g8-t1-3', 'PRECAUTIONS TAKEN WHEN USING THE MICROSCOPE'],
     ['g8-t1-4', 'UNIT 2: PLANT AND ANIMAL CELLS'],
     ['g8-t1-5', '2. 5: SPECIALISED PLANT AND ANIMAL CELLS'],
+    ['g8-t1-6', 'UNIT 3.0: STRUCTURE AND FUNCTIONS OF UNICELLULAR ORGANISMS'],
     ['g8-t1-6', 'Examples of unicellular organisms include:'],
     ['g8-t1-6', '3. 2: EUGLENA'],
     ['g8-t1-6', 'Plant-like features'],
@@ -443,6 +469,7 @@ const ANCHORS = [
     ['g8-t1-9', 'FUNCTIONS OF THE STEM'],
     ['g8-t1-9', 'THE VASCULAR BUNDLE (TRANSPORT SYSTEM IN PLANTS)'],
     ['g8-t1-9', '1.4: INTERNAL SECTIONS OF DICOTYLEDOMOUS STEMS'],
+    ['g8-t1-10', '2.0: STRUCTURE AND FUNCTIONS OF PARTS OF A FLOWER'],
     ['g8-t1-10', 'FUNCTIONS OF PARTS OF A FLOWER'],
     ['g8-t1-11', '2.1: PROCESSES INVOLVED IN SEXUAL REPRODUCTION IN PLANTS'],
     ['g8-t1-11', '2.2: POLLINATION'],
@@ -474,12 +501,14 @@ const ANCHORS = [
     ['g8-t1-13', 'INVERTEBRATES'],
     ['g8-t1-13', 'PHYLA'],
     ['g8-t1-13', 'CLASSES'],
+    ['g8-t1-13', '6.1. THE EARTHWORM PHYLUM: ANNELIDA (INVERTEBRATE)'],
     ['g8-t1-13', '6.2: PHYLUM ARTHROPODA'],
     ['g8-t1-13', 'Figure 3: Some examples of arthropods'],
     ['g8-t1-13', 'ECONOMIC IMPORTANCE OF THE COCKROACH'],
     ['g8-t1-rev', 'ESSAY REVISION QUESTIONS (ARTHROPODS, SPIDER AND EARTHWORM)'],
     ['g8-t1-rev', 'OBJECTIVE QUSTIONS'],
     // Theme 2 - Matter Part 2
+    ['g8-t2-1', 'UNIT 1: SIMPLE MACHINES'],
     ['g8-t2-1', 'UNIT 2.0: LIVERS (SIMPLE MACHINES)'],
     ['g8-t2-2', 'OTHER EXAMPLES OF SIMPLE MACHINES'],
     ['g8-t2-3', '3.0: EFFICIENCY OF A MACHINE'],
@@ -540,15 +569,26 @@ const ANCHORS = [
     ['g9-t4-2', '1.5: FORMATION OF SHADOWS'],
     ['g9-t4-2', '1.6: FORMATION OF SOLAR AND LUNAR ECLIPSES'],
     ['g9-t4-2', '1.7: REFLECTION OF LIGHT'],
+    ['g9-t4-2', '1.8: TERMS USED IN REFLECTION OF LIGHT'],
     ['g9-t4-2', '1.9: MIRRORS'],
     ['g9-t4-2', 'TYPES OF IMAGES'],
     ['g9-t4-2', 'FORMATION OF IMAGE IN A PLANE MIRROR'],
     ['g9-t4-2', 'USES OF PLANE MIRRORS'],
+    ['g9-t4-2', '1.10: SOME OPTICAL INSTRUMENTS'],
+    ['g9-t4-2', '1.11: CURVED OR SPHERICAL MIRRORS'],
     ['g9-t4-2', 'SOME TERMS USED FOR CURVES MIRRORS'],
     ['g9-t4-2', 'USES OF CONVERGING OR CONCAVE MIRRORS'],
     ['g9-t4-2', 'USES OF DIVERGING OR CONVEX MIRRORS'],
+    ['g9-t4-2', '1.12: REFRACTION OF LIGHT'],
+    ['g9-t4-2', '1.13: LENSES'],
     ['g9-t4-2', '1.14: THE EYE DEFECTS'],
+    ['g9-t4-2', '1.15: DISPERSION OF LIGHT'],
     ['g9-t4-2', 'Figure 1: Circle of Primary colours'],
+    // Unit 3 covers sound, so its intro belongs to the Sound Energy topic.
+    ['g9-t4-3', 'UNIT 3: MOVEMENT OF SOUND ENERGY'],
+    ['g9-t4-3', '1.1: PROPERTIES OF SOUND'],
+    ['g9-t4-3', '1.2: TRANSMISSION OF SOUND'],
+    ['g9-t4-3', '1.3. SOURCES OF SOUND/ MUSICAL INSTRUMENTS'],
     ['g9-t4-3', '1.4. WAVE AND WAVE MOTION'],
     ['g9-t4-3', 'LONGITUDINAL WAVES'],
     ['g9-t4-3', 'TRANSVERSE WAVES'],
@@ -573,6 +613,7 @@ const ANCHORS = [
     // Theme 5 - Human Body Organs and Systems
     ['g9-t5-1', 'THEME 5.0: HUMAN BODY SYSTEMS'],
     ['g9-t5-1', '1.1: DIGESTION IN DIFFERENT REGIONS OF THE DIGESTIVE SYSTEM OF MAN'],
+    ['g9-t5-1', '1.2: ABSORPTION OF DIGESTED FOODS'],
     ['g9-t5-1', '1.3: ABSORPTION OF AMINO ACIDS AND GLUCOSE'],
     ['g9-t5-1', '1.4: ABSORPTION OF FATTY ACIDS AND GLYCEROL'],
     ['g9-t5-1', '1.5: LARGE INTESTINE'],
@@ -605,13 +646,19 @@ const ANCHORS = [
     ['g9-t5-4', 'UNIT 4.0: BLOOD CIRCULATORY SYSTEM'],
     ['g9-t5-4', '4.1: INTRODUCTION'],
     ['g9-t5-4', '4.2: BLOOD AND ITS COMPOSITION'],
+    ['g9-t5-4', '4.3: CHARACTERISTICS OF BLOOD CELLS'],
     ['g9-t5-4', '4.4: PLASMA'],
     ['g9-t5-4', '4.5: GENERAL FUNCTIONS OF BLOOD'],
     ['g9-t5-4', '4.6: BLOOD VESSELS'],
     ['g9-t5-4', '4.7: THE STRUCTURE OF THE MAMMALIAN HEART'],
+    ['g9-t5-4', '4.8: ADAPTIVE FEATURES OF THE HEART'],
+    ['g9-t5-4', '4.10: CIRCULATION OF BLOOD'],
+    ['g9-t5-4', '4.11: BLOOD VESSELS AND THEIR FUNCTIONS'],
     ['g9-t5-4', 'REVISION ESSAY QUESTIONS'],
     ['g9-t5-4', 'OBJECTIVE QUESTIONS'],
     ['g9-t5-5', 'UNIT 5.0: THE HUMAN REPRODUCTIVE SYSTEMS'],
+    ['g9-t5-5', '5.1: THE STRUCTURES AND FUNCTIONS OF THE PARTS OF THE MALE REPRODUCTIVE SYSTEM'],
+    ['g9-t5-5', '5.2: THE STRUCTURE AND FUNCTIONS OF THE PARTS OF THE FEMALE REPRODUCTIVE SYSTEM'],
     ['g9-t5-5', '5.3: SEXUAL CYCLE IN FEMALES (OVULATION AND MENSTRUATION)'],
     ['g9-t5-5', '5.4: BRIEF OUTLINE OF SEQUENCE OF EVENTS IN SEXUAL REPRODUCTION'],
     ['g9-t5-5', 'EASSAY REVISION QUESTIONS'],
@@ -682,7 +729,7 @@ function resolveAnchors(blocks) {
             return;
         }
         from = found + 1;
-        resolved.push({ topic: topicId, text, index: found });
+        resolved.push({ topic: topicId, text, heading: entry[2] || '', index: found });
     });
     return { resolved, problems, fuzzy };
 }
@@ -770,13 +817,14 @@ function sectionsForRun(blocks, run, endIndex) {
     run.forEach((anchor, k) => {
         const start = anchor.index;
         const stop = k + 1 < run.length ? run[k + 1].index : endIndex;
-        const section = { h: prettyHeading(anchor.text), blocks: [] };
+        const section = { h: prettyHeading(anchor.heading || anchor.text), blocks: [] };
         const ctx = { table: null };
         // the anchor paragraph itself: heading text plus any trailing sentence
         const first = blocks[start];
         let rest = '';
+        let raw = '';
         if (first && first.text) {
-            const raw = first.text.replace(/^#+\s*/, '');
+            raw = first.text.replace(/^#+\s*/, '');
             const idx = normKey(raw).indexOf(normKey(anchor.text));
             if (idx >= 0) {
                 // find the character offset of the matched prefix in the raw text
@@ -800,7 +848,10 @@ function sectionsForRun(blocks, run, endIndex) {
                 if (blocks[j].text.trim()) { nextText = blocks[j].text.toLowerCase().replace(/\s+/g, ' ').trim(); break; }
             }
             const duplicated = words.length > 8 && nextText.indexOf(words) === 0;
-            if (!duplicated) section.blocks.push({ t: 'p', x: rest });
+            // with a heading override the matched prefix is the body text
+            // itself, not a heading - keep the whole paragraph
+            const body = anchor.heading ? raw : rest;
+            if (!duplicated) section.blocks.push({ t: 'p', x: body });
         }
         for (let i = start + 1; i < stop; i++) {
             section.blocks.push(...blockToBlocks(blocks[i], ctx));

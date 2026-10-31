@@ -178,9 +178,9 @@ Object.assign(window.foundationScienceNotes, {
      ]}
    ]
  },
- /* ============ GRADE 8 ============ */
- "g8-t1-2": {
-   title: "The Microscope",
+  /* ============ GRADE 8 ============ */
+  "g8-t1-3": {
+    title: "The Microscope",
    notes: "The light microscope uses two convex lenses to greatly enlarge tiny objects such as cells.",
    memoryTip: "Always start with the low-power objective.",
    sections: [
@@ -204,8 +204,8 @@ Object.assign(window.foundationScienceNotes, {
      ]}
    ]
  },
- "g8-t2-1": {
-   title: "Generalised Plant and Animal Cells",
+  "g8-t1-4": {
+    title: "Generalised Plant and Animal Cells",
    notes: "The cell is the basic unit of life. Plant cells have a cell wall, chloroplasts and a large vacuole; animal cells do not.",
    memoryTip: "Plant cell = animal cell + wall, chloroplasts, large vacuole.",
    sections: [
@@ -222,8 +222,8 @@ Object.assign(window.foundationScienceNotes, {
      ]}
    ]
  },
- "g8-t2-2": {
-   title: "Specialised Plant and Animal Cells",
+  "g8-t1-5": {
+    title: "Specialised Plant and Animal Cells",
    notes: "Specialised cells are structurally adapted to perform specific functions.",
    memoryTip: "Form fits function.",
    sections: [
@@ -267,8 +267,8 @@ Object.assign(window.foundationScienceNotes, {
      ]}
    ]
  },
- "g8-t4-2": {
-   title: "Flowering Plants: External and Internal Structure",
+  "g8-t1-9": {
+    title: "Flowering Plants: External and Internal Structure",
    notes: "A flowering plant has a root system (anchors, absorbs water/minerals) and a shoot system (stem, leaves, flowers).",
    memoryTip: "Root absorbs; stem transports; leaf photosynthesises.",
    sections: [
@@ -282,8 +282,8 @@ Object.assign(window.foundationScienceNotes, {
      ]}
    ]
  },
- "g8-t4-3": {
-   title: "Structure and Functions of Parts of a Flower",
+  "g8-t1-10": {
+    title: "Structure and Functions of Parts of a Flower",
    notes: "The flower is the reproductive organ. Male part = stamen (anther + filament); female part = carpel/pistil (stigma, style, ovary).",
    memoryTip: "Stamen male (anther=pollen); Carpel female (stigma receives pollen).",
    sections: [
@@ -297,8 +297,8 @@ Object.assign(window.foundationScienceNotes, {
      ]}
    ]
  },
- "g8-t4-4": {
-   title: "Pollination and Germination",
+  "g8-t1-11": {
+    title: "Pollination and Germination",
    notes: "Pollination transfers pollen from anther to stigma (self or cross; by wind, insects, water). Germination is a seed growing into a seedling.",
    memoryTip: "Pollination = pollen moves; Germination = seed sprouts.",
    sections: [

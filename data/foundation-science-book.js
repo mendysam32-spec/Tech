@@ -105,15 +105,15 @@ window.foundationScienceBook = [
          },
          {
           "t": "p",
-           "x": "Science is a very broad area of study, but it can be divided into three main branches: biological sciences, physical sciences and social sciences."
+          "x": "Science is a very broad area of study, but it can be divided into three main branches: deal with study of living things"
          },
          {
           "t": "ol",
-           "items": [
-            "Biological sciences: deal with the study of living things",
-            "Physical sciences: deal with the study of non-living things (matter, energy, forces).",
-            "Social Sciences: deal with the study of man and his environment."
-           ]
+          "items": [
+           "Biological sciences: deal with the study of non-living things",
+           "Physical sciences: deal with the study of non-living things deal with the study of man and his enviro",
+           "Physical sciences: deal with the study of man and his environment) 3. Social Sciences: deal with the study of man and his environment)"
+          ]
          },
          {
           "t": "p",
@@ -473,6 +473,48 @@ window.foundationScienceBook = [
           "x": "Biology is the branch of science that deals with the study of living organisms. All living organisms have certain characteristics that obviously distinguish them from non-living things."
          }
         ]
+       },
+       {
+        "h": "1.3. Differences Between Living and Non-living Things",
+        "blocks": [
+         {
+          "t": "table",
+          "rows": [
+           [
+            "Living things",
+            "Non-living things"
+           ],
+           [
+            "1. Move the whole or part of the body from place to place by themselves",
+            "1. Do not move by themselves except by means of external forces e.g. wind"
+           ],
+           [
+            "2. They obtain or require food substances",
+            "2. Do not need food substances to exist"
+           ],
+           [
+            "3. Respire to release energy",
+            "3. Do not carry out respiration"
+           ],
+           [
+            "4. Reproduce by themselves",
+            "4. Do not reproduce by themselves"
+           ],
+           [
+            "5. Respond to various stimuli",
+            "5. Do not respond to stimuli"
+           ],
+           [
+            "6. Get rid of metabolic waste materials in their body",
+            "6. Do not get rid of metabolic wastes in their body"
+           ],
+           [
+            "7. Grow by addition of new cells produced by the organism",
+            "7. Do not grow by addition of new cells. May increase in size by addition of new substances from the environment"
+           ]
+          ]
+         }
+        ]
        }
       ]
      },
@@ -529,12 +571,26 @@ window.foundationScienceBook = [
          {
           "t": "p",
           "x": "C- Cell: The body of all living organisms is made up of D- Definite life span: Organisms live for a limited period and die."
-         },
+         }
+        ]
+       }
+      ]
+     },
+     {
+      "id": "g7-t1-7",
+      "unit": "2.2",
+      "page": "6",
+      "title": "Differences Between Plants and Animals",
+      "icon": "🌸",
+      "quizTopic": "Differences Between Plants and Animals",
+      "source": "textbook",
+      "sections": [
+       {
+        "h": "1.2: Main Differences Between Plants and Animals",
+        "blocks": [
          {
-          "t": "ol",
-          "items": [
-           "2: MAIN DIFFERENCES BETWEEN PLANTS AND ANIMALS Anim"
-          ]
+          "t": "p",
+          "x": "Anim"
          },
          {
           "t": "table",
@@ -578,59 +634,6 @@ window.foundationScienceBook = [
             "7.Position in food chain",
             "Are called producers",
             "Are called consumers"
-           ]
-          ]
-         }
-        ]
-       }
-      ]
-     },
-     {
-      "id": "g7-t1-7",
-      "unit": "2.2",
-      "page": "6",
-      "title": "Differences Between Plants and Animals",
-      "icon": "🌸",
-      "quizTopic": "Differences Between Plants and Animals",
-      "source": "textbook",
-      "sections": [
-       {
-        "h": "1.3. Differences Between Living and Non-living Things",
-        "blocks": [
-         {
-          "t": "table",
-          "rows": [
-           [
-            "Living things",
-            "Non-living things"
-           ],
-           [
-            "1. Move the whole or part of the body from place to place by themselves",
-            "1. Do not move by themselves except by means of external forces e.g. wind"
-           ],
-           [
-            "2. They obtain or require food substances",
-            "2. Do not need food substances to exist"
-           ],
-           [
-            "3. Respire to release energy",
-            "3. Do not carry out respiration"
-           ],
-           [
-            "4. Reproduce by themselves",
-            "4. Do not reproduce by themselves"
-           ],
-           [
-            "5. Respond to various stimuli",
-            "5. Do not respond to stimuli"
-           ],
-           [
-            "6. Get rid of metabolic waste materials in their body",
-            "6. Do not get rid of metabolic wastes in their body"
-           ],
-           [
-            "7. Grow by addition of new cells produced by the organism",
-            "7. Do not grow by addition of new cells. May increase in size by addition of new substances from the environment"
            ]
           ]
          }
@@ -1970,11 +1973,12 @@ window.foundationScienceBook = [
          {
           "t": "p",
           "x": "Figure 1: Arrangement of molecule"
-         },
-         {
-          "t": "p",
-          "x": "COMPARISON BETWEEN SOLIDS, LIQUIDS AND GASES"
-         },
+         }
+        ]
+       },
+       {
+        "h": "Comparison Between Solids Liquids and Gases",
+        "blocks": [
          {
           "t": "table",
           "rows": [
@@ -2939,21 +2943,6 @@ window.foundationScienceBook = [
           "items": [
            "The energy which the body possesses by virtue of its position is called --- A. kinetic energy B. heat energy C. potential energy D. light energy"
           ]
-         },
-         {
-          "t": "p",
-          "x": "## THEME 3: CHEMICAL CHANGES PART 1"
-         },
-         {
-          "t": "p",
-          "x": "Matter is classified into two main groups: Pure and impure substances"
-         },
-         {
-          "t": "ul",
-          "items": [
-           "Pure substances are elements and compounds",
-           "Impure substances are called Mixtures"
-          ]
          }
         ]
        }
@@ -2975,6 +2964,22 @@ window.foundationScienceBook = [
       "quizTopic": "Elements as Pure Substances",
       "source": "textbook",
       "sections": [
+       {
+        "h": "Theme 3: Chemical Changes Part 1",
+        "blocks": [
+         {
+          "t": "p",
+          "x": "Matter is classified into two main groups: Pure and impure substances"
+         },
+         {
+          "t": "ul",
+          "items": [
+           "Pure substances are elements and compounds",
+           "Impure substances are called Mixtures"
+          ]
+         }
+        ]
+       },
        {
         "h": "Characteristics of Pure Substances",
         "blocks": [
@@ -3007,11 +3012,12 @@ window.foundationScienceBook = [
            "A symbol is usually the first letter of the English or Latin name of the element. For example, H means one atom of hydrogen; O means one atom of oxygen, N means one atom of nitrogen.",
            "The names of some elements (e.g. carbon, calcium, chlorine, and copper) all begin with the same letter. Therefore, we cannot use that letter as a symbol for all the elements. Two letters are used except for one of such elements. If two letters are used as a symbol, the first one is capital and the second is a small letter (e.g.Ca, Cl, Cu, Ag, Na, Al etc). If one letter is used as a symbol, it must be in a capital letter."
           ]
-         },
-         {
-          "t": "p",
-          "x": "SYMBOLS FOR SOME COMMON ELEMENTS"
-         },
+         }
+        ]
+       },
+       {
+        "h": "Symbols for Some Common Elements",
+        "blocks": [
          {
           "t": "table",
           "rows": [
@@ -3147,13 +3153,12 @@ window.foundationScienceBook = [
             "Colorless liquid"
            ]
           ]
-         },
-         {
-          "t": "ol",
-          "items": [
-           "1: DIFFRENCES BETWEEN AN ELEMENT AND A COMPOUND"
-          ]
-         },
+         }
+        ]
+       },
+       {
+        "h": "Differences Between an Element and A Compound",
+        "blocks": [
          {
           "t": "table",
           "rows": [
@@ -3399,12 +3404,15 @@ window.foundationScienceBook = [
          {
           "t": "p",
           "x": "Figure 1: Filtration"
-         },
+         }
+        ]
+       },
+       {
+        "h": "4.4: Evaporation",
+        "blocks": [
          {
-          "t": "ol",
-          "items": [
-           "4: Evaporation: In this process a solid substance is separated or recovered from a solution. Usually, the solution is heated over water in an evaporating basin (water bath). As the heating goes on, the solvent vapourises leaving the solid substance behind in the dish. Salt can be recovered from salt or sea water by this method. Sea water is pumped into trenches or put into containers. The heat of the sun evaporates the sea water, leaving the salt to be collected. Evaporation is also an essential process in: producing concentrated evaporated milk"
-          ]
+          "t": "p",
+          "x": "In this process a solid substance is separated or recovered from a solution. Usually, the solution is heated over water in an evaporating basin (water bath). As the heating goes on, the solvent vapourises leaving the solid substance behind in the dish. Salt can be recovered from salt or sea water by this method. Sea water is pumped into trenches or put into containers. The heat of the sun evaporates the sea water, leaving the salt to be collected. Evaporation is also an essential process in: producing concentrated evaporated milk"
          },
          {
           "t": "p",
@@ -3545,13 +3553,24 @@ window.foundationScienceBook = [
          {
           "t": "p",
           "x": "Figure 5: Separating funnel"
-         },
+         }
+        ]
+       },
+       {
+        "h": "4.9: Magnetization",
+        "blocks": [
          {
-          "t": "ol",
-          "items": [
-           "9: MAGNETIZATION Magnets are used to separate magnetic objects from non-magnetic substances. This method of separation is applied in the recycling of metals, to separate magnetic metals from non-magnetic metals. A mixture of sand and iron fillings can be separated by magnetization.",
-           "10: PAPER CHROMATOGRAPHY Chromatography is a method used to separate mixtures of solutes from a solution. e.g. coloured ink or dyes. It involves allowing the solvent to move over a porous medium e.g. filter paper or gel. The different solute components move at different speeds according to their solubility and separate out."
-          ]
+          "t": "p",
+          "x": "Magnets are used to separate magnetic objects from non-magnetic substances. This method of separation is applied in the recycling of metals, to separate magnetic metals from non-magnetic metals. A mixture of sand and iron fillings can be separated by magnetization."
+         }
+        ]
+       },
+       {
+        "h": "4.10: Paper Chromatography",
+        "blocks": [
+         {
+          "t": "p",
+          "x": "Chromatography is a method used to separate mixtures of solutes from a solution. e.g. coloured ink or dyes. It involves allowing the solvent to move over a porous medium e.g. filter paper or gel. The different solute components move at different speeds according to their solubility and separate out."
          },
          {
           "t": "p",
@@ -4747,10 +4766,6 @@ window.foundationScienceBook = [
          {
           "t": "p",
           "x": "## THEME 6.0: FOOD (PART 1)"
-         },
-         {
-          "t": "p",
-          "x": "Food is described as any substance (solid or liquid) taken into the body which after digestion nourishes (or provides nutrients) for the body."
          }
         ]
        }
@@ -4772,6 +4787,15 @@ window.foundationScienceBook = [
       "quizTopic": "Main Classes, Sources and Functions of Food",
       "source": "textbook",
       "sections": [
+       {
+        "h": "Theme 6.0: Food (part 1)",
+        "blocks": [
+         {
+          "t": "p",
+          "x": "Food is described as any substance (solid or liquid) taken into the body which after digestion nourishes (or provides nutrients) for the body."
+         }
+        ]
+       },
        {
         "h": "Unit 1.0: Main Functions of Food",
         "blocks": [
@@ -4847,13 +4871,12 @@ window.foundationScienceBook = [
          {
           "t": "p",
           "x": "OTHER CLASSES OF FOOD SUBSTANCES"
-         },
-         {
-          "t": "ol",
-          "items": [
-           "3: VITAMINS"
-          ]
-         },
+         }
+        ]
+       },
+       {
+        "h": "1.3: Vitamins",
+        "blocks": [
          {
           "t": "p",
           "x": "Vitamins are organic food substances needed by the body in small doses for good health and better use of other food nutrients. Though needed in small quantities, lack of them in the diet leads to deficiency diseases. e.g. Scurvy, Rickets, Anaemia, Beri-beri"
@@ -4978,11 +5001,19 @@ window.foundationScienceBook = [
             "1. Balance salt content in blood and tissue fluid2. Proper functioning of nerves and muscles3. Formation of dilute HCl in gastric juice in the stomach"
            ]
           ]
+         }
+        ]
+       },
+       {
+        "h": "1.5: Water",
+        "blocks": [
+         {
+          "t": "p",
+          "x": "Water is also regarded as food though it does not have any dissolved nutrients. It plays very vital roles in the body of plants and animals as shown below: 50% to 70% of the total body weight of plants and animals."
          },
          {
           "t": "ol",
           "items": [
-           "5: WATER Water is also regarded as food though it does not have any dissolved nutrients. It plays very vital roles in the body of plants and animals as shown below: 50% to 70% of the total body weight of plants and animals.",
            "Water forms between 50% to 70% of the total body weight of plants and animals.",
            "Water forms between 50% to 70% of the total body weight",
            "Water acts as a solvent for all metabolic processes occurring in the living organisms.",
@@ -5299,11 +5330,30 @@ window.foundationScienceBook = [
          {
           "t": "p",
           "x": "A. chlorine B. calcium C. potassium D. sodium"
-         },
-         {
-          "t": "p",
-          "x": "## THEME 7.0: HUMAN BODY: PART 1(SENSE ORGANS)"
-         },
+         }
+        ]
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "id": "g7-t7",
+    "number": "Theme 7",
+    "title": "Human Body — Sense Organs",
+    "topics": [
+     {
+      "id": "g7-t7-1",
+      "unit": "1.1",
+      "page": "43",
+      "title": "Structure and Functions of the Human Eye",
+      "icon": "👁️",
+      "quizTopic": "Structure and Functions of the Human Eye",
+      "source": "textbook",
+      "sections": [
+       {
+        "h": "Theme 7.0: Human Body: Part 1(sense Organs)",
+        "blocks": [
          {
           "t": "ol",
           "items": [
@@ -5346,25 +5396,7 @@ window.foundationScienceBook = [
           ]
          }
         ]
-       }
-      ]
-     }
-    ]
-   },
-   {
-    "id": "g7-t7",
-    "number": "Theme 7",
-    "title": "Human Body — Sense Organs",
-    "topics": [
-     {
-      "id": "g7-t7-1",
-      "unit": "1.1",
-      "page": "43",
-      "title": "Structure and Functions of the Human Eye",
-      "icon": "👁️",
-      "quizTopic": "Structure and Functions of the Human Eye",
-      "source": "textbook",
-      "sections": [
+       },
        {
         "h": "7.1: the Structure of the Mammalian Eye",
         "blocks": [
@@ -5376,13 +5408,12 @@ window.foundationScienceBook = [
          {
           "t": "p",
           "x": "Figure 1: A section through the mammalian Eye"
-         },
-         {
-          "t": "ol",
-          "items": [
-           "2: STRUCTURE AND FUNCTIONS OF THE PARTS OF THE MAMMALIAN EYE"
-          ]
-         },
+         }
+        ]
+       },
+       {
+        "h": "7.2: Structure and Functions of the Parts of the Mammalian Eye",
+        "blocks": [
          {
           "t": "ul",
           "items": [
@@ -5491,13 +5522,12 @@ window.foundationScienceBook = [
           "t": "img",
           "src": "images/foundation-science/1-4-formation-of-images-in-the-eye.png",
           "alt": "1.4: FORMATION OF IMAGES IN THE EYE"
-         },
-         {
-          "t": "ol",
-          "items": [
-           "5: ACCOMMODATION OF THE EYE"
-          ]
-         },
+         }
+        ]
+       },
+       {
+        "h": "1.5: Accommodation of the Eye",
+        "blocks": [
          {
           "t": "ul",
           "items": [
@@ -5901,14 +5931,6 @@ window.foundationScienceBook = [
          {
           "t": "p",
           "x": "A. motor neurone B. olfactory lobes C. sensory neurone D. spinal cord"
-         },
-         {
-          "t": "p",
-          "x": "## THEME 8.0: HYGIENE AND HEALTH"
-         },
-         {
-          "t": "p",
-          "x": "\"WHO\" DEFINITION OF HEALTH: Health is defined as the complete state of the mental, physical and social well being and not only the absence of diseases and infirmity."
          }
         ]
        }
@@ -5930,6 +5952,15 @@ window.foundationScienceBook = [
       "quizTopic": "Personal Cleanliness and Health",
       "source": "textbook",
       "sections": [
+       {
+        "h": "Theme 8.0: Hygiene and Health",
+        "blocks": [
+         {
+          "t": "p",
+          "x": "\"WHO\" DEFINITION OF HEALTH: Health is defined as the complete state of the mental, physical and social well being and not only the absence of diseases and infirmity."
+         }
+        ]
+       },
        {
         "h": "8.1: Personal Cleanliness and Health",
         "blocks": [
@@ -5996,10 +6027,6 @@ window.foundationScienceBook = [
          {
           "t": "p",
           "x": "Rest: Sleep is the best way to rest. Young people need about eight hours of sleep every day. Rest is necessary for the body to build up new tissues"
-         },
-         {
-          "t": "p",
-          "x": "## THEME 9.0: TECHNOLOGY (PART 1)"
          }
         ]
        }
@@ -6259,10 +6286,20 @@ window.foundationScienceBook = [
       "title": "Magnifying Instruments",
       "icon": "🔍",
       "quizTopic": "Magnifying Instruments",
+      "source": "todo",
+      "sections": []
+     },
+     {
+      "id": "g8-t1-2",
+      "unit": "1.1",
+      "page": "52",
+      "title": "The Hand Lens",
+      "icon": "🔎",
+      "quizTopic": "The Hand Lens",
       "source": "textbook",
       "sections": [
        {
-        "h": "Theme 1.0: Magnifying Instruments",
+        "h": "The Hand Lens",
         "blocks": [
          {
           "t": "p",
@@ -6275,10 +6312,15 @@ window.foundationScienceBook = [
          {
           "t": "p",
           "x": "4 Magnification is therefore equal to (x3), which means that the diagram is 3 times the size of the specimen. The magnification of the lens has no relationship to the size of the drawing."
-         },
+         }
+        ]
+       },
+       {
+        "h": "How to Use the Hand Lens",
+        "blocks": [
          {
           "t": "p",
-          "x": "HOW TO USE THE HAND LENS Hold the lens in your left hand so that your right hand will be free to manipulate the"
+          "x": "Hold the lens in your left hand so that your right hand will be free to manipulate the"
          },
          {
           "t": "ul",
@@ -6308,22 +6350,20 @@ window.foundationScienceBook = [
       ]
      },
      {
-      "id": "g8-t1-2",
-      "unit": "1.1",
+      "id": "g8-t1-3",
+      "unit": "1.2",
       "page": "52",
-      "title": "The Hand Lens",
-      "icon": "🔎",
-      "quizTopic": "The Hand Lens",
+      "title": "The Microscope",
+      "icon": "🔬",
+      "quizTopic": "The Microscope",
       "source": "textbook",
       "sections": [
        {
-        "h": "Figure 2.1: The Hand lens",
+        "h": "1.2: the Light Microscope",
         "blocks": [
          {
-          "t": "ol",
-          "items": [
-           "2: THE LIGHT MICROSCOPE The structure of the light microscope is essentially that of an instrument using two convex lenses to obtain a greatly enlarged image of a very small object. Microscopes are usually used by biological, forensic, geological scientists and jewelers."
-          ]
+          "t": "p",
+          "x": "The structure of the light microscope is essentially that of an instrument using two convex lenses to obtain a greatly enlarged image of a very small object. Microscopes are usually used by biological, forensic, geological scientists and jewelers."
          },
          {
           "t": "p",
@@ -6405,24 +6445,13 @@ window.foundationScienceBook = [
           ]
          }
         ]
-       }
-      ]
-     },
-     {
-      "id": "g8-t1-3",
-      "unit": "1.2",
-      "page": "52",
-      "title": "The Microscope",
-      "icon": "🔬",
-      "quizTopic": "The Microscope",
-      "source": "textbook",
-      "sections": [
+       },
        {
-        "h": "Figure1.2: Parts of the Microscope",
+        "h": "Precautions Taken When Using the Microscope",
         "blocks": [
          {
           "t": "p",
-          "x": "PRECAUTIONS TAKEN WHEN USING THE MICROSCOPE A microscope is a very expensive instrument and should be handled with great care in order to maintain its precision. Pay particular attention to the following rules or precautions when using the microscope: Always enclose the microscope in its box and keep it in a cool place."
+          "x": "A microscope is a very expensive instrument and should be handled with great care in order to maintain its precision. Pay particular attention to the following rules or precautions when using the microscope: Always enclose the microscope in its box and keep it in a cool place."
          },
          {
           "t": "p",
@@ -6688,6 +6717,11 @@ window.foundationScienceBook = [
           "x": "A specialized cell is a cell that is structurally adapted to perform a specific function in the body. They vary in shape, size and function."
          },
          {
+          "t": "img",
+          "src": "images/foundation-science/unit-2-plant-and-animal-cells-2.png",
+          "alt": "UNIT 2: PLANT AND ANIMAL CELLS"
+         },
+         {
           "t": "table",
           "rows": [
            [
@@ -6840,10 +6874,6 @@ window.foundationScienceBook = [
          {
           "t": "p",
           "x": "A. Nucleus B. Cytoplasm C. Cell membrane D. chloroplasm"
-         },
-         {
-          "t": "p",
-          "x": "UNIT 3.0: STRUCTURE AND FUNCTIONS OF UNICELLULAR ORGANISMS"
          }
         ]
        }
@@ -7965,25 +7995,6 @@ window.foundationScienceBook = [
           "x": "In dicotyledonous roots and stems, the cambium lies between the xylem and the The flower is the reproductive part of a plant modified for sexual reproduction, which involves the formation of fruits and seeds."
          }
         ]
-       },
-       {
-        "h": "1.4: Internal Sections of Dicotyledomous Stems",
-        "blocks": [
-         {
-          "t": "ol",
-          "items": [
-           "0: STRUCTURE AND FUNCTIONS OF PARTS OF A FLOWER The flower is the reproductive part of a plant modified for sexual reproduction, which involves the formation of the fruits containing seeds. Stigma"
-          ]
-         },
-         {
-          "t": "p",
-          "x": "A flower consists of a stalk or pedicel, the end of which is swollen to form the receptacle. There are four kinds of floral whorls (leaves) arranged in circles or whorls around the receptacle: c. Androecium d. Gynoecium"
-         },
-         {
-          "t": "p",
-          "x": "a. Calyx b. Corolla c. Androecium d. Gynoecium"
-         }
-        ]
        }
       ]
      },
@@ -7996,6 +8007,23 @@ window.foundationScienceBook = [
       "quizTopic": "Structure and Functions of Parts of a Flower",
       "source": "textbook",
       "sections": [
+       {
+        "h": "2.0: Structure and Functions of Parts of A Flower",
+        "blocks": [
+         {
+          "t": "p",
+          "x": "The flower is the reproductive part of a plant modified for sexual reproduction, which involves the formation of the fruits containing seeds. Stigma"
+         },
+         {
+          "t": "p",
+          "x": "A flower consists of a stalk or pedicel, the end of which is swollen to form the receptacle. There are four kinds of floral whorls (leaves) arranged in circles or whorls around the receptacle: c. Androecium d. Gynoecium"
+         },
+         {
+          "t": "p",
+          "x": "a. Calyx b. Corolla c. Androecium d. Gynoecium"
+         }
+        ]
+       },
        {
         "h": "Functions of Parts of A Flower",
         "blocks": [
@@ -8997,12 +9025,15 @@ window.foundationScienceBook = [
          {
           "t": "p",
           "x": "Crustacea Arachnida Chiopoda Diplopoda Insecta e.g. crab e.g. spider e.g. centipede e.g. millipede e.g. cockroach"
-         },
+         }
+        ]
+       },
+       {
+        "h": "6.1. the Earthworm Phylum: Annelida (invertebrate)",
+        "blocks": [
          {
-          "t": "ol",
-          "items": [
-           "1. THE EARTHWORM PHYLUM: ANNELIDA (INVERTEBRATE) EAT: Earthworms are usually found in"
-          ]
+          "t": "p",
+          "x": "EAT: Earthworms are usually found in"
          },
          {
           "t": "p",
@@ -9350,11 +9381,30 @@ window.foundationScienceBook = [
          {
           "t": "p",
           "x": "## THEME 2: MATTER (PART 2)"
-         },
-         {
-          "t": "p",
-          "x": "UNIT 1: SIMPLE MACHINES"
-         },
+         }
+        ]
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "id": "g8-t2",
+    "number": "Theme 2",
+    "title": "Matter Part 2",
+    "topics": [
+     {
+      "id": "g8-t2-1",
+      "unit": "1.0",
+      "page": "86",
+      "title": "Simple Machines (Levers)",
+      "icon": "🪚",
+      "quizTopic": "Simple Machines (Levers)",
+      "source": "textbook",
+      "sections": [
+       {
+        "h": "Unit 1: Simple Machines",
+        "blocks": [
          {
           "t": "ul",
           "items": [
@@ -9377,25 +9427,7 @@ window.foundationScienceBook = [
           ]
          }
         ]
-       }
-      ]
-     }
-    ]
-   },
-   {
-    "id": "g8-t2",
-    "number": "Theme 2",
-    "title": "Matter Part 2",
-    "topics": [
-     {
-      "id": "g8-t2-1",
-      "unit": "1.0",
-      "page": "86",
-      "title": "Simple Machines (Levers)",
-      "icon": "🪚",
-      "quizTopic": "Simple Machines (Levers)",
-      "source": "textbook",
-      "sections": [
+       },
        {
         "h": "Unit 2.0: Livers (simple Machines)",
         "blocks": [
@@ -11903,13 +11935,12 @@ window.foundationScienceBook = [
          {
           "t": "p",
           "x": "Figure 5B: Irregular reflection"
-         },
-         {
-          "t": "ol",
-          "items": [
-           "8: TERMS USED IN REFLECTION OF LIGHT"
-          ]
-         },
+         }
+        ]
+       },
+       {
+        "h": "1.8: Terms Used in Reflection of Light",
+        "blocks": [
          {
           "t": "ul",
           "items": [
@@ -12011,11 +12042,12 @@ window.foundationScienceBook = [
           "items": [
            "Plane mirrors are used in the Periscope is used for seeing round corners creating coloured patterns. 4. Are used by opticians to enable them to obtain actual distance for testing the eye"
           ]
-         },
-         {
-          "t": "p",
-          "x": "1.10: SOME OPTICAL INSTRUMENTS"
-         },
+         }
+        ]
+       },
+       {
+        "h": "1.10: Some Optical Instruments",
+        "blocks": [
          {
           "t": "ol",
           "items": [
@@ -12044,13 +12076,12 @@ window.foundationScienceBook = [
          {
           "t": "p",
           "x": "Figure 9: Kaleidoscope"
-         },
-         {
-          "t": "ol",
-          "items": [
-           "11: CURVED OR SPHERICAL MIRRORS: There are two types"
-          ]
-         },
+         }
+        ]
+       },
+       {
+        "h": "1.11: Curved or Spherical Mirrors",
+        "blocks": [
          {
           "t": "p",
           "x": "There are two types of curved mirrors:"
@@ -12151,12 +12182,15 @@ window.foundationScienceBook = [
          {
           "t": "p",
           "x": "Figure 1: Concave or converging mirror Figure 2: Convex or diverging mirror"
-         },
+         }
+        ]
+       },
+       {
+        "h": "1.12: Refraction of Light",
+        "blocks": [
          {
-          "t": "ol",
-          "items": [
-           "12: REFRACTION OF LIGHT: When light rays travel from one transparent medium into another transparent medium of different densities, its direction is abruptly changed at the surface separating the two media. This change in the direction of light ray is called refraction. Refraction is due to the change in speed of light in different media. The concept of refraction explains why a swimming pool appears shallower than it actually is and why a pencil looks bent when partially emerged in water."
-          ]
+          "t": "p",
+          "x": "When light rays travel from one transparent medium into another transparent medium of different densities, its direction is abruptly changed at the surface separating the two media. This change in the direction of light ray is called refraction. Refraction is due to the change in speed of light in different media. The concept of refraction explains why a swimming pool appears shallower than it actually is and why a pencil looks bent when partially emerged in water."
          },
          {
           "t": "ul",
@@ -12188,13 +12222,12 @@ window.foundationScienceBook = [
          {
           "t": "p",
           "x": "Figure 12: Refraction through glass prism"
-         },
-         {
-          "t": "ol",
-          "items": [
-           "13: LENSES"
-          ]
-         },
+         }
+        ]
+       },
+       {
+        "h": "1.13: Lenses",
+        "blocks": [
          {
           "t": "ul",
           "items": [
@@ -12322,12 +12355,15 @@ window.foundationScienceBook = [
          {
           "t": "p",
           "x": "Figure 3B: Short-sight and its correction"
-         },
+         }
+        ]
+       },
+       {
+        "h": "1.15: Dispersion of Light",
+        "blocks": [
          {
-          "t": "ol",
-          "items": [
-           "15: DISPERSION OF LIGHT The light that comes from the sun or stars is described as white light. However, this white light can be split into seven colours or bands: Red, Orange, Yellow, Green, Blue, Indigo, and"
-          ]
+          "t": "p",
+          "x": "The light that comes from the sun or stars is described as white light. However, this white light can be split into seven colours or bands: Red, Orange, Yellow, Green, Blue, Indigo, and"
          },
          {
           "t": "p",
@@ -12469,11 +12505,23 @@ window.foundationScienceBook = [
          {
           "t": "p",
           "x": "D. Umbra"
-         },
-         {
-          "t": "p",
-          "x": "UNIT 3: MOVEMENT OF SOUND ENERGY"
-         },
+         }
+        ]
+       }
+      ]
+     },
+     {
+      "id": "g9-t4-3",
+      "unit": "3.0",
+      "page": "157",
+      "title": "Sound Energy",
+      "icon": "🔊",
+      "quizTopic": "Sound Energy",
+      "source": "textbook",
+      "sections": [
+       {
+        "h": "Unit 3: Movement of Sound Energy",
+        "blocks": [
          {
           "t": "ul",
           "items": [
@@ -12483,24 +12531,30 @@ window.foundationScienceBook = [
          {
           "t": "p",
           "x": "A sound is said to be produced when a body or object is set into vibration. For instance, when a metal or drum is beaten, they produce sound by vibrating air molecules around them. The vibrating air molecules near them set adjacent molecules of air vibrating and so until somebody standing metres away can hear."
-         },
+         }
+        ]
+       },
+       {
+        "h": "1.1: Properties of Sound",
+        "blocks": [
          {
-          "t": "ol",
-          "items": [
-           "1: PROPERTIES OF SOUND in factor when it takes the direction of the wind"
-          ]
+          "t": "p",
+          "x": "in factor when it takes the direction of the wind"
          },
          {
           "t": "ul",
           "items": [
            "Any vibrating object is a source of sound:"
           ]
-         },
+         }
+        ]
+       },
+       {
+        "h": "1.2: Transmission of Sound",
+        "blocks": [
          {
-          "t": "ol",
-          "items": [
-           "2: TRANSMISSION OF SOUND: This is the movement of sound from the source to the who picks up the sound. There are three things necessary for transmission"
-          ]
+          "t": "p",
+          "x": "This is the movement of sound from the source to the who picks up the sound. There are three things necessary for transmission"
          },
          {
           "t": "p",
@@ -12511,9 +12565,17 @@ window.foundationScienceBook = [
           "items": [
            "a source: an object that produces sound by vibration e.g. loudspeaker, guitar",
            "a medium: a substance in which the sound can travel, which may be solid, liquid or gas(air)",
-           "inert something to pick up the sound vibration e.g. the ear, microphone.",
-           "3. SOURCES OF SOUND/ MUSICAL INSTRUMENTS: Sound is produced by something vibrating. e.g. School bell. Generally, sources of sound fall under three main headings:"
+           "inert something to pick up the sound vibration e.g. the ear, microphone."
           ]
+         }
+        ]
+       },
+       {
+        "h": "1.3. Sources of Sound/ Musical Instruments",
+        "blocks": [
+         {
+          "t": "p",
+          "x": "Sound is produced by something vibrating. e.g. School bell. Generally, sources of sound fall under three main headings:"
          },
          {
           "t": "ul",
@@ -12549,18 +12611,7 @@ window.foundationScienceBook = [
           "alt": "Figure 1: Circle of Primary colours"
          }
         ]
-       }
-      ]
-     },
-     {
-      "id": "g9-t4-3",
-      "unit": "3.0",
-      "page": "157",
-      "title": "Sound Energy",
-      "icon": "🔊",
-      "quizTopic": "Sound Energy",
-      "source": "textbook",
-      "sections": [
+       },
        {
         "h": "1.4. Wave and Wave Motion",
         "blocks": [
@@ -13900,12 +13951,15 @@ window.foundationScienceBook = [
             "There is no digestion in the large intestine because no digestive juice is produced there. Undigested food moves into the colon where water and mineral salt are absorbed from it to become semi-solid residue called faeces. Faeces are deposited into the rectum where it is temporary stored. It is finally expelled through the anus(a process called defaecation)"
            ]
           ]
-         },
+         }
+        ]
+       },
+       {
+        "h": "1.2: Absorption of Digested Foods",
+        "blocks": [
          {
-          "t": "ol",
-          "items": [
-           "2: ABSORPTION OF DIGESTED FOODS After digestion, the end products of digestion are absorbed into the blood stream through the lining of the intestine by means of diffusion. Lining the intestinal walls are finger-like projections called villi which are adapted for the process of absorption of digested food by diffusion. Some adaptations of the villi for absorption of digested food are as follows: length of the intestine creates a large surface area for maximum absorption by"
-          ]
+          "t": "p",
+          "x": "After digestion, the end products of digestion are absorbed into the blood stream through the lining of the intestine by means of diffusion. Lining the intestinal walls are finger-like projections called villi which are adapted for the process of absorption of digested food by diffusion. Some adaptations of the villi for absorption of digested food are as follows: length of the intestine creates a large surface area for maximum absorption by"
          },
          {
           "t": "ul",
@@ -15728,10 +15782,14 @@ window.foundationScienceBook = [
           "t": "ol",
           "items": [
            "Red blood cells (erythrocytes) 2. White blood cell (leucocytes) 3. Platelets (thrombocytes) 4. Plasma (made up of 90% of blood)",
-           "Plasma (made up of 90% of water)",
-           "3: CHARACTERISTICS OF BLOOD CELLS"
+           "Plasma (made up of 90% of water)"
           ]
-         },
+         }
+        ]
+       },
+       {
+        "h": "4.3: Characteristics of Blood Cells",
+        "blocks": [
          {
           "t": "table",
           "rows": [
@@ -15926,11 +15984,15 @@ window.foundationScienceBook = [
          {
           "t": "p",
           "x": "Figure 4.7: Vertical section of the human heart"
-         },
+         }
+        ]
+       },
+       {
+        "h": "4.8: Adaptive Features of the Heart",
+        "blocks": [
          {
           "t": "ol",
           "items": [
-           "8: ADAPTIVE FEATURES OF THE HEART",
            "The heart is mainly made up of cardiac muscles which are involuntary and do not fatigue. 2. The heart is found inside and protected by the thoracic",
            "The heart is found inside and protected by the thoracic cavity with its apex slightly pointing towards the left.",
            "The heart is made up of two pumps:"
@@ -15997,12 +16059,15 @@ window.foundationScienceBook = [
             "Prevent backflow of blood into the heart"
            ]
           ]
-         },
+         }
+        ]
+       },
+       {
+        "h": "4.10: Circulation of Blood",
+        "blocks": [
          {
-          "t": "ol",
-          "items": [
-           "10: CIRCULATION OF BLOOD The circulatory system deals with the flow of blood round the body from the heart through blood vessels. The circulation of blood in humans is described as double circulation. This means that for every single circulation, blood passes through the heart two times. This double circulation can be divided into two circuits: (or Lung) circulation: from the heart to the lungs and takes oxygenated"
-          ]
+          "t": "p",
+          "x": "The circulatory system deals with the flow of blood round the body from the heart through blood vessels. The circulation of blood in humans is described as double circulation. This means that for every single circulation, blood passes through the heart two times. This double circulation can be divided into two circuits: (or Lung) circulation: from the heart to the lungs and takes oxygenated"
          },
          {
           "t": "p",
@@ -16032,13 +16097,12 @@ window.foundationScienceBook = [
          {
           "t": "p",
           "x": "Figure 4.10: Complete double circulation"
-         },
-         {
-          "t": "ol",
-          "items": [
-           "11: BLOOD VESSELS AND THEIR FUNCTIONS"
-          ]
-         },
+         }
+        ]
+       },
+       {
+        "h": "4.11: Blood Vessels and their Functions",
+        "blocks": [
          {
           "t": "table",
           "rows": [
@@ -16279,13 +16343,12 @@ window.foundationScienceBook = [
           "t": "img",
           "src": "images/foundation-science/unit-5-0-the-human-reproductive-systems.png",
           "alt": "UNIT 5.0: THE HUMAN REPRODUCTIVE SYSTEMS"
-         },
-         {
-          "t": "ol",
-          "items": [
-           "1: THE STRUCTURES AND FUNCTIONS OF THE PARTS OF THE MALE REPRODUCTIVE SYSTEM"
-          ]
-         },
+         }
+        ]
+       },
+       {
+        "h": "5.1: the Structures and Functions of the Parts of the Male Reproductive System",
+        "blocks": [
          {
           "t": "table",
           "rows": [
@@ -16335,13 +16398,12 @@ window.foundationScienceBook = [
             "Passage of urine from the kidneys to the bladder"
            ]
           ]
-         },
-         {
-          "t": "ol",
-          "items": [
-           "2: THE STRUCTURE AND FUNCTIONS OF THE PARTS OF THE FEMALE REPRODUCTIVE SYSTEM"
-          ]
-         },
+         }
+        ]
+       },
+       {
+        "h": "5.2: the Structure and Functions of the Parts of the Female Reproductive System",
+        "blocks": [
          {
           "t": "table",
           "rows": [
