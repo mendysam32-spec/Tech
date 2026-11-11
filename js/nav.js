@@ -28,14 +28,9 @@
   function inject() {
     if (document.body.dataset.noNav !== undefined) return;
     const isLogin = /index\.html$|\/$/.test(location.pathname) && !document.body.classList.contains("tm-force-nav");
-    // Only hide sidebar on pure login when no session; otherwise show everywhere
-    const hasSession = (() => { try { return !!JSON.parse(localStorage.getItem("tm_currentUser")); } catch { return false; }})();
-    if (isLogin && !hasSession) {
-      // still inject minimal top hamburger? skip sidebar on login to avoid clutter
-      // but allow nav via floating toggle if user wants — skip for now
-      // we still add body class? no
-      return;
-    }
+    // The login screen is the account picker now, so never overlay the
+    // in-app sidebar on it (even when a session is remembered).
+    if (isLogin) return;
 
     document.body.classList.add("tm-has-sidebar");
 

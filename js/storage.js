@@ -65,6 +65,8 @@ const FEATURE_PRICES = {
 const MONTH_MS = 30 * 24 * 60 * 60 * 1000;
 
 
+const TM_MAX_SAVED_ACCOUNTS = 3;
+
 const Storage = {
     getUsers() {
         return JSON.parse(localStorage.getItem("tm_users")) || [];
@@ -74,9 +76,139 @@ const Storage = {
         localStorage.setItem("tm_users", JSON.stringify(users));
     },
 
+    // --- Saved accounts (up to 3 profiles on this device) ---
+    accountKey(userOrName, studentClass = "") {
+        const source = userOrName && typeof userOrName === "object"
+            ? userOrName
+            : { username: userOrName, studentClass };
+        return String(source.username || source.name || "").trim().toLowerCase();
+    },
+
+    getSavedAccountKeys() {
+        try {
+            const list = JSON.parse(localStorage.getItem("tm_savedAccounts") || "[]");
+            if (!Array.isArray(list)) return [];
+            return [...new Set(list.map(k => String(k || "").trim().toLowerCase()).filter(Boolean))]
+                .slice(0, TM_MAX_SAVED_ACCOUNTS);
+        } catch (_) {
+            return [];
+        }
+    },
+
+    saveSavedAccountKeys(keys) {
+        const clean = [...new Set((keys || []).map(k => String(k || "").trim().toLowerCase()).filter(Boolean))]
+            .slice(0, TM_MAX_SAVED_ACCOUNTS);
+        localStorage.setItem("tm_savedAccounts", JSON.stringify(clean));
+        return clean;
+    },
+
+    // Keep the currently signed-in user as a saved account. This lets builds
+    // upgraded from older versions keep the account they were already using.
+    syncSavedAccounts() {
+        const current = this.getCurrentUser();
+        if (!current) return this.getSavedAccountKeys();
+        const key = this.accountKey(current);
+        if (!key) return this.getSavedAccountKeys();
+        const keys = this.getSavedAccountKeys();
+        if (!keys.includes(key) && keys.length < TM_MAX_SAVED_ACCOUNTS) {
+            keys.push(key);
+            return this.saveSavedAccountKeys(keys);
+        }
+        return keys;
+    },
+
+    findUserByAccountKey(key) {
+        const wanted = String(key || "").trim().toLowerCase();
+        if (!wanted) return null;
+        return this.getUsers().find(u => this.accountKey(u) === wanted) || null;
+    },
+
+    getSavedAccounts() {
+        const current = this.getCurrentUser();
+        return this.getSavedAccountKeys()
+            .map(key => {
+                const user = this.findUserByAccountKey(key)
+                    || (current && this.accountKey(current) === key ? current : null);
+                if (!user) return { username: key, name: key, class: "General", profile: { ...TM_DEFAULT_PROFILE } };
+                const normalized = this.normalizeUser(user);
+                normalized.accountKey = key;
+                return normalized;
+            });
+    },
+
+    // Save an account into the device list (max 3). Password is stored locally
+    // so the profile can still be opened offline.
+    rememberAccount(user, password = "") {
+        if (!user) return { success: false, error: "No account supplied." };
+        const key = this.accountKey(user);
+        if (!key) return { success: false, error: "Account needs a username." };
+
+        const keys = this.getSavedAccountKeys();
+        if (!keys.includes(key) && keys.length >= TM_MAX_SAVED_ACCOUNTS) {
+            return {
+                success: false,
+                limitReached: true,
+                error: `You can save up to ${TM_MAX_SAVED_ACCOUNTS} accounts on this device. Remove one to add another.`
+            };
+        }
+
+        // Merge into the local user table so stats/password survive restarts.
+        const users = this.getUsers();
+        const index = users.findIndex(u => this.accountKey(u) === key);
+        const existing = index >= 0 ? users[index] : null;
+        const merged = this.normalizeUser({
+            ...(existing || {}),
+            ...user,
+            class: user.class || user.studentClass || existing?.class || existing?.studentClass || "General",
+            studentClass: user.studentClass || user.class || existing?.studentClass || existing?.class || "General",
+            profile: { ...TM_DEFAULT_PROFILE, ...(existing?.profile || {}), ...(user.profile || {}) }
+        });
+        merged.password = password || user.password || existing?.password || "";
+        if (index >= 0) users[index] = merged;
+        else users.push(merged);
+        this.saveUsers(users);
+
+        if (!keys.includes(key)) {
+            keys.push(key);
+            this.saveSavedAccountKeys(keys);
+        }
+        return { success: true, key, count: this.getSavedAccountKeys().length };
+    },
+
+    // One-tap sign in to a saved account (no password needed).
+    activateSavedAccount(key) {
+        const wanted = String(key || "").trim().toLowerCase();
+        const user = this.findUserByAccountKey(wanted);
+        if (!user) return null;
+        this.setCurrentUser(user);
+        this.setSession("tm_" + Date.now() + "_" + Math.random().toString(36).slice(2));
+        const keys = this.getSavedAccountKeys();
+        if (!keys.includes(wanted) && keys.length < TM_MAX_SAVED_ACCOUNTS) {
+            keys.push(wanted);
+            this.saveSavedAccountKeys(keys);
+        }
+        return this.getCurrentUser();
+    },
+
+    removeSavedAccount(key) {
+        const wanted = String(key || "").trim().toLowerCase();
+        this.saveSavedAccountKeys(this.getSavedAccountKeys().filter(k => k !== wanted));
+        const current = this.getCurrentUser();
+        if (current && this.accountKey(current) === wanted) this.clearSession();
+        return this.getSavedAccountKeys();
+    },
+
+    savedAccountCount() {
+        return this.getSavedAccountKeys().length;
+    },
+
     getCurrentUser() {
-        const user = JSON.parse(localStorage.getItem("tm_currentUser"));
-        return user ? this.normalizeUser(user) : null;
+        try {
+            const user = JSON.parse(localStorage.getItem("tm_currentUser"));
+            return user ? this.normalizeUser(user) : null;
+        } catch (_) {
+            return null;
+        }
     },
 
     setCurrentUser(user) {

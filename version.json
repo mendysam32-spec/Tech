@@ -1,0 +1,12 @@
+{
+  "version": "1.2.0",
+  "build": 3,
+  "notes": "Account picker with up to 3 saved accounts and persistent sign-in on Android.",
+  "android": {
+    "versionCode": 3,
+    "apkUrl": "https://github.com/mendysam32-spec/Tech/releases/latest/download/tech-monster.apk"
+  },
+  "web": {
+    "url": "https://tech-monster.pages.dev"
+  }
+}

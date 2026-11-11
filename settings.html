@@ -110,12 +110,24 @@
             </div>
         </div>
     </form>
+
+    <div class="glass-card p-4 mt-4">
+        <div class="d-flex justify-content-between align-items-center mb-2">
+            <h4 class="mb-0">Accounts on This Device</h4>
+            <span id="deviceAccountsCount" class="small text-muted"></span>
+        </div>
+        <p class="small text-muted mb-3">Keep up to 3 student accounts signed in on this app. Switching accounts does not delete anyone's progress.</p>
+        <div id="deviceAccountsList" class="d-flex flex-column gap-2"></div>
+        <div id="deviceAccountsMessage" class="small mt-2"></div>
+    </div>
 </div>
 
 <div id="updateNotifier" class="d-none"></div>
 <footer class="brand-footer signature-footer"><span class="signature-mark">S&amp;P Group</span><span class="signature-line">Created by S&amp;P Groups • Tech Monster Signature</span> <span id="appVersion" class="text-muted ms-2"></span></footer>
 
 <script src="js/bootstrap.bundle.min.js"></script>
+<script src="js/config.js"></script>
+<script src="js/subjects.js"></script>
 <script src="js/api.js"></script>
 <script src="js/storage.js"></script>
 <script src="js/settings.js"></script>

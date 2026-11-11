@@ -249,12 +249,12 @@ document.addEventListener("DOMContentLoaded", async () => {
         // topic will be updated per question to include year
     }
 
-    // ---- SCIENCE SUBJECT: development stage — offline mode only ----
-    if (selectedSubject === "Science" && !isOffline()) {
-        selectedSubject = "Technical Drawing";
-        localStorage.setItem("tm_selectedSubject", selectedSubject);
-        const moodEl = document.getElementById("quizMood");
-        if (moodEl) moodEl.textContent = "Science is in development (offline mode only) — switched to Technical Drawing";
+    // ---- Online-only subjects are blocked while the device is offline ----
+    if (typeof TMSubjects !== "undefined" && !TMSubjects.isAvailable(selectedSubject)) {
+        document.querySelector(".glass-card").innerHTML = `<h4>${escapeHtml(selectedSubject)} is online only</h4><p>Connect to the internet to practise ${escapeHtml(selectedSubject)}. ${escapeHtml(TMSubjects.offlineSummary())} work offline.</p><button class="glass-btn" type="button" onclick="location.reload()">Try again when online</button><a href="dashboard.html" class="secondary-btn ms-2">Back to Dashboard</a>`;
+        const timerEl = document.getElementById("timer");
+        if (timerEl) timerEl.textContent = "Online only";
+        return;
     }
 
     if (!isPaperMode && !Storage.canAccessSubject(quizUser, selectedSubject)) {

@@ -4,10 +4,20 @@ document.addEventListener("DOMContentLoaded", async () => {
     document.body.dataset.accent = user.profile?.accent || "blue";
     await hydrateSubjects();
     await renderNotes();
-    document.getElementById("notesSubject").addEventListener("change", async e => {
-        localStorage.setItem("tm_selectedSubject", e.target.value);
+    document.getElementById("notesSubject").onchange = async e => {
+        const subject = e.target.value;
+        if (!TMSubjects.isAvailable(subject)) {
+            TMSubjects.promptOnline(subject);
+            await hydrateSubjects();
+            return;
+        }
+        localStorage.setItem("tm_selectedSubject", subject);
         await renderNotes();
-    });
+    };
+    if (!window.__tmNotesNetworkBound) {
+        window.__tmNotesNetworkBound = true;
+        TMSubjects.onChange(async () => { await hydrateSubjects(); await renderNotes(); });
+    }
 });
 
 function escapeHTML(value) {
@@ -177,16 +187,24 @@ function renderScienceNote(note, subject) {
 async function hydrateSubjects() {
     const select = document.getElementById("notesSubject");
     const currentUser = Storage.getCurrentUser();
-    let subjects = ["Technical Drawing", "English", "Maths", "Science", "SES"].map(name => ({ name }));
-    try { const data = await API.subjects(); for (const s of (data.subjects || [])) { if (!subjects.some(x => x.name.toLowerCase() === String(s.name).toLowerCase())) subjects.push(s); } } catch (_) {}
+    let subjects = TMSubjects.listDefault().map(name => ({ name }));
+    if (TMSubjects.isOnline()) {
+        try { const data = await API.subjects(); for (const s of (data.subjects || [])) { if (!subjects.some(x => x.name.toLowerCase() === String(s.name).toLowerCase())) subjects.push(s); } } catch (_) {}
+    }
+    subjects = subjects.filter(s => TMSubjects.isAvailable(s.name));
     subjects = Storage.filterAllowedSubjects(currentUser, subjects);
     const selected = localStorage.getItem("tm_selectedSubject") || subjects[0]?.name || "";
-    select.innerHTML = subjects.map(s => `<option value="${escapeHTML(s.name)}">${escapeHTML(s.name)}</option>`).join("");
+    select.innerHTML = subjects.map(s => `<option value="${escapeHTML(s.name)}">${escapeHTML(TMSubjects.label(s.name))}</option>`).join("");
     select.value = subjects.some(s => s.name === selected) ? selected : (subjects[0]?.name || "");
+    if (select.value) localStorage.setItem("tm_selectedSubject", select.value);
 }
 async function renderNotes() {
     const container = document.getElementById("notesContainer");
     const subject = document.getElementById("notesSubject").value || "Technical Drawing";
+    if (!TMSubjects.isAvailable(subject)) {
+        container.innerHTML = `<div class="empty-state"><h5>${escapeHTML(subject)} is online only</h5><p>Connect to the internet to open ${escapeHTML(subject)} notes. ${escapeHTML(TMSubjects.offlineSummary())} are always available offline.</p><button class="glass-btn" type="button" onclick="location.reload()">Try again when online</button></div>`;
+        return;
+    }
     container.innerHTML = `<div class="empty-state">Loading notes...</div>`;
     let notes = [];
     try { const data = await API.notes(subject); notes = data.notes || []; } catch (_) {}

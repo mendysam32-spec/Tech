@@ -8,6 +8,95 @@
     <link rel="manifest" href="/manifest.json">
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/theme.css">
+    <style>
+        .tm-native-app .login-role-tabs,
+        .tm-native-app #adminLoginTab,
+        .tm-native-app #adminRecoveryWrap { display: none !important; }
+
+        .tm-account-list { display: flex; flex-direction: column; gap: .6rem; }
+        .tm-account-card {
+            display: flex;
+            align-items: center;
+            gap: .75rem;
+            width: 100%;
+            padding: .7rem .85rem;
+            border-radius: 14px;
+            border: 1px solid rgba(15, 23, 42, .12);
+            background: rgba(255, 255, 255, .7);
+            color: inherit;
+            text-align: left;
+            cursor: pointer;
+            transition: transform .15s ease, border-color .15s ease, box-shadow .15s ease;
+        }
+        .tm-account-card:hover { transform: translateY(-1px); border-color: var(--tm-accent, #2563eb); }
+        .tm-account-card.active {
+            border-color: var(--tm-accent, #2563eb);
+            box-shadow: 0 0 0 2px color-mix(in srgb, var(--tm-accent, #2563eb) 28%, transparent);
+        }
+        .tm-account-avatar {
+            flex: 0 0 auto;
+            width: 46px;
+            height: 46px;
+            border-radius: 50%;
+            overflow: hidden;
+            display: grid;
+            place-items: center;
+            background: linear-gradient(135deg, var(--tm-accent, #2563eb), var(--tm-accent-2, #4f46e5));
+            color: #fff;
+            font-weight: 800;
+            font-size: .9rem;
+        }
+        .tm-account-avatar img { width: 100%; height: 100%; object-fit: cover; display: block; }
+        .tm-account-text { flex: 1 1 auto; min-width: 0; line-height: 1.2; }
+        .tm-account-text strong,
+        .tm-account-text small { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+        .tm-account-text strong { font-size: .98rem; color: #0f172a; }
+        .tm-account-text small { font-size: .78rem; color: #475569; }
+        .tm-account-remove {
+            flex: 0 0 auto;
+            border: 0;
+            background: transparent;
+            color: #94a3b8;
+            font-size: 1rem;
+            line-height: 1;
+            padding: .35rem;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+        .tm-account-remove:hover { color: #dc2626; background: rgba(220, 38, 38, .1); }
+        .tm-account-active-pill {
+            flex: 0 0 auto;
+            font-size: .68rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: .05em;
+            color: var(--tm-accent, #2563eb);
+            border: 1px solid currentColor;
+            border-radius: 999px;
+            padding: .15rem .5rem;
+        }
+    </style>
+    <script>
+        (function () {
+            try {
+                var native = !!(window.Capacitor && window.Capacitor.isNativePlatform && window.Capacitor.isNativePlatform());
+                if (native) {
+                    // Android: always start on the account picker.
+                    document.documentElement.classList.add("tm-native-app");
+                    return;
+                }
+
+                // Desktop app & web browser: stay signed in until the user
+                // explicitly logs out. Only skip the redirect when a second or
+                // third account is being added from Settings.
+                if (new URLSearchParams(window.location.search).get("add") === "1") return;
+                var raw = localStorage.getItem("tm_currentUser");
+                if (!raw) return;
+                var user = JSON.parse(raw);
+                if (user && (user.username || user.name)) window.location.replace("dashboard.html");
+            } catch (_) {}
+        })();
+    </script>
 </head>
 <body>
 <nav class="navbar navbar-dark shadow-sm">
@@ -27,30 +116,44 @@
                 </div>
                 <h3 class="fw-bold mb-2" id="loginTitle">Enter the Arena</h3>
                 <p id="loginDescription">Students can login or create an account using only username and password.</p>
-                <form id="loginForm" data-login-mode="student">
-                    <div class="mb-3">
-                        <label class="form-label">Username</label>
-                        <input type="text" id="loginUsername" class="form-control" autocomplete="username" required>
+
+                <div id="savedAccountsWrap" class="mb-3 d-none">
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <strong class="small text-uppercase" style="letter-spacing:.06em">Accounts on this device</strong>
+                        <span id="accountsCount" class="small opacity-75"></span>
                     </div>
-                    <div class="mb-3">
-                        <label class="form-label">Password</label>
-                        <input type="password" id="loginPassword" class="form-control" autocomplete="current-password" minlength="3" required>
-                        <small id="loginHint" class="opacity-75">New student accounts are created automatically.</small>
-                    </div>
-                    <div id="loginMessage" class="small mb-3"></div>
-                    <button id="loginSubmitBtn" class="glass-btn w-100" type="submit">Student Login</button>
-                    <div id="adminRecoveryWrap" class="mt-3 d-none">
-                        <button type="button" id="forgotCredsBtn" class="btn btn-link btn-sm p-0 text-decoration-none" style="color:var(--tm-accent)">Forgot login? Recover via email</button>
-                        <form id="recoverForm" class="mt-3 d-none">
-                            <div class="input-group">
-                                <input type="email" id="recoverEmail" class="form-control" placeholder="mendysam32@gmail.com" autocomplete="email" value="mendysam32@gmail.com">
-                                <button type="submit" id="recoverBtn" class="glass-btn" style="border-radius: 0 12px 12px 0; padding: 8px 16px">Send recovery email</button>
-                            </div>
-                            <small class="opacity-75 d-block mt-2">We'll email your username + password and a one-click magic link (valid 15 min). You can also login directly using <strong>mendysam32@gmail.com</strong> as username with your admin password.</small>
-                            <div id="recoverMessage" class="small mt-2" style="font-weight:700"></div>
-                        </form>
-                    </div>
-                </form>
+                    <div id="savedAccountsList" class="tm-account-list"></div>
+                    <div id="accountsMessage" class="small mt-2"></div>
+                </div>
+
+                <button type="button" id="addAccountBtn" class="secondary-btn w-100 mb-3 d-none">＋ Add another account</button>
+
+                <div id="loginFormWrap">
+                    <form id="loginForm" data-login-mode="student">
+                        <div class="mb-3">
+                            <label class="form-label">Username</label>
+                            <input type="text" id="loginUsername" class="form-control" autocomplete="username" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Password</label>
+                            <input type="password" id="loginPassword" class="form-control" autocomplete="current-password" minlength="3" required>
+                            <small id="loginHint" class="opacity-75">New student accounts are created automatically.</small>
+                        </div>
+                        <div id="loginMessage" class="small mb-3"></div>
+                        <button id="loginSubmitBtn" class="glass-btn w-100" type="submit">Student Login</button>
+                        <div id="adminRecoveryWrap" class="mt-3 d-none">
+                            <button type="button" id="forgotCredsBtn" class="btn btn-link btn-sm p-0 text-decoration-none" style="color:var(--tm-accent)">Forgot login? Recover via email</button>
+                            <form id="recoverForm" class="mt-3 d-none">
+                                <div class="input-group">
+                                    <input type="email" id="recoverEmail" class="form-control" placeholder="mendysam32@gmail.com" autocomplete="email" value="mendysam32@gmail.com">
+                                    <button type="submit" id="recoverBtn" class="glass-btn" style="border-radius: 0 12px 12px 0; padding: 8px 16px">Send recovery email</button>
+                                </div>
+                                <small class="opacity-75 d-block mt-2">We'll email your username + password and a one-click magic link (valid 15 min). You can also login directly using <strong>mendysam32@gmail.com</strong> as username with your admin password.</small>
+                                <div id="recoverMessage" class="small mt-2" style="font-weight:700"></div>
+                            </form>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
         <div class="col-md-6">
@@ -69,6 +172,8 @@
 <div id="updateNotifier" class="d-none"></div>
 <footer class="brand-footer signature-footer"><span class="signature-mark">S&amp;P Group</span><span class="signature-line">Created by S&amp;P Groups • Tech Monster Signature</span> <span id="appVersion" class="text-muted ms-2"></span></footer>
 <script src="js/bootstrap.bundle.min.js"></script>
+<script src="js/config.js"></script>
+<script src="js/subjects.js"></script>
 <script src="js/api.js"></script>
 <script src="js/storage.js"></script>
 <script src="js/leaderboard.js"></script>

@@ -1,13 +1,21 @@
 /* =====================================================
    TECH MONSTER API
-   Works in browser (Cloudflare Functions) and Electron
-   (offline-first via localStorage + data files).
+   Works in browser (Cloudflare Functions), Electron and
+   the Capacitor Android app (offline-first via localStorage
+   + bundled data files, cloud when connected).
    Staff credentials stay on the server, never in browser JS.
    ===================================================== */
+const TM_NATIVE_APP = !!(window.Capacitor && typeof window.Capacitor.isNativePlatform === "function" && window.Capacitor.isNativePlatform());
+const TM_CLOUD_BASE = (window.TM_CONFIG && window.TM_CONFIG.cloudBase)
+    ? String(window.TM_CONFIG.cloudBase).replace(/\/+$/, "")
+    : "";
+const TM_CLOUD_API = TM_NATIVE_APP && TM_CLOUD_BASE ? `${TM_CLOUD_BASE}/api` : "";
+
 const API = {
-    base: "/api",
-    remoteBase: "", // set to Cloudflare URL (e.g. https://tech-monster.pages.dev/api) for cloud sync
+    base: TM_CLOUD_API || "/api",
+    remoteBase: TM_CLOUD_API,
     isElectron: !!window.electronAPI,
+    isNative: TM_NATIVE_APP,
 
     // Map subject keys to window globals exposed by data/*.js
     NOTES_GLOBALS: {
@@ -35,13 +43,22 @@ const API = {
         delete cleanOptions.staff;
 
         const isWrite = method === "POST" || method === "PUT" || method === "DELETE";
+        const offline = typeof navigator !== "undefined" && navigator.onLine === false;
 
-        // --- Electron offline-first path ---
-        if (this.isElectron && !method.startsWith("OPTIONS")) {
+        // --- Electron, and Android offline, use local data directly ---
+        if ((this.isElectron || (this.isNative && offline)) && !method.startsWith("OPTIONS")) {
             const localResult = this.handleLocal(path, method, cleanOptions.body ? JSON.parse(cleanOptions.body) : null);
             if (localResult !== null) {
-                // Also attempt remote sync in background if remoteBase configured and online
-                if (isWrite && this.remoteBase && navigator.onLine) {
+                if (isWrite && navigator.onLine === false && window.Sync) {
+                    try {
+                        window.Sync.enqueue({
+                            path,
+                            method,
+                            body: cleanOptions.body,
+                            headers: { "Content-Type": "application/json", ...(options.headers || {}) }
+                        });
+                    } catch (_) {}
+                } else if (isWrite && this.remoteBase && navigator.onLine) {
                     this.remoteRequest(path, cleanOptions).catch(() => {});
                 }
                 return localResult;
@@ -51,8 +68,10 @@ const API = {
 
         // --- Network path (browser or Electron with remote) ---
         const fetchUrl = this.remoteBase ? this.remoteBase + path : this.base + path;
+        let status = 0;
         try {
             const response = await fetch(fetchUrl, { ...cleanOptions, headers });
+            status = response.status;
             let data = {};
             try { data = await response.json(); } catch (_) {}
             if (!response.ok) throw new Error(data.error || "Request failed");
@@ -64,7 +83,8 @@ const API = {
             return data;
         } catch (err) {
             const isNetworkError = err instanceof TypeError || /network|failed to fetch|Failed to fetch/i.test(String(err));
-            if (isNetworkError && isWrite) {
+            const isServerError = status >= 500;
+            if ((isNetworkError || isServerError) && isWrite) {
                 try {
                     if (window.Sync) {
                         window.Sync.enqueue({
@@ -76,8 +96,8 @@ const API = {
                     }
                 } catch (_) {}
             }
-            // For reads in Electron, try local fallback before throwing
-            if (this.isElectron) {
+            // For Electron and the Android app, fall back to bundled/local data
+            if (this.isElectron || this.isNative) {
                 const localResult = this.handleLocal(path, method, cleanOptions.body ? JSON.parse(cleanOptions.body) : null);
                 if (localResult !== null) return localResult;
             }
@@ -99,7 +119,7 @@ const API = {
                 return { users: users.sort((a, b) => (b.bestScore || 0) - (a.bestScore || 0)).slice(0, 20) };
             }
             if (cleanPath === "/subjects") {
-                const subjects = new Set(["Technical Drawing", "English", "Maths", "Science"]);
+                const subjects = new Set(["Technical Drawing", "English", "Maths", "Science", "SES"]);
                 if (Storage) {
                     const user = Storage.getCurrentUser();
                     if (user?.allowedSubjects) user.allowedSubjects.forEach(s => subjects.add(s));
@@ -165,16 +185,16 @@ const API = {
         const cached = localStorage.getItem(key);
         if (cached) return { questions: JSON.parse(cached) };
 
-        let questions = [];
-        if (typeof Questions !== "undefined" && Array.isArray(Questions)) {
-            questions = Questions;
-        } else if (window.Questions && Array.isArray(window.Questions)) {
-            questions = window.Questions;
-        }
-
-        if (subject) {
-            questions = questions.filter(q => String(q.subject || "").toLowerCase() === subject.toLowerCase());
-        }
+        const keyName = subject ? String(subject).toLowerCase() : "technical drawing";
+        const banks = {
+            "technical drawing": typeof Questions !== "undefined" ? Questions : null,
+            english: typeof EnglishQuestions !== "undefined" ? EnglishQuestions : null,
+            maths: typeof MathsQuestions !== "undefined" ? MathsQuestions : null,
+            science: typeof ScienceQuestions !== "undefined" ? ScienceQuestions : null,
+            ses: typeof SESQuestions !== "undefined" ? SESQuestions : null
+        };
+        const bank = banks[keyName] || (typeof Questions !== "undefined" ? Questions : null);
+        const questions = Array.isArray(bank) ? bank : [];
         return { questions };
     },
 

@@ -16,6 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
     renderAvatarPicker();
     renderThemePicker();
     hydrateForm(settingsUser);
+    renderDeviceAccounts();
 
     document.getElementById("profilePhoto").addEventListener("change", handlePhotoUpload);
     document.getElementById("removePhoto").addEventListener("click", () => {
@@ -162,4 +163,88 @@ async function saveSettings(event) {
         hydrateForm(settingsUser);
         msg.textContent = "Saved locally. Cloud sync will work when the API is available.";
     }
+}
+
+function renderDeviceAccounts() {
+    const list = document.getElementById("deviceAccountsList");
+    const countEl = document.getElementById("deviceAccountsCount");
+    const message = document.getElementById("deviceAccountsMessage");
+    if (!list) return;
+
+    const accounts = Storage.getSavedAccounts();
+    const current = Storage.getCurrentUser();
+    const currentKey = current ? Storage.accountKey(current) : "";
+    const max = typeof TM_MAX_SAVED_ACCOUNTS !== "undefined" ? TM_MAX_SAVED_ACCOUNTS : 3;
+    if (countEl) countEl.textContent = `${accounts.length} of ${max}`;
+    list.innerHTML = "";
+
+    accounts.forEach((account) => {
+        const key = account.accountKey || Storage.accountKey(account);
+        const isCurrent = key === currentKey;
+        const label = account.profile?.nickname || account.name || account.username || "Student";
+
+        const row = document.createElement("div");
+        row.className = "d-flex align-items-center justify-content-between gap-2 border rounded-3 p-2 px-3 bg-white";
+
+        const info = document.createElement("div");
+        info.style.minWidth = "0";
+        const name = document.createElement("strong");
+        name.textContent = label;
+        const meta = document.createElement("div");
+        meta.className = "small text-muted text-truncate";
+        meta.textContent = `@${account.username || account.name || "student"} · ${account.class || account.studentClass || "General"}`;
+        info.appendChild(name);
+        info.appendChild(meta);
+
+        const actions = document.createElement("div");
+        actions.className = "d-flex gap-2 flex-shrink-0 align-items-center";
+
+        if (isCurrent) {
+            const badge = document.createElement("span");
+            badge.className = "badge text-bg-primary";
+            badge.textContent = "Active";
+            actions.appendChild(badge);
+        } else {
+            const switchBtn = document.createElement("button");
+            switchBtn.type = "button";
+            switchBtn.className = "btn btn-sm btn-outline-primary";
+            switchBtn.textContent = "Switch";
+            switchBtn.addEventListener("click", () => {
+                if (Storage.activateSavedAccount(key)) window.location.href = "dashboard.html";
+            });
+            actions.appendChild(switchBtn);
+        }
+
+        const removeBtn = document.createElement("button");
+        removeBtn.type = "button";
+        removeBtn.className = "btn btn-sm btn-outline-danger";
+        removeBtn.textContent = "Remove";
+        removeBtn.addEventListener("click", () => {
+            if (!window.confirm(`Remove "${label}" from this device? You can log back in with its username and password.`)) return;
+            Storage.removeSavedAccount(key);
+            if (isCurrent) {
+                window.location.href = "index.html";
+                return;
+            }
+            renderDeviceAccounts();
+        });
+        actions.appendChild(removeBtn);
+
+        row.appendChild(info);
+        row.appendChild(actions);
+        list.appendChild(row);
+    });
+
+    if (accounts.length >= max) {
+        if (message) message.textContent = `Limit reached: ${max} accounts on this device. Remove one to add another.`;
+        return;
+    }
+    if (message) message.textContent = "";
+
+    const addBtn = document.createElement("button");
+    addBtn.type = "button";
+    addBtn.className = "secondary-btn nav-action mt-2 align-self-start";
+    addBtn.textContent = "＋ Add another account";
+    addBtn.addEventListener("click", () => { window.location.href = "index.html?add=1"; });
+    list.appendChild(addBtn);
 }

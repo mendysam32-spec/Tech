@@ -37,12 +37,26 @@ document.addEventListener("DOMContentLoaded", async () => {
     await renderNotes();
     renderPapers();
 
-    document.getElementById("librarySubject").addEventListener("change", async e => {
-        localStorage.setItem("tm_selectedSubject", e.target.value);
+    document.getElementById("librarySubject").onchange = async e => {
+        const subject = e.target.value;
+        if (!TMSubjects.isAvailable(subject)) {
+            TMSubjects.promptOnline(subject);
+            await hydrateSubjects();
+            return;
+        }
+        localStorage.setItem("tm_selectedSubject", subject);
         await renderNotes();
         renderPapers();
         if (paperDetailVisible) hidePaperDetail();
-    });
+    };
+    if (!window.__tmLibraryNetworkBound) {
+        window.__tmLibraryNetworkBound = true;
+        TMSubjects.onChange(async () => {
+            await hydrateSubjects();
+            await renderNotes();
+            renderPapers();
+        });
+    }
 
     searchInput.addEventListener("input", applySearch);
     clearBtn.addEventListener("click", () => { searchInput.value = ""; applySearch(); searchInput.focus(); });
@@ -1325,12 +1339,16 @@ function getEnglishQuery() {
 async function hydrateSubjects() {
     const select = document.getElementById("librarySubject");
     const currentUser = Storage.getCurrentUser();
-    let subjects = ["Technical Drawing", "English", "Maths", "Science", "SES"].map(name => ({ name }));
-    try { const data = await API.subjects(); for (const s of (data.subjects || [])) { if (!subjects.some(x => x.name.toLowerCase() === String(s.name).toLowerCase())) subjects.push(s); } } catch (_) {}
+    let subjects = TMSubjects.listDefault().map(name => ({ name }));
+    if (TMSubjects.isOnline()) {
+        try { const data = await API.subjects(); for (const s of (data.subjects || [])) { if (!subjects.some(x => x.name.toLowerCase() === String(s.name).toLowerCase())) subjects.push(s); } } catch (_) {}
+    }
+    subjects = subjects.filter(s => TMSubjects.isAvailable(s.name));
     subjects = Storage.filterAllowedSubjects(currentUser, subjects);
     const selected = localStorage.getItem("tm_selectedSubject") || subjects[0]?.name || "";
-    select.innerHTML = subjects.map(s => `<option value="${escapeHTML(s.name)}">${escapeHTML(s.name)}</option>`).join("");
+    select.innerHTML = subjects.map(s => `<option value="${escapeHTML(s.name)}">${escapeHTML(TMSubjects.label(s.name))}</option>`).join("");
     select.value = subjects.some(s => s.name === selected) ? selected : (subjects[0]?.name || "");
+    if (select.value) localStorage.setItem("tm_selectedSubject", select.value);
 }
 
 function getPaperHistory() {
@@ -1341,6 +1359,10 @@ async function renderNotes(filterQuery = null) {
     const container = document.getElementById("notesContainer");
     const subject = document.getElementById("librarySubject").value || "Technical Drawing";
     const q = (filterQuery ?? document.getElementById("librarySearch")?.value ?? "").trim().toLowerCase();
+    if (!TMSubjects.isAvailable(subject)) {
+        container.innerHTML = `<div class="empty-state"><h5>${escapeHTML(subject)} is online only</h5><p>Connect to the internet to open ${escapeHTML(subject)}. ${escapeHTML(TMSubjects.offlineSummary())} work offline.</p><button class="glass-btn" type="button" onclick="location.reload()">Try again when online</button></div>`;
+        return;
+    }
 
     // Science / SES / English are served from bundled book closets.
     if (subject !== "Science") { scienceView = "shelf"; scienceGradeId = null; scienceTopicId = null; }
@@ -1442,6 +1464,11 @@ function renderPapers(filterQuery = null) {
     const container = document.getElementById("papersContainer");
     const hint = document.getElementById("papersHint");
     const q = (filterQuery ?? document.getElementById("librarySearch")?.value ?? "").trim().toLowerCase();
+    if (!TMSubjects.isAvailable(subject)) {
+        if (container) container.innerHTML = "";
+        if (hint) hint.textContent = `${subject} is online only. Connect to the internet to view its past papers.`;
+        return;
+    }
     let papers = (window.getPapersForSubject ? window.getPapersForSubject(subject) : []).slice().sort((a,b)=> b.year - a.year);
     if (q) {
         papers = papers.filter(p => `${p.year} ${p.label} ${p.exam}`.toLowerCase().includes(q));

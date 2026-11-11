@@ -53,7 +53,7 @@ export async function onRequestPost({ request, env }) {
 
     const sessionToken = crypto.randomUUID() + crypto.randomUUID();
     await env.DB.prepare(
-      "INSERT INTO sessions (token, student_id, expires_at, created_at) VALUES (?, ?, datetime('now', '+30 days'), datetime('now'))"
+      "INSERT INTO sessions (token, student_id, expires_at, created_at) VALUES (?, ?, datetime('now', '+3650 days'), datetime('now'))"
     ).bind(sessionToken, user.id).run();
 
     return json({ user: publicUser(user), sessionToken });

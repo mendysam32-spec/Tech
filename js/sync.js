@@ -51,7 +51,8 @@ window.Sync = {
                 if (curStaffToken) headers.Authorization = `Bearer ${curStaffToken}`;
                 const init = { method: item.method || "POST", headers };
                 if (item.body) init.body = item.body;
-                const res = await fetch("/api" + item.path, init);
+                const apiBase = (window.API && (API.remoteBase || API.base)) || "/api";
+                const res = await fetch(apiBase + item.path, init);
                 if (!res.ok) throw new Error("HTTP " + res.status);
                 const data = await res.json().catch(() => ({}));
                 flushed++;
@@ -61,7 +62,11 @@ window.Sync = {
                         curToken = data.sessionToken;
                         localStorage.setItem("tm_sessionToken", curToken);
                     }
-                    if (data.user) localStorage.setItem("tm_currentUser", JSON.stringify(data.user));
+                    if (data.user) this.storeSyncedUser(data.user);
+                } else if (data.user && (item.path === "/score" || item.path === "/profile")) {
+                    // Keep the device copy matching the server after replaying
+                    // offline progress, so later online reads stay consistent.
+                    this.storeSyncedUser(data.user);
                 }
             } catch (err) {
                 remaining.push(item);
@@ -73,6 +78,17 @@ window.Sync = {
         this.setStatus({ pending: remaining.length, lastAttempt: Date.now(), offline: false });
         return { flushed, pending: remaining.length };
     },
+    storeSyncedUser(user) {
+        if (!user) return;
+        if (typeof Storage !== "undefined" && Storage.setCurrentUser) {
+            try { Storage.setCurrentUser(user); return; } catch (_) {}
+        }
+        try { localStorage.setItem("tm_currentUser", JSON.stringify(user)); } catch (_) {}
+    },
+    flushIfOnline() {
+        if (typeof navigator !== "undefined" && navigator.onLine === false) return;
+        this.flush();
+    },
     clear() {
         this.save([]);
         this.setStatus({ pending: 0 });
@@ -82,6 +98,28 @@ window.Sync = {
 window.addEventListener("online", () => {
     window.Sync.flush();
 });
+
+window.addEventListener("load", () => {
+    // A fresh app launch can already be online with queued offline work.
+    window.Sync.flushIfOnline();
+});
+
+document.addEventListener("visibilitychange", () => {
+    if (!document.hidden) window.Sync.flushIfOnline();
+});
+
+// Capacitor Android: flush as soon as the app returns to the foreground.
+(function () {
+    try {
+        const Plugins = window.Capacitor && window.Capacitor.Plugins;
+        const App = Plugins && Plugins.App;
+        if (!App || typeof App.addListener !== "function") return;
+        App.addListener("resume", () => window.Sync.flushIfOnline());
+        App.addListener("appStateChange", state => {
+            if (state && state.isActive) window.Sync.flushIfOnline();
+        });
+    } catch (_) {}
+})();
 
 window.addEventListener("beforeunload", () => {
     const q = window.Sync.queue();

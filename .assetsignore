@@ -1,6 +1,10 @@
 .wrangler/
 node_modules/
 release/
+www/
+android/
+scripts/
+capacitor.config.json
 data/Foundation SCIENCE/
 build_foundation_science.cjs
 build_ses_fullnotes.cjs

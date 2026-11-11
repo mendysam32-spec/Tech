@@ -1,0 +1,14 @@
+{
+  "appId": "com.spgroup.techmonster",
+  "appName": "Tech Monster",
+  "webDir": "www",
+  "android": {
+    "allowMixedContent": false,
+    "backgroundColor": "#0f172a"
+  },
+  "plugins": {
+    "SplashScreen": {
+      "launchShowDuration": 0
+    }
+  }
+}

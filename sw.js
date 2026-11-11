@@ -1,4 +1,4 @@
-const CACHE_VERSION = "v5";
+const CACHE_VERSION = "v6";
 const CACHE_NAME = `tech-monster-shell-${CACHE_VERSION}`;
 const DATA_CACHE_NAME = `tech-monster-data-${CACHE_VERSION}`;
 const API_PREFIX = "/api/";
@@ -31,6 +31,8 @@ const SHELL_URLS = [
   "./js/admin.js",
   "./js/api.js",
   "./js/app.js",
+  "./js/config.js",
+  "./js/subjects.js",
   "./js/dashboard.js",
   "./js/engine.js",
   "./js/leaderboard.js",
@@ -123,7 +125,7 @@ self.addEventListener("install", (event) => {
       Promise.allSettled(
         SHELL_URLS.map(u => cache.add(new URL(u, location.origin).href))
       )
-    ).then(() => self.skipWaiting())
+    )
   );
 });
 
@@ -192,7 +194,7 @@ async function navigationResponse(event) {
 // App code (html/js/css) must always be the latest build, otherwise a
 // deploy can leave students on stale UI. Network-first, cache as fallback.
 // Large static data/images stay stale-while-revalidate for speed.
-const APP_CODE = /\.(?:html?|js|css)$/i;
+const APP_CODE = /\.(?:html?|js|css|json)$/i;
 
 async function assetResponse(event) {
   const path = normalizeUrl(event.request.url);

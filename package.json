@@ -1,7 +1,7 @@
 {
   "name": "tech-monster",
   "productName": "Tech Monster",
-  "version": "1.0.0",
+  "version": "1.2.0",
   "description": "Study notes, quizzes and past papers — works offline, syncs when online.",
   "main": "electron/main.js",
   "author": "S&P Group",
@@ -11,7 +11,12 @@
     "package": "electron-builder",
     "pack": "electron-builder --dir",
     "dist": "electron-builder",
-    "postinstall": "electron-builder install-app-deps"
+    "postinstall": "electron-builder install-app-deps",
+    "android:web": "node scripts/build-android-web.cjs",
+    "android:sync": "npm run android:web && cap sync android",
+    "android:open": "npm run android:sync && cap open android",
+    "android:apk": "npm run android:sync && cd android && gradlew.bat assembleDebug",
+    "android:release": "npm run android:sync && cd android && gradlew.bat assembleRelease"
   },
   "build": {
     "appId": "com.spgroup.techmonster",
@@ -26,7 +31,8 @@
         }
       ],
       "icon": "build/icon.png",
-      "publisherName": "S&P Group"
+      "publisherName": "S&P Group",
+      "artifactName": "Tech-Monster-Setup-${version}.${ext}"
     },
     "nsis": {
       "oneClick": false,
@@ -51,20 +57,29 @@
       "!FRESH_DEPLOY_CHECKLIST.md",
       "!cloudflare/**/*",
       "!wrangler.toml",
+      "!android/**/*",
+      "!www/**/*",
+      "!scripts/**/*",
+      "!capacitor.config.json",
       "!.gitattributes",
       "!.gitignore"
     ],
     "publish": {
       "provider": "github",
-      "repo": "tech-monster",
-      "owner": "spgroup"
+      "repo": "Tech",
+      "owner": "mendysam32-spec"
     }
   },
   "devDependencies": {
+    "@capacitor/cli": "^8.6.0",
     "electron": "^29.0.0",
     "electron-builder": "^24.0.0"
   },
   "dependencies": {
+    "@capacitor/android": "^8.6.0",
+    "@capacitor/app": "^8.1.2",
+    "@capacitor/browser": "^8.0.5",
+    "@capacitor/core": "^8.6.0",
     "electron-updater": "^6.0.0"
   }
 }

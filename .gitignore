@@ -9,3 +9,15 @@ release/
 
 # Node dependencies - excluded from commits and Pages deploy
 node_modules/
+
+# Generated Android web bundle - rebuild with npm run android:web
+www/
+
+# Android signing secrets
+android/keystore.properties
+*.jks
+*.keystore
+
+# Installer artifacts (publish through GitHub Releases)
+*.apk
+*.aab

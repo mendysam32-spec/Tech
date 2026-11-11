@@ -32,27 +32,25 @@ function renderUser(user) {
     updateXPBar(user);
 }
 
-const LOCAL_SUBJECTS = ["Technical Drawing", "English", "Maths", "Science", "SES"];
+const LOCAL_SUBJECTS = TMSubjects.listDefault();
 
 async function loadSubjects() {
     const select = document.getElementById("subjectSelect");
     if (!select) return;
     const user = Storage.getCurrentUser();
 
-    function isOffline() { return navigator.onLine === false; }
-
-    // SCIENCE SUBJECT: available in both online and offline mode.
     let subjects = LOCAL_SUBJECTS.map(name => ({ name }));
-    try {
-        const data = await API.subjects();
-        const cloudRaw = data.subjects?.length ? data.subjects : [];
-        // SCIENCE SUBJECT: available in both online and offline mode.
-        const cloud = cloudRaw;
-        for (const s of cloud) {
-            if (!subjects.some(x => x.name.toLowerCase() === String(s.name).toLowerCase())) subjects.push(s);
-        }
-    } catch (_) {}
+    if (TMSubjects.isOnline()) {
+        try {
+            const data = await API.subjects();
+            const cloud = data.subjects?.length ? data.subjects : [];
+            for (const s of cloud) {
+                if (!subjects.some(x => x.name.toLowerCase() === String(s.name).toLowerCase())) subjects.push(s);
+            }
+        } catch (_) {}
+    }
 
+    subjects = subjects.filter(s => TMSubjects.isAvailable(s.name));
     subjects = Storage.filterAllowedSubjects(user, subjects);
     if (!subjects.length) {
         select.innerHTML = `<option value="">No subjects available</option>`;
@@ -61,19 +59,29 @@ async function loadSubjects() {
     }
 
     const saved = localStorage.getItem("tm_selectedSubject") || subjects[0].name;
-    select.innerHTML = subjects.map(s => `<option value="${s.name}">${s.name}</option>`).join("");
+    select.innerHTML = subjects.map(s => `<option value="${s.name}">${TMSubjects.label(s.name)}</option>`).join("");
     select.value = subjects.some(s => s.name === saved) ? saved : subjects[0].name;
     localStorage.setItem("tm_selectedSubject", select.value);
     renderTopicRadar(Storage.getCurrentUser() || user);
     renderExamPrep(Storage.getCurrentUser() || user, select.value);
     renderProgressMap(Storage.getCurrentUser() || user);
-    select.addEventListener("change", () => {
+    select.onchange = () => {
         const subj = select.value;
+        if (!TMSubjects.isAvailable(subj)) {
+            TMSubjects.promptOnline(subj);
+            select.value = localStorage.getItem("tm_selectedSubject") || subjects[0].name;
+            return;
+        }
         localStorage.setItem("tm_selectedSubject", subj);
         renderTopicRadar(Storage.getCurrentUser());
         renderExamPrep(Storage.getCurrentUser(), subj);
         renderProgressMap(Storage.getCurrentUser());
-    });
+    };
+}
+
+if (!window.__tmDashboardNetworkBound) {
+    window.__tmDashboardNetworkBound = true;
+    TMSubjects.onChange(() => loadSubjects());
 }
 
 function updateXPBar(user) {
