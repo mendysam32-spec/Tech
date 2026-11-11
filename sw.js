@@ -1,4 +1,4 @@
-const CACHE_VERSION = "v6";
+const CACHE_VERSION = "v7";
 const CACHE_NAME = `tech-monster-shell-${CACHE_VERSION}`;
 const DATA_CACHE_NAME = `tech-monster-data-${CACHE_VERSION}`;
 const API_PREFIX = "/api/";
@@ -35,6 +35,7 @@ const SHELL_URLS = [
   "./js/subjects.js",
   "./js/dashboard.js",
   "./js/engine.js",
+  "./js/english-guides.js",
   "./js/leaderboard.js",
   "./js/letter-game.js",
   "./js/levelup.js",
@@ -57,11 +58,15 @@ const SHELL_URLS = [
   "./data/2026.js",
   "./data/english-2026.js",
   "./data/english-book.js",
+  "./data/english-essay-writing.js",
   "./data/english-notes-detail.js",
   "./data/english-letter-writing.js",
+  "./data/english-letter-writing-formal.js",
   "./data/english-passages-comp2.js",
   "./data/english-passages-sum2.js",
+  "./data/english-passages-waec.js",
   "./data/english-passages.js",
+  "./data/english-register.js",
   "./data/foundation-science-book.js",
   "./data/foundation-science-notes.js",
   "./data/notes-english.js",
@@ -73,6 +78,7 @@ const SHELL_URLS = [
   "./data/questions-english-g7.js",
   "./data/questions-english-g8a.js",
   "./data/questions-english-g8b-g9.js",
+  "./data/questions-english-guides.js",
   "./data/questions-english.js",
   "./data/questions-maths.js",
   "./data/questions-science.js",

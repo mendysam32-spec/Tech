@@ -969,6 +969,128 @@ window.englishBook = [
               "Practice game below mirrors the exam: build the letter from word cards, score /100, review mistakes ONLY — the full correct letter is never shown."
             ],
             memoryTip: "Address → Date → Dear + name → Why I write → Points + example → Feelings → Reply + Loving friend. One idea per paragraph, one example per point, MINIMUM 300 words."
+          },
+          {
+            id: "eng-g9-t1-5",
+            unit: "5.0",
+            page: "5",
+            title: "Formal Letter Writing — Perfect Letter Masterclass",
+            icon: "🏢",
+            formalLetterMasterclass: true,
+            imageNote: "Insert image: A formal letter with two addresses, heading and 'Yours faithfully' ending.",
+            explanation: "Formal letters are official or business letters written to people we do not know — companies, ministries, editors and editors' designations. They follow a fixed pattern: TWO addresses (writer top right, recipient with designation on the left), a title/heading, a respectful salutation (Dear Sir/Madam), short clear paragraphs and 'Yours faithfully'. This masterclass chapter covers the COEMA marking scheme (50 marks), the three components of every letter (audience, purpose, language), the three language families (loose, strict, tepid), formal vs semi-formal letters, phrase banks and six full model letters. Read the guide below, then drill the chapter quiz.",
+            points: [
+              "COEMA = Content, Organisation, Expression, Mechanical Accuracy — 50 marks in all; Expression carries the most.",
+              "Formal letters carry TWO addresses: the writer's address (top right, no name) and the recipient's address (left, below the date, using the DESIGNATION not the person's name).",
+              "Salutation: Dear Sir, / Dear Madam, / Dear Sir/Madam, — subscription: Yours faithfully, (Yours sincerely if you began with the person's name).",
+              "Every official letter carries a heading or title (e.g. APPLICATION FOR EMPLOYMENT) — phrasal, in block letters or underlined.",
+              "Strict language: no slang, no contractions, no chatty tone — write every word in full and go straight to the point.",
+              "Address dignitaries by rank: Your Excellency (President, Ambassador), Your Lordship (Judge, Imam), Dear Professor (professor).",
+              "Semi-formal letters (the principal, the boss, a distant uncle) take tepid language — respectful but not stiff; use TWO addresses only if you begin with 'Dear Sir'."
+            ],
+            rules: [
+              "Writer's address at the top right — never write your name or phone number above a formal letter.",
+              "Recipient on the left with designation: The Editor, The Managing Director, The Principal — never their personal name.",
+              "One central idea per paragraph; link with 'firstly', 'furthermore', 'moreover', 'in conclusion'.",
+              "Application letters: state the post, the source of the advertisement (in inverted commas), qualifications, experience and at least TWO referees (never relatives).",
+              "Sign below 'Yours faithfully,' then write your full name — a woman adds (Miss) or (Mrs) in brackets before her name.",
+              "Be polite even in a complaint — the tone stays formal under provocation."
+            ],
+            examples: [
+              "WRITER (right): No. 64 Independent Drive, Banjul, 10th October, 2020.",
+              "RECIPIENT (left): The Editor, Standard Newspaper, Bakau Newtown, Bakau.",
+              "Heading: APPLICATION FOR EMPLOYMENT — Salutation: Dear Sir/Madam, — Closing: Yours faithfully, Malang Manneh (Mr).",
+              "WAEC trap: 'Your loving son,' after 'Dear Sir' loses format marks — the subscription must match the salutation."
+            ],
+            waecFocus: [
+              "Two addresses with the correct designation is directly marked — writing a personal name instead of a designation loses organisation marks.",
+              "'Yours faithfully' after 'Dear Sir/Madam' and 'Yours sincerely' after a named salutation is a mechanical-accuracy rule.",
+              "The advertisement source in inverted commas (\"Standard Newspaper\") is expected in every application letter.",
+              "Redundancy errors — 'still yet', 'so therefore', 'return back', 'should in case' — each cost half a mark.",
+              "Choose Standard British or American English and stay consistent — never mix 'colour' with 'color'.",
+              "Study the six model letters below: three informal, one application, one complaint, one semi-formal to a principal."
+            ],
+            memoryTip: "Two addresses → designation → Dear Sir/Madam → heading → one idea per paragraph → Yours faithfully → full name. Strict language, no contractions, polite to the end."
+          },
+          {
+            id: "eng-g9-t1-6",
+            unit: "6.0",
+            page: "6",
+            title: "Essay Writing — Continuous Writing Masterclass",
+            icon: "📝",
+            essayMasterclass: true,
+            imageNote: "Insert image: An essay plan showing introduction, body paragraphs and conclusion.",
+            explanation: "An essay is a piece of writing in which one expresses one's ideas, thoughts and judgments on a given topic. In WAEC / GABECE Paper 2 you will meet at least one continuous-writing question. Every essay is marked on the same four criteria — COEMA — worth 50 marks, with about 450 words expected. This masterclass chapter covers the marking scheme, the characteristics of a good essay, and the seven essay types — narrative, descriptive, argumentative/debate, article, expository, creative and speech — each with a full model answer. Read the guide below, then drill the chapter quiz.",
+            points: [
+              "COEMA = Content (10), Organisation (10), Expression (20), Mechanical Accuracy (10) — 50 marks; about 450 words.",
+              "Narrative essay = a tale of a past event; past tense; beginning, climax (middle) and ending; suspense and sensory detail.",
+              "Descriptive essay = a picturesque account of a person, place, event or object; present tense; nouns, adjectives, verbs and adverbs make it vivid.",
+              "Argumentative/debate essay = convince reasonable people; vocatives first (Mr. Chairman, Panel of Judges...); present tense; take a side and support it with facts.",
+              "Article = written for publication; title, introduction, body (causes/effects/solutions), conclusion + byline (name and class for a school magazine).",
+              "Expository essay = explain a process or idea; simple present; objective language — no slang, idioms or personal feelings.",
+              "Creative writing = a story illustrating a saying or ending with a given statement; the story must clearly illustrate the saying or you score ZERO under content.",
+              "Speech = like an argumentative essay but straightforward — formal address, points, gratitude, thank the audience."
+            ],
+            rules: [
+              "Give every essay a title or heading — and never write your name unless the form (article, letter, debate for publication) demands it.",
+              "Understand the topic before writing — a candidate who writes off topic can score NO mark under content.",
+              "One paragraph = one idea; link paragraphs with 'furthermore', 'moreover', 'nonetheless', 'in conclusion'.",
+              "Keep tenses consistent: past for narrative, present for descriptive, argumentative and expository.",
+              "Circle the action words in the question (describe, explain, advise, narrate) and satisfy every one of them — many questions are two-fold or three-fold.",
+              "Proofread: every spelling, punctuation or grammar error costs half a mark under mechanical accuracy."
+            ],
+            examples: [
+              "Narrative title: HOW I SPENT MY HOLIDAY — past tense journey story in clear order.",
+              "Descriptive detail: 'I travelled by a government bus with registration number BJL 1673' — not just 'I travelled by bus'.",
+              "Debate vocatives: 'Mr. Chairman, Panel of Judges, Accurate Time-keeper, Co-debater, Ladies and Gentlemen, good morning.'",
+              "School magazine byline: Jainaba Dahaba, 12C2 — national newspaper: name, town, region."
+            ],
+            waecFocus: [
+              "Expression carries 20 marks — the highest of the four criteria; vocabulary, idioms and sentence variety decide your grade.",
+              "Mechanical accuracy deducts half a mark per error — up to the whole 10 — so proofreading is worth marks.",
+              "Creative-writing questions are idiomatic: if you do not know the saying, choose another question.",
+              "A fascinating story that does not illustrate the given saying scores zero under content and organisation.",
+              "Debate and speech openings (vocatives) are marked under organisation — leaving them out is costly.",
+              "Study the seven model answers in the guide below before you write your own."
+            ],
+            memoryTip: "COEMA first (Content-Organisation-Expression-Mechanical Accuracy), 450 words, title, one idea per paragraph, tense by type, proofread last. Know the saying before you write the story."
+          },
+          {
+            id: "eng-g9-t1-7",
+            unit: "7.0",
+            page: "7",
+            title: "Register — Fields of Human Activity",
+            icon: "📚",
+            registerGuide: true,
+            imageNote: "Insert image: Word chips from different fields of work grouped under headings.",
+            explanation: "Register is the list of words, expressions or terms frequently used when talking about a particular area of human activity — the type of language you use in a particular situation or with a particular group of people. In the WAEC / GABECE objective paper, register is tested with gap-fill and odd-one-out questions set in a named field. This chapter stores the working vocabulary of the syllabus fields — photography, publishing, journalism, building, advertising, the library, insurance, fishing, minerals, banking, the stock exchange, transport, the military, government, education, power, religion, sports, entertainment, manufacturing and agriculture. Learn the words field by field, then drill the chapter quiz.",
+            points: [
+              "Register = the work vocabulary of a field: 'shutter', 'aperture' and 'negative' belong to photography.",
+              "WAEC tests register three ways: gap-fill in a field sentence, odd-one-out, and which-field-does-this-word-belong-to.",
+              "The surrounding words name the field — read the whole sentence first, silently name the field, then choose.",
+              "Collocation is king: 'crossed cheque' and 'counterfoil' go with banking; 'platoon' and 'epaulettes' go with the military.",
+              "Learn ten words from one field each day — the whole syllabus is covered in under a month.",
+              "Words in context: if two options belong to the field, choose the one that fits the grammar and meaning of the sentence."
+            ],
+            rules: [
+              "Name the field before you look at the options — banking, building, sports, religion...",
+              "Match the part of speech: if the gap needs a noun, cross out verb options first.",
+              "In odd-one-out questions, three words share one field — find the outsider.",
+              "Never answer a register question from general knowledge alone — the field words in the sentence are the evidence."
+            ],
+            examples: [
+              "Photography: camera, shutter, aperture, viewfinder, negative, darkroom, over-exposure.",
+              "Banking: cheque, counterfoil, overdraft, payee, statement of account, current account.",
+              "Journalism: editorial, by-line, circulation, masthead, deadline, libel, vendor.",
+              "Agriculture: plough, sickle, silo, fallow land, seed bed, plantation, dairy farming."
+            ],
+            waecFocus: [
+              "Register questions appear in the objective paper of both BECE and WASSCE — usually 3 to 5 items.",
+              "The 21 syllabus fields with their word lists are stored in the guide below — learn them as chips, ten a day.",
+              "Worked examples below show the field-reasoning the examiner expects.",
+              "Chapter quiz below drills field identification, word membership and gap-fill."
+            ],
+            memoryTip: "Read → name the field → check collocation → choose. Ten words a day, one field at a time."
           }
         ]
       },

@@ -1,7 +1,7 @@
 {
   "name": "tech-monster",
   "productName": "Tech Monster",
-  "version": "1.2.0",
+  "version": "1.3.0",
   "description": "Study notes, quizzes and past papers — works offline, syncs when online.",
   "main": "electron/main.js",
   "author": "S&P Group",

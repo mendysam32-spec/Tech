@@ -1089,7 +1089,13 @@ window.englishNotesDetail = {
             "Read the questions FIRST, then read the passage with those questions in mind.",
             "Underline the main idea of each paragraph as you read.",
             "Answer in full sentences, quoting short phrases from the passage.",
-            "For 'list' questions, give exactly the number of points asked for."
+            "For 'list' questions, give exactly the number of points asked for.",
+            "Grammatical names and functions: an underlined expression is given - name it (noun phrase, adjectival clause and so on) and state its function (it modifies the noun 'healer'; object of the verb 'thought').",
+            "There are EIGHT grammatical names: noun phrase, adjectival phrase, adverbial phrase, verbal phrase, prepositional phrase, noun clause, adjectival clause, adverbial clause.",
+            "Figurative expression questions ask TWO things: identify the figure of speech (metaphor, personification, hyperbole, simile, irony, oxymoron, paradox, onomatopoeia) and give its meaning in ordinary language.",
+            "Contextual meaning: guess an unfamiliar word from the context first - a dictionary is the last resort, used only when the word blocks the whole passage's meaning.",
+            "Cloze test: each numbered gap takes the ONE word that best fits - the surrounding words (collocation) and grammar decide the answer.",
+            "Skills comprehension builds: logical ability, inference, analysis, vocabulary power, reading speed and memory for important information."
         ],
         "definitions": [
             "Comprehension: the ability to understand and respond to a text.",
@@ -1098,7 +1104,11 @@ window.englishNotesDetail = {
             "Evaluative comprehension: judgement and opinion based on the text.",
             "Summary: a shorter version of the main points in your own words.",
             "Paraphrase: to restate an idea in different words.",
-            "Topic sentence: the sentence that states the main idea of a paragraph."
+            "Topic sentence: the sentence that states the main idea of a paragraph.",
+            "Grammatical name: the structural label of an expression (noun clause, adjectival phrase, adverbial clause).",
+            "Grammatical function: the work the expression does in the sentence (subject, object, complement, modifier of a noun/verb/adjective).",
+            "Figure of speech: an expression used for effect rather than literal meaning (metaphor, personification, hyperbole).",
+            "Cloze test: a passage with numbered gaps to be filled with the word that best fits each gap."
         ],
         "rules": [
             "Never answer a comprehension question from your own knowledge - use the passage.",
@@ -1108,7 +1118,10 @@ window.englishNotesDetail = {
             "When a question says 'according to the passage', quote or closely paraphrase.",
             "For inference questions, show the clue: 'The author says X, which shows that Y.'",
             "A summary of a passage with four paragraphs needs about four sentences.",
-            "Use the passage's own sequence of ideas in your summary."
+            "Use the passage's own sequence of ideas in your summary.",
+            "For grammatical name questions, answer BOTH parts: (i) the name of the expression, (ii) its function in the sentence.",
+            "For figurative expressions, name the device first, then explain what it means in the passage - never only one of the two.",
+            "In cloze tests, test each option in the gap: only one keeps both the grammar and the collocation of the sentence."
         ],
         "examples": [
             "Literal: 'The passage says the market opens at six.' (answer found in the text)",
@@ -1120,7 +1133,13 @@ window.englishNotesDetail = {
             "Summary step 2: write one sentence per paragraph in your own words.",
             "Summary step 3: cut details, examples, figures and repetition.",
             "Summary step 4: check that no idea is missing and no new idea has crept in.",
-            "True or false: 'False - the passage says the library closes at 5 p.m., not 6 p.m.'"
+            "True or false: 'False - the passage says the library closes at 5 p.m., not 6 p.m.'",
+            "Grammatical name: 'who alone knew how to cure lunatics' -> adjectival clause; function: it modifies the noun 'occult healer'.",
+            "Grammatical name: 'it was a tremendous idea' -> noun clause; function: object of the verb 'thought'.",
+            "Grammatical name: 'While all the villages in the area have light' -> adverbial clause; function: it modifies the verb 'is'.",
+            "Figure of speech: 'I sat down and waited for the storm to break' -> metaphor; meaning: he waited for the worse to happen.",
+            "Figure of speech: 'The bright sun continued to smile' -> personification; meaning: the sun continued to shine.",
+            "Figure of speech: 'I have never left my wife in a million years' -> hyperbole; meaning: for a very long time."
         ],
         "waecFocus": [
             "Read the questions before the passage - it saves time and stops you missing the point.",
@@ -1128,7 +1147,10 @@ window.englishNotesDetail = {
             "Summary: your own words, main points only, no examples, no new facts.",
             "A title is short and covers the whole passage.",
             "For 'list two', give exactly two points.",
-            "Justify evaluative answers with evidence from the passage."
+            "Justify evaluative answers with evidence from the passage.",
+            "Grammatical names and functions carry TWO sub-marks per item - answer both parts every time.",
+            "Figures of speech: know metaphor, simile, personification, hyperbole, irony, oxymoron, paradox and onomatopoeia cold - they repeat every year.",
+            "Cloze passages test collocation: 'cruising altitude', 'check-in procedure', 'front page headlines' - learn words that travel together."
         ],
         "memoryTip": "Q-P-A: Questions first, Passage second, Answer third in your own words with evidence. If the answer is not in the passage, it must be inferred - but never invented."
     },
@@ -1205,14 +1227,22 @@ window.englishNotesDetail = {
             "The number of sentences is guided by the number of points asked for.",
             "Names, figures and dates in the passage are usually kept, but supporting detail is dropped.",
             "Read the whole passage once quickly before you begin.",
-            "Write one clear sentence per main point, then join them with linking words."
+            "Write one clear sentence per main point, then join them with linking words.",
+            "The five components of a summary answer: main ideas only, no extraneous material, no wordiness, clarity and precision, satisfactory coverage.",
+            "Extraneous material - examples, statistics, repetitions, information in parenthesis - attracts a deduction of one mark per scoring answer.",
+            "Write answers in simple sentences; never in phrases or incomplete sentences.",
+            "A preamble (opening stem) is allowed only when it flows with the answer into one simple sentence; a broken preamble caps the marks at half.",
+            "Do not lump two points into one sentence - the second point is marked as irrelevant.",
+            "Every grammatical or expression error in a summary answer costs half a mark."
         ],
         "definitions": [
             "Summary: a shorter account of the main points of a text.",
             "Main point: the central idea of a paragraph.",
             "Paraphrase: to restate an idea in different words.",
             "Conciseness: saying a lot in few words.",
-            "Passage structure: the order in which the writer presents ideas."
+            "Passage structure: the order in which the writer presents ideas.",
+            "Extraneous material: detail outside the required points - examples, figures, repetitions.",
+            "Preamble: an opening stem that is joined to each answer to form one sentence."
         ],
         "rules": [
             "Do not copy whole sentences from the passage - rewrite them.",
@@ -1220,7 +1250,11 @@ window.englishNotesDetail = {
             "Do not use the word 'the passage' - write about the content directly.",
             "Do not write more points than the question asks for.",
             "Keep proper nouns and key figures; drop decorative detail.",
-            "Use full sentences and correct grammar - language marks are awarded."
+            "Use full sentences and correct grammar - language marks are awarded.",
+            "Mindless lifting - copying answers word for word - shows poor understanding and loses the paraphrase marks.",
+            "Write only the required number of sentences; extra sentences are ignored, even when they hold scoring points.",
+            "Repetition of words, phrases or ideas must be avoided in summary answers.",
+            "Do not emphasize any point unduly - every scoring point carries equal weight."
         ],
         "examples": [
             "Original: 'Many Ghanaians are turning to junk food because it is quick and cheap, although it contributes to obesity and diabetes.'",
@@ -1228,7 +1262,9 @@ window.englishNotesDetail = {
             "✗ Copied: 'Many Ghanaians are turning to junk food because it is quick and cheap...' → ✓ Paraphrased: 'Fast, cheap fast food has attracted many people in Ghana, adding to obesity and diabetes.'",
             "Dropped detail: 'The market, which is the busiest place in the town, is located near the river...' -> 'The busy town market is near the river.'",
             "Four-point summary in four sentences, in the order of the passage.",
-            "Final check: no new facts, no copied sentence, all main points present."
+            "Final check: no new facts, no copied sentence, all main points present.",
+            "✗ 'The causes are poor funding and bad roads and weak laws too' (two points lumped) -> ✓ one point per sentence.",
+            "Preamble used well: 'The author attributes the failure to poor funding.' - the stem plus the point forms one simple sentence."
         ],
         "waecFocus": [
             "Content (main points), conciseness, paraphrase and correct language are the marking criteria.",
@@ -1236,7 +1272,10 @@ window.englishNotesDetail = {
             "Keep the order of the passage.",
             "Do not write more points than are asked for.",
             "Write in full sentences; language marks count.",
-            "Do not mention 'the passage' or 'the writer' - write the summary itself."
+            "Do not mention 'the passage' or 'the writer' - write the summary itself.",
+            "Summary carries up to 30 marks in WASSCE - and zero is easy to score; follow the technique strictly.",
+            "Use the 50-minute plan: read passage quickly (5 min), read questions (2), read passage slowly (8), read questions again (2), read for the answers (8), write your own words (20), read over your answers (5).",
+            "During the second reading, draw vertical lines where one point ends and another begins, and underline the words that go together to answer each question."
         ],
         "memoryTip": "R.E.A.D: Read quickly, Extract main points, Add your own words, Double-check for new facts and missing points."
     },
@@ -1479,5 +1518,130 @@ window.englishNotesDetail = {
             "Never use 'Dear Sir/Madam' or 'Yours faithfully' in an informal letter."
         ],
         "memoryTip": "A.D.C.B: Address and date, Dear name, Chat (news and thanks), Bye (wish and sign-off). And check the spelling of your friend's name before you write."
+    },
+    "Formal Letter Writing — Perfect Letter Masterclass": {
+        "explanation": "Syllabus link: the formal letter is the second writing piece that appears in Paper 2, and it is marked on the same COEMA criteria - Content, Organisation, Expression, Mechanical Accuracy - worth 50 marks in all. Formal letters go to people we do not know: officials, companies, ministries, editors. They carry TWO addresses and a heading, they use strict language, and they end with 'Yours faithfully'. This masterclass chapter adds the COEMA scheme, the three components of every letter (audience, purpose, language), phrase banks, application-letter rules, the informal-vs-formal contrast, semi-formal letters and six full model letters. Read the full guide in the Library, then drill the chapter quiz.",
+        "points": [
+            "COEMA = Content, Organisation, Expression, Mechanical Accuracy; Expression carries the highest marks.",
+            "A candidate who writes off topic can score ZERO under content - answer the exact question set.",
+            "Every letter has three components: AUDIENCE (the receiver), PURPOSE (why you write - often two-fold or three-fold) and LANGUAGE (loose, strict or tepid).",
+            "Circle the action words in the question (discuss, describe, explain, advise) and satisfy every one of them.",
+            "Formal letters carry two addresses: the writer's at the top right (no name), the recipient's on the left with their DESIGNATION.",
+            "Dignitaries are addressed by rank: Your Excellency (President, Ambassador), Your Lordship (Judge, Imam), Your Royal Highness (King).",
+            "Semi-formal letters (principal, boss, landlord, distant uncle) take tepid language - respect without stiffness.",
+            "British or American English - choose one and stay consistent; never mix 'colour' with 'color'."
+        ],
+        "definitions": [
+            "Formal letter: official correspondence with someone not known personally.",
+            "Semi-formal letter: the middle course - respectful but familiar, to a principal, boss or distant relation.",
+            "Strict language: formal wording - no slang, no contractions, no chatty tone.",
+            "Tepid language: the middle register between informal and formal.",
+            "Designation: the official title of the addressee (The Editor, The Managing Director).",
+            "Subscription: the courteous leave-taking (Yours faithfully, Yours sincerely)."
+        ],
+        "rules": [
+            "'Dear Sir/Madam,' pairs with 'Yours faithfully,'; a named salutation pairs with 'Yours sincerely,'.",
+            "Never address an official, company or newspaper by personal name - use the designation.",
+            "Application letters: state the post, the source of the advertisement in inverted commas, qualifications, experience and two referees (never relatives).",
+            "One central idea per paragraph, linked with 'firstly', 'furthermore', 'in conclusion'.",
+            "Avoid redundancy: 'still yet', 'so therefore', 'return back', 'repeat again' - each one is an error.",
+            "Sign below the subscription, then write your full name - a woman adds (Miss) or (Mrs) in brackets."
+        ],
+        "examples": [
+            "WRITER (right): No. 64 Independent Drive, Banjul, 10th October, 2020.",
+            "RECIPIENT (left): The Editor, Standard Newspaper, Bakau Newtown, Bakau.",
+            "Heading: APPLICATION FOR EMPLOYMENT - Salutation: Dear Sir/Madam, - Closing: Yours faithfully, Malang Manneh (Mr).",
+            "✗ 'Your loving son,' after 'Dear Sir' -> ✓ 'Yours faithfully,'.",
+            "✗ 'The Personnel Manager, Mr Ousman Jallow' -> ✓ 'The Personnel Manager' (designation only)."
+        ],
+        "waecFocus": [
+            "Two correctly-placed addresses with designations are marked under organisation.",
+            "The subscription must match the salutation - the commonest WAEC trap.",
+            "Expression rewards variety of sentence patterns and idiomatic but formal wording.",
+            "Every mechanical error costs half a mark - proofread the letter before submitting."
+        ],
+        "memoryTip": "Two addresses, designation, Dear Sir/Madam, heading, one idea per paragraph, Yours faithfully, full name. Strict language - no contractions."
+    },
+    "Essay Writing — Continuous Writing Masterclass": {
+        "explanation": "Syllabus link: continuous writing is the essay section of Paper 2 in both BECE and WASSCE - at least one question must be answered from a choice of topics. An essay is a piece of writing in which one expresses one's ideas, thoughts and judgments on a given topic, marked on COEMA (Content 10, Organisation 10, Expression 20, Mechanical Accuracy 10 = 50 marks), about 450 words long. This masterclass chapter covers the marking scheme, the characteristics of a good essay and the seven essay types - narrative, descriptive, argumentative/debate, article, expository, creative and speech - each with a full model answer. Read the full guide in the Library, then drill the chapter quiz.",
+        "points": [
+            "Narrative essay: a tale of a past event - past tense, beginning-climax-ending, suspense, sensory detail.",
+            "Descriptive essay: a picturesque account of a person, place, event or object - present tense, vivid nouns, adjectives, verbs and adverbs.",
+            "Argumentative/debate essay: convince reasonable people - vocatives first, present tense, take a side, support it with facts and figures.",
+            "Article: written for publication - title, introduction, body (causes, effects, solutions), conclusion and byline.",
+            "Expository essay: explain a process or an idea - simple present, objective language, step-by-step order, materials listed.",
+            "Creative writing: a story illustrating a saying or ending with a given statement - the meaning of the saying must be obvious from the story.",
+            "Speech: like an argumentative essay but straightforward - formal address, points, review of the year, gratitude, thank the audience.",
+            "A good essay: title, proper tenses, correct spelling, paragraphs, simple punctuated sentences, idioms, definite conclusion, proofread."
+        ],
+        "definitions": [
+            "Essay: a piece of writing expressing one's ideas and judgments on a topic.",
+            "COEMA: the four marking criteria - Content, Organisation, Expression, Mechanical Accuracy.",
+            "Vocatives: the formal greetings that open a debate ('Mr. Chairman, Panel of Judges...').",
+            "Byline: the writer's name and class or address at the end of an article.",
+            "Climax: the middle of a narrative where the conflict peaks.",
+            "Continuous writing: the exam section where an essay, letter or article is written from a chosen topic."
+        ],
+        "rules": [
+            "Give every essay a title - and never write your name unless the form demands it (article, letter, debate for publication).",
+            "One paragraph = one central idea; link paragraphs with 'furthermore', 'moreover', 'nonetheless', 'in conclusion'.",
+            "Keep the tense consistent: past for narrative, present for descriptive, argumentative and expository.",
+            "A fascinating story that does not illustrate the given saying scores ZERO under content and organisation.",
+            "Creative-writing questions are idiomatic - if you do not know the saying, choose another question.",
+            "Every spelling, punctuation or grammar error costs half a mark - proofread before submitting."
+        ],
+        "examples": [
+            "Narrative title: HOW I SPENT MY HOLIDAY.",
+            "Descriptive detail: 'I travelled by a government bus with registration number BJL 1673' - not just 'I travelled by bus'.",
+            "Debate vocatives: 'Mr. Chairman, Panel of Judges, Accurate Time-keeper, Co-debater, Ladies and Gentlemen, good morning.'",
+            "School magazine byline: Jainaba Dahaba, 12C2 - national newspaper: name, town, region.",
+            "✗ An exciting story that never mentions the saying -> ✓ a story whose events clearly show the saying's meaning."
+        ],
+        "waecFocus": [
+            "Expression carries 20 of the 50 marks - vocabulary, idioms and sentence variety decide the grade.",
+            "Mechanical accuracy deducts half a mark per error, up to the whole 10.",
+            "Missing vocatives in a debate or speech cost organisation marks.",
+            "Answer the question exactly as set - two-fold and three-fold questions need every part treated."
+        ],
+        "memoryTip": "COEMA first - 450 words, title, one idea per paragraph, tense by essay type, proofread last. Know the saying before you write the story."
+    },
+    "Register — Fields of Human Activity": {
+        "explanation": "Syllabus link: register is tested in the objective paper of BECE and WASSCE with gap-fill, odd-one-out and which-field questions. Register is the list of words, expressions or terms frequently used when talking about a particular area of human activity - the type of language you use in a particular situation or with a particular group of people. The syllabus names 21 fields: photography, book publishing, journalism, building and construction, advertising, the library, insurance, fishing, mineral exploration, banking, the stock exchange, transport and communications, the military, government and politics, education, power production, religion, sports, entertainment, manufacturing industries and agriculture. This chapter stores each field's working vocabulary in the Library guide, with worked examples and a chapter quiz.",
+        "points": [
+            "Register = the work vocabulary of a field: 'shutter', 'aperture' and 'negative' belong to photography.",
+            "WAEC tests register as gap-fill sentences set in a field, odd-one-out, or which-field-does-this-word-belong-to.",
+            "Read the whole sentence first and silently name the field before looking at the options.",
+            "Collocation is king: 'crossed cheque' and 'counterfoil' go with banking; 'platoon' and 'epaulettes' go with the military.",
+            "Photography: camera, shutter, aperture, viewfinder, negative, darkroom, over-exposure.",
+            "Banking: cheque, counterfoil, overdraft, payee, statement of account, current account.",
+            "Journalism: editorial, by-line, circulation, masthead, deadline, libel, vendor.",
+            "Agriculture: plough, sickle, silo, fallow land, seed bed, plantation, dairy farming.",
+            "Learn ten words from one field each day - the whole syllabus is covered in under a month."
+        ],
+        "definitions": [
+            "Register: the vocabulary associated with a field of human activity.",
+            "Field of human activity: an area of work or life with its own vocabulary (banking, sports, religion).",
+            "Collocation: words that naturally travel together ('crossed cheque', 'cruising altitude').",
+            "Odd one out: the option whose field differs from the other three."
+        ],
+        "rules": [
+            "Name the field before you look at the options.",
+            "Match the part of speech: if the gap needs a noun, cross out verb options first.",
+            "If two options belong to the field, choose the one that fits the grammar and meaning of the sentence.",
+            "Never answer a register question from general knowledge alone - the field words in the sentence are the evidence."
+        ],
+        "examples": [
+            "The photographer adjusted the aperture before taking the shot. (photography)",
+            "The cheque was crossed, so it could only be paid into an account. (banking)",
+            "The platoon marched behind its commanding officer. (military)",
+            "The galley proofs were returned to the printer for correction. (book publishing)"
+        ],
+        "waecFocus": [
+            "Register items appear in the objective paper of both BECE and WASSCE - usually three to five questions.",
+            "The 21 syllabus fields with their word lists are stored in the Library guide - learn them as chips, ten a day.",
+            "Worked examples in the guide show the field-reasoning the examiner expects.",
+            "The chapter quiz drills field identification, word membership and gap-fill."
+        ],
+        "memoryTip": "Read - name the field - check collocation - choose. Ten words a day, one field at a time."
     }
 };

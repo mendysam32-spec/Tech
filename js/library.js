@@ -1059,6 +1059,10 @@ function renderEnglishCloset(query = null) {
                     const firstEx = (window.englishLetterExercises || [])[0];
                     if (firstEx) window.openLetterGame(firstEx.id, "letterGameMount");
                 }
+                // Masterclass guides: formal letters, essay writing, register.
+                if (found.topic && (found.topic.formalLetterMasterclass || found.topic.essayMasterclass || found.topic.registerGuide) && window.renderEnglishGuides) {
+                    window.renderEnglishGuides("guidesMount", found.topic);
+                }
             } catch (_) {}
             return;
         }
@@ -1214,6 +1218,54 @@ function englishHowToCard(title) {
             </div>
         </div>`;
     }
+    if (title === "Formal Letter Writing — Perfect Letter Masterclass" || /formal letter/i.test(title || "")) {
+        return `
+        <div class="study-card howto-card">
+            <div class="study-content">
+                <p class="mini-label">🏢 WAEC / GABECE method • Read this before you practice</p>
+                <h4>How to score full marks in a formal letter</h4>
+                <ol class="howto-steps">
+                    <li><strong>Two addresses first:</strong> yours at the top right (no name), the recipient's on the left with their <em>designation</em> — The Editor, The Managing Director — never their personal name.</li>
+                    <li><strong>Salutation + subscription must match:</strong> <em>Dear Sir/Madam,</em> pairs with <em>Yours faithfully,</em>; a named salutation pairs with <em>Yours sincerely,</em>. Format alone is ~10 marks.</li>
+                    <li><strong>Give it a heading:</strong> APPLICATION FOR EMPLOYMENT — block letters or underlined, phrasal, on the left.</li>
+                    <li><strong>Strict language:</strong> no contractions, no slang, no chatty tone — write every word in full and go straight to the point.</li>
+                    <li><strong>Application letters:</strong> post, source of the advert in inverted commas, qualifications, experience, two referees (never relatives).</li>
+                    <li><strong>COEMA is the marking scheme:</strong> Content 10, Organisation 10, Expression 20, Mechanical Accuracy 10 — proofread, every error costs half a mark.</li>
+                </ol>
+            </div>
+        </div>`;
+    }
+    if (title === "Essay Writing — Continuous Writing Masterclass" || /essay writing/i.test(title || "")) {
+        return `
+        <div class="study-card howto-card">
+            <div class="study-content">
+                <p class="mini-label">📝 WAEC / GABECE method • Read this before you practice</p>
+                <h4>How to score full marks in continuous writing</h4>
+                <ol class="howto-steps">
+                    <li><strong>Choose your question by type:</strong> narrative (past tense), descriptive (present tense), argumentative (vocatives + take a side), article (byline), expository (objective, step by step), creative (illustrate the saying), speech (formal address).</li>
+                    <li><strong>Plan before you write:</strong> title, introduction, one point per body paragraph, conclusion — about 450 words.</li>
+                    <li><strong>Circle every action word</strong> in the question (describe, explain, advise) — many questions are two-fold or three-fold; missing one part halves the content marks.</li>
+                    <li><strong>Expression is 20 of the 50 marks:</strong> vary your sentences, use idioms and figurative language suitable to the audience.</li>
+                    <li><strong>Mechanical accuracy:</strong> every spelling, punctuation and grammar error costs half a mark — proofread the essay before submitting it.</li>
+                </ol>
+            </div>
+        </div>`;
+    }
+    if (title === "Register — Fields of Human Activity" || /^register/i.test(title || "")) {
+        return `
+        <div class="study-card howto-card">
+            <div class="study-content">
+                <p class="mini-label">📚 WAEC / GABECE method • Read this before you practice</p>
+                <h4>How to answer register questions</h4>
+                <ol class="howto-steps">
+                    <li><strong>Read the whole sentence first</strong> and silently name the field — banking, building, sports, religion — before you look at the options.</li>
+                    <li><strong>Collocation is king:</strong> the answer is the word that travels with the field words already in the sentence ('crossed cheque', 'cruising altitude').</li>
+                    <li><strong>Odd one out:</strong> three options share one field — find the outsider.</li>
+                    <li><strong>Learn ten words a day</strong> from one field; the 21 syllabus fields are stored below as chips. In a month you have covered the whole syllabus.</li>
+                </ol>
+            </div>
+        </div>`;
+    }
     return "";
 }
 function englishPassagePickerCard(title, topicId) {
@@ -1233,7 +1285,31 @@ function englishPassagePickerCard(title, topicId) {
     </div>`;
 }
 function englishLetterBlocks(topic) {
-    if (!topic || !(topic.letterMasterclass || /informal letter/i.test(topic.title || ""))) return "";
+    if (!topic) return "";
+    // New masterclass guides: formal letters, essay writing, register.
+    if (topic.formalLetterMasterclass || topic.essayMasterclass || topic.registerGuide) {
+        let label = "✉️ Masterclass • COEMA • model letters";
+        let head = "Perfect letter — study guide";
+        if (topic.formalLetterMasterclass) {
+            label = "🏢 Masterclass • COEMA • two addresses • phrase banks • 6 model letters";
+            head = "Formal and semi-formal letters — study guide";
+        } else if (topic.essayMasterclass) {
+            label = "📝 Masterclass • COEMA • 7 essay types • model answers";
+            head = "Essay writing — continuous writing study guide";
+        } else if (topic.registerGuide) {
+            label = "📚 Masterclass • 21 fields • word chips • worked examples";
+            head = "Register — fields of human activity study guide";
+        }
+        return `
+    <div class="study-card monster-note letter-full">
+        <div class="study-content">
+            <p class="mini-label">${label}</p>
+            <h4>${head}</h4>
+            <div id="guidesMount"><p class="small opacity-75">Loading guide…</p></div>
+        </div>
+    </div>`;
+    }
+    if (!(topic.letterMasterclass || /informal letter/i.test(topic.title || ""))) return "";
     return `
     <div class="study-card monster-note letter-full">
         <div class="study-content">
